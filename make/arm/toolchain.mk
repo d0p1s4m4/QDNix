@@ -1,0 +1,1 @@
+TRIPLET := arm-none-eabi

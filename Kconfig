@@ -1,0 +1,48 @@
+mainmenu "QDNix configuration"
+
+choice
+	prompt "Architecture"
+	default ARM
+
+config ARM
+	bool "ARM architecture"
+
+config Athena
+	bool "Athena architecture"
+
+config RISCV64
+	bool "RISC-V 64 architecture"
+
+config MIPS
+	bool "MIPS architecture"
+
+config Z80
+	bool "Z80 architecture"
+
+endchoice
+
+source "src/sys/arm/Kconfig"
+source "src/sys/athena/Kconfig"
+source "src/sys/mips/Kconfig"
+source "src/sys/riscv64/Kconfig"
+source "src/sys/z80/Kconfig"
+
+choice
+	prompt "Toolchain"
+	default GNU
+
+config GNU
+	bool "GNU"
+
+config LLVM
+	bool "LLVM"
+
+config CC65
+	bool "CC65"
+
+config SDCC
+	bool "SDCC"
+
+endchoice
+
+source "test/Kconfig"

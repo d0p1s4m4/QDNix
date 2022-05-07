@@ -1,0 +1,8 @@
+menu "Athena architecture"
+	depends on Athena
+
+config ARCH
+	string
+	default "athena"
+
+endmenu

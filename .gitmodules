@@ -1,0 +1,6 @@
+[submodule "thirdparty/unix-utils"]
+	path = thirdparty/unix-utils
+	url = https://github.com/kohi-gnu/unix-utils.git
+[submodule "thirdparty/chadlibc"]
+	path = thirdparty/chadlibc
+	url = https://github.com/cute-engineewing/chadlibc.git

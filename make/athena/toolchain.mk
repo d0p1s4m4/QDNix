@@ -1,0 +1,1 @@
+TRIPLET := athena-unknown-elf
