@@ -1,0 +1,16 @@
+menu "MIPS architecture"
+	depends on MIPS
+
+config ARCH
+	string
+	default "mips"
+
+	choice
+		prompt "Board"
+		default MIPSSIM
+
+		config MIPSSIM
+			bool "mipssim"
+	endchoice
+endmenu
+
