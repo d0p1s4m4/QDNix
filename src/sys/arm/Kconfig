@@ -1,5 +1,5 @@
 menu "ARM architecture"
-	depends on ARM
+	depends on CPU_ARM
 
 config ARCH
 	string

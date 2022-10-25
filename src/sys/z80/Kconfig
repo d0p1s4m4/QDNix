@@ -1,5 +1,5 @@
 menu "z80 architecture"
-	depends on Z80
+	depends on CPU_Z80
 
 	config ARCH
 		string

@@ -1,5 +1,5 @@
 menu "RISC-V 64 architecture"
-	depends on RISCV64
+	depends on CPU_RISCV64
 
 	config ARCH
 		string

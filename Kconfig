@@ -2,46 +2,51 @@ mainmenu "QDNix configuration"
 
 choice
 	prompt "Architecture"
-	default ARM
+	default CPU_ARM
 
-config ARM
+config CPU_ARM
 	bool "ARM architecture"
 
-config Athena
+config CPU_ATHENA
 	bool "Athena architecture"
 
-config RISCV64
+config CPU_RISCV64
 	bool "RISC-V 64 architecture"
 
-config MIPS
+config CPU_MIPS
 	bool "MIPS architecture"
 
-config Z80
+config CPU_Z80
 	bool "Z80 architecture"
+
+config CPU_6502
+	bool "6502 architecture"
 
 endchoice
 
-source "src/sys/arm/Kconfig"
-source "src/sys/athena/Kconfig"
-source "src/sys/mips/Kconfig"
-source "src/sys/riscv64/Kconfig"
-source "src/sys/z80/Kconfig"
+source "src/sys/*/Kconfig"
 
 choice
 	prompt "Toolchain"
-	default GNU
+	default SDCC if CPU_Z80
+	default GNU if CPU_ATHENA
+	default LLVM
 
 config GNU
 	bool "GNU"
+	depends on CPU_ARM || CPU_ATHENA || CPU_RISCV64 || CPU_MIPS
 
 config LLVM
 	bool "LLVM"
+	depends on CPU_ARM || CPU_RISCV64 || CPU_MIPS
 
 config CC65
 	bool "CC65"
+	depends on CPU_6502
 
 config SDCC
 	bool "SDCC"
+	depends on CPU_Z80
 
 endchoice
 

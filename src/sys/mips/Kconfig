@@ -1,5 +1,5 @@
 menu "MIPS architecture"
-	depends on MIPS
+	depends on CPU_MIPS
 
 config ARCH
 	string
