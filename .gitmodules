@@ -1,6 +1,12 @@
 [submodule "thirdparty/unix-utils"]
-	path = thirdparty/unix-utils
+	path = thirdparty/bsd3/unix-utils/dist
 	url = https://github.com/kohi-gnu/unix-utils.git
 [submodule "thirdparty/chadlibc"]
-	path = thirdparty/chadlibc
+	path = thirdparty/lgpl3/chadlibc/dist
 	url = https://github.com/cute-engineewing/chadlibc.git
+[submodule "thirdparty/bsd3/mulderx/mulderX"]
+	path = thirdparty/bsd3/mulderx/dist
+	url = https://github.com/d0p1s4m4/mulderX.git
+[submodule "thirdparty/bsd3/init/init"]
+	path = thirdparty/bsd3/init/dist
+	url = https://github.com/kohi-gnu/init
