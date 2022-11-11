@@ -1,9 +1,9 @@
-KERNEL_C_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH:"%"=%)/*.c) \
+KERNEL_C_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH)/*.c) \
 					$(wildcard src/sys/libkern/*.c)
-KERNEL_S_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH:"%"=%)/*.S)
+KERNEL_S_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH)/*.S)
 KERNEL_OBJS	= $(KERNEL_S_SRCS:.S=.S.o) $(KERNEL_C_SRCS:.c=.o) 
 
-KERNEL_FILE	= qdnix
+KERNEL_FILE	= vmqdnix
 
 GARBADGE	+= $(KERNEL_OBJS) $(KERNEL_FILE)
 

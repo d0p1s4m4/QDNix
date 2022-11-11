@@ -14,8 +14,13 @@ GARBADGE	=
 
 -include $(MKCONF)
 
+ifdef CONFIG_ARCH
+CONFIG_ARCH	:= $(CONFIG_ARCH:"%"=%)
+endif
+
 include $(MAKEDIR)/toolchain.mk
 include $(MAKEDIR)/flags.mk
+include $(MAKEDIR)/run.mk
 
 include $(TOOLDIR)/build.mk
 include $(DOCSDIR)/build.mk

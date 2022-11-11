@@ -22,8 +22,8 @@ RISC-V:
 MIPS:
 - QEMU mipssim
 
-Z80
-
+Z80:
+- zx spectrum
 
 ## Credits
 

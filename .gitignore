@@ -25,4 +25,6 @@ config.h
 *.lst
 *.asm
 
-./qdnix
+vmqdnix
+
+build/

@@ -1,5 +1,5 @@
 ifdef CONFIG_ARCH
-include make/$(CONFIG_ARCH:"%"=%)/toolchain.mk
+include make/$(CONFIG_ARCH)/toolchain.mk
 endif
 
 ifeq ($(CONFIG_LLVM), y)

@@ -44,5 +44,5 @@ TESTS_LDFLAGS	+= --coverage
 endif
 
 ifdef CONFIG_ARCH
-include make/$(CONFIG_ARCH:"%"=%)/flags.mk
+include make/$(CONFIG_ARCH)/flags.mk
 endif
