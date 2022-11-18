@@ -1,7 +1,10 @@
 .SUFFIXES:
+.DELETE_ON_ERROR:
 .DEFAULT_GOAL := all
 
 RM			= rm -f
+MKDIR		= mkdir -p
+MKCWD		= $(MKDIR) $(@D)
 
 MKCONF		= .config.mk
 TOOLDIR		= tools
@@ -18,6 +21,12 @@ ifdef CONFIG_ARCH
 CONFIG_ARCH	:= $(CONFIG_ARCH:"%"=%)
 endif
 
+HOST_ARCH		?= $(shell uname -m)
+BUILDDIR_HOST	= $(BUILDDIR)/$(HOST_ARCH)
+BUILDDIR_TARGET	= $(BUILDDIR)/$(CONFIG_ARCH)
+
+CONFIG_HEADER	= $(BUILDDIR_TARGET)/config.h
+
 include $(MAKEDIR)/toolchain.mk
 include $(MAKEDIR)/flags.mk
 include $(MAKEDIR)/run.mk
@@ -31,24 +40,31 @@ include test/build.mk
 menuconfig:
 	$(CONF) --menuconfig
 	$(CONF) --genmake $(MKCONF)
-	$(CONF) --genheader config.h
 
 .PHONY: defconfig
 defconfig:
 	$(CONF) --defconfig
 	$(CONF) --genmake $(MKCONF)
-	$(CONF) --genheader config.h
 
 .PHONY: all
-all: $(KERNEL_FILE)
+all: $(CONFIG_HEADER) $(KERNEL_FILE)
+
+.config:
+	@ echo "Please run: \"make menuconfig\" or \"make defconfig\""
+	@ exit 255
+
+$(CONFIG_HEADER): .config
+	@ $(MKCWD)
+	$(CONF) --genheader $@
 
 .PHONY: clean
 clean:
-	$(RM) $(GARBADGE)
+	$(RM) $(GARBADGE) $(CONFIG_HEADER)
 
 .PHONY: fclean
 fclean: clean
-	$(RM) $(MKCONF)
+	$(RM) $(MKCONF) .config
+	$(RM) -r $(BUILDDIR)
 
 .PHONY: re
 re: clean all
