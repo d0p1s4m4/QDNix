@@ -1,0 +1,13 @@
+<header>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/building">Building</a>
+		<a href="/man">man</a>
+	</nav>
+
+	<img src="logo.png" />
+	<blockquote>
+		<p>"UNIX is very simple, it just needs a genius to understand its simplicity."</p>
+		<p><cite>– Dennis Ritchie</cite></p>
+	</blockquote>
+</header>

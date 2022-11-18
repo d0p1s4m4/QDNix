@@ -1,15 +1,15 @@
 % kill(2)
 % d0p1
-% 28 Thermidor CCXXX
+% 28 Brumaire CCXXXI
 
 # NAME
 
-kill - change current working directory
+kill - send signal to a process
 
 # SYNOPSIS
 
 ```c
-int kill(int);
+int kill(pid_t pid, int sig);
 ```
 
 # DESCRIPTION

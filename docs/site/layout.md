@@ -1,5 +1,5 @@
 - `docs/` Documentation
-	- `book` [QDNix handbook](https://qdnix.d0p1.eu)
+	- `site` [QDNix website](https://qdnix.d0p1.eu)
 	- `man/` man pages
 		- `man2/` system calls
 		- `man7/` overview and miscellany section

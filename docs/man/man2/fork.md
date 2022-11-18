@@ -4,7 +4,7 @@
 
 # NAME
 
-fork - change current working directory
+fork - spawn new process
 
 # SYNOPSIS
 

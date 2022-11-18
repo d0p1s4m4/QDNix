@@ -1,17 +1,19 @@
 % exit(2)
 % d0p1
-% 28 Thermidor CCXXX
+% 28 Brumaire CCXXXI
 
 # NAME
 
-exit - change current working directory
+exit - terminate process
 
 # SYNOPSIS
 
 ```c
-int exit(int);
+int exit(int status);
 ```
 
 # DESCRIPTION
 
 # RETURN VALUES
+
+None.

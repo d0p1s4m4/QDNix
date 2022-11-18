@@ -10,26 +10,13 @@
 
 </div>
 
-QDNix is an UNIX-like for ARM and RISC-V based evkit.
-
-ARMv7:
-- Orange Pi PC
-
-RISC-V:
-- QEMU-virt
-- Sipeed Lichee RV
-
-MIPS:
-- QEMU mipssim
-
-Z80:
-- zx spectrum
+QDNix is an UNIX-like for ARM and RISC-V based evkit....
 
 ## Credits
 
 This project takes inspirations and/or reuse code from the following projects.
 
-See [credits.md](./docs/book/credits.md)
+See [credits.md](./docs/site/credits.md)
 
 # License
 
