@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="d0p1" />
-  <title>getpid(2)</title>
+  <title>elf(5)</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -79,16 +79,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">getpid(2)</h1>
+<h1 class="title">elf(5)</h1>
 <p class="author">d0p1</p>
-<p class="date">28 Thermidor CCXXX</p>
+<p class="date">28 Brumaire CCXXXI</p>
 </header>
 <h1 id="name">NAME</h1>
-<p>getpid - change current working directory</p>
+<p>elf - format of Executable and Linking Format (ELF) file</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">int</span> getpid(<span class="dt">void</span>);</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;elf.h&gt;</span></a></code></pre></div>
 <h1 id="description">DESCRIPTION</h1>
-<h1 id="return-values">RETURN VALUES</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" title="1"><span class="pp">#define EI_NIDENT 16</span></a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">typedef</span> <span class="kw">struct</span> {</a>
+<a class="sourceLine" id="cb2-4" title="4">    <span class="dt">unsigned</span> <span class="dt">char</span> e_ident[EI_NIDENT];</a>
+<a class="sourceLine" id="cb2-5" title="5">    <span class="dt">uint16_t</span> e_type;</a>
+<a class="sourceLine" id="cb2-6" title="6">    <span class="dt">uint16_t</span> e_machine;</a>
+<a class="sourceLine" id="cb2-7" title="7">    <span class="dt">uint32_t</span> e_version;</a>
+<a class="sourceLine" id="cb2-8" title="8">    <span class="dt">uint32_t</span> e_entry;</a>
+<a class="sourceLine" id="cb2-9" title="9">    <span class="dt">uint32_t</span> e_phoff;</a>
+<a class="sourceLine" id="cb2-10" title="10">    <span class="dt">uint32_t</span> e_shoff;</a>
+<a class="sourceLine" id="cb2-11" title="11">    <span class="dt">uint32_t</span> e_flags;</a>
+<a class="sourceLine" id="cb2-12" title="12">    <span class="dt">uint16_t</span> e_ehsize;</a>
+<a class="sourceLine" id="cb2-13" title="13">    <span class="dt">uint16_t</span> e_phentsize;</a>
+<a class="sourceLine" id="cb2-14" title="14">    <span class="dt">uint16_t</span> e_phnum;</a>
+<a class="sourceLine" id="cb2-15" title="15">    <span class="dt">uint16_t</span> e_shentsize;</a>
+<a class="sourceLine" id="cb2-16" title="16">    <span class="dt">uint16_t</span> e_shnum;</a>
+<a class="sourceLine" id="cb2-17" title="17">    <span class="dt">uint16_t</span> e_shstrndx;</a>
+<a class="sourceLine" id="cb2-18" title="18">} Elf32_Ehdr;</a>
+<a class="sourceLine" id="cb2-19" title="19"></a>
+<a class="sourceLine" id="cb2-20" title="20"><span class="kw">typedef</span> <span class="kw">struct</span> {</a>
+<a class="sourceLine" id="cb2-21" title="21">    <span class="dt">unsigned</span> <span class="dt">char</span> e_ident[EI_NIDENT];</a>
+<a class="sourceLine" id="cb2-22" title="22">    <span class="dt">uint16_t</span> e_type;</a>
+<a class="sourceLine" id="cb2-23" title="23">    <span class="dt">uint16_t</span> e_machine;</a>
+<a class="sourceLine" id="cb2-24" title="24">    <span class="dt">uint32_t</span> e_version;</a>
+<a class="sourceLine" id="cb2-25" title="25">    <span class="dt">uint64_t</span> e_entry;</a>
+<a class="sourceLine" id="cb2-26" title="26">    <span class="dt">uint64_t</span> e_phoff;</a>
+<a class="sourceLine" id="cb2-27" title="27">    <span class="dt">uint64_t</span> e_shoff;</a>
+<a class="sourceLine" id="cb2-28" title="28">    <span class="dt">uint32_t</span> e_flags;</a>
+<a class="sourceLine" id="cb2-29" title="29">    <span class="dt">uint16_t</span> e_ehsize;</a>
+<a class="sourceLine" id="cb2-30" title="30">    <span class="dt">uint16_t</span> e_phentsize;</a>
+<a class="sourceLine" id="cb2-31" title="31">    <span class="dt">uint16_t</span> e_phnum;</a>
+<a class="sourceLine" id="cb2-32" title="32">    <span class="dt">uint16_t</span> e_shentsize;</a>
+<a class="sourceLine" id="cb2-33" title="33">    <span class="dt">uint16_t</span> e_shnum;</a>
+<a class="sourceLine" id="cb2-34" title="34">    <span class="dt">uint16_t</span> e_shstrndx;</a>
+<a class="sourceLine" id="cb2-35" title="35">} Elf64_Ehdr;</a></code></pre></div>
 <footer>
 	<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons"
 				style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Ce(tte)

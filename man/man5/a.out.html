@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="d0p1" />
-  <title>getpid(2)</title>
+  <title>a.out(5)</title>
   <style type="text/css">
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -79,16 +79,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">getpid(2)</h1>
+<h1 class="title">a.out(5)</h1>
 <p class="author">d0p1</p>
-<p class="date">28 Thermidor CCXXX</p>
+<p class="date">28 Brumaire CCXXXI</p>
 </header>
 <h1 id="name">NAME</h1>
-<p>getpid - change current working directory</p>
+<p>a.out - assembler and lik editor output</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">int</span> getpid(<span class="dt">void</span>);</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;a.out.h&gt;</span></a></code></pre></div>
 <h1 id="description">DESCRIPTION</h1>
-<h1 id="return-values">RETURN VALUES</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">struct</span> exec {</a>
+<a class="sourceLine" id="cb2-2" title="2">    <span class="dt">int</span> a_magic;</a>
+<a class="sourceLine" id="cb2-3" title="3">    <span class="dt">unsigned</span> a_text;</a>
+<a class="sourceLine" id="cb2-4" title="4">    <span class="dt">unsigned</span> a_data;</a>
+<a class="sourceLine" id="cb2-5" title="5">    <span class="dt">unsigned</span> a_bss;</a>
+<a class="sourceLine" id="cb2-6" title="6">    <span class="dt">unsigned</span> a_syms;</a>
+<a class="sourceLine" id="cb2-7" title="7">    <span class="dt">unsigned</span> a_entry;</a>
+<a class="sourceLine" id="cb2-8" title="8">    <span class="dt">unsigned</span> a_trsize;</a>
+<a class="sourceLine" id="cb2-9" title="9">    <span class="dt">unsigned</span> a_drsize;</a>
+<a class="sourceLine" id="cb2-10" title="10">};</a></code></pre></div>
+<ul>
+<li><code>a_magic</code>
+<ul>
+<li>OMAGIC</li>
+<li>NMAGIC</li>
+<li>ZMAGIC</li>
+</ul></li>
+<li><code>a_text</code></li>
+<li><code>a_data</code></li>
+<li><code>a_bss</code></li>
+<li><code>a_syms</code></li>
+<li><code>a_entry</code></li>
+<li><code>a_trsize</code></li>
+<li><code>a_drsize</code></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">struct</span> nlist {</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">union</span> {</a>
+<a class="sourceLine" id="cb3-3" title="3">        <span class="dt">char</span> <span class="dt">const</span> *n_name;</a>
+<a class="sourceLine" id="cb3-4" title="4">        <span class="dt">long</span> n_strx;</a>
+<a class="sourceLine" id="cb3-5" title="5">    } n_un;</a>
+<a class="sourceLine" id="cb3-6" title="6">    <span class="dt">unsigned</span> <span class="dt">char</span> n_type;</a>
+<a class="sourceLine" id="cb3-7" title="7">    <span class="dt">char</span> n_other;</a>
+<a class="sourceLine" id="cb3-8" title="8">    <span class="dt">short</span> n_desc;</a>
+<a class="sourceLine" id="cb3-9" title="9">    <span class="dt">unsigned</span> n_value;</a>
+<a class="sourceLine" id="cb3-10" title="10">};</a></code></pre></div>
+<ul>
+<li><code>n_un</code>
+<ul>
+<li><code>n_name</code></li>
+<li><code>n_strx</code></li>
+</ul></li>
+<li><code>n_type</code></li>
+<li><code>n_other</code></li>
+<li><code>n_desc</code></li>
+<li><code>n_value</code></li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">struct</span> relocation_info {</a>
+<a class="sourceLine" id="cb4-2" title="2">    <span class="dt">int</span> r_address;</a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="dt">unsigned</span> r_symbolnum:<span class="dv">24</span>,</a>
+<a class="sourceLine" id="cb4-4" title="4">            r_pcrel:<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb4-5" title="5">            r_length:<span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb4-6" title="6">            r_extern:<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb4-7" title="7">            pad:<span class="dv">4</span>;</a>
+<a class="sourceLine" id="cb4-8" title="8">};</a></code></pre></div>
+<ul>
+<li><code>r_address</code></li>
+<li><code>r_symbolnum</code></li>
+<li><code>r_pcrel</code></li>
+<li><code>r_length</code></li>
+<li><code>r_extern</code></li>
+</ul>
+<h1 id="see-also">SEE ALSO</h1>
+<p>nm(1)</p>
 <footer>
 	<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons"
 				style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Ce(tte)
