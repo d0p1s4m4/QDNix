@@ -12,7 +12,7 @@ mmio_write8(uintptr_t addr, uint8_t value)
 static __inline__ uint8_t
 mmio_read8(uintptr_t addr)
 {
-	return (*(volatile uintptr_t *)addr);
+	return (*(volatile uint8_t *)addr);
 }
 
 static __inline__ void

@@ -28,3 +28,8 @@ config.h
 vmqdnix
 
 build/
+
+a.out
+
+parser.tab.h
+parser.tab.c

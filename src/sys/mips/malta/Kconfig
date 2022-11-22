@@ -1,0 +1,8 @@
+menu "Board config"
+	depends on BOARD_MALTA
+
+config SMP
+	int
+	default 4
+
+endmenu

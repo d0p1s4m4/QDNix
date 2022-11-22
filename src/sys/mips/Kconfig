@@ -7,10 +7,23 @@ config ARCH
 
 	choice
 		prompt "Board"
-		default MIPSSIM
+		default BOARD_MALTA
 
-		config MIPSSIM
+		config BOARD_MALTA
+			bool "malta"
+
+		config BOARD_MIPSSIM
 			bool "mipssim"
+
 	endchoice
+
+	config BOARD
+		string
+		default "malta" if BOARD_MALTA
+		default "mipssim" if BOARD_MIPSSIM
+
+	rsource "malta/Kconfig"
+	rsource "mipssim/Kconfig"
+
 endmenu
 

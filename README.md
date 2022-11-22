@@ -10,7 +10,7 @@
 
 </div>
 
-QDNix is an UNIX-like for ARM and RISC-V based evkit....
+QDNix is an UNIX-like for ARM and MIPS based evkit....
 
 ## Credits
 

@@ -1,16 +1,18 @@
 #ifndef _MIPS_ARCH_
 # define _MIPS_ARCH_ 1
 
-# define MMIO_BASE_ADDR 0xbfd00000
-
+/*# define MMIO_BASE_ADDR 0x18000000*/
+# define MMIO_BASE_ADDR 0x1FD00000
 # define UART_BASE_ADDR 0x3f8
 
-# define UART(x) (MMIO_BASE_ADDR + UART_BASE_ADDR + x)
+# define USEG_BASE_ADDR  0x00000000
+# define KSEG0_BASE_ADDR 0x80000000
+# define KSEG1_BASE_ADDR 0xA0000000
+# define KSEG2_BASE_ADDR 0xC0000000
+# define KSEG3_BASE_ADDR 0xE0000000
 
+# define PHYS_TO_KSEG1(x) ((x) | KSEG1_BASE_ADDR)
 
-/* coproc0 registers */
-# define CO0_STATUS_REG 12
-# define CO0_CAUSE_REG  13
-# define CO0_EPC_REG    14
+# define UART(x) (PHYS_TO_KSEG1(MMIO_BASE_ADDR + UART_BASE_ADDR + x))
 
 #endif /* !_MIPS_ARCH_ */

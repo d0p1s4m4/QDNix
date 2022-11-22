@@ -14,6 +14,7 @@ KERNEL_CFLAGS	= $(COMMON_CFLAGS) \
 					-D__KERNEL__=1 \
 					-Isrc/sys \
 					-Isrc/sys/$(CONFIG_ARCH) \
+					-Isrc/sys/$(CONFIG_ARCH)/$(CONFIG_BOARD) \
 					-O0
 
 KERNEL_ASFLAGS	= $(KERNEL_CFLAGS)

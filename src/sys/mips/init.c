@@ -59,7 +59,6 @@ arch_init(void)
 {
 	serial_init();
 	debug_puts("Hello World");
-	while (1) {
-		continue;
-	}
+
+	return;
 }

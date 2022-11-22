@@ -4,7 +4,7 @@ ENTRY(_entry)
 
 SECTIONS
 {
-	. = 0xbfc00000;
+	. = 0x80100000;
 
 	.text :
 	{

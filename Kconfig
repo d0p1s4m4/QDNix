@@ -24,30 +24,6 @@ config CPU_6502
 
 endchoice
 
+source "make/Kconfig"
 source "src/sys/*/Kconfig"
-
-choice
-	prompt "Toolchain"
-	default SDCC if CPU_Z80
-	default GNU if CPU_ATHENA
-	default LLVM
-
-config GNU
-	bool "GNU"
-	depends on CPU_ARM || CPU_ATHENA || CPU_RISCV64 || CPU_MIPS
-
-config LLVM
-	bool "LLVM"
-	depends on CPU_ARM || CPU_RISCV64 || CPU_MIPS
-
-config CC65
-	bool "CC65"
-	depends on CPU_6502
-
-config SDCC
-	bool "SDCC"
-	depends on CPU_Z80
-
-endchoice
-
 source "test/Kconfig"
