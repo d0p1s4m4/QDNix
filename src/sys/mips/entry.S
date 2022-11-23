@@ -55,15 +55,15 @@ _entry:
 	/* clear status register */
 	mtc0 $zero, C0_STATUS
 
+	/* check cpu number */
+	mfc0 $t0, C0_EBASE
+	andi $t0, $t0, 0x3FF
+	bnez $t0, hang
+	nop
+
 	/* set ebase to kernel entry */
 	la $t0, _entry
 	mtc0 $t0, C0_EBASE
-
-	/* check cpu number */
-	mfc0 $t0, C0_PRID
-	srl $t0, $t0, 24
-	bnez $t0, hang
-	nop
 
 	/* save boot start args */
 	move $s0, $a0

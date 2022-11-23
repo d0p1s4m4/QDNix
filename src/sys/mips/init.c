@@ -1,5 +1,11 @@
 #include <sys/machine/mmio.h>
 #include "arch.h"
+#include <stdarg.h>
+#include <stddef.h>
+
+void printk(const char *fmt, ...);
+
+extern void (*early_console_putchar)(char);
 
 void
 serial_init(void)
@@ -42,23 +48,33 @@ serial_read(void)
 }
 
 void
-debug_puts(const char *str)
-{
-	while (*str != '\0')
-		serial_write(*str++);
-}
-
-void
 debug_putchar(char c)
 {
 	serial_write(c);
 }
 
 void
-arch_init(void)
+arch_init(int argc, char **argv, char **envp, uintptr_t memsize)
 {
-	serial_init();
-	debug_puts("Hello World");
+	int idx;
 
+	printk("QDNX hello\n");
+	serial_init();
+	early_console_putchar = &debug_putchar;
+
+	printk("serial initialized\n");
+	printk("cmdline:\n");
+	for (idx = 0; idx < argc; idx++)
+	{
+		printk("\t%s\n", argv[idx]);
+	}
+
+	printk("env:\n");
+	for (; *envp != NULL; envp++)
+	{
+		printk("\t%s\n", *envp);
+	}
+
+	printk("memsize: %u\n", memsize);
 	return;
 }

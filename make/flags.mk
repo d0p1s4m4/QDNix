@@ -15,6 +15,7 @@ KERNEL_CFLAGS	= $(COMMON_CFLAGS) \
 					-Isrc/sys \
 					-Isrc/sys/$(CONFIG_ARCH) \
 					-Isrc/sys/$(CONFIG_ARCH)/$(CONFIG_BOARD) \
+					-I$(BUILDDIR_TARGET) \
 					-O0
 
 KERNEL_ASFLAGS	= $(KERNEL_CFLAGS)
