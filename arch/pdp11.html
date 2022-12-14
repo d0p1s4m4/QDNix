@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>pdp11</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+<header>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/building">Building</a>
+		<a href="/man">Manual</a>
+	</nav>
+
+	<img src="/logo.png" />
+	<blockquote>
+		<p>"UNIX is very simple, it just needs a genius to understand its simplicity."</p>
+		<p><cite>– Dennis Ritchie</cite></p>
+	</blockquote>
+</header>
+<h1 id="registers">Registers</h1>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Alt Name</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>r0</td>
+<td></td>
+<td>Temporary accumulators</td>
+</tr>
+<tr class="even">
+<td>r1</td>
+<td></td>
+<td>Temporary accumulators</td>
+</tr>
+<tr class="odd">
+<td>r2</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>r3</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>r4</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>r5</td>
+<td></td>
+<td>Environment pointer</td>
+</tr>
+<tr class="odd">
+<td>r6</td>
+<td>sp</td>
+<td>Stack Pointer</td>
+</tr>
+<tr class="even">
+<td>r7</td>
+<td>pc</td>
+<td>Program counter</td>
+</tr>
+</tbody>
+</table>
+<h1 id="memory-management">Memory Management</h1>
+<p>Page size: 128K (64 bytes)</p>
+<h3 id="registers-1">Registers</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Address</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MMR0</td>
+<td>0177572</td>
+<td>Memory Management Register #0</td>
+</tr>
+<tr class="even">
+<td>MMR1</td>
+<td>0177574</td>
+<td>Memory Management Register #1 (⚠️ PDP-11/44 and 11/70)</td>
+</tr>
+<tr class="odd">
+<td>MMR2</td>
+<td>0177576</td>
+<td>Fault virtual address</td>
+</tr>
+<tr class="even">
+<td>MMR3</td>
+<td></td>
+<td>Memory Management Register #3 (⚠️ PDP-11/44 and 11/70)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="mmr0">MMR0</h5>
+<table>
+<thead>
+<tr class="header">
+<th>Bits</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15</td>
+<td>Abort-Non Resident</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>Abort-Page / Length Error</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>Abort-Read Only / Access Violation</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Trap-Memory Management (⚠️ PDP-11/70 only)</td>
+</tr>
+<tr class="odd">
+<td>11-10</td>
+<td>Reserved</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>Enable Memory Management Traps (⚠️ PDP-11/70 only)</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>Maintenance Mode (⚠️ Not used by PDP-11/24)</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>Instruction Completed (⚠️ PDP-11/70 only)</td>
+</tr>
+<tr class="odd">
+<td>6-5</td>
+<td>Page Mode</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Page Address Space I/D (⚠️ PDP-11/44 and 11/70)</td>
+</tr>
+<tr class="odd">
+<td>3-1</td>
+<td>Page Number</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>Enable Relocation</td>
+</tr>
+</tbody>
+</table>
+<h5 id="mmr1">MMR1</h5>
+<table>
+<thead>
+<tr class="header">
+<th>Bits</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15-11</td>
+<td>Amount changed</td>
+</tr>
+<tr class="even">
+<td>10-8</td>
+<td>Register Number</td>
+</tr>
+<tr class="odd">
+<td>7-3</td>
+<td>Amount Changed</td>
+</tr>
+<tr class="even">
+<td>2-0</td>
+<td>Register Number</td>
+</tr>
+</tbody>
+</table>
+<h5 id="mmr3">MMR3</h5>
+<table>
+<thead>
+<tr class="header">
+<th>Bits</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>15-6</td>
+<td>Reserved</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>Enable Unibus Map</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Enable 22bit Mapping</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Reserved</td>
+</tr>
+<tr class="odd">
+<td>2-0</td>
+<td>Mode</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Value</th>
+<th>Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0b100</td>
+<td>Kernel</td>
+</tr>
+<tr class="even">
+<td>0b010</td>
+<td>Supervisor</td>
+</tr>
+<tr class="odd">
+<td>0b001</td>
+<td>User</td>
+</tr>
+</tbody>
+</table>
+<footer>
+	<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons"
+				style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Ce(tte)
+		œuvre est mise à disposition selon les termes de la <a rel="license"
+			href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans
+			les Mêmes Conditions 4.0 International</a>.</p>
+</footer>
+</body>
+</html>
