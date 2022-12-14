@@ -131,7 +131,11 @@ printk(const char *fmt, ...)
 			case 'p':
 			case 'a':
 				printstr("0x");
+#ifdef __pdp11__
+				printuint((va_arg(args, unsigned)), 16);
+#else
 				printuint((va_arg(args, uintptr_t)), 16);
+#endif
 				break;
 
 			default:

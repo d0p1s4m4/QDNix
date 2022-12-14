@@ -22,6 +22,9 @@ config CPU_Z80
 config CPU_6502
 	bool "6502 architecture"
 
+config CPU_PDP11
+	bool "PDP-11 architecture"
+
 endchoice
 
 source "make/Kconfig"

@@ -1,16 +1,19 @@
 KERNEL_C_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH)/*.c) \
-					$(wildcard src/sys/libkern/*.c)
+					$(wildcard src/sys/libkern/*.c) \
+					$(wildcard src/sys/kern/*.c)
 KERNEL_S_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH)/*.S)
-KERNEL_OBJS	= $(KERNEL_S_SRCS:.S=.S.o) $(KERNEL_C_SRCS:.c=.o) 
-
+KERNEL_OBJS	= $(patsubst src/%.S, $(BUILDDIR_TARGET)/%.S.o, $(KERNEL_S_SRCS)) \
+				$(patsubst src/%.c, $(BUILDDIR_TARGET)/%.o, $(KERNEL_C_SRCS)) 
 KERNEL_FILE	= vmqdnix
 
 GARBADGE	+= $(KERNEL_OBJS) $(KERNEL_FILE)
 
-src/sys/%.o: src/sys/%.c
+$(BUILDDIR_TARGET)/sys/%.o: src/sys/%.c
+	@ $(MKCWD)
 	$(TARGET_CC) $(KERNEL_CFLAGS) -c -o $@ $<
 
-src/sys/%.S.o: src/sys/%.S
+$(BUILDDIR_TARGET)/sys/%.S.o: src/sys/%.S
+	@ $(MKCWD)
 	$(TARGET_AS) $(KERNEL_ASFLAGS) -c -o $@ $<
 
 ifeq ($(CONFIG_SDCC), y)
@@ -24,5 +27,5 @@ $(KERNEL_FILE): $(KERNEL_FILE).ihx
 
 else
 $(KERNEL_FILE):	$(KERNEL_OBJS)
-	$(TARGET_LD) $(KERNEL_LDFLAGS) -o $@ $^
+	$(TARGET_LD) -o $@  $^ $(KERNEL_LDFLAGS)
 endif

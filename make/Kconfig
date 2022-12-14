@@ -7,7 +7,7 @@ choice
 
 config GNU
 	bool "GNU"
-	depends on CPU_ARM || CPU_ATHENA || CPU_RISCV64 || CPU_MIPS
+	depends on CPU_ARM || CPU_ATHENA || CPU_RISCV64 || CPU_MIPS || CPU_PDP11
 
 config LLVM
 	bool "LLVM"

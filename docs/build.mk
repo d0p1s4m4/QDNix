@@ -4,7 +4,7 @@ CONVERT		= convert
 HTML_BUILDDIR	= docs/html
 HTML_INCDIR		= docs/site/include
 
-SITE_MD		= $(wildcard docs/site/*.md)
+SITE_MD		=  $(wildcard docs/site/*.md) $(wildcard docs/site/**/*.md)
 MAN_MD		= $(wildcard docs/man/**/*.md)
 SITE_HTML	= $(patsubst docs/site/%.md, $(HTML_BUILDDIR)/%.html, $(SITE_MD))
 MAN_HTML	= $(patsubst docs/%.md, $(HTML_BUILDDIR)/%.html, $(MAN_MD))
