@@ -1,6 +1,8 @@
 KERNEL_C_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH)/*.c) \
 					$(wildcard src/sys/libkern/*.c) \
-					$(wildcard src/sys/kern/*.c)
+					$(wildcard src/sys/kern/*.c) \
+					$(wildcard src/sys/dev/*.c) \
+					$(wildcard src/sys/dev/**/*.c)
 KERNEL_S_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH)/*.S)
 KERNEL_OBJS	= $(patsubst src/%.S, $(BUILDDIR_TARGET)/%.S.o, $(KERNEL_S_SRCS)) \
 				$(patsubst src/%.c, $(BUILDDIR_TARGET)/%.o, $(KERNEL_C_SRCS)) 
@@ -28,4 +30,7 @@ $(KERNEL_FILE): $(KERNEL_FILE).ihx
 else
 $(KERNEL_FILE):	$(KERNEL_OBJS)
 	$(TARGET_LD) -o $@  $^ $(KERNEL_LDFLAGS)
+ifdef TARGET_OBJDUMP
+	$(TARGET_OBJDUMP) -D $@ > $@.dump
+endif
 endif

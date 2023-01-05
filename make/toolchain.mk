@@ -3,18 +3,20 @@ include make/$(CONFIG_ARCH)/toolchain.mk
 endif
 
 ifeq ($(CONFIG_LLVM), y)
-	LLVM_TARGET	= -target $(TRIPLET)
-	TARGET_CC	:= clang $(LLVM_TARGET)
-	TARGET_AS	:= $(TARGET_CC)
-	TARGET_LD	:= ld.lld
+	LLVM_TARGET		= -target $(TRIPLE)
+	TARGET_CC		:= clang $(LLVM_TARGET)
+	TARGET_AS		:= $(TARGET_CC)
+	TARGET_LD		:= ld.lld
+	TARGET_OBJDUMP	:= llvm-objdump
 
-	CC			:= clang
+	CC				:= clang
 else ifeq ($(CONFIG_GNU), y)
-	TARGET_CC	:= $(TRIPLET)-gcc
-	TARGET_AS	:= $(TARGET_CC)
-	TARGET_LD	:= $(TRIPLET)-ld
+	TARGET_CC		:= $(TRIPLE)-gcc
+	TARGET_AS		:= $(TARGET_CC)
+	TARGET_LD		:= $(TRIPLE)-ld
+	TARGET_OBJDUMP	:= $(TRIPLE)-objdump
 
-	CC			:= gcc
+	CC				:= gcc
 else ifeq ($(CONFIG_CC65), y)
 	TARGET_CC	:= cl65
 	TARGET_AS	:= ca65

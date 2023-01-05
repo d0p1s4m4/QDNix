@@ -1,1 +1,1 @@
-TRIPLET := mips-unknown-elf
+TRIPLE := mips-unknown-elf

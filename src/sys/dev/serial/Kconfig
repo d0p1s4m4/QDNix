@@ -1,0 +1,3 @@
+config CLOCK
+	int
+	default 8000000

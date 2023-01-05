@@ -7,10 +7,14 @@
  * Control registers
  * (https://gunkies.org/wiki/PDP-11_Memory_Management)
  */
-#  define MMR0 0177572
-#  define MMR1 0177574
-#  define MMR2 0177576
-#  define MMR3 0177516
+#  define MMR0  0177572
+#  define MMR1  0177574
+#  define MMR2  0177576
+#  define MMR3  0177516
+#  define SISD0 0172200
+#  define SISD7 0172216
+#  define SDSD0 0172220
+#  define SDSD7 0172236
 
 # endif /* __ASSEMBLER__ */
 

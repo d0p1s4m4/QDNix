@@ -1,0 +1,13 @@
+menu "Console"
+
+
+config BUFFERED_CONSOLE
+	bool "Buffered console"
+	default y
+
+config CONSOLE_BUFFER_SIZE
+	int "Buffer size"
+	depends on BUFFERED_CONSOLE
+	default 512
+
+endmenu

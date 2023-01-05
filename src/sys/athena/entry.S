@@ -1,5 +1,5 @@
 .section .bss
-.align 16
+.align 8
 stack_bottom:
 .skip 16384
 stack_top:
@@ -13,13 +13,13 @@ _entry:
 	la sp, stack_top
 
 	/* clear bss */
-	la r1, bss_begin
-	la r2, bss_end
+	la t0, bss_begin
+	la t1, bss_end
 
 clear_bss_loop:
-	sw $0, 0(r1)
-	addi r1, r1, 4
-	bne r2, r1, clear_bss_loop
+	sw zero, 0(t0)
+	addiu t0, t0, 4
+	bne t1, t0, clear_bss_loop
 	nop
 
 	.extern arch_init

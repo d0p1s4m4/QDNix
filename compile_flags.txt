@@ -1,1 +1,2 @@
 -Isrc/sys
+-Ibuild/llvm-mips-mipssim-debug/

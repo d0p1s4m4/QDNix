@@ -1,1 +1,1 @@
-TRIPLET	:= pdp11-aout
+TRIPLE	:= pdp11-aout

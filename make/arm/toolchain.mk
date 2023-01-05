@@ -1,1 +1,1 @@
-TRIPLET := arm-none-eabi
+TRIPLE := arm-none-eabi

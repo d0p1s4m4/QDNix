@@ -31,6 +31,18 @@
 #ifndef _SYS_DEV_UART_UART_H
 # define _SYS_DEV_UART_UART_H 1
 
+# include <stdint.h>
+# include <stddef.h>
 
+typedef struct {
+	void (*init)(void *);
+	size_t (*write)(void *, const char *, size_t);
+	size_t (*read)(void *, char *, size_t);
+
+	uintptr_t io_base;
+	int irq;
+	uint8_t reg_offset;
+	uint32_t beaudrate;
+} SerialDevice;
 
 #endif /* !_SYS_DEV_UART_UART_H */

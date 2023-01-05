@@ -1,4 +1,15 @@
+.area _HEADER (ABS)
+
+.org 0x0000
 jp _entry
+
+.org 0x0008
+
+.org 0x0010
+
+.org 0x0018
+
+
 
 _entry:
 	; disable interrupt
@@ -13,18 +24,3 @@ _entry:
 
 hang:
 	jp hang
-
-
-.globl _delay
-_delay:
-	ld bc, #0x0
-	1$:
-		bit #0, a
-		bit #0, a
-		bit #0, a
-		and a, #255
-		dec bc
-		ld a, c
-		or a, b
-		jp nz, 1$
-	ret

@@ -10,3 +10,11 @@
 [submodule "thirdparty/bsd3/init/init"]
 	path = thirdparty/bsd3/init/dist
 	url = https://github.com/kohi-gnu/init
+[submodule "thirdparty/gpl3/binutils/dist"]
+	path = thirdparty/gpl3/binutils/dist
+	url = https://sourceware.org/git/binutils-gdb.git
+	branch = binutils-2_39-branch
+[submodule "thirdparty/gpl3/gcc/dist"]
+	path = thirdparty/gpl3/gcc/dist
+	url = https://gcc.gnu.org/git/gcc.git
+	branch = releases/gcc-12.2.0

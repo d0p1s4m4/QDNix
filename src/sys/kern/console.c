@@ -1,27 +1,63 @@
+#include "dev/device.h"
 #include <stddef.h>
 #include <stdint.h>
 
-void (*early_console_putchar)(char) = NULL;
-static size_t early_console_idx = 0;
-static char early_console_buff[512];
+#include <sys/console.h>
+
+#ifdef CONFIG_BUFFERED_CONSOLE
+static char console_buffer[CONFIG_CONSOLE_BUFFER_SIZE] = { '\0' };
+static size_t console_buffer_idx = 0;
+#endif /* CONFIG_BUFFERED_CONSOLE */
+
+static Console *console = NULL;
+
+void
+console_flush(void)
+{
+#ifdef CONFIG_BUFFERED_CONSOLE
+	if (console != NULL && console->write != NULL && console_buffer_idx > 0)
+	{
+		console->write(console->device, console_buffer, console_buffer_idx);
+	}
+#endif /* CONFIG_BUFFERED_CONSOLE */
+}
 
 void
 console_putchar(char c)
 {
-	size_t idx;
-
-	if (early_console_putchar == NULL)
+#ifdef CONFIG_BUFFERED_CONSOLE
+	if (console_buffer_idx > CONFIG_CONSOLE_BUFFER_SIZE)
 	{
-		early_console_buff[early_console_idx++] = c;
-		early_console_idx %= 512;
-		return;
+		console_flush();
 	}
-
-	for (idx = 0; early_console_idx > 0; idx++, early_console_idx--)
+	console_buffer[console_buffer_idx++] = c;
+#else
+	if (console != NULL && console->write != NULL)
 	{
-		early_console_putchar(early_console_buff[idx]);
+		console->write(console->device, &c, 1);
 	}
+#endif /* CONFIG_BUFFERED_CONSOLE */
+}
 
-	early_console_putchar(c);
+void
+console_setup(Device *dev)
+{
+	/* XXX: rework drivers */
+	static Console cons;
+
+	if (dev->class == DEVICE_TTY)
+	{
+		cons.write = dev->drivers.serial.write;
+		cons.read = dev->drivers.serial.read;
+	}
+	cons.device = dev;
+
+	console = &cons;
+#ifdef CONFIG_BUFFERED_CONSOLE
+	if (console_buffer_idx > 0)
+	{
+		console_flush();
+	}
+#endif /* CONFIG_BUFFERED_CONSOLE */
 }
 

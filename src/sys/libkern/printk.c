@@ -33,9 +33,9 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-extern void console_putchar(char);
+#include <sys/console.h>
 
-static __inline__ void
+static inline void
 printstr(const char *str)
 {
 	if (str == NULL)
@@ -50,7 +50,7 @@ printstr(const char *str)
 	}
 }
 
-static __inline__ void
+static inline void
 printuint(uintptr_t u, int base)
 {
 	static const char digits[] = "0123456789abcdef";
@@ -144,4 +144,5 @@ printk(const char *fmt, ...)
 		}
 	}
 	va_end(args);
+	console_flush();
 }

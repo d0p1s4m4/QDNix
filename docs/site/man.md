@@ -2,6 +2,8 @@
 
 ### System Section 1 - General Commands
 
+- [sh(1)](/man/man1/sh)
+
 ### System Section 2 - System Calls
 
 - [chdir(2)](/man/man2/chdir)
@@ -32,3 +34,5 @@
 - [hier(7)](/man/man7/hier)
 
 ### System Section 8 - System administration
+
+### System Section 9 - Kernel developper's manual

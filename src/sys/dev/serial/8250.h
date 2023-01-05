@@ -29,48 +29,48 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _SYS_DEV_UART_8250_H
-# define _SYS_DEV_UART_8250_H 1
+#ifndef _SYS_DEV_SERIAL_8250_H
+# define _SYS_DEV_SERIAL_8250_H 1
 
 /* UART 8250 , 16750 */
 
-# define UART_RBR       0x0 /* RX */
-# define UART_THR       0x0 /* TX */
+# define UART8250_RBR        0x0 /* RX */
+# define UART8250_THR        0x0 /* TX */
 
-# define UART_IER       0x1
-# define UART_IER_RDA   0x1
-# define UART_IER_THRE  0x2
-# define UART_IER_RLSRC 0x4
-# define UART_IER_MSRC  0x8
-
-/* 16750 only */
-# define UART_IER_SLEEP 0x10
-# define UART_IER_LPM   0x20
-
-# define UART_IIR       0x2
-
-# define UART_FCR       0x2
-# define UART_FCR_EN    0x1
-# define UART_FCR_CLSR  0x2
-# define UART_FCR_CLST  0x4
-# define UART_FCR_DMA   0x8
+# define UART8250_IER        0x1
+# define UART8250_IER_RDA    0x1
+# define UART8250_IER_THRE   0x2
+# define UART8250_IER_RLSRC  0x4
+# define UART8250_IER_MSRC   0x8
 
 /* 16750 only */
-# define UART_FCR_64EN  0x20
+# define UART16750_IER_SLEEP 0x10
+# define UART16750_IER_LPM   0x20
 
-# define UART_LCR 0x3
+# define UART8250_IIR        0x2
 
-# define UART_MCR 0x4
+# define UART8250_FCR        0x2
+# define UART8250_FCR_EN     0x1
+# define UART8250_FCR_CLSR   0x2
+# define UART8250_FCR_CLST   0x4
+# define UART8250_FCR_DMA    0x8
 
-# define UART_LSR 0x5
+/* 16750 only */
+# define UART16750_FCR_64EN  0x20
 
-# define UART_MSR 0x6
+# define UART8250_LCR        0x3
 
-# define UART_SCR 0x7
+# define UART8250_MCR        0x4
+
+# define UART8250_LSR        0x5
+
+# define UART8250_MSR        0x6
+
+# define UART8250_SCR        0x7
 
 /* DLAB == 1 */
-# define UART_DLL 0x0
+# define UART8250_DLL        0x0
 
-# define UART_DLM 0x1
+# define UART8250_DLH        0x1
 
-#endif /* !_SYS_DEV_UART_8250_H */
+#endif /* !_SYS_DEV_SERIAL_8250_H */

@@ -1,1 +1,1 @@
-TRIPLET := riscv64-unknown-elf
+TRIPLE := riscv64-unknown-elf

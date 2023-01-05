@@ -28,5 +28,5 @@ config CPU_PDP11
 endchoice
 
 source "make/Kconfig"
-source "src/sys/*/Kconfig"
+source "src/Kconfig"
 source "test/Kconfig"
