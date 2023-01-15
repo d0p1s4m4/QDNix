@@ -1,5 +1,5 @@
 SYS_TEST_SRCS		= $(wildcard test/sys/*.c)
-SYS_TEST_KERN_SRCS	= $(wildcard src/sys/libkern/*.c)
+SYS_TEST_KERN_SRCS	= $(wildcard src/sys/libkern/kmemset.c)
 SYS_TEST_OBJS	= $(SYS_TEST_SRCS:.c=.o) \
 					 $(patsubst src/sys/%.c, test/sys/%.o, $(SYS_TEST_KERN_SRCS))
 

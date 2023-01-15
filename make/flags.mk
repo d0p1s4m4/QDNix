@@ -36,7 +36,8 @@ USERSPACE_LDFLAGS	=
 #  tests
 # ==============================================================================
 TESTS_CFLAGS	= $(COMMON_CFLAGS) \
-					-fno-builtin
+					-fno-builtin \
+					-Isrc/sys
 
 TESTS_LDFLAGS	= -lcmocka
 
