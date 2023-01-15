@@ -1,0 +1,11 @@
+digraph "src/sys/dev/serial" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_02790d9076d147370f66228ea312a7cf {
+    graph [ bgcolor="#ddddee", pencolor="black", label="dev" fontname="Helvetica", fontsize="10", URL="dir_02790d9076d147370f66228ea312a7cf.html"]
+  dir_03cb0efb4f5f2162d6197e6d74cecd85 [shape=box, label="serial", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_03cb0efb4f5f2162d6197e6d74cecd85.html"];
+  }
+  dir_c529fe1005f766361284165817aae3f9 [shape=box label="sys" fillcolor="white" style="filled" color="red" URL="dir_c529fe1005f766361284165817aae3f9.html"];
+  dir_03cb0efb4f5f2162d6197e6d74cecd85->dir_c529fe1005f766361284165817aae3f9 [headlabel="1", labeldistance=1.5 headhref="dir_000008_000013.html"];
+}
