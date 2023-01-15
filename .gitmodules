@@ -17,4 +17,4 @@
 [submodule "thirdparty/gpl3/gcc/dist"]
 	path = thirdparty/gpl3/gcc/dist
 	url = https://gcc.gnu.org/git/gcc.git
-	branch = releases/gcc-12.2.0
+	branch = releases/gcc-12
