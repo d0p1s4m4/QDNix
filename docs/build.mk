@@ -1,5 +1,6 @@
 PANDOC		= pandoc
 CONVERT		= convert
+DOXYGEN		= doxygen
 
 HTML_BUILDDIR	= docs/html
 HTML_INCDIR		= docs/site/include
@@ -21,6 +22,9 @@ html: $(SITE_HTML) $(MAN_HTML)
 	convert docs/html/logo.png -resize 256x256 \
     	-define icon:auto-resize="256,128,96,64,48,32,16" \
 		docs/html/favicon.ico
+	convert docs/html/logo.png -resize 64x64 \
+		docs/html/logo-tiny.png
+	$(DOXYGEN) docs/Doxyfile
 
 docs/html/%.html: docs/site/%.md $(HTML_HDR) $(HTML_NAV) $(HTML_FOOTER)
 	@ $(MKCWD)

@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install pandoc imagemagick
+          sudo apt install pandoc imagemagick doxygen
 
       - name: Generate
         run: make html
