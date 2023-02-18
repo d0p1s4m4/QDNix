@@ -1,24 +1,38 @@
 - `docs/` Documentation
 	- `site` [QDNix website](https://qdnix.d0p1.eu)
 	- `man/` man pages
+		- `man1/` general commands
 		- `man2/` system calls
+		- `man4/` special files and devices
+		- `man5/` file formats and conventions
+		- `man6/` user contributed
 		- `man7/` overview and miscellany section
+		- `man8/` system administration
+		- `man9/` kernel developper's manual
 - `make/` Makefiles helper
 	- `arm/`
+	- `athena/`
 	- `mips/`
+	- `pdp11/`
 	- `riscv64/`
 	- `z80/`
 - `src/` QDNix Source code
 	- `bin/` source code for files in /bin
+	- `etc/` source code for files in /etc
+	- `include/` source code for files in /usr/include
+	- `lib/` source code for files in /lib
 	- `sbin/` source code for files in /sbin
+	- `share/` source for files in /usr/share
 	- `sys/` Kernel source code
 		- `arm/` ARM architecture support
+		- `athena/` Athena architecture support
 		- `dev/` device drivers
 		- `kern/` main part of the kernel
 		- `libkern/` C library routines used in the kernel
+		- `mips/` MIPS architecture support
 		- `minixfs/` Minix File System
 		- `netinet/` internet protocol family
-		- `mips/` MIPS architecture support
+		- `pdp11/` PDP-11 architecture support
 		- `riscv64/` RISC-V 64 architecture support
 		- `sys/` kernel headers
 		- `z80/` z80 architecture support

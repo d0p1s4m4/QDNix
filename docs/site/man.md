@@ -15,6 +15,8 @@
 - [fstat(2)](/man/man2/fstat)
 - [getpid(2)](/man/man2/getpid)
 - [kill(2)](/man/man2/kill)
+- [link(2)](/man/man2/link)
+- [mkdir(2)](/man/man2/mkdir)
 - [pipe(2)](/man/man2/pipe)
 
 ### System Section 3 - C Library Functions
@@ -36,3 +38,5 @@
 ### System Section 8 - System administration
 
 ### System Section 9 - Kernel developper's manual
+
+- [building(9)](/man/man9/building)

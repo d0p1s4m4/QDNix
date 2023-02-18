@@ -1,4 +1,6 @@
-# Building
+% building(9)
+% d0p1
+% 30 Pluviôse CCXXXI
 
 ## Prerequisites
 

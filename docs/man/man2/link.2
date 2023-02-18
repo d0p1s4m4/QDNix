@@ -1,0 +1,21 @@
+.TH LINK 2 "30 Pluviôse CCXXXI" "d0p1"
+.SH NAME
+link \- link to a file
+.SH SYNOPSIS
+.PP
+.nf
+.BI "int link(const char *" name1 ", const char *" name2);
+.fi
+.PP
+.SH DESCRIPTION
+.BR link ()
+attempts to create a link named
+.IR name2
+to 
+.IR name1 .
+.SH RETURN VALUES
+.BR link ()
+return zero on success.
+On error, \-1 is returned.
+.SH SEE ALSO
+.BR unlink (2)

@@ -1,11 +1,11 @@
 <header>
 	<nav>
 		<a href="/">Home</a>
-		<a href="/building">Building</a>
+		<a href="/propaganda">Propaganda</a>
 		<a href="/man">Manual</a>
 	</nav>
 
-	<img src="/logo.png" />
+	<img src="/logo.png" alt="QDNix logo" />
 	<blockquote>
 		<p>"UNIX is very simple, it just needs a genius to understand its simplicity."</p>
 		<p><cite>– Dennis Ritchie</cite></p>
