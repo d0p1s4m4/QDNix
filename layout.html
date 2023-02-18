@@ -13,17 +13,18 @@
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
   </style>
+  <link rel="stylesheet" href="docs/site/include/qdnix.css" />
   <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
 <header>
 	<nav>
 		<a href="/">Home</a>
-		<a href="/building">Building</a>
+		<a href="/propaganda">Propaganda</a>
 		<a href="/man">Manual</a>
 	</nav>
 
-	<img src="/logo.png" />
+	<img src="/logo.png" alt="QDNix logo" />
 	<blockquote>
 		<p>"UNIX is very simple, it just needs a genius to understand its simplicity."</p>
 		<p><cite>– Dennis Ritchie</cite></p>
@@ -35,30 +36,44 @@
 <li><code>site</code> <a href="https://qdnix.d0p1.eu">QDNix website</a></li>
 <li><code>man/</code> man pages
 <ul>
+<li><code>man1/</code> general commands</li>
 <li><code>man2/</code> system calls</li>
+<li><code>man4/</code> special files and devices</li>
+<li><code>man5/</code> file formats and conventions</li>
+<li><code>man6/</code> user contributed</li>
 <li><code>man7/</code> overview and miscellany section</li>
+<li><code>man8/</code> system administration</li>
+<li><code>man9/</code> kernel developper’s manual</li>
 </ul></li>
 </ul></li>
 <li><code>make/</code> Makefiles helper
 <ul>
 <li><code>arm/</code></li>
+<li><code>athena/</code></li>
 <li><code>mips/</code></li>
+<li><code>pdp11/</code></li>
 <li><code>riscv64/</code></li>
 <li><code>z80/</code></li>
 </ul></li>
 <li><code>src/</code> QDNix Source code
 <ul>
 <li><code>bin/</code> source code for files in /bin</li>
+<li><code>etc/</code> source code for files in /etc</li>
+<li><code>include/</code> source code for files in /usr/include</li>
+<li><code>lib/</code> source code for files in /lib</li>
 <li><code>sbin/</code> source code for files in /sbin</li>
+<li><code>share/</code> source for files in /usr/share</li>
 <li><code>sys/</code> Kernel source code
 <ul>
 <li><code>arm/</code> ARM architecture support</li>
+<li><code>athena/</code> Athena architecture support</li>
 <li><code>dev/</code> device drivers</li>
 <li><code>kern/</code> main part of the kernel</li>
 <li><code>libkern/</code> C library routines used in the kernel</li>
+<li><code>mips/</code> MIPS architecture support</li>
 <li><code>minixfs/</code> Minix File System</li>
 <li><code>netinet/</code> internet protocol family</li>
-<li><code>mips/</code> MIPS architecture support</li>
+<li><code>pdp11/</code> PDP-11 architecture support</li>
 <li><code>riscv64/</code> RISC-V 64 architecture support</li>
 <li><code>sys/</code> kernel headers</li>
 <li><code>z80/</code> z80 architecture support</li>
@@ -74,11 +89,13 @@
 <li><code>tools/</code> Scripts used in order to build QDNix</li>
 </ul>
 <footer>
-	<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons"
-				style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Ce(tte)
-		œuvre est mise à disposition selon les termes de la <a rel="license"
-			href="http://creativecommons.org/licenses/by-sa/4.0/">Licence Creative Commons Attribution - Partage dans
-			les Mêmes Conditions 4.0 International</a>.</p>
+	<p>
+		<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+		</a>
+		<br />
+		This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+	</p>
 </footer>
 </body>
 </html>

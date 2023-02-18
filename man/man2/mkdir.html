@@ -4,8 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="author" content="d0p1" />
-  <title>hier(7)</title>
+  <title>MKDIR</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -19,27 +18,17 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">hier(7)</h1>
-<p class="author">d0p1</p>
-<p class="date">28 Thermidor CCXXX</p>
+<h1 class="title">MKDIR</h1>
+<p class="date">30 Pluviôse CCXXXI</p>
 </header>
-<h1 id="name">NAME</h1>
-<p>hier - description of the filesystem hierarchy</p>
-<h1 id="description">DESCRIPTION</h1>
-<ul>
-<li><code>/</code> Root directory.</li>
-<li><code>/bin</code> User utilities.</li>
-<li><code>/dev</code> Block and character device files.</li>
-<li><code>/etc</code> System configuration files and scripts.</li>
-<li><code>/home</code> Default location for user home directories.</li>
-<li><code>/root</code> Default home directory for the superuser.</li>
-<li><code>/sbin</code> System daemon and utilities.</li>
-<li><code>/share</code> Architecture independent data files
-<ul>
-<li><code>man/</code> Manual pages</li>
-</ul></li>
-<li><code>src/</code> QDNix source files</li>
-</ul>
+<h1>NAME</h1>
+<p>mkdir - create a directory</p>
+<h1>SYNOPSIS</h1>
+<pre><code>int mkdir(const char *path);</code></pre>
+<h1>DESCRIPTION</h1>
+<p><strong>mkdir</strong>() attempts to create a directory named <em>path</em>.</p>
+<h1>RETURN VALUES</h1>
+<p><strong>mkdir</strong>() return zero on success. On error, -1 is returned.</p>
 <footer>
 	<p>
 		<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
