@@ -1,0 +1,12 @@
+menu "nRF52 DK"
+	depends on BOARD_NRF52DK
+
+config SOC_NRF52832
+	bool
+	default y
+
+config BOARD
+	string
+	default "nrf52dk"
+
+endmenu

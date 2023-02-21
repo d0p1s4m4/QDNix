@@ -14,9 +14,12 @@ QDNix is an UNIX-like for ARM and MIPS based evkit....
 
 ## Credits
 
-This project takes inspirations and/or reuse code from the following projects.
+This project takes inspirations and/or reuse code from the [following projects](./docs/site/credits.md).
 
-See [credits.md](./docs/site/credits.md)
+#### References
+
+- "*The UNIX Time-Sharing System*" Dennis M. Ritchie and Ken Thompson
+- "*THE DESIGN OF THE UNIX OPERATING SYSTEM*" Maurice J. Bach
 
 # License
 

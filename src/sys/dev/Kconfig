@@ -1,1 +1,1 @@
-rsource "serial/Kconfig"
+rsource "tty/Kconfig"

@@ -1,9 +1,9 @@
 menu "MIPS architecture"
-	depends on CPU_MIPS
+	depends on ARCH_MIPS
 
-config ARCH
-	string
-	default "mips"
+	config ARCH
+		string
+		default "mips"
 
 	choice
 		prompt "Board"
@@ -17,13 +17,6 @@ config ARCH
 
 	endchoice
 
-	config BOARD
-		string
-		default "malta" if BOARD_MALTA
-		default "mipssim" if BOARD_MIPSSIM
-
-	rsource "malta/Kconfig"
-	rsource "mipssim/Kconfig"
-
+	rsource "board/*/Kconfig"
 endmenu
 

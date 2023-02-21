@@ -1,1 +1,1 @@
-KERNEL_CFLAGS += -mcpu=cortex-a7
+KERNEL_CFLAGS +=

@@ -28,6 +28,9 @@ else
 CONFIG_BOARD	:= pc
 endif
 
+ifdef CONFIG_SOC
+CONFIG_SOC	:= $(CONFIG_SOC:"%"=%)
+endif
 
 ifdef CONFIG_BUILD_TYPE
 CONFIG_BUILD_TYPE	:= $(CONFIG_BUILD_TYPE:"%"=%)
@@ -43,14 +46,17 @@ BUILDDIR_TARGET	= $(BUILDDIR)/$(CONFIG_TOOLCHAIN)-$(CONFIG_ARCH)-$(CONFIG_BOARD)
 
 CONFIG_HEADER	= $(BUILDDIR_TARGET)/config.h
 
+ifdef CONFIG_ARCH
 include $(MAKEDIR)/toolchain.mk
 include $(MAKEDIR)/flags.mk
 include $(MAKEDIR)/run.mk
 
 include $(TOOLDIR)/build.mk
-include $(DOCSDIR)/build.mk
 include $(SRCDIR)/build.mk
 include test/build.mk
+endif
+include $(DOCSDIR)/build.mk
+
 
 .PHONY: menuconfig
 menuconfig:

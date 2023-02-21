@@ -20,7 +20,7 @@ KERNEL_CFLAGS	= $(COMMON_CFLAGS) \
 
 KERNEL_ASFLAGS	= $(KERNEL_CFLAGS)
 
-KERNEL_LDFLAGS	=	-T src/sys/$(CONFIG_ARCH)/linker.ld \
+KERNEL_LDFLAGS	=	\
 					-O0 \
 					-nostdlib
 

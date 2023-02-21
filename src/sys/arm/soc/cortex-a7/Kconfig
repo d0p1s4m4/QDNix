@@ -1,0 +1,8 @@
+menu "Cortex-A7"
+	depends on CPU_CORTEX_A7
+
+config CPU
+	string
+	default "cortex-a7"
+
+endmenu

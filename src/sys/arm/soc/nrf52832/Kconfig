@@ -1,0 +1,7 @@
+if SOC_NRF52832
+
+config SOC
+	string
+	default "nrf52832"
+
+endif

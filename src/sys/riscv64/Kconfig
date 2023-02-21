@@ -1,5 +1,5 @@
 menu "RISC-V 64 architecture"
-	depends on CPU_RISCV64
+	depends on ARCH_RISCV64
 
 	config ARCH
 		string
@@ -7,12 +7,12 @@ menu "RISC-V 64 architecture"
 
 	choice
 		prompt "Board"
-		default QEMU
+		default BOARD_QEMU
 
-		config QEMU
+		config BOARD_QEMU
 			bool "QEMU-virtio"
 
-		config LICHEE_RV
+		config BOARD_LICHEE_RV
 			bool "Sipeed Lichee RV"
 
 	endchoice

@@ -1,8 +1,23 @@
 menu "ARM architecture"
-	depends on CPU_ARM
+	depends on ARCH_ARM
 
 config ARCH
 	string
 	default "arm"
+
+	choice
+		prompt "Board"
+		default BOARD_ORANGEPI_PC
+
+		config  BOARD_ORANGEPI_PC
+			bool "Orange Pi PC"
+
+		config BOARD_NRF52DK
+			bool "nRF52 DK"
+
+	endchoice
+
+	rsource "board/*/Kconfig"
+	rsource "soc/*/Kconfig"
 
 endmenu

@@ -4,11 +4,13 @@
 # include <stddef.h>
 # include <dev/device.h>
 
-typedef struct {
+typedef struct console {
 	size_t (*write)(void *, const char *, size_t);
 	size_t (*read)(void *, char *, size_t);
 
 	void *device;
+
+	struct console *next;
 } Console;
 
 void console_flush(void);

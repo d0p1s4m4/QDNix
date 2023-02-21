@@ -17,12 +17,21 @@ HTML_NAV	= $(addprefix $(HTML_INCDIR)/,  nav)
 HTML_FOOTER	= $(addprefix $(HTML_INCDIR)/, footer)
 HTML_CSS	= $(addprefix $(HTML_INCDIR)/, qdnix.css)
 
+PANDOC_FLAGS =  -s \
+				-c "https://cdn.simplecss.org/simple.min.css" \
+				-c /qdnix.css \
+				-H $(HTML_HDR) \
+				-B $(HTML_NAV) \
+				-A $(HTML_FOOTER) \
+				-T "Quick'n'dirty *NIX"
+
 
 GARBADGE	+= $(SITE_HTML) $(MAN_HTML)
 
 .PHONY: html
 html: $(SITE_HTML) $(MAN_HTML)
-	cp -r docs/site/images docs/html/images
+	cp $(HTML_CSS) docs/html/
+	cp -r docs/site/images docs/html/
 	cp .github/logo.png docs/html/logo.png
 	convert docs/html/logo.png -resize 256x256 \
     	-define icon:auto-resize="256,128,96,64,48,32,16" \
@@ -33,12 +42,12 @@ html: $(SITE_HTML) $(MAN_HTML)
 
 docs/html/%.html: docs/site/%.md $(HTML_HDR) $(HTML_NAV) $(HTML_FOOTER)
 	@ $(MKCWD)
-	pandoc -s --css $(HTML_CSS) -H $(HTML_HDR) -B $(HTML_NAV) -A $(HTML_FOOTER) -o $@ $<
+	pandoc $(PANDOC_FLAGS) -o $@ $<
 
 docs/html/man/%.html: docs/man/%.md $(HTML_HDR) $(HTML_FOOTER)
 	@ $(MKCWD)
-	pandoc -s --css $(HTML_CSS) -H $(HTML_HDR) -A $(HTML_FOOTER) -o $@ $<
+	pandoc $(PANDOC_FLAGS) -o $@ $<
 
 docs/html/man/%.html: docs/man/%.2 $(HTML_HDR) $(HTML_FOOTER)
 	@ $(MKCWD)
-	pandoc -s --from man --css $(HTML_CSS) -H $(HTML_HDR) -A $(HTML_FOOTER) -o $@ $<
+	pandoc --from man $(PANDOC_FLAGS) -o $@ $<

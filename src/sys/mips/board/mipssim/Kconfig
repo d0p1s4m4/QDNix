@@ -1,0 +1,8 @@
+menu "MIPSsim"
+	depends on BOARD_MIPSSIM
+
+	config BOARD
+		string
+		default "mipssim"
+
+endmenu

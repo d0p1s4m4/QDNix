@@ -1,4 +1,6 @@
-# Registers
+# PDP-11
+
+## Registers
 
 | Name | Alt Name | Usage                  |
 |------|----------|------------------------|
@@ -11,7 +13,7 @@
 | r6   | sp       | Stack Pointer          |
 | r7   | pc       | Program counter        |
 
-# Memory Management
+## Memory Management
 
 Page size: 128K (64 bytes)
 

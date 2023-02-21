@@ -1,11 +1,13 @@
-KERNEL_C_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH)/*.c) \
+-include src/sys/$(CONFIG_ARCH)/build.mk
+
+KERNEL_SRCS	=   $(ARCH_SRCS) \
 					$(wildcard src/sys/libkern/*.c) \
 					$(wildcard src/sys/kern/*.c) \
 					$(wildcard src/sys/dev/*.c) \
-					$(wildcard src/sys/dev/**/*.c)
-KERNEL_S_SRCS	= $(wildcard src/sys/$(CONFIG_ARCH)/*.S)
-KERNEL_OBJS	= $(patsubst src/%.S, $(BUILDDIR_TARGET)/%.S.o, $(KERNEL_S_SRCS)) \
-				$(patsubst src/%.c, $(BUILDDIR_TARGET)/%.o, $(KERNEL_C_SRCS)) 
+					$(wildcard src/sys/dev/**/*.c) \
+					$(wildcard src/sys/dev/tty/**/*.c)
+KERNEL_OBJS	= $(patsubst src/%.c, $(BUILDDIR_TARGET)/%.o, \
+				$(patsubst src/%.S, $(BUILDDIR_TARGET)/%.S.o, $(KERNEL_SRCS)))
 KERNEL_FILE	= vmqdnix
 
 GARBADGE	+= $(KERNEL_OBJS) $(KERNEL_FILE)

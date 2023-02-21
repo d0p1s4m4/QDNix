@@ -1,0 +1,12 @@
+menu "Orange Pi PC"
+	depends on BOARD_ORANGEPI_PC
+
+config CPU_CORTEX_A7
+	bool
+	default y
+
+config BOARD
+	string
+	default "orangepi-pc"
+
+endmenu

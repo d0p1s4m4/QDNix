@@ -50,7 +50,7 @@ console_setup(Device *dev)
 		cons.write = dev->drivers.serial.write;
 		cons.read = dev->drivers.serial.read;
 	}
-	cons.device = dev;
+	cons.device = &(dev->drivers.serial);
 
 	console = &cons;
 #ifdef CONFIG_BUFFERED_CONSOLE

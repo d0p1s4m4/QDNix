@@ -1,6 +1,6 @@
 #include <sys/machine/mmio.h>
-#include <dev/serial/serial.h>
-#include <dev/serial/8250.h>
+#include <dev/tty/serial/serial.h>
+#include <dev/tty/serial/8250.h>
 
 #include "config.h"
 
@@ -59,15 +59,21 @@ serial_8250_init(SerialDevice *dev)
 	mmio_write8(dev->io_base + (UART8250_IIR << dev->reg_offset), 0x80);
 
 	divisor = CONFIG_CLOCK / (dev->beaudrate * 16);
+
 #if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
 	mmio_write8(dev->io_base + (UART8250_DLL), (divisor >> 8) * 0xFF);
 	mmio_write8(dev->io_base + (UART8250_DLH << dev->reg_offset),
 				divisor & 0xFF);
 #else
-	mmio_write8(dev->io_base + (UART8250_DLL << dev->reg_offset),
+	mmio_write8(dev->io_base + (UART8250_DLL),
 				divisor & 0xFF);
-	mmio_write8(dev->io_base + (UART8250_DLH), (divisor >> 8) * 0xFF);
+	mmio_write8(dev->io_base + (UART8250_DLH << dev->reg_offset),
+				(divisor >> 8) * 0xFF);
 #endif
+
+	mmio_write8(dev->io_base + (UART8250_DLL), 0x0C);
+	mmio_write8(dev->io_base + (UART8250_DLH), 0x00);
+
 
 	/* 7 bits , no parity , 1 stop bit */
 	mmio_write8(dev->io_base + (UART8250_LCR << dev->reg_offset), 0x08);

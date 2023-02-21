@@ -1,25 +1,25 @@
 
 choice
 	prompt "Toolchain"
-	default SDCC if CPU_Z80
-	default GNU if CPU_ATHENA
+	default SDCC if ARCH_Z80
+	default GNU if ARCH_ATHENA
 	default LLVM
 
 config GNU
 	bool "GNU"
-	depends on CPU_ARM || CPU_ATHENA || CPU_RISCV64 || CPU_MIPS || CPU_PDP11
+	depends on ARCH_ARM || ARCH_ATHENA || ARCH_RISCV64 || ARCH_MIPS || ARCH_PDP11
 
 config LLVM
 	bool "LLVM"
-	depends on CPU_ARM || CPU_RISCV64 || CPU_MIPS
+	depends on ARCH_ARM || ARCH_RISCV64 || ARCH_MIPS
 
 config CC65
 	bool "CC65"
-	depends on CPU_6502
+	depends on ARCH_6502
 
 config SDCC
 	bool "SDCC"
-	depends on CPU_Z80
+	depends on ARCH_Z80
 
 endchoice
 

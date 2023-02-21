@@ -1,5 +1,5 @@
 menu "PDP-11 architecture"
-	depends on CPU_PDP11
+	depends on ARCH_PDP11
 
 config ARCH
 	string

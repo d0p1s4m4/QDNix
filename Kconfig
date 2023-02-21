@@ -2,27 +2,27 @@ mainmenu "QDNix configuration"
 
 choice
 	prompt "Architecture"
-	default CPU_ARM
+	default ARCH_ARM
 
-config CPU_ARM
+config ARCH_ARM
 	bool "ARM architecture"
 
-config CPU_ATHENA
+config ARCH_ATHENA
 	bool "Athena architecture"
 
-config CPU_RISCV64
+config ARCH_RISCV64
 	bool "RISC-V 64 architecture"
 
-config CPU_MIPS
+config ARCH_MIPS
 	bool "MIPS architecture"
 
-config CPU_Z80
+config ARCH_Z80
 	bool "Z80 architecture"
 
-config CPU_6502
+config ARCH_6502
 	bool "6502 architecture"
 
-config CPU_PDP11
+config ARCH_PDP11
 	bool "PDP-11 architecture"
 
 endchoice

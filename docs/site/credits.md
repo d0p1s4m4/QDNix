@@ -1,6 +1,8 @@
 % Credits
 
-QDNix takes inspirations and/or reuse code from the following projects:
+QDNix takes inspirations and/or reuse code from the following projects and papers:
+
+# Projects
 
 ## **BRUTAL**
 
@@ -81,4 +83,3 @@ GPL-2.0 License
 
 Copyright © Daniel Dallmann
 ```
-

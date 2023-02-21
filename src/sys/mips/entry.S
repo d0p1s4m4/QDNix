@@ -82,6 +82,14 @@ _entry:
 	bne $a3, $a0, 1b
 	addi $a0, $a0, 4
 
+	.extern tlb_init
+	jal tlb_init
+	nop
+
+	.extern platform_init
+	jal platform_init
+	nop
+
 	/* restore boot start args */
 	move $a0, $s0
 	move $a1, $s1

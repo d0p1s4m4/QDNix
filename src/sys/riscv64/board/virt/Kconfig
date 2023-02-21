@@ -1,0 +1,8 @@
+menu "QEMU-virtio"
+	depends on BOARD_QEMU
+
+config BOARD
+	string
+	default "virt"
+
+endmenu

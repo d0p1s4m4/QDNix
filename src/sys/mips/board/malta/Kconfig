@@ -1,0 +1,13 @@
+menu "MIPS Malta"
+	depends on BOARD_MALTA
+
+	config BOARD
+		string
+		default "malta"
+
+	config SMP
+		prompt "smp"
+		int
+		default 4
+
+endmenu

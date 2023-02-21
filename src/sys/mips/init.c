@@ -10,8 +10,8 @@ arch_init(int argc, char **argv, char **envp, uintptr_t memsize)
 	int idx;
 
 	printk("QDNX hello\n");
-
 	printk("serial initialized\n");
+	printk("memsize: %u\n", memsize);
 	printk("cmdline:\n");
 	for (idx = 0; idx < argc; idx++)
 	{
@@ -24,6 +24,8 @@ arch_init(int argc, char **argv, char **envp, uintptr_t memsize)
 		printk("\t%s\n", *envp);
 	}
 
-	printk("memsize: %u\n", memsize);
+	printk("%d %p %p\n", argc, argv, envp);
+
+	printk("memsize: %uKiB\n", memsize / 1024);
 	return;
 }
