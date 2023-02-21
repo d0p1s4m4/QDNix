@@ -1,20 +1,6 @@
 var searchData=
 [
-  ['s_5ffirstdatazone_277',['s_firstdatazone',['../structminix__super__block.html#a88df94d5fc733da385533b1dabf7b319',1,'minix_super_block']]],
-  ['s_5fimap_5fblocks_278',['s_imap_blocks',['../structminix__super__block.html#a939d06d033a4326fa5f26fbef78dcdc2',1,'minix_super_block']]],
-  ['s_5flog_5fzone_5fsize_279',['s_log_zone_size',['../structminix__super__block.html#a3f1a08f16c4d4db0657c36de0d2911fb',1,'minix_super_block']]],
-  ['s_5fmagic_280',['s_magic',['../structminix__super__block.html#a3e415727e4367b02c2621266a66f0b48',1,'minix_super_block']]],
-  ['s_5fmax_5fsize_281',['s_max_size',['../structminix__super__block.html#af87c2fcc88e238c09e6de4807346508e',1,'minix_super_block']]],
-  ['s_5fninodes_282',['s_ninodes',['../structminix__super__block.html#aee8af3dce980e540626f6c017361d2d6',1,'minix_super_block']]],
-  ['s_5fnzones_283',['s_nzones',['../structminix__super__block.html#a265258151c46f594b37c4260b4e25c21',1,'minix_super_block']]],
-  ['s_5fstate_284',['s_state',['../structminix__super__block.html#a3b920a4ebb8868300be559f3d06ebd2e',1,'minix_super_block']]],
-  ['s_5fzmap_5fblocks_285',['s_zmap_blocks',['../structminix__super__block.html#a59e4c66c3ebddbfdc5a59db572893a03',1,'minix_super_block']]],
-  ['serial_286',['serial',['../structDevice.html#ab676df9c01c44d875bfc8d56baceb373',1,'Device']]],
-  ['st_5fdev_287',['st_dev',['../structstat.html#a38914c334b6acaa9e0e94c9d28d590e6',1,'stat']]],
-  ['st_5fgid_288',['st_gid',['../structstat.html#a77f5167746caec57eabf971231282e45',1,'stat']]],
-  ['st_5fino_289',['st_ino',['../structstat.html#ac4a6c013b12dad2fb1bce6bd99d66f6f',1,'stat']]],
-  ['st_5fmode_290',['st_mode',['../structstat.html#aee5b542fc82f176aad79ec67feb729c8',1,'stat']]],
-  ['st_5fnlink_291',['st_nlink',['../structstat.html#aaf71fe94712c34e733e71a11933d2794',1,'stat']]],
-  ['st_5fuid_292',['st_uid',['../structstat.html#aaa7d1c91bc417749646433fe7b0c4214',1,'stat']]],
-  ['sysname_293',['sysname',['../structutsname.html#af6cb1587cd5a96b2cce279af6357ac47',1,'utsname']]]
+  ['machine_492',['machine',['../structutsname.html#a6d7775f2aafe9c2acca5cfa1509f1a4a',1,'utsname']]],
+  ['magic_493',['magic',['../structFDTHeader.html#a57f54349f4fd1cbbb52058812e146af2',1,'FDTHeader']]],
+  ['mount_494',['mount',['../structVSFOps.html#ac9a1e2e88240a9f64ae867bef2edfb5d',1,'VSFOps']]]
 ];

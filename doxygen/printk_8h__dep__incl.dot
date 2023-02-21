@@ -5,5 +5,9 @@ digraph "src/sys/libkern/printk.h"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="src/sys/libkern/printk.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="src/sys/mips/init.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mips_2init_8c.html",tooltip=" "];
+  Node2 [label="src/sys/mips/board\l/malta/platform.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mips_2board_2malta_2platform_8c.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="src/sys/mips/board\l/mipssim/platform.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mips_2board_2mipssim_2platform_8c.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="src/sys/mips/init.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mips_2init_8c.html",tooltip=" "];
 }

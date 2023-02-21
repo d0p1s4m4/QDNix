@@ -94,13 +94,13 @@ $(document).ready(function(){initNavTree('mips_2init_8c_source.html',''); initRe
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="printk_8h.html">libkern/printk.h</a>&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="mips_2init_8c.html#abc6580c2d1d82366c8d508e5becebf3d">    8</a></span>&#160;<a class="code" href="arm_2init_8c.html#a42ace81c89978597115689472c5d63e8">arch_init</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keywordtype">char</span> **envp, uintptr_t memsize)</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="mips_2init_8c.html#abc6580c2d1d82366c8d508e5becebf3d">    8</a></span>&#160;<a class="code" href="arm_2soc_2cortex-a7_2init_8c.html#a42ace81c89978597115689472c5d63e8">arch_init</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv, <span class="keywordtype">char</span> **envp, uintptr_t memsize)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">int</span> idx;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;QDNX hello\n&quot;</span>);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;serial initialized\n&quot;</span>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;serial initialized\n&quot;</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;memsize: %u\n&quot;</span>, memsize);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;cmdline:\n&quot;</span>);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">for</span> (idx = 0; idx &lt; argc; idx++)</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
@@ -113,10 +113,12 @@ $(document).ready(function(){initNavTree('mips_2init_8c_source.html',''); initRe
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;\t%s\n&quot;</span>, *envp);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;memsize: %u\n&quot;</span>, memsize);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
-<div class="ttc" id="aarm_2init_8c_html_a42ace81c89978597115689472c5d63e8"><div class="ttname"><a href="arm_2init_8c.html#a42ace81c89978597115689472c5d63e8">arch_init</a></div><div class="ttdeci">void arch_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="arm_2init_8c_source.html#l00035">init.c:35</a></div></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;%d %p %p\n&quot;</span>, argc, argv, envp);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a>(<span class="stringliteral">&quot;memsize: %uKiB\n&quot;</span>, memsize / 1024);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="ttc" id="aarm_2soc_2cortex-a7_2init_8c_html_a42ace81c89978597115689472c5d63e8"><div class="ttname"><a href="arm_2soc_2cortex-a7_2init_8c.html#a42ace81c89978597115689472c5d63e8">arch_init</a></div><div class="ttdeci">void arch_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="arm_2soc_2cortex-a7_2init_8c_source.html#l00035">init.c:35</a></div></div>
 <div class="ttc" id="ammio_8h_html"><div class="ttname"><a href="mmio_8h.html">mmio.h</a></div></div>
 <div class="ttc" id="apdp11_2init_8c_html_a1bce54a738ce2d9dd6d95ee842ec237c"><div class="ttname"><a href="pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a></div><div class="ttdeci">void printk(const char *fmt,...)</div><div class="ttdef"><b>Definition:</b> <a href="printk_8c_source.html#l00073">printk.c:73</a></div></div>
 <div class="ttc" id="aprintk_8h_html"><div class="ttname"><a href="printk_8h.html">printk.h</a></div></div>

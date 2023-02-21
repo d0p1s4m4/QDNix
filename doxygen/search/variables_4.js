@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['i_5fgid_260',['i_gid',['../structminix__inode.html#a448bd1a4b2e6f2bc53187708c03e2021',1,'minix_inode']]],
-  ['i_5fmode_261',['i_mode',['../structminix__inode.html#a9eee4a25778387fbad93e9124af9e5bd',1,'minix_inode']]],
-  ['i_5fnlinks_262',['i_nlinks',['../structminix__inode.html#a94a41350f69f5ccedc2ff3e7fa9ecbe8',1,'minix_inode']]],
-  ['i_5fsize_263',['i_size',['../structminix__inode.html#a4a7737b2dcb0a6a6e1c6cd969b2d1f0c',1,'minix_inode']]],
-  ['i_5ftime_264',['i_time',['../structminix__inode.html#aa407fcf811c1cb6b2c6a336c3ea274c3',1,'minix_inode']]],
-  ['i_5fuid_265',['i_uid',['../structminix__inode.html#aff08dfb7dbc7206c82ff538e601203a0',1,'minix_inode']]],
-  ['i_5fzone_266',['i_zone',['../structminix__inode.html#a121ba185f9e3cf791a6e390b784c3433',1,'minix_inode']]],
-  ['init_267',['init',['../structSerialDevice.html#a21393860c1852f9271c560cb01dc51a6',1,'SerialDevice']]],
-  ['inode_268',['inode',['../structminix__dir__entry.html#a86ccec6ba87537f5e996f5c05504ed63',1,'minix_dir_entry']]],
-  ['io_5fbase_269',['io_base',['../structSerialDevice.html#a2f397ce1974c16f7e339fa1171182c1c',1,'SerialDevice']]],
-  ['irq_270',['irq',['../structSerialDevice.html#aea22ec27eb52d3e0d744184067cbca3a',1,'SerialDevice']]]
+  ['early_5fconsole_5fputchar_463',['early_console_putchar',['../pdp11_2init_8c.html#a7327b42c144930b31720993972a4eafb',1,'init.c']]],
+  ['enable_464',['enable',['../structUARTRegister.html#a2a5924f0ccbeda286ad424c62e651d11',1,'UARTRegister']]],
+  ['entrylo0_465',['entryLo0',['../structPageEntry.html#af9a6c0502525b1d706fd6f3956d66083',1,'PageEntry']]],
+  ['entrylo1_466',['entryLo1',['../structPageEntry.html#a7d56ed5140086c1689f3c24237890f67',1,'PageEntry']]],
+  ['errorsrc_467',['errorsrc',['../structUARTRegister.html#a91d792cfb57ddacec176bcc0adea4443',1,'UARTRegister']]],
+  ['events_5fcts_468',['events_cts',['../structUARTRegister.html#a413ce7d4ccd7402fc58e9a09163c7b68',1,'UARTRegister']]],
+  ['events_5ferror_469',['events_error',['../structUARTRegister.html#a6c86d42cf34dcaf0f9c787a0b1433d7b',1,'UARTRegister']]],
+  ['events_5fncts_470',['events_ncts',['../structUARTRegister.html#a3d2bb1bc44ad98e5a1b4c075575ad4f8',1,'UARTRegister']]],
+  ['events_5frxdrdy_471',['events_rxdrdy',['../structUARTRegister.html#aa309e312264ac78d04bd74b8a3f5d9e7',1,'UARTRegister']]],
+  ['events_5frxto_472',['events_rxto',['../structUARTRegister.html#a017a79fe1b1d8572b3df5a0c555fd2af',1,'UARTRegister']]],
+  ['events_5ftxdrdy_473',['events_txdrdy',['../structUARTRegister.html#a7e3071827f892ab6a6ef5470af709755',1,'UARTRegister']]]
 ];

@@ -1,7 +1,5 @@
 var dir_f78b31b02ba3f15be9e78b6cafeb904e =
 [
-    [ "arch.h", "arm_2arch_8h.html", "arm_2arch_8h" ],
-    [ "ccu.c", "ccu_8c.html", "ccu_8c" ],
-    [ "init.c", "arm_2init_8c.html", "arm_2init_8c" ],
-    [ "uart.c", "arm_2uart_8c.html", "arm_2uart_8c" ]
+    [ "board", "dir_4e5cc53354c7004c067a9a553e31b9be.html", "dir_4e5cc53354c7004c067a9a553e31b9be" ],
+    [ "soc", "dir_5ad754ae98f32b393e26c48d03c0f17d.html", "dir_5ad754ae98f32b393e26c48d03c0f17d" ]
 ];

@@ -163,7 +163,7 @@ $(document).ready(function(){initNavTree('printk_8c_source.html',''); initResiza
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;{</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    va_list args;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">char</span> *ptr;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">int</span> tmp;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">tmp</a>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    va_start(args, fmt);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">for</span> (ptr = (<span class="keywordtype">char</span> *)fmt; *ptr != <span class="charliteral">&#39;\0&#39;</span>; ptr++)</div>
@@ -184,15 +184,15 @@ $(document).ready(function(){initNavTree('printk_8c_source.html',''); initResiza
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;d&#39;</span>:</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>:</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                tmp = va_arg(args, <span class="keywordtype">int</span>);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">if</span> (tmp &lt; 0)</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <a class="code" href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">tmp</a> = va_arg(args, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">tmp</a> &lt; 0)</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                {</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                    <a class="code" href="console_8c.html#ac156aa97dae8b45e5aea8f6534d38946">console_putchar</a>(<span class="charliteral">&#39;-&#39;</span>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                    <a class="code" href="printk_8c.html#a6ec88faf09ddc999e210848793d27bf1">printuint</a>(-tmp, 10);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                    <a class="code" href="printk_8c.html#a6ec88faf09ddc999e210848793d27bf1">printuint</a>(-<a class="code" href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">tmp</a>, 10);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                }</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    <a class="code" href="printk_8c.html#a6ec88faf09ddc999e210848793d27bf1">printuint</a>(tmp, 10);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                    <a class="code" href="printk_8c.html#a6ec88faf09ddc999e210848793d27bf1">printuint</a>(<a class="code" href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">tmp</a>, 10);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                }</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            </div>
@@ -241,6 +241,7 @@ $(document).ready(function(){initNavTree('printk_8c_source.html',''); initResiza
 <div class="ttc" id="aprintk_8c_html_a1bce54a738ce2d9dd6d95ee842ec237c"><div class="ttname"><a href="printk_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c">printk</a></div><div class="ttdeci">void printk(const char *fmt,...)</div><div class="ttdef"><b>Definition:</b> <a href="printk_8c_source.html#l00073">printk.c:73</a></div></div>
 <div class="ttc" id="aprintk_8c_html_a6ec88faf09ddc999e210848793d27bf1"><div class="ttname"><a href="printk_8c.html#a6ec88faf09ddc999e210848793d27bf1">printuint</a></div><div class="ttdeci">static void printuint(uintptr_t u, int base)</div><div class="ttdef"><b>Definition:</b> <a href="printk_8c_source.html#l00054">printk.c:54</a></div></div>
 <div class="ttc" id="aprintk_8c_html_ab198a2d6a8f83ac282471983199b6369"><div class="ttname"><a href="printk_8c.html#ab198a2d6a8f83ac282471983199b6369">printstr</a></div><div class="ttdeci">static void printstr(const char *str)</div><div class="ttdef"><b>Definition:</b> <a href="printk_8c_source.html#l00039">printk.c:39</a></div></div>
+<div class="ttc" id="avm_8c_html_abecc3c6ffefd05e056cefd2ee25e71f4"><div class="ttname"><a href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">tmp</a></div><div class="ttdeci">void tmp(void)</div><div class="ttdef"><b>Definition:</b> <a href="vm_8c_source.html#l00008">vm.c:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

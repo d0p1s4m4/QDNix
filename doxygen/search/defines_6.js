@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['phys_5fto_5fkseg1_321',['PHYS_TO_KSEG1',['../mips_2arch_8h.html#a22bd14a23bab53ebb7feb9654ee08508',1,'arch.h']]],
-  ['ppl_5fperiph0_5fctrl_5freg_322',['PPL_PERIPH0_CTRL_REG',['../ccu_8c.html#a598df99f4a5fa0d1cfa88e8020be4f25',1,'ccu.c']]]
+  ['liblern_5ffdt_5fh_624',['LIBLERN_FDT_H',['../fdt_8h.html#ae3b604505fea4de9e152360bafc69289',1,'fdt.h']]],
+  ['liblern_5fprintk_5fh_625',['LIBLERN_PRINTK_H',['../printk_8h.html#a4a8884ce05d38310705cb58c29605d7b',1,'printk.h']]]
 ];

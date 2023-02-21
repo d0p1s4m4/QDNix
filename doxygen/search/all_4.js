@@ -1,11 +1,24 @@
 var searchData=
 [
-  ['debug_5fputchar_23',['debug_putchar',['../pdp11_2init_8c.html#a98d241bfccd3f2d799cdaac16948eb36',1,'init.c']]],
-  ['dev_5ft_24',['dev_t',['../types_8h.html#a0f89a9a6420c24efc5254e10170009e9',1,'types.h']]],
-  ['device_25',['Device',['../structDevice.html',1,'']]],
-  ['device_26',['device',['../structConsole.html#abd28c0efe479c17c1476917841e26ea8',1,'Console']]],
-  ['device_2eh_27',['device.h',['../device_8h.html',1,'']]],
-  ['device_5ftty_28',['DEVICE_TTY',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2ba6d08c51ef21023f4ba377256fe793a0e',1,'device.h']]],
-  ['deviceclass_29',['DeviceClass',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2b',1,'device.h']]],
-  ['drivers_30',['drivers',['../structDevice.html#a1ef2ed2cb8ff0bf9a024e4e8f0118f01',1,'Device']]]
+  ['debug_5fputchar_39',['debug_putchar',['../pdp11_2init_8c.html#a98d241bfccd3f2d799cdaac16948eb36',1,'init.c']]],
+  ['deinit_40',['deinit',['../structTTYDevice.html#a4e6e2f2de76f6b8e3f334ac983719511',1,'TTYDevice']]],
+  ['detectmode_41',['detectmode',['../structGpioRegister.html#a2a107c744f7a8633b4abdcc8d3a5a96b',1,'GpioRegister']]],
+  ['dev_42',['dev',['../mips_2board_2mipssim_2platform_8c.html#af2375c85b0405e4f510e3e9450ee9ea8',1,'dev():&#160;platform.c'],['../mips_2board_2malta_2platform_8c.html#af2375c85b0405e4f510e3e9450ee9ea8',1,'dev():&#160;platform.c']]],
+  ['dev_5ft_43',['dev_t',['../types_8h.html#a0f89a9a6420c24efc5254e10170009e9',1,'types.h']]],
+  ['device_44',['Device',['../structDevice.html',1,'']]],
+  ['device_45',['device',['../structConsole.html#abd28c0efe479c17c1476917841e26ea8',1,'Console']]],
+  ['device_2eh_46',['device.h',['../device_8h.html',1,'']]],
+  ['device_5faudio_47',['DEVICE_AUDIO',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2baf5cfb5038604b80c92143734d6b32b47',1,'device.h']]],
+  ['device_5fbus_48',['DEVICE_BUS',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2ba2a284c74ffea70a092cb8ef18190b3a1',1,'device.h']]],
+  ['device_5fcpu_49',['DEVICE_CPU',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2baceb8917ff79ebd0849bded096aac3505',1,'device.h']]],
+  ['device_5fdisk_50',['DEVICE_DISK',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2ba771790a217dfefea7aab3571e21a8f1e',1,'device.h']]],
+  ['device_5fnet_51',['DEVICE_NET',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2bad7b00524116e4e5db10299c361e59b6e',1,'device.h']]],
+  ['device_5fnull_52',['DEVICE_NULL',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2ba282c5db52fca2bb207e6b17dc190f8b4',1,'device.h']]],
+  ['device_5ftty_53',['DEVICE_TTY',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2ba6d08c51ef21023f4ba377256fe793a0e',1,'device.h']]],
+  ['device_5fvideo_54',['DEVICE_VIDEO',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2baadae4e1c57fd6298868043d618303da8',1,'device.h']]],
+  ['deviceclass_55',['DeviceClass',['../device_8h.html#ab54f9e79649505f668d6d276fb447a2b',1,'device.h']]],
+  ['dir_56',['dir',['../structGpioRegister.html#a16943c7467e3bb9e2f1e1be4b062e5bc',1,'GpioRegister']]],
+  ['dirclr_57',['dirclr',['../structGpioRegister.html#ada5ccd7599a54ff67b1640dea6afb065',1,'GpioRegister']]],
+  ['dirset_58',['dirset',['../structGpioRegister.html#a5f5d67346a68b8c73cd03853ddf4ff14',1,'GpioRegister']]],
+  ['drivers_59',['drivers',['../structDevice.html#a04039eaa472e0c7161be4f11a1ba1514',1,'Device']]]
 ];

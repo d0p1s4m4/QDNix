@@ -1,0 +1,7 @@
+digraph "exec"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{exec\n|+ a_magic\l+ a_text\l+ a_data\l+ a_bss\l+ a_syms\l+ a_entry\l+ a_trsize\l+ a_drsize\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+}

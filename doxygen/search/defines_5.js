@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['minixfs_5fname_5flen_318',['MINIXFS_NAME_LEN',['../fs_8h.html#a230ea0d56c6e9164e40b63de725369b2',1,'fs.h']]],
-  ['minixfs_5fsuper_5fmagic_319',['MINIXFS_SUPER_MAGIC',['../fs_8h.html#a21286d447f116b97d7a8fbe783d229de',1,'fs.h']]],
-  ['mmio_5fbase_5faddr_320',['MMIO_BASE_ADDR',['../mips_2arch_8h.html#a0e248bbceea06a51be7174c33b1d40bb',1,'arch.h']]]
+  ['kseg0_5fbase_5faddr_620',['KSEG0_BASE_ADDR',['../mips_2arch_8h.html#af99bd3f41edd89e5532f0b1ad481d04c',1,'arch.h']]],
+  ['kseg1_5fbase_5faddr_621',['KSEG1_BASE_ADDR',['../mips_2arch_8h.html#a5223c17e31da82d0b7048e0c61a21f25',1,'arch.h']]],
+  ['kseg2_5fbase_5faddr_622',['KSEG2_BASE_ADDR',['../mips_2arch_8h.html#a63f809258af469d97cd24a4f7a88085b',1,'arch.h']]],
+  ['kseg3_5fbase_5faddr_623',['KSEG3_BASE_ADDR',['../mips_2arch_8h.html#aa93ebe90476f173bb599ba794caa6d53',1,'arch.h']]]
 ];

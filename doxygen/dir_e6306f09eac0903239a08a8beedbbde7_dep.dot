@@ -1,0 +1,11 @@
+digraph "src/sys/arm/soc/cortex-a7" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_5ad754ae98f32b393e26c48d03c0f17d {
+    graph [ bgcolor="#ddddee", pencolor="black", label="soc" fontname="Helvetica", fontsize="10", URL="dir_5ad754ae98f32b393e26c48d03c0f17d.html"]
+  dir_e6306f09eac0903239a08a8beedbbde7 [shape=box, label="cortex-a7", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_e6306f09eac0903239a08a8beedbbde7.html"];
+  }
+  dir_c529fe1005f766361284165817aae3f9 [shape=box label="sys" fillcolor="white" style="filled" color="red" URL="dir_c529fe1005f766361284165817aae3f9.html"];
+  dir_e6306f09eac0903239a08a8beedbbde7->dir_c529fe1005f766361284165817aae3f9 [headlabel="1", labeldistance=1.5 headhref="dir_000012_000027.html"];
+}

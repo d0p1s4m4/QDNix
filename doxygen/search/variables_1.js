@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['class_255',['class',['../structDevice.html#a897a5e6350dbbc1d7075bf63b7e5f6e0',1,'Device']]],
-  ['console_256',['console',['../console_8c.html#a75ce5b980934e9e717d1e7088d6ed1bc',1,'console.c']]]
+  ['baudrate_448',['baudrate',['../structUARTRegister.html#ac4f06ea26ed6bd7ae83b92d64ac10b78',1,'UARTRegister']]],
+  ['beaudrate_449',['beaudrate',['../structSerialDevice.html#a3a578e96908249c6839167c5a89eb2fb',1,'SerialDevice']]],
+  ['boot_5fcpuid_5fphys_450',['boot_cpuid_phys',['../structFDTHeader.html#a3b19739923ebd8d4dd0be0159011956d',1,'FDTHeader']]]
 ];

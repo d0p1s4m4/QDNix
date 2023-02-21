@@ -1,4 +1,11 @@
 var searchData=
 [
-  ['early_5fconsole_5fputchar_259',['early_console_putchar',['../pdp11_2init_8c.html#a7327b42c144930b31720993972a4eafb',1,'init.c']]]
+  ['deinit_455',['deinit',['../structTTYDevice.html#a4e6e2f2de76f6b8e3f334ac983719511',1,'TTYDevice']]],
+  ['detectmode_456',['detectmode',['../structGpioRegister.html#a2a107c744f7a8633b4abdcc8d3a5a96b',1,'GpioRegister']]],
+  ['dev_457',['dev',['../mips_2board_2malta_2platform_8c.html#af2375c85b0405e4f510e3e9450ee9ea8',1,'dev():&#160;platform.c'],['../mips_2board_2mipssim_2platform_8c.html#af2375c85b0405e4f510e3e9450ee9ea8',1,'dev():&#160;platform.c']]],
+  ['device_458',['device',['../structConsole.html#abd28c0efe479c17c1476917841e26ea8',1,'Console']]],
+  ['dir_459',['dir',['../structGpioRegister.html#a16943c7467e3bb9e2f1e1be4b062e5bc',1,'GpioRegister']]],
+  ['dirclr_460',['dirclr',['../structGpioRegister.html#ada5ccd7599a54ff67b1640dea6afb065',1,'GpioRegister']]],
+  ['dirset_461',['dirset',['../structGpioRegister.html#a5f5d67346a68b8c73cd03853ddf4ff14',1,'GpioRegister']]],
+  ['drivers_462',['drivers',['../structDevice.html#a04039eaa472e0c7161be4f11a1ba1514',1,'Device']]]
 ];

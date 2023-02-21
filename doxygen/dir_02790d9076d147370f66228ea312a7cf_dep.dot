@@ -8,10 +8,11 @@ digraph "src/sys/dev" {
   subgraph clusterdir_02790d9076d147370f66228ea312a7cf {
     graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_02790d9076d147370f66228ea312a7cf.html"];
     dir_02790d9076d147370f66228ea312a7cf [shape=plaintext label="dev"];
-  dir_03cb0efb4f5f2162d6197e6d74cecd85 [shape=box label="serial" fillcolor="white" style="filled" URL="dir_03cb0efb4f5f2162d6197e6d74cecd85.html"];
+  dir_620f03ec6c99de6e7e7f1ae6bc0b3e8f [shape=box label="tty" fillcolor="white" style="filled" color="red" URL="dir_620f03ec6c99de6e7e7f1ae6bc0b3e8f.html"];
+  dir_ea585aa73b8d8d1feecef52bb1c905a3 [shape=box label="video" fillcolor="white" style="filled" color="red" URL="dir_ea585aa73b8d8d1feecef52bb1c905a3.html"];
   }
   }
-  dir_02790d9076d147370f66228ea312a7cf->dir_03cb0efb4f5f2162d6197e6d74cecd85 [headlabel="1", labeldistance=1.5 headhref="dir_000007_000008.html"];
-  dir_c529fe1005f766361284165817aae3f9->dir_02790d9076d147370f66228ea312a7cf [headlabel="1", labeldistance=1.5 headhref="dir_000013_000007.html"];
-  dir_03cb0efb4f5f2162d6197e6d74cecd85->dir_c529fe1005f766361284165817aae3f9 [headlabel="1", labeldistance=1.5 headhref="dir_000008_000013.html"];
+  dir_02790d9076d147370f66228ea312a7cf->dir_620f03ec6c99de6e7e7f1ae6bc0b3e8f [headlabel="2", labeldistance=1.5 headhref="dir_000014_000015.html"];
+  dir_620f03ec6c99de6e7e7f1ae6bc0b3e8f->dir_c529fe1005f766361284165817aae3f9 [headlabel="1", labeldistance=1.5 headhref="dir_000015_000027.html"];
+  dir_c529fe1005f766361284165817aae3f9->dir_02790d9076d147370f66228ea312a7cf [headlabel="1", labeldistance=1.5 headhref="dir_000027_000014.html"];
 }

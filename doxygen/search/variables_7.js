@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['read_274',['read',['../structSerialDevice.html#ad28a163b8516a81bf5c09e4f7caeee3a',1,'SerialDevice::read()'],['../structConsole.html#ad28a163b8516a81bf5c09e4f7caeee3a',1,'Console::read()']]],
-  ['reg_5foffset_275',['reg_offset',['../structSerialDevice.html#a0594d2be6058e5937e7507655c6650be',1,'SerialDevice']]],
-  ['release_276',['release',['../structutsname.html#a34d2c2c6a935e1c510c61941fb635d7b',1,'utsname']]]
+  ['last_5fcomp_5fversion_489',['last_comp_version',['../structFDTHeader.html#a20a854a5a2418c19a18c1115cde80cf9',1,'FDTHeader']]],
+  ['latch_490',['latch',['../structGpioRegister.html#a88fe2701a7411f3d7ab2b9c4109095ae',1,'GpioRegister']]],
+  ['len_491',['len',['../structFDTProp.html#a96bbf959016e4411c9e6b9812a8be60a',1,'FDTProp']]]
 ];

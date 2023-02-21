@@ -8,8 +8,8 @@ digraph "src/sys/riscv64" {
   subgraph clusterdir_321e546302ffc8e910cc303dc3a7c30b {
     graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_321e546302ffc8e910cc303dc3a7c30b.html"];
     dir_321e546302ffc8e910cc303dc3a7c30b [shape=plaintext label="riscv64"];
-  dir_baa8ba247e4d6bad46dc2fd5fc8e416c [shape=box label="virt" fillcolor="white" style="filled" URL="dir_baa8ba247e4d6bad46dc2fd5fc8e416c.html"];
+  dir_b1e83c71f5a67a19d9680a627cdf0dcc [shape=box label="board" fillcolor="white" style="filled" color="red" URL="dir_b1e83c71f5a67a19d9680a627cdf0dcc.html"];
   }
   }
-  dir_321e546302ffc8e910cc303dc3a7c30b->dir_c529fe1005f766361284165817aae3f9 [headlabel="2", labeldistance=1.5 headhref="dir_000004_000013.html"];
+  dir_321e546302ffc8e910cc303dc3a7c30b->dir_c529fe1005f766361284165817aae3f9 [headlabel="2", labeldistance=1.5 headhref="dir_000008_000027.html"];
 }

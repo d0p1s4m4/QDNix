@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['page_2ec_75',['page.c',['../page_8c.html',1,'']]],
-  ['phys_5fto_5fkseg1_76',['PHYS_TO_KSEG1',['../mips_2arch_8h.html#a22bd14a23bab53ebb7feb9654ee08508',1,'arch.h']]],
-  ['platform_2ec_77',['platform.c',['../platform_8c.html',1,'']]],
-  ['platform_5finit_78',['platform_init',['../platform_8c.html#a760229807662fde444020422a81e937c',1,'platform.c']]],
-  ['ppl_5fperiph0_5fctrl_5freg_79',['PPL_PERIPH0_CTRL_REG',['../ccu_8c.html#a598df99f4a5fa0d1cfa88e8020be4f25',1,'ccu.c']]],
-  ['printk_80',['printk',['../printk_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c',1,'printk(const char *fmt,...):&#160;printk.c'],['../printk_8h.html#a1bce54a738ce2d9dd6d95ee842ec237c',1,'printk(const char *fmt,...):&#160;printk.c'],['../pdp11_2init_8c.html#a1bce54a738ce2d9dd6d95ee842ec237c',1,'printk(const char *fmt,...):&#160;printk.c']]],
-  ['printk_2ec_81',['printk.c',['../printk_8c.html',1,'']]],
-  ['printk_2eh_82',['printk.h',['../printk_8h.html',1,'']]],
-  ['printstr_83',['printstr',['../printk_8c.html#ab198a2d6a8f83ac282471983199b6369',1,'printk.c']]],
-  ['printuint_84',['printuint',['../printk_8c.html#a6ec88faf09ddc999e210848793d27bf1',1,'printk.c']]]
+  ['off_5fdt_5fstrings_152',['off_dt_strings',['../structFDTHeader.html#a4cbbb1fa4b3021e790615693d4909039',1,'FDTHeader']]],
+  ['off_5fdt_5fstruct_153',['off_dt_struct',['../structFDTHeader.html#ae59c91bf3921fba85a784967ef98195f',1,'FDTHeader']]],
+  ['off_5fmem_5frsvmap_154',['off_mem_rsvmap',['../structFDTHeader.html#a3af5cbce2ece1b947ed82f0405b64bb0',1,'FDTHeader']]],
+  ['omagic_155',['OMAGIC',['../a_8out_8h.html#a97312400ae67a4aaf0322e0f08ce6bc1',1,'a.out.h']]],
+  ['op_156',['op',['../structVFS.html#afe4c92b86fa5e8106686065083c6f6c5',1,'VFS']]],
+  ['out_157',['out',['../structGpioRegister.html#ab27775f0ed2b042b439a7431fbe311eb',1,'GpioRegister']]],
+  ['outclr_158',['outclr',['../structGpioRegister.html#a2cb36c55d567919f24ed390a5f70b1c3',1,'GpioRegister']]],
+  ['outset_159',['outset',['../structGpioRegister.html#a3b03dd0f34da4b5984abe5581b0921c6',1,'GpioRegister']]]
 ];
