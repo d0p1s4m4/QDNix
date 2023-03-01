@@ -1,4 +1,4 @@
-# PDP-11
+# PDP-11 {#pdp11}
 
 ## Registers
 
