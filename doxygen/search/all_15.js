@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['z80_356',['z80',['../z80.html',1,'']]],
-  ['zmagic_357',['ZMAGIC',['../a_8out_8h.html#a24e8c34b011dfc678d4745d8b0a43c7b',1,'a.out.h']]]
+  ['write_356',['write',['../structSerialDevice.html#a156ae156ef02ba96264fe9934020a894',1,'SerialDevice::write()'],['../structTTYDevice.html#a156ae156ef02ba96264fe9934020a894',1,'TTYDevice::write()'],['../structConsole.html#a156ae156ef02ba96264fe9934020a894',1,'Console::write()']]]
 ];
