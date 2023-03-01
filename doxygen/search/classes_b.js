@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['uartregister_375',['UARTRegister',['../structUARTRegister.html',1,'']]],
-  ['utsname_376',['utsname',['../structutsname.html',1,'']]]
+  ['uartregister_377',['UARTRegister',['../structUARTRegister.html',1,'']]],
+  ['utsname_378',['utsname',['../structutsname.html',1,'']]]
 ];

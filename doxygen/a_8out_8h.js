@@ -1,5 +1,8 @@
 var a_8out_8h =
 [
+    [ "MMR0", "pdp11.html#autotoc_md4", null ],
+    [ "MMR1", "pdp11.html#autotoc_md5", null ],
+    [ "MMR3", "pdp11.html#autotoc_md6", null ],
     [ "exec", "structexec.html", "structexec" ],
     [ "nlist", "structnlist.html", "structnlist" ],
     [ "relocation_info", "structrelocation__info.html", "structrelocation__info" ],

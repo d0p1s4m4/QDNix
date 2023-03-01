@@ -25,16 +25,9 @@
 var NAVTREE =
 [
   [ "QDNix", "index.html", [
-    [ "ARM", "md_src_sys_arm_README.html", "md_src_sys_arm_README" ],
-    [ "MIPS", "md_src_sys_mips_README.html", null ],
-    [ "PDP-11", "md_src_sys_pdp11_README.html", [
-      [ "Registers", "md_src_sys_pdp11_README.html#autotoc_md3", null ],
-      [ "Memory Management", "md_src_sys_pdp11_README.html#autotoc_md4", [
-        [ "Registers", "md_src_sys_pdp11_README.html#autotoc_md5", null ]
-      ] ]
-    ] ],
+    [ "QDNix Source", "md_src_README.html", null ],
     [ "QDNix Kernel Source Code", "md_src_sys_README.html", "md_src_sys_README" ],
-    [ "RISC-V", "md_src_sys_riscv64_README.html", null ],
+    [ "Bibliography", "citelist.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -61,7 +54,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "8250_8c.html",
-"riscv64_2board_2virt_2platform_8c_source.html"
+"riscv64_2board_2virt_2platform_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

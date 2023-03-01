@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['vfs_377',['VFS',['../structVFS.html',1,'']]],
-  ['vsfops_378',['VSFOps',['../structVSFOps.html',1,'']]]
+  ['vfs_379',['VFS',['../structVFS.html',1,'']]],
+  ['vsfops_380',['VSFOps',['../structVSFOps.html',1,'']]]
 ];
