@@ -13,6 +13,9 @@
 *.rom
 
 *.html
+!/website/template/header.html
+!/website/template/nav.html
+!/website/template/footer.html
 docs/html/
 
 .config

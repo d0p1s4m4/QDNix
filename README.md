@@ -10,7 +10,7 @@
 
 </div>
 
-QDNix is an UNIX-like for ARM and MIPS based evkit....
+QDNix is an UNIX-like for [ARM](src/sys/arm/README.md) and [MIPS](src/sys/mips/README.md) based evkit....
 
 ## Credits
 
@@ -18,7 +18,7 @@ This project takes inspirations and/or reuse code from the [following projects](
 
 # License
 
-<img src="https://opensource.org/files/OSI_Approved_License.png" align="right" height="128px" alt="OSI Approved License">
+<img src="https://opensource.org/wp-content/uploads/2022/10/osi-badge-dark.svg" align="right" height="128px" alt="OSI Approved License">
 
 QDNix is licensed under the 3-Clause BSD License.
 

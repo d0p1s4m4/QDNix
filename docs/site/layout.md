@@ -19,10 +19,10 @@
 - `src/` QDNix Source code
 	- `bin/` source code for files in /bin
 	- `etc/` source code for files in /etc
-	- `include/` source code for files in /usr/include
+	- `include/` source code for files in /include
 	- `lib/` source code for files in /lib
 	- `sbin/` source code for files in /sbin
-	- `share/` source for files in /usr/share
+	- `share/` source for files in /share
 	- `sys/` Kernel source code
 		- `arm/` ARM architecture support
 		- `athena/` Athena architecture support

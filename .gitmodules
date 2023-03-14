@@ -18,3 +18,6 @@
 	path = thirdparty/gpl3/gcc/dist
 	url = https://gcc.gnu.org/git/gcc.git
 	branch = releases/gcc-12
+[submodule "thirdparty/bsd3/bmake/dist"]
+	path = thirdparty/bsd3/bmake/dist
+	url = git@github.com:d0p1s4m4/bmake.git
