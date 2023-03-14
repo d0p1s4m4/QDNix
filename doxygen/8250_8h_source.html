@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/dev/tty/serial/8250.h Source File</title>
+<title>QDNix: sys/dev/tty/serial/8250.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('8250_8h_source.html',''); initResizabl
 <div class="title">8250.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="8250_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * BSD 3-Clause License</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Copyright (c) 2022, d0p1</span></div>
@@ -123,44 +123,44 @@ $(document).ready(function(){initNavTree('8250_8h_source.html',''); initResizabl
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">/* UART 8250 , 16750 */</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="8250_8h.html#a5e3f8c14659c5f87821fcb7640b3667b">   37</a></span>&#160;<span class="preprocessor"># define UART8250_RBR        0x0 </span><span class="comment">/* RX */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="8250_8h.html#add2431aa49a1299e589730d373344443">   38</a></span>&#160;<span class="preprocessor"># define UART8250_THR        0x0 </span><span class="comment">/* TX */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"># define UART8250_RBR        0x0 </span><span class="comment">/* RX */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor"># define UART8250_THR        0x0 </span><span class="comment">/* TX */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="8250_8h.html#a2f0300277f46d9c54936dca7be69dd7e">   40</a></span>&#160;<span class="preprocessor"># define UART8250_IER        0x1</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="8250_8h.html#a930a920154f80570e9c287ca66646587">   41</a></span>&#160;<span class="preprocessor"># define UART8250_IER_RDA    0x1</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="8250_8h.html#a65720d0d66ddc52278ab350f201727bd">   42</a></span>&#160;<span class="preprocessor"># define UART8250_IER_THRE   0x2</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="8250_8h.html#a95bd98eac8dacf27a0dd6570d61f0fd8">   43</a></span>&#160;<span class="preprocessor"># define UART8250_IER_RLSRC  0x4</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="8250_8h.html#ac86b08ae681d94f03d22572f4614c683">   44</a></span>&#160;<span class="preprocessor"># define UART8250_IER_MSRC   0x8</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"># define UART8250_IER        0x1</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor"># define UART8250_IER_RDA    0x1</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"># define UART8250_IER_THRE   0x2</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor"># define UART8250_IER_RLSRC  0x4</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"># define UART8250_IER_MSRC   0x8</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">/* 16750 only */</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="8250_8h.html#af7de2ab9105a7259fa46bc8f72688851">   47</a></span>&#160;<span class="preprocessor"># define UART16750_IER_SLEEP 0x10</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="8250_8h.html#a088eab6f8154c6ac81357030fd87fab2">   48</a></span>&#160;<span class="preprocessor"># define UART16750_IER_LPM   0x20</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"># define UART16750_IER_SLEEP 0x10</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor"># define UART16750_IER_LPM   0x20</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="8250_8h.html#a6bdaabaf234e960cbd6ad0c0d381f184">   50</a></span>&#160;<span class="preprocessor"># define UART8250_IIR        0x2</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"># define UART8250_IIR        0x2</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="8250_8h.html#a4c614749d9faab1348f0d56b977c8ca0">   52</a></span>&#160;<span class="preprocessor"># define UART8250_FCR        0x2</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="8250_8h.html#abb6def1fc16915c60fbf59aaa989cc66">   53</a></span>&#160;<span class="preprocessor"># define UART8250_FCR_EN     0x1</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="8250_8h.html#a71e38e2551e9a15d09a16e28dd4b77f2">   54</a></span>&#160;<span class="preprocessor"># define UART8250_FCR_CLSR   0x2</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="8250_8h.html#a41ef691fcc2ace7b3d18aadbfd86b72e">   55</a></span>&#160;<span class="preprocessor"># define UART8250_FCR_CLST   0x4</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="8250_8h.html#aa09e1abbcc939b7476b96892e74bb388">   56</a></span>&#160;<span class="preprocessor"># define UART8250_FCR_DMA    0x8</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor"># define UART8250_FCR        0x2</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor"># define UART8250_FCR_EN     0x1</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor"># define UART8250_FCR_CLSR   0x2</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor"># define UART8250_FCR_CLST   0x4</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"># define UART8250_FCR_DMA    0x8</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* 16750 only */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="8250_8h.html#a9ec70d320eb1f81991cc97eec645b6d1">   59</a></span>&#160;<span class="preprocessor"># define UART16750_FCR_64EN  0x20</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor"># define UART16750_FCR_64EN  0x20</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="8250_8h.html#a041f3c12fcfa5dc5234af72d5cdabdbf">   61</a></span>&#160;<span class="preprocessor"># define UART8250_LCR        0x3</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"># define UART8250_LCR        0x3</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="8250_8h.html#a4069cdf9b4da19f45fdef1ded270feb2">   63</a></span>&#160;<span class="preprocessor"># define UART8250_MCR        0x4</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor"># define UART8250_MCR        0x4</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="8250_8h.html#a0ca5ba1502e9dd333d101a2cf6db870f">   65</a></span>&#160;<span class="preprocessor"># define UART8250_LSR        0x5</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor"># define UART8250_LSR        0x5</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="8250_8h.html#a061ab205ae76d1212f7dab2254729c00">   67</a></span>&#160;<span class="preprocessor"># define UART8250_MSR        0x6</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor"># define UART8250_MSR        0x6</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="8250_8h.html#ab001648c7d97ca2b438f36d0916d3eba">   69</a></span>&#160;<span class="preprocessor"># define UART8250_SCR        0x7</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"># define UART8250_SCR        0x7</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">/* DLAB == 1 */</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="8250_8h.html#a8353eedd3ee4fae5ab9bcc83c23244bc">   72</a></span>&#160;<span class="preprocessor"># define UART8250_DLL        0x0</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor"># define UART8250_DLL        0x0</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="8250_8h.html#a9dbfb3642531b7d51b97bf212a54034e">   74</a></span>&#160;<span class="preprocessor"># define UART8250_DLH        0x1</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"># define UART8250_DLH        0x1</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !_SYS_DEV_SERIAL_8250_H */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -168,7 +168,7 @@ $(document).ready(function(){initNavTree('8250_8h_source.html',''); initResizabl
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_02790d9076d147370f66228ea312a7cf.html">dev</a></li><li class="navelem"><a class="el" href="dir_620f03ec6c99de6e7e7f1ae6bc0b3e8f.html">tty</a></li><li class="navelem"><a class="el" href="dir_469aeaaf8b543ff43fb1985e493210e4.html">serial</a></li><li class="navelem"><a class="el" href="8250_8h.html">8250.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_d262391372ea5bbd9c4df83a3df643d2.html">dev</a></li><li class="navelem"><a class="el" href="dir_62726ef666bb078cbab12e6dfc64f079.html">tty</a></li><li class="navelem"><a class="el" href="dir_1ce8b1f3a54190d845380cd3de31aef5.html">serial</a></li><li class="navelem"><b>8250.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

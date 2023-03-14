@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/riscv64/init.c Source File</title>
+<title>QDNix: sys/riscv64/init.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,29 +87,26 @@ $(document).ready(function(){initNavTree('riscv64_2init_8c_source.html',''); ini
 <div class="title">init.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="riscv64_2init_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="z80_2arch_8h.html">arch.h</a>&quot;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keywordtype">void</span> <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(uint8_t c);</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;arch.h&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="keywordtype">void</span> uart_putchar(uint8_t c);</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="riscv64_2init_8c.html#a42ace81c89978597115689472c5d63e8">    5</a></span>&#160;<a class="code" href="arm_2soc_2cortex-a7_2init_8c.html#a42ace81c89978597115689472c5d63e8">arch_init</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;arch_init(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;H&#39;</span>);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;e&#39;</span>);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;l&#39;</span>);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;l&#39;</span>);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;o&#39;</span>);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    uart_putchar(<span class="charliteral">&#39;H&#39;</span>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    uart_putchar(<span class="charliteral">&#39;e&#39;</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    uart_putchar(<span class="charliteral">&#39;l&#39;</span>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    uart_putchar(<span class="charliteral">&#39;l&#39;</span>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    uart_putchar(<span class="charliteral">&#39;o&#39;</span>);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    __asm__ <span class="keyword">volatile</span>(<span class="stringliteral">&quot;wfi&quot;</span>);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
-<div class="ttc" id="aarm_2soc_2cortex-a7_2init_8c_html_a42ace81c89978597115689472c5d63e8"><div class="ttname"><a href="arm_2soc_2cortex-a7_2init_8c.html#a42ace81c89978597115689472c5d63e8">arch_init</a></div><div class="ttdeci">void arch_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="arm_2soc_2cortex-a7_2init_8c_source.html#l00035">init.c:35</a></div></div>
-<div class="ttc" id="ariscv64_2init_8c_html_a1c49b1fcb3642bb2ee92314824d59e27"><div class="ttname"><a href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a></div><div class="ttdeci">void uart_putchar(uint8_t c)</div><div class="ttdef"><b>Definition:</b> <a href="arm_2soc_2cortex-a7_2uart_8c_source.html#l00039">uart.c:39</a></div></div>
-<div class="ttc" id="az80_2arch_8h_html"><div class="ttname"><a href="z80_2arch_8h.html">arch.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_321e546302ffc8e910cc303dc3a7c30b.html">riscv64</a></li><li class="navelem"><a class="el" href="riscv64_2init_8c.html">init.c</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_7281e6cc828589a23ab8aa24567f4f2b.html">riscv64</a></li><li class="navelem"><b>init.c</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

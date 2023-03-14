@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/dev/tty/tty.h Source File</title>
+<title>QDNix: sys/dev/tty/tty.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,32 +87,28 @@ $(document).ready(function(){initNavTree('tty_8h_source.html',''); initResizable
 <div class="title">tty.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="tty_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _SYS_DEV_TTY_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _SYS_DEV_TTY_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"># define _SYS_DEV_TTY_H 1</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"># include &lt;<a class="code" href="serial_8h.html">dev/tty/serial/serial.h</a>&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"># include &lt;dev/tty/serial/serial.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="structTTYDevice.html">    6</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="structTTYDevice.html#a21393860c1852f9271c560cb01dc51a6">    7</a></span>&#160;    void (*<a class="code" href="machdep_8c.html#a2858154e2009b0e6e616f313177762bc">init</a>)(<span class="keywordtype">void</span> *);</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structTTYDevice.html#a156ae156ef02ba96264fe9934020a894">    8</a></span>&#160;    <a class="code" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a> (*write)(<span class="keywordtype">void</span> *, <span class="keyword">const</span> <span class="keywordtype">char</span> *, <a class="code" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>);</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structTTYDevice.html#ad28a163b8516a81bf5c09e4f7caeee3a">    9</a></span>&#160;    <a class="code" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a> (*read)(<span class="keywordtype">void</span> *, <span class="keywordtype">char</span> *, <a class="code" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>);</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structTTYDevice.html#a4e6e2f2de76f6b8e3f334ac983719511">   10</a></span>&#160;    void (*deinit)(<span class="keywordtype">void</span> *);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    void (*init)(<span class="keywordtype">void</span> *);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    size_t (*write)(<span class="keywordtype">void</span> *, <span class="keyword">const</span> <span class="keywordtype">char</span> *, size_t);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    size_t (*read)(<span class="keywordtype">void</span> *, <span class="keywordtype">char</span> *, size_t);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    void (*deinit)(<span class="keywordtype">void</span> *);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structTTYDevice.html#a3b00bb35a8ec1f7c00baea3092f4643b">   12</a></span>&#160;    <span class="keywordtype">void</span> *<a class="code" href="structTTYDevice.html#a3b00bb35a8ec1f7c00baea3092f4643b">config</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">void</span> *config;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;} <a class="code" href="structTTYDevice.html">TTYDevice</a>;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !_SYS_DEV_TTY_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="amachdep_8c_html_a2858154e2009b0e6e616f313177762bc"><div class="ttname"><a href="machdep_8c.html#a2858154e2009b0e6e616f313177762bc">init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> <a href="machdep_8c_source.html#l00005">machdep.c:5</a></div></div>
-<div class="ttc" id="aserial_8h_html"><div class="ttname"><a href="serial_8h.html">serial.h</a></div></div>
 <div class="ttc" id="astructTTYDevice_html"><div class="ttname"><a href="structTTYDevice.html">TTYDevice</a></div><div class="ttdef"><b>Definition:</b> <a href="tty_8h_source.html#l00006">tty.h:6</a></div></div>
-<div class="ttc" id="astructTTYDevice_html_a3b00bb35a8ec1f7c00baea3092f4643b"><div class="ttname"><a href="structTTYDevice.html#a3b00bb35a8ec1f7c00baea3092f4643b">TTYDevice::config</a></div><div class="ttdeci">void * config</div><div class="ttdef"><b>Definition:</b> <a href="tty_8h_source.html#l00012">tty.h:12</a></div></div>
-<div class="ttc" id="atypes_8h_html_a7c94ea6f8948649f8d181ae55911eeaf"><div class="ttname"><a href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a></div><div class="ttdeci">unsigned int size_t</div><div class="ttdef"><b>Definition:</b> <a href="types_8h_source.html#l00014">types.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_02790d9076d147370f66228ea312a7cf.html">dev</a></li><li class="navelem"><a class="el" href="dir_620f03ec6c99de6e7e7f1ae6bc0b3e8f.html">tty</a></li><li class="navelem"><a class="el" href="tty_8h.html">tty.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_d262391372ea5bbd9c4df83a3df643d2.html">dev</a></li><li class="navelem"><a class="el" href="dir_62726ef666bb078cbab12e6dfc64f079.html">tty</a></li><li class="navelem"><b>tty.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/riscv64/uart.c Source File</title>
+<title>QDNix: sys/riscv64/uart.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,27 +87,22 @@ $(document).ready(function(){initNavTree('riscv64_2uart_8c_source.html',''); ini
 <div class="title">uart.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="riscv64_2uart_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mmio_8h.html">sys/machine/mmio.h</a>&quot;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;sys/machine/mmio.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="riscv64_2uart_8c.html#a4b087ed9535f88e678cea65809f2a71f">    4</a></span>&#160;<span class="preprocessor">#define UART_BASE_ADDR 0x10000000</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#define UART_BASE_ADDR 0x10000000</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="riscv64_2uart_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">    6</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="arm_2soc_2cortex-a7_2uart_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(uint8_t c) {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">while</span>(<a class="code" href="mmio_8h.html#a5c4b8f1e95c36b0a19c905cd3d64ab63">mmio_read8</a>(<a class="code" href="riscv64_2uart_8c.html#a4b087ed9535f88e678cea65809f2a71f">UART_BASE_ADDR</a>));</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> uart_putchar(uint8_t c) {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">while</span>(mmio_read8(UART_BASE_ADDR));</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="mmio_8h.html#aefed687878187acfe92922d3e1b59b33">mmio_write8</a>(<a class="code" href="riscv64_2uart_8c.html#a4b087ed9535f88e678cea65809f2a71f">UART_BASE_ADDR</a>, c);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    mmio_write8(UART_BASE_ADDR, c);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
-<div class="ttc" id="aarm_2soc_2cortex-a7_2uart_8c_html_a1c49b1fcb3642bb2ee92314824d59e27"><div class="ttname"><a href="arm_2soc_2cortex-a7_2uart_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a></div><div class="ttdeci">void uart_putchar(uint8_t c)</div><div class="ttdef"><b>Definition:</b> <a href="arm_2soc_2cortex-a7_2uart_8c_source.html#l00039">uart.c:39</a></div></div>
-<div class="ttc" id="ammio_8h_html"><div class="ttname"><a href="mmio_8h.html">mmio.h</a></div></div>
-<div class="ttc" id="ammio_8h_html_a5c4b8f1e95c36b0a19c905cd3d64ab63"><div class="ttname"><a href="mmio_8h.html#a5c4b8f1e95c36b0a19c905cd3d64ab63">mmio_read8</a></div><div class="ttdeci">static __inline__ uint8_t mmio_read8(uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00013">mmio.h:13</a></div></div>
-<div class="ttc" id="ammio_8h_html_aefed687878187acfe92922d3e1b59b33"><div class="ttname"><a href="mmio_8h.html#aefed687878187acfe92922d3e1b59b33">mmio_write8</a></div><div class="ttdeci">static __inline__ void mmio_write8(uintptr_t addr, uint8_t value)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00007">mmio.h:7</a></div></div>
-<div class="ttc" id="ariscv64_2uart_8c_html_a4b087ed9535f88e678cea65809f2a71f"><div class="ttname"><a href="riscv64_2uart_8c.html#a4b087ed9535f88e678cea65809f2a71f">UART_BASE_ADDR</a></div><div class="ttdeci">#define UART_BASE_ADDR</div><div class="ttdef"><b>Definition:</b> <a href="riscv64_2uart_8c_source.html#l00004">uart.c:4</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_321e546302ffc8e910cc303dc3a7c30b.html">riscv64</a></li><li class="navelem"><a class="el" href="riscv64_2uart_8c.html">uart.c</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_7281e6cc828589a23ab8aa24567f4f2b.html">riscv64</a></li><li class="navelem"><b>uart.c</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

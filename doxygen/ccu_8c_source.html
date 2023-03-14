@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/arm/soc/cortex-a7/ccu.c Source File</title>
+<title>QDNix: sys/arm/soc/cortex-a7/ccu.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,30 +87,24 @@ $(document).ready(function(){initNavTree('ccu_8c_source.html',''); initResizable
 <div class="title">ccu.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="ccu_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="z80_2arch_8h.html">arch.h</a>&quot;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;arch.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">/* Clock control unit */</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="ccu_8c.html#a444bb4a779d66d1056201de790fa6822">    4</a></span>&#160;<span class="preprocessor">#define CCU_BASE_ADDR 0x01C20000</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#define CCU_BASE_ADDR 0x01C20000</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="ccu_8c.html#a598df99f4a5fa0d1cfa88e8020be4f25">    6</a></span>&#160;<span class="preprocessor">#define PPL_PERIPH0_CTRL_REG 0x0028</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define PPL_PERIPH0_CTRL_REG 0x0028</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="arm_2soc_2cortex-a7_2arch_8h.html#ace1045f1af55081a2f563625b7bd7ea6">    8</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ccu_8c.html#ace1045f1af55081a2f563625b7bd7ea6">ccu_init_clock</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> ccu_init_clock(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="mmio_8h.html#afc3e82bfc5b188f04505d9038282d0fb">mmio_write32</a>(<a class="code" href="ccu_8c.html#a444bb4a779d66d1056201de790fa6822">CCU_BASE_ADDR</a> + <a class="code" href="ccu_8c.html#a598df99f4a5fa0d1cfa88e8020be4f25">PPL_PERIPH0_CTRL_REG</a>, 0x90041811);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">while</span>(!(<a class="code" href="mmio_8h.html#aecb1ce3ad5d337c36f0589d137767d91">mmio_read32</a>(<a class="code" href="ccu_8c.html#a444bb4a779d66d1056201de790fa6822">CCU_BASE_ADDR</a> + <a class="code" href="ccu_8c.html#a598df99f4a5fa0d1cfa88e8020be4f25">PPL_PERIPH0_CTRL_REG</a>) &amp; (1 &lt;&lt; 28)));</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    mmio_write32(CCU_BASE_ADDR + PPL_PERIPH0_CTRL_REG, 0x90041811);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">while</span>(!(mmio_read32(CCU_BASE_ADDR + PPL_PERIPH0_CTRL_REG) &amp; (1 &lt;&lt; 28)));</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
-<div class="ttc" id="accu_8c_html_a444bb4a779d66d1056201de790fa6822"><div class="ttname"><a href="ccu_8c.html#a444bb4a779d66d1056201de790fa6822">CCU_BASE_ADDR</a></div><div class="ttdeci">#define CCU_BASE_ADDR</div><div class="ttdef"><b>Definition:</b> <a href="ccu_8c_source.html#l00004">ccu.c:4</a></div></div>
-<div class="ttc" id="accu_8c_html_a598df99f4a5fa0d1cfa88e8020be4f25"><div class="ttname"><a href="ccu_8c.html#a598df99f4a5fa0d1cfa88e8020be4f25">PPL_PERIPH0_CTRL_REG</a></div><div class="ttdeci">#define PPL_PERIPH0_CTRL_REG</div><div class="ttdef"><b>Definition:</b> <a href="ccu_8c_source.html#l00006">ccu.c:6</a></div></div>
-<div class="ttc" id="accu_8c_html_ace1045f1af55081a2f563625b7bd7ea6"><div class="ttname"><a href="ccu_8c.html#ace1045f1af55081a2f563625b7bd7ea6">ccu_init_clock</a></div><div class="ttdeci">void ccu_init_clock(void)</div><div class="ttdef"><b>Definition:</b> <a href="ccu_8c_source.html#l00008">ccu.c:8</a></div></div>
-<div class="ttc" id="ammio_8h_html_aecb1ce3ad5d337c36f0589d137767d91"><div class="ttname"><a href="mmio_8h.html#aecb1ce3ad5d337c36f0589d137767d91">mmio_read32</a></div><div class="ttdeci">static __inline__ uint32_t mmio_read32(uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00037">mmio.h:37</a></div></div>
-<div class="ttc" id="ammio_8h_html_afc3e82bfc5b188f04505d9038282d0fb"><div class="ttname"><a href="mmio_8h.html#afc3e82bfc5b188f04505d9038282d0fb">mmio_write32</a></div><div class="ttdeci">static __inline__ void mmio_write32(uintptr_t addr, uint32_t value)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00031">mmio.h:31</a></div></div>
-<div class="ttc" id="az80_2arch_8h_html"><div class="ttname"><a href="z80_2arch_8h.html">arch.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_f78b31b02ba3f15be9e78b6cafeb904e.html">arm</a></li><li class="navelem"><a class="el" href="dir_5ad754ae98f32b393e26c48d03c0f17d.html">soc</a></li><li class="navelem"><a class="el" href="dir_e6306f09eac0903239a08a8beedbbde7.html">cortex-a7</a></li><li class="navelem"><a class="el" href="ccu_8c.html">ccu.c</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e5848ae0f4e0f1a2a4d09f40991e48b1.html">arm</a></li><li class="navelem"><a class="el" href="dir_592e42ead569eb10c31b8e3d6ba268b1.html">soc</a></li><li class="navelem"><a class="el" href="dir_733babd4979f8d1dc64aa1375051a896.html">cortex-a7</a></li><li class="navelem"><b>ccu.c</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

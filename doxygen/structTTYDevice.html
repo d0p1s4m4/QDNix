@@ -89,8 +89,6 @@ $(document).ready(function(){initNavTree('structTTYDevice.html',''); initResizab
 <div class="title">TTYDevice Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="tty_8h_source.html">tty.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for TTYDevice:</div>
 <div class="dyncontent">
@@ -99,103 +97,27 @@ Collaboration diagram for TTYDevice:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a21393860c1852f9271c560cb01dc51a6"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTTYDevice.html#a21393860c1852f9271c560cb01dc51a6">init</a> )(void *)</td></tr>
+<tr class="memitem:a21393860c1852f9271c560cb01dc51a6"><td class="memItemLeft" align="right" valign="top"><a id="a21393860c1852f9271c560cb01dc51a6"></a>
+void(*&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> )(void *)</td></tr>
 <tr class="separator:a21393860c1852f9271c560cb01dc51a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156ae156ef02ba96264fe9934020a894"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTTYDevice.html#a156ae156ef02ba96264fe9934020a894">write</a> )(void *, const char *, <a class="el" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>)</td></tr>
+<tr class="memitem:a156ae156ef02ba96264fe9934020a894"><td class="memItemLeft" align="right" valign="top"><a id="a156ae156ef02ba96264fe9934020a894"></a>
+size_t(*&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> )(void *, const char *, size_t)</td></tr>
 <tr class="separator:a156ae156ef02ba96264fe9934020a894"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad28a163b8516a81bf5c09e4f7caeee3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTTYDevice.html#ad28a163b8516a81bf5c09e4f7caeee3a">read</a> )(void *, char *, <a class="el" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>)</td></tr>
+<tr class="memitem:ad28a163b8516a81bf5c09e4f7caeee3a"><td class="memItemLeft" align="right" valign="top"><a id="ad28a163b8516a81bf5c09e4f7caeee3a"></a>
+size_t(*&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> )(void *, char *, size_t)</td></tr>
 <tr class="separator:ad28a163b8516a81bf5c09e4f7caeee3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e6e2f2de76f6b8e3f334ac983719511"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTTYDevice.html#a4e6e2f2de76f6b8e3f334ac983719511">deinit</a> )(void *)</td></tr>
+<tr class="memitem:a4e6e2f2de76f6b8e3f334ac983719511"><td class="memItemLeft" align="right" valign="top"><a id="a4e6e2f2de76f6b8e3f334ac983719511"></a>
+void(*&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> )(void *)</td></tr>
 <tr class="separator:a4e6e2f2de76f6b8e3f334ac983719511"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b00bb35a8ec1f7c00baea3092f4643b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTTYDevice.html#a3b00bb35a8ec1f7c00baea3092f4643b">config</a></td></tr>
+<tr class="memitem:a3b00bb35a8ec1f7c00baea3092f4643b"><td class="memItemLeft" align="right" valign="top"><a id="a3b00bb35a8ec1f7c00baea3092f4643b"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>config</b></td></tr>
 <tr class="separator:a3b00bb35a8ec1f7c00baea3092f4643b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="tty_8h_source.html#l00006">6</a> of file <a class="el" href="tty_8h_source.html">tty.h</a>.</p>
-</div><h2 class="groupheader">Field Documentation</h2>
-<a id="a3b00bb35a8ec1f7c00baea3092f4643b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b00bb35a8ec1f7c00baea3092f4643b">&#9670;&nbsp;</a></span>config</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void* config</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="tty_8h_source.html#l00012">12</a> of file <a class="el" href="tty_8h_source.html">tty.h</a>.</p>
-
-</div>
-</div>
-<a id="a4e6e2f2de76f6b8e3f334ac983719511"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e6e2f2de76f6b8e3f334ac983719511">&#9670;&nbsp;</a></span>deinit</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void(* deinit) (void *)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="tty_8h_source.html#l00010">10</a> of file <a class="el" href="tty_8h_source.html">tty.h</a>.</p>
-
-</div>
-</div>
-<a id="a21393860c1852f9271c560cb01dc51a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21393860c1852f9271c560cb01dc51a6">&#9670;&nbsp;</a></span>init</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void(* init) (void *)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="tty_8h_source.html#l00007">7</a> of file <a class="el" href="tty_8h_source.html">tty.h</a>.</p>
-
-</div>
-</div>
-<a id="ad28a163b8516a81bf5c09e4f7caeee3a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad28a163b8516a81bf5c09e4f7caeee3a">&#9670;&nbsp;</a></span>read</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>(* read) (void *, char *, <a class="el" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="tty_8h_source.html#l00009">9</a> of file <a class="el" href="tty_8h_source.html">tty.h</a>.</p>
-
-</div>
-</div>
-<a id="a156ae156ef02ba96264fe9934020a894"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a156ae156ef02ba96264fe9934020a894">&#9670;&nbsp;</a></span>write</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>(* write) (void *, const char *, <a class="el" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="tty_8h_source.html#l00008">8</a> of file <a class="el" href="tty_8h_source.html">tty.h</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>src/sys/dev/tty/<a class="el" href="tty_8h_source.html">tty.h</a></li>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>sys/dev/tty/<a class="el" href="tty_8h_source.html">tty.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

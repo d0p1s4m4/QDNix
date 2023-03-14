@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/sys/machine/mmio.h Source File</title>
+<title>QDNix: sys/sys/machine/mmio.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,43 +87,43 @@ $(document).ready(function(){initNavTree('mmio_8h_source.html',''); initResizabl
 <div class="title">mmio.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="mmio_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SYS_KERN_MACHINE_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SYS_KERN_MACHINE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"># define SYS_KERN_MACHINE_H 1</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"># include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">static</span> __inline__ <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="mmio_8h.html#aefed687878187acfe92922d3e1b59b33">    7</a></span>&#160;<a class="code" href="mmio_8h.html#aefed687878187acfe92922d3e1b59b33">mmio_write8</a>(uintptr_t addr, uint8_t value)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;mmio_write8(uintptr_t addr, uint8_t value)</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    *(<span class="keyword">volatile</span> uint8_t *)(addr) = value;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">static</span> __inline__ uint8_t</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="mmio_8h.html#a5c4b8f1e95c36b0a19c905cd3d64ab63">   13</a></span>&#160;<a class="code" href="mmio_8h.html#a5c4b8f1e95c36b0a19c905cd3d64ab63">mmio_read8</a>(uintptr_t addr)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;mmio_read8(uintptr_t addr)</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">return</span> (*(<span class="keyword">volatile</span> uint8_t *)addr);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">static</span> __inline__ <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="mmio_8h.html#aa92dc8df68d1f37d74247d629757f0da">   19</a></span>&#160;<a class="code" href="mmio_8h.html#aa92dc8df68d1f37d74247d629757f0da">mmio_write16</a>(uintptr_t addr, uint16_t value)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;mmio_write16(uintptr_t addr, uint16_t value)</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    *(<span class="keyword">volatile</span> uint16_t *)(addr) = value;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">static</span> __inline__ uint16_t</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="mmio_8h.html#a84c182b95b416db1864c9792b9848e74">   25</a></span>&#160;<a class="code" href="mmio_8h.html#a84c182b95b416db1864c9792b9848e74">mmio_read16</a>(uintptr_t addr)</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;mmio_read16(uintptr_t addr)</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">return</span> (*(<span class="keyword">volatile</span> uint16_t *)addr);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">static</span> __inline__ <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="mmio_8h.html#afc3e82bfc5b188f04505d9038282d0fb">   31</a></span>&#160;<a class="code" href="mmio_8h.html#afc3e82bfc5b188f04505d9038282d0fb">mmio_write32</a>(uintptr_t addr, uint32_t value)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;mmio_write32(uintptr_t addr, uint32_t value)</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    *(<span class="keyword">volatile</span> uint32_t *)(addr) = value;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">static</span> __inline__ uint32_t</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="mmio_8h.html#aecb1ce3ad5d337c36f0589d137767d91">   37</a></span>&#160;<a class="code" href="mmio_8h.html#aecb1ce3ad5d337c36f0589d137767d91">mmio_read32</a>(uintptr_t addr)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;mmio_read32(uintptr_t addr)</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> (*(<span class="keyword">volatile</span> uint32_t *)addr);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
@@ -133,18 +133,12 @@ $(document).ready(function(){initNavTree('mmio_8h_source.html',''); initResizabl
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"># endif</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SYS_MMIO_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="ammio_8h_html_a5c4b8f1e95c36b0a19c905cd3d64ab63"><div class="ttname"><a href="mmio_8h.html#a5c4b8f1e95c36b0a19c905cd3d64ab63">mmio_read8</a></div><div class="ttdeci">static __inline__ uint8_t mmio_read8(uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00013">mmio.h:13</a></div></div>
-<div class="ttc" id="ammio_8h_html_a84c182b95b416db1864c9792b9848e74"><div class="ttname"><a href="mmio_8h.html#a84c182b95b416db1864c9792b9848e74">mmio_read16</a></div><div class="ttdeci">static __inline__ uint16_t mmio_read16(uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00025">mmio.h:25</a></div></div>
-<div class="ttc" id="ammio_8h_html_aa92dc8df68d1f37d74247d629757f0da"><div class="ttname"><a href="mmio_8h.html#aa92dc8df68d1f37d74247d629757f0da">mmio_write16</a></div><div class="ttdeci">static __inline__ void mmio_write16(uintptr_t addr, uint16_t value)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00019">mmio.h:19</a></div></div>
-<div class="ttc" id="ammio_8h_html_aecb1ce3ad5d337c36f0589d137767d91"><div class="ttname"><a href="mmio_8h.html#aecb1ce3ad5d337c36f0589d137767d91">mmio_read32</a></div><div class="ttdeci">static __inline__ uint32_t mmio_read32(uintptr_t addr)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00037">mmio.h:37</a></div></div>
-<div class="ttc" id="ammio_8h_html_aefed687878187acfe92922d3e1b59b33"><div class="ttname"><a href="mmio_8h.html#aefed687878187acfe92922d3e1b59b33">mmio_write8</a></div><div class="ttdeci">static __inline__ void mmio_write8(uintptr_t addr, uint8_t value)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00007">mmio.h:7</a></div></div>
-<div class="ttc" id="ammio_8h_html_afc3e82bfc5b188f04505d9038282d0fb"><div class="ttname"><a href="mmio_8h.html#afc3e82bfc5b188f04505d9038282d0fb">mmio_write32</a></div><div class="ttdeci">static __inline__ void mmio_write32(uintptr_t addr, uint32_t value)</div><div class="ttdef"><b>Definition:</b> <a href="mmio_8h_source.html#l00031">mmio.h:31</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_c529fe1005f766361284165817aae3f9.html">sys</a></li><li class="navelem"><a class="el" href="dir_7584bac14e55df6a0dfaa5c94d5a85ae.html">machine</a></li><li class="navelem"><a class="el" href="mmio_8h.html">mmio.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_5e12759b7d1a9c76440d3589702ad161.html">sys</a></li><li class="navelem"><a class="el" href="dir_b8cdab12cbe40591a1e4f05604b4444b.html">machine</a></li><li class="navelem"><b>mmio.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

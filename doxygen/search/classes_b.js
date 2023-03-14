@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['uartregister_377',['UARTRegister',['../structUARTRegister.html',1,'']]],
-  ['utsname_378',['utsname',['../structutsname.html',1,'']]]
+  ['vfs_48',['VFS',['../structVFS.html',1,'']]],
+  ['vsfops_49',['VSFOps',['../structVSFOps.html',1,'']]]
 ];

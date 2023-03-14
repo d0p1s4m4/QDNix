@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/dev/tty/serial/serial.h Source File</title>
+<title>QDNix: sys/dev/tty/serial/serial.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('serial_8h_source.html',''); initResiza
 <div class="title">serial.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="serial_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * BSD 3-Clause License</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Copyright (c) 2022, d0p1</span></div>
@@ -124,30 +124,24 @@ $(document).ready(function(){initNavTree('serial_8h_source.html',''); initResiza
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"># include &lt;stddef.h&gt;</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
 <div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structSerialDevice.html">   37</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structSerialDevice.html#a21393860c1852f9271c560cb01dc51a6">   38</a></span>&#160;    void (*<a class="code" href="machdep_8c.html#a2858154e2009b0e6e616f313177762bc">init</a>)(<span class="keywordtype">void</span> *);</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structSerialDevice.html#a156ae156ef02ba96264fe9934020a894">   39</a></span>&#160;    <a class="code" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a> (*write)(<span class="keywordtype">void</span> *, <span class="keyword">const</span> <span class="keywordtype">char</span> *, <a class="code" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structSerialDevice.html#ad28a163b8516a81bf5c09e4f7caeee3a">   40</a></span>&#160;    <a class="code" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a> (*read)(<span class="keywordtype">void</span> *, <span class="keywordtype">char</span> *, <a class="code" href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    void (*init)(<span class="keywordtype">void</span> *);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    size_t (*write)(<span class="keywordtype">void</span> *, <span class="keyword">const</span> <span class="keywordtype">char</span> *, size_t);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    size_t (*read)(<span class="keywordtype">void</span> *, <span class="keywordtype">char</span> *, size_t);</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structSerialDevice.html#a2f397ce1974c16f7e339fa1171182c1c">   42</a></span>&#160;    uintptr_t <a class="code" href="structSerialDevice.html#a2f397ce1974c16f7e339fa1171182c1c">io_base</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structSerialDevice.html#aea22ec27eb52d3e0d744184067cbca3a">   43</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structSerialDevice.html#aea22ec27eb52d3e0d744184067cbca3a">irq</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structSerialDevice.html#a0594d2be6058e5937e7507655c6650be">   44</a></span>&#160;    uint8_t <a class="code" href="structSerialDevice.html#a0594d2be6058e5937e7507655c6650be">reg_offset</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structSerialDevice.html#a3a578e96908249c6839167c5a89eb2fb">   45</a></span>&#160;    uint32_t <a class="code" href="structSerialDevice.html#a3a578e96908249c6839167c5a89eb2fb">beaudrate</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    uintptr_t io_base;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">int</span> irq;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    uint8_t reg_offset;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    uint32_t beaudrate;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;} <a class="code" href="structSerialDevice.html">SerialDevice</a>;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !_SYS_DEV_UART_UART_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="amachdep_8c_html_a2858154e2009b0e6e616f313177762bc"><div class="ttname"><a href="machdep_8c.html#a2858154e2009b0e6e616f313177762bc">init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> <a href="machdep_8c_source.html#l00005">machdep.c:5</a></div></div>
 <div class="ttc" id="astructSerialDevice_html"><div class="ttname"><a href="structSerialDevice.html">SerialDevice</a></div><div class="ttdef"><b>Definition:</b> <a href="serial_8h_source.html#l00037">serial.h:37</a></div></div>
-<div class="ttc" id="astructSerialDevice_html_a0594d2be6058e5937e7507655c6650be"><div class="ttname"><a href="structSerialDevice.html#a0594d2be6058e5937e7507655c6650be">SerialDevice::reg_offset</a></div><div class="ttdeci">uint8_t reg_offset</div><div class="ttdef"><b>Definition:</b> <a href="serial_8h_source.html#l00044">serial.h:44</a></div></div>
-<div class="ttc" id="astructSerialDevice_html_a2f397ce1974c16f7e339fa1171182c1c"><div class="ttname"><a href="structSerialDevice.html#a2f397ce1974c16f7e339fa1171182c1c">SerialDevice::io_base</a></div><div class="ttdeci">uintptr_t io_base</div><div class="ttdef"><b>Definition:</b> <a href="serial_8h_source.html#l00042">serial.h:42</a></div></div>
-<div class="ttc" id="astructSerialDevice_html_a3a578e96908249c6839167c5a89eb2fb"><div class="ttname"><a href="structSerialDevice.html#a3a578e96908249c6839167c5a89eb2fb">SerialDevice::beaudrate</a></div><div class="ttdeci">uint32_t beaudrate</div><div class="ttdef"><b>Definition:</b> <a href="serial_8h_source.html#l00045">serial.h:45</a></div></div>
-<div class="ttc" id="astructSerialDevice_html_aea22ec27eb52d3e0d744184067cbca3a"><div class="ttname"><a href="structSerialDevice.html#aea22ec27eb52d3e0d744184067cbca3a">SerialDevice::irq</a></div><div class="ttdeci">int irq</div><div class="ttdef"><b>Definition:</b> <a href="serial_8h_source.html#l00043">serial.h:43</a></div></div>
-<div class="ttc" id="atypes_8h_html_a7c94ea6f8948649f8d181ae55911eeaf"><div class="ttname"><a href="types_8h.html#a7c94ea6f8948649f8d181ae55911eeaf">size_t</a></div><div class="ttdeci">unsigned int size_t</div><div class="ttdef"><b>Definition:</b> <a href="types_8h_source.html#l00014">types.h:14</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_02790d9076d147370f66228ea312a7cf.html">dev</a></li><li class="navelem"><a class="el" href="dir_620f03ec6c99de6e7e7f1ae6bc0b3e8f.html">tty</a></li><li class="navelem"><a class="el" href="dir_469aeaaf8b543ff43fb1985e493210e4.html">serial</a></li><li class="navelem"><a class="el" href="serial_8h.html">serial.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_d262391372ea5bbd9c4df83a3df643d2.html">dev</a></li><li class="navelem"><a class="el" href="dir_62726ef666bb078cbab12e6dfc64f079.html">tty</a></li><li class="navelem"><a class="el" href="dir_1ce8b1f3a54190d845380cd3de31aef5.html">serial</a></li><li class="navelem"><b>serial.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/mips/arch.h Source File</title>
+<title>QDNix: sys/mips/arch.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,22 +87,22 @@ $(document).ready(function(){initNavTree('mips_2arch_8h_source.html',''); initRe
 <div class="title">arch.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="mips_2arch_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _MIPS_ARCH_</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _MIPS_ARCH_</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"># define _MIPS_ARCH_ 1</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#a0e248bbceea06a51be7174c33b1d40bb">    4</a></span>&#160;<span class="preprocessor"># define MMIO_BASE_ADDR 0x18000000</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"># define MMIO_BASE_ADDR 0x18000000</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">/*# define MMIO_BASE_ADDR 0x1FD00000*/</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#a4b087ed9535f88e678cea65809f2a71f">    6</a></span>&#160;<span class="preprocessor"># define UART_BASE_ADDR 0x3f8</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor"># define UART_BASE_ADDR 0x3f8</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#ad4cfdfebb67d32be39bd48f23e19aadf">    8</a></span>&#160;<span class="preprocessor"># define USEG_BASE_ADDR  0x00000000</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#af99bd3f41edd89e5532f0b1ad481d04c">    9</a></span>&#160;<span class="preprocessor"># define KSEG0_BASE_ADDR 0x80000000</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#a5223c17e31da82d0b7048e0c61a21f25">   10</a></span>&#160;<span class="preprocessor"># define KSEG1_BASE_ADDR 0xA0000000</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#a63f809258af469d97cd24a4f7a88085b">   11</a></span>&#160;<span class="preprocessor"># define KSEG2_BASE_ADDR 0xC0000000</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#aa93ebe90476f173bb599ba794caa6d53">   12</a></span>&#160;<span class="preprocessor"># define KSEG3_BASE_ADDR 0xE0000000</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"># define USEG_BASE_ADDR  0x00000000</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"># define KSEG0_BASE_ADDR 0x80000000</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"># define KSEG1_BASE_ADDR 0xA0000000</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"># define KSEG2_BASE_ADDR 0xC0000000</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"># define KSEG3_BASE_ADDR 0xE0000000</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#a22bd14a23bab53ebb7feb9654ee08508">   14</a></span>&#160;<span class="preprocessor"># define PHYS_TO_KSEG1(x) ((x) | KSEG1_BASE_ADDR)</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor"># define PHYS_TO_KSEG1(x) ((x) | KSEG1_BASE_ADDR)</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="mips_2arch_8h.html#ae9d9d8123e43b76a1d9d01cd81da7789">   16</a></span>&#160;<span class="preprocessor"># define UART(x) (PHYS_TO_KSEG1(MMIO_BASE_ADDR + UART_BASE_ADDR + x))</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor"># define UART(x) (PHYS_TO_KSEG1(MMIO_BASE_ADDR + UART_BASE_ADDR + x))</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !_MIPS_ARCH_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('mips_2arch_8h_source.html',''); initRe
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_593cc3a4d0f8548784a534c65ffefa28.html">mips</a></li><li class="navelem"><a class="el" href="mips_2arch_8h.html">arch.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_9be536eb81d2860f0e4be94d054f0a8d.html">mips</a></li><li class="navelem"><b>arch.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

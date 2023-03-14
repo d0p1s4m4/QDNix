@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/riscv64/asm.h Source File</title>
+<title>QDNix: sys/riscv64/asm.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('riscv64_2asm_8h_source.html',''); init
 <div class="title">asm.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="riscv64_2asm_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _SYS_RISCV64_ASM_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _SYS_RISCV64_ASM_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"># define _SYS_RISCV64_ASM_H 1</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"># if CONFIG_M_MODE</span></div>
@@ -100,14 +100,14 @@ $(document).ready(function(){initNavTree('riscv64_2asm_8h_source.html',''); init
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"># define IRET               mret</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor"># else</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="riscv64_2asm_8h.html#af7fb5e3f9fd2fd9e54dc34f1373cc260">   14</a></span>&#160;<span class="preprocessor">#  define CSR_STATUS        sstatus</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="riscv64_2asm_8h.html#a5a9764f0006710e4841818226935ac88">   15</a></span>&#160;<span class="preprocessor">#  define CSR_STATUS_REG_IE 0x2</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#  define CSR_STATUS        sstatus</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#  define CSR_STATUS_REG_IE 0x2</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="riscv64_2asm_8h.html#afd6609044f176bcb713b5f25268063df">   17</a></span>&#160;<span class="preprocessor">#  define CSR_IE            sie</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="riscv64_2asm_8h.html#a20db654ac20517c0319930dcd3da2cb9">   18</a></span>&#160;<span class="preprocessor">#  define CSR_IP            sip</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="riscv64_2asm_8h.html#a64d130e5643b1c4137d08700fa136688">   19</a></span>&#160;<span class="preprocessor">#  define CSR_TVEC          stvec</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#  define CSR_IE            sie</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#  define CSR_IP            sip</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#  define CSR_TVEC          stvec</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="riscv64_2asm_8h.html#a5f73f24faecdabcb5012af2f7add2126">   21</a></span>&#160;<span class="preprocessor">#  define IRET              sret</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#  define IRET              sret</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"># endif </span><span class="comment">/* !CONFIG_M_MODE */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !_SYS_RISCV64_ASM_H */</span><span class="preprocessor"></span></div>
@@ -116,7 +116,7 @@ $(document).ready(function(){initNavTree('riscv64_2asm_8h_source.html',''); init
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_321e546302ffc8e910cc303dc3a7c30b.html">riscv64</a></li><li class="navelem"><a class="el" href="riscv64_2asm_8h.html">asm.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_7281e6cc828589a23ab8aa24567f4f2b.html">riscv64</a></li><li class="navelem"><b>asm.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/arm/soc/nrf52832/machdep.c Source File</title>
+<title>QDNix: sys/arm/soc/nrf52832/machdep.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,25 +87,21 @@ $(document).ready(function(){initNavTree('machdep_8c_source.html',''); initResiz
 <div class="title">machdep.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="machdep_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="register_8h.html">register.h</a>&quot;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="mmio_8h.html">sys/machine/mmio.h</a>&gt;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;register.h&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;sys/machine/mmio.h&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="machdep_8c.html#a2858154e2009b0e6e616f313177762bc">    5</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="machdep_8c.html#a2858154e2009b0e6e616f313177762bc">init</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keywordtype">void</span> init(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="register_8h.html#a1747298dc6ac6ea721660653cf8de19b">GPIO_REG</a>-&gt;pin_cnf[17] = 0x3;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="register_8h.html#a1747298dc6ac6ea721660653cf8de19b">GPIO_REG</a>-&gt;outclr = 1 &lt;&lt; 17;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    GPIO_REG-&gt;pin_cnf[17] = 0x3;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    GPIO_REG-&gt;outclr = 1 &lt;&lt; 17;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div>
-<div class="ttc" id="amachdep_8c_html_a2858154e2009b0e6e616f313177762bc"><div class="ttname"><a href="machdep_8c.html#a2858154e2009b0e6e616f313177762bc">init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> <a href="machdep_8c_source.html#l00005">machdep.c:5</a></div></div>
-<div class="ttc" id="ammio_8h_html"><div class="ttname"><a href="mmio_8h.html">mmio.h</a></div></div>
-<div class="ttc" id="aregister_8h_html"><div class="ttname"><a href="register_8h.html">register.h</a></div></div>
-<div class="ttc" id="aregister_8h_html_a1747298dc6ac6ea721660653cf8de19b"><div class="ttname"><a href="register_8h.html#a1747298dc6ac6ea721660653cf8de19b">GPIO_REG</a></div><div class="ttdeci">#define GPIO_REG</div><div class="ttdef"><b>Definition:</b> <a href="register_8h_source.html#l00061">register.h:61</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_f78b31b02ba3f15be9e78b6cafeb904e.html">arm</a></li><li class="navelem"><a class="el" href="dir_5ad754ae98f32b393e26c48d03c0f17d.html">soc</a></li><li class="navelem"><a class="el" href="dir_724f7ebe9392065bf8ad9540e8075d17.html">nrf52832</a></li><li class="navelem"><a class="el" href="machdep_8c.html">machdep.c</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e5848ae0f4e0f1a2a4d09f40991e48b1.html">arm</a></li><li class="navelem"><a class="el" href="dir_592e42ead569eb10c31b8e3d6ba268b1.html">soc</a></li><li class="navelem"><a class="el" href="dir_abd072fc9ef1ee629f0cd2ebd6bb44fc.html">nrf52832</a></li><li class="navelem"><b>machdep.c</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

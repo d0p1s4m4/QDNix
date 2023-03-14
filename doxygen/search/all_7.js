@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['gid_5ft_85',['gid_t',['../types_8h.html#a78ecefd3a9f3f0c110b9f6f038b690eb',1,'types.h']]],
-  ['gpio_5freg_86',['GPIO_REG',['../register_8h.html#a1747298dc6ac6ea721660653cf8de19b',1,'register.h']]],
-  ['gpioregister_87',['GpioRegister',['../structGpioRegister.html',1,'']]]
+  ['minix_5fdir_5fentry_10',['minix_dir_entry',['../structminix__dir__entry.html',1,'']]],
+  ['minix_5finode_11',['minix_inode',['../structminix__inode.html',1,'']]],
+  ['minix_5fsuper_5fblock_12',['minix_super_block',['../structminix__super__block.html',1,'']]],
+  ['mips_13',['MIPS',['../mips.html',1,'md_sys_README']]]
 ];

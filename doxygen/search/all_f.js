@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['qdnix_20kernel_20source_20code_180',['QDNix Kernel Source Code',['../md_src_sys_README.html',1,'']]],
-  ['qdnix_20source_181',['QDNix Source',['../md_src_README.html',1,'']]]
+  ['vfs_26',['VFS',['../structVFS.html',1,'']]],
+  ['virtual_20memory_20manager_27',['Virtual Memory Manager',['../vmm.html',1,'md_sys_README']]],
+  ['vmm_2eh_28',['vmm.h',['../vmm_8h.html',1,'']]],
+  ['vsfops_29',['VSFOps',['../structVSFOps.html',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['relocation_5finfo_373',['relocation_info',['../structrelocation__info.html',1,'']]]
+  ['serialdevice_43',['SerialDevice',['../structSerialDevice.html',1,'']]],
+  ['stat_44',['stat',['../structstat.html',1,'']]]
 ];

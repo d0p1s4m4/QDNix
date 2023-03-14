@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/dev/device.h Source File</title>
+<title>QDNix: sys/dev/device.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,57 +87,44 @@ $(document).ready(function(){initNavTree('device_8h_source.html',''); initResiza
 <div class="title">device.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="device_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _DEV_DEVICE_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _DEV_DEVICE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"># define _DEV_DEVICE_H 1</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"># include &lt;<a class="code" href="serial_8h.html">dev/tty/serial/serial.h</a>&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor"># include &lt;dev/tty/serial/serial.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">struct </span>device;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">struct </span>driver;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2b">    9</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baceb8917ff79ebd0849bded096aac3505">   10</a></span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baceb8917ff79ebd0849bded096aac3505">DEVICE_CPU</a>,</div>
-<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba6d08c51ef21023f4ba377256fe793a0e">   11</a></span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba6d08c51ef21023f4ba377256fe793a0e">DEVICE_TTY</a>,</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2bad7b00524116e4e5db10299c361e59b6e">   12</a></span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2bad7b00524116e4e5db10299c361e59b6e">DEVICE_NET</a>,</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba771790a217dfefea7aab3571e21a8f1e">   13</a></span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba771790a217dfefea7aab3571e21a8f1e">DEVICE_DISK</a>,</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baf5cfb5038604b80c92143734d6b32b47">   14</a></span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baf5cfb5038604b80c92143734d6b32b47">DEVICE_AUDIO</a>,</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baadae4e1c57fd6298868043d618303da8">   15</a></span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baadae4e1c57fd6298868043d618303da8">DEVICE_VIDEO</a>,</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba2a284c74ffea70a092cb8ef18190b3a1">   16</a></span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba2a284c74ffea70a092cb8ef18190b3a1">DEVICE_BUS</a>,</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba282c5db52fca2bb207e6b17dc190f8b4">DEVICE_NULL</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba282c5db52fca2bb207e6b17dc190f8b4">   18</a></span>&#160;} <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2b">DeviceClass</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    DEVICE_CPU,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    DEVICE_TTY,</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    DEVICE_NET,</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    DEVICE_DISK,</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    DEVICE_AUDIO,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    DEVICE_VIDEO,</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    DEVICE_BUS,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    DEVICE_NULL</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} DeviceClass;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structDevice.html">   20</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>device {</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structDevice.html#a897a5e6350dbbc1d7075bf63b7e5f6e0">   21</a></span>&#160;    <a class="code" href="device_8h.html#ab54f9e79649505f668d6d276fb447a2b">DeviceClass</a> <span class="keyword">class</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structDevice.html#acd328517a6cf718155c2e6e22b671ca9">   22</a></span>&#160;    <span class="keywordtype">char</span> name[16];</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    DeviceClass <span class="keyword">class</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">char</span> name[16];</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">union </span>{</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structDevice.html#ab676df9c01c44d875bfc8d56baceb373">   24</a></span>&#160;        <a class="code" href="structSerialDevice.html">SerialDevice</a> <a class="code" href="structDevice.html#ab676df9c01c44d875bfc8d56baceb373">serial</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structDevice.html#a04039eaa472e0c7161be4f11a1ba1514">   25</a></span>&#160;    } drivers;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structDevice.html#a37f558b4fc81c233fc9745ffa9fdf856">   26</a></span>&#160;    <span class="keyword">struct </span>device *<a class="code" href="structDevice.html#a37f558b4fc81c233fc9745ffa9fdf856">next</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structDevice.html#a11d09f7c92f898925eb9b51b9f08f8c5">   27</a></span>&#160;    <span class="keyword">struct </span>device *<a class="code" href="structDevice.html#a11d09f7c92f898925eb9b51b9f08f8c5">child</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="structSerialDevice.html">SerialDevice</a> serial;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    } drivers;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">struct </span>device *next;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">struct </span>device *child;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} <a class="code" href="structDevice.html">Device</a>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !_DEV_DEVICE_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2b"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2b">DeviceClass</a></div><div class="ttdeci">DeviceClass</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00009">device.h:9</a></div></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2ba282c5db52fca2bb207e6b17dc190f8b4"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba282c5db52fca2bb207e6b17dc190f8b4">DEVICE_NULL</a></div><div class="ttdeci">@ DEVICE_NULL</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00018">device.h:17</a></div></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2ba2a284c74ffea70a092cb8ef18190b3a1"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba2a284c74ffea70a092cb8ef18190b3a1">DEVICE_BUS</a></div><div class="ttdeci">@ DEVICE_BUS</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00016">device.h:16</a></div></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2ba6d08c51ef21023f4ba377256fe793a0e"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba6d08c51ef21023f4ba377256fe793a0e">DEVICE_TTY</a></div><div class="ttdeci">@ DEVICE_TTY</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00011">device.h:11</a></div></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2ba771790a217dfefea7aab3571e21a8f1e"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2ba771790a217dfefea7aab3571e21a8f1e">DEVICE_DISK</a></div><div class="ttdeci">@ DEVICE_DISK</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00013">device.h:13</a></div></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2baadae4e1c57fd6298868043d618303da8"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baadae4e1c57fd6298868043d618303da8">DEVICE_VIDEO</a></div><div class="ttdeci">@ DEVICE_VIDEO</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00015">device.h:15</a></div></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2baceb8917ff79ebd0849bded096aac3505"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baceb8917ff79ebd0849bded096aac3505">DEVICE_CPU</a></div><div class="ttdeci">@ DEVICE_CPU</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00010">device.h:10</a></div></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2bad7b00524116e4e5db10299c361e59b6e"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2bad7b00524116e4e5db10299c361e59b6e">DEVICE_NET</a></div><div class="ttdeci">@ DEVICE_NET</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00012">device.h:12</a></div></div>
-<div class="ttc" id="adevice_8h_html_ab54f9e79649505f668d6d276fb447a2baf5cfb5038604b80c92143734d6b32b47"><div class="ttname"><a href="device_8h.html#ab54f9e79649505f668d6d276fb447a2baf5cfb5038604b80c92143734d6b32b47">DEVICE_AUDIO</a></div><div class="ttdeci">@ DEVICE_AUDIO</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00014">device.h:14</a></div></div>
-<div class="ttc" id="aserial_8h_html"><div class="ttname"><a href="serial_8h.html">serial.h</a></div></div>
 <div class="ttc" id="astructDevice_html"><div class="ttname"><a href="structDevice.html">Device</a></div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00020">device.h:20</a></div></div>
-<div class="ttc" id="astructDevice_html_a11d09f7c92f898925eb9b51b9f08f8c5"><div class="ttname"><a href="structDevice.html#a11d09f7c92f898925eb9b51b9f08f8c5">Device::child</a></div><div class="ttdeci">struct device * child</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00027">device.h:27</a></div></div>
-<div class="ttc" id="astructDevice_html_a37f558b4fc81c233fc9745ffa9fdf856"><div class="ttname"><a href="structDevice.html#a37f558b4fc81c233fc9745ffa9fdf856">Device::next</a></div><div class="ttdeci">struct device * next</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00026">device.h:26</a></div></div>
-<div class="ttc" id="astructDevice_html_ab676df9c01c44d875bfc8d56baceb373"><div class="ttname"><a href="structDevice.html#ab676df9c01c44d875bfc8d56baceb373">Device::serial</a></div><div class="ttdeci">SerialDevice serial</div><div class="ttdef"><b>Definition:</b> <a href="device_8h_source.html#l00024">device.h:24</a></div></div>
 <div class="ttc" id="astructSerialDevice_html"><div class="ttname"><a href="structSerialDevice.html">SerialDevice</a></div><div class="ttdef"><b>Definition:</b> <a href="serial_8h_source.html#l00037">serial.h:37</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_02790d9076d147370f66228ea312a7cf.html">dev</a></li><li class="navelem"><a class="el" href="device_8h.html">device.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_d262391372ea5bbd9c4df83a3df643d2.html">dev</a></li><li class="navelem"><b>device.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

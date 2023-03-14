@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/mips/vm.c Source File</title>
+<title>QDNix: sys/mips/vm.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,26 +87,22 @@ $(document).ready(function(){initNavTree('vm_8c_source.html',''); initResizable(
 <div class="title">vm.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="vm_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="vm_8c.html#a7d467c1d283fdfa1f2081ba1e0d01b6e">    1</a></span>&#160;<span class="preprocessor">#define PAGE_SIZE 4096</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#define PAGE_SIZE 4096</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="structPageEntry.html">    3</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="structPageEntry.html#af9a6c0502525b1d706fd6f3956d66083">    4</a></span>&#160;    uint32_t <a class="code" href="structPageEntry.html#af9a6c0502525b1d706fd6f3956d66083">entryLo0</a>;</div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="structPageEntry.html#a7d56ed5140086c1689f3c24237890f67">    5</a></span>&#160;    uint32_t <a class="code" href="structPageEntry.html#a7d56ed5140086c1689f3c24237890f67">entryLo1</a>;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;} <a class="code" href="structPageEntry.html">PageEntry</a>;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    uint32_t entryLo0;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    uint32_t entryLo1;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;} PageEntry;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">    8</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">tmp</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> tmp(<span class="keywordtype">void</span>) {</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
-<div class="ttc" id="astructPageEntry_html"><div class="ttname"><a href="structPageEntry.html">PageEntry</a></div><div class="ttdef"><b>Definition:</b> <a href="vm_8c_source.html#l00003">vm.c:3</a></div></div>
-<div class="ttc" id="astructPageEntry_html_a7d56ed5140086c1689f3c24237890f67"><div class="ttname"><a href="structPageEntry.html#a7d56ed5140086c1689f3c24237890f67">PageEntry::entryLo1</a></div><div class="ttdeci">uint32_t entryLo1</div><div class="ttdef"><b>Definition:</b> <a href="vm_8c_source.html#l00005">vm.c:5</a></div></div>
-<div class="ttc" id="astructPageEntry_html_af9a6c0502525b1d706fd6f3956d66083"><div class="ttname"><a href="structPageEntry.html#af9a6c0502525b1d706fd6f3956d66083">PageEntry::entryLo0</a></div><div class="ttdeci">uint32_t entryLo0</div><div class="ttdef"><b>Definition:</b> <a href="vm_8c_source.html#l00004">vm.c:4</a></div></div>
-<div class="ttc" id="avm_8c_html_abecc3c6ffefd05e056cefd2ee25e71f4"><div class="ttname"><a href="vm_8c.html#abecc3c6ffefd05e056cefd2ee25e71f4">tmp</a></div><div class="ttdeci">void tmp(void)</div><div class="ttdef"><b>Definition:</b> <a href="vm_8c_source.html#l00008">vm.c:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_593cc3a4d0f8548784a534c65ffefa28.html">mips</a></li><li class="navelem"><a class="el" href="vm_8c.html">vm.c</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_9be536eb81d2860f0e4be94d054f0a8d.html">mips</a></li><li class="navelem"><b>vm.c</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

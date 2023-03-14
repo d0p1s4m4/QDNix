@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/vmm/segment.h Source File</title>
+<title>QDNix: sys/vmm/segment.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,28 +87,23 @@ $(document).ready(function(){initNavTree('segment_8h_source.html',''); initResiz
 <div class="title">segment.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="segment_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SYS_VMM_SEGMENT_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SYS_VMM_SEGMENT_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"># define SYS_VMM_SEGMENT_H 1</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eb">    4</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9ebaf2a3201db7d00441e566e9b4c873caae">    5</a></span>&#160;    <a class="code" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9ebaf2a3201db7d00441e566e9b4c873caae">SEG_VNODE</a>,</div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba0f216df7e9e818828c15824f6ddba242">    6</a></span>&#160;    <a class="code" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba0f216df7e9e818828c15824f6ddba242">SEG_MAP</a>,</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba5cb691c4663261dd82dc2819a592024e">    7</a></span>&#160;    <a class="code" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba5cb691c4663261dd82dc2819a592024e">SEG_DEV</a>,</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba8aea8f47efcb9d988c3bb089703da6dd">SEG_KMEM</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba8aea8f47efcb9d988c3bb089703da6dd">    9</a></span>&#160;} <a class="code" href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eb">SegmentDriverType</a>;</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    SEG_VNODE,</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    SEG_MAP,</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    SEG_DEV,</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    SEG_KMEM</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;} SegmentDriverType;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SYS_VMM_SEGMENT_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="asegment_8h_html_af82c6afaee38dab1cd3538acf64dd9eb"><div class="ttname"><a href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eb">SegmentDriverType</a></div><div class="ttdeci">SegmentDriverType</div><div class="ttdef"><b>Definition:</b> <a href="segment_8h_source.html#l00004">segment.h:4</a></div></div>
-<div class="ttc" id="asegment_8h_html_af82c6afaee38dab1cd3538acf64dd9eba0f216df7e9e818828c15824f6ddba242"><div class="ttname"><a href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba0f216df7e9e818828c15824f6ddba242">SEG_MAP</a></div><div class="ttdeci">@ SEG_MAP</div><div class="ttdef"><b>Definition:</b> <a href="segment_8h_source.html#l00006">segment.h:6</a></div></div>
-<div class="ttc" id="asegment_8h_html_af82c6afaee38dab1cd3538acf64dd9eba5cb691c4663261dd82dc2819a592024e"><div class="ttname"><a href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba5cb691c4663261dd82dc2819a592024e">SEG_DEV</a></div><div class="ttdeci">@ SEG_DEV</div><div class="ttdef"><b>Definition:</b> <a href="segment_8h_source.html#l00007">segment.h:7</a></div></div>
-<div class="ttc" id="asegment_8h_html_af82c6afaee38dab1cd3538acf64dd9eba8aea8f47efcb9d988c3bb089703da6dd"><div class="ttname"><a href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9eba8aea8f47efcb9d988c3bb089703da6dd">SEG_KMEM</a></div><div class="ttdeci">@ SEG_KMEM</div><div class="ttdef"><b>Definition:</b> <a href="segment_8h_source.html#l00009">segment.h:8</a></div></div>
-<div class="ttc" id="asegment_8h_html_af82c6afaee38dab1cd3538acf64dd9ebaf2a3201db7d00441e566e9b4c873caae"><div class="ttname"><a href="segment_8h.html#af82c6afaee38dab1cd3538acf64dd9ebaf2a3201db7d00441e566e9b4c873caae">SEG_VNODE</a></div><div class="ttdeci">@ SEG_VNODE</div><div class="ttdef"><b>Definition:</b> <a href="segment_8h_source.html#l00005">segment.h:5</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_6690c7b0d10181f1051c48ae9fb35cd7.html">vmm</a></li><li class="navelem"><a class="el" href="segment_8h.html">segment.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_828749d6bc360f0cefc2d971f0c4b446.html">vmm</a></li><li class="navelem"><b>segment.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

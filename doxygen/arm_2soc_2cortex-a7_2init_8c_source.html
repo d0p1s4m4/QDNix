@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/arm/soc/cortex-a7/init.c Source File</title>
+<title>QDNix: sys/arm/soc/cortex-a7/init.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ $(document).ready(function(){initNavTree('arm_2soc_2cortex-a7_2init_8c_source.ht
 <div class="title">init.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="arm_2soc_2cortex-a7_2init_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * BSD 3-Clause License</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Copyright (c) 2022, d0p1</span></div>
@@ -118,27 +118,23 @@ $(document).ready(function(){initNavTree('arm_2soc_2cortex-a7_2init_8c_source.ht
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="z80_2arch_8h.html">arch.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;arch.h&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="arm_2soc_2cortex-a7_2init_8c.html#a42ace81c89978597115689472c5d63e8">   35</a></span>&#160;<a class="code" href="arm_2soc_2cortex-a7_2init_8c.html#a42ace81c89978597115689472c5d63e8">arch_init</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;arch_init(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="arm_2soc_2cortex-a7_2arch_8h.html#ace1045f1af55081a2f563625b7bd7ea6">ccu_init_clock</a>();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;c&#39;</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;o&#39;</span>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;\r&#39;</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a>(<span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    ccu_init_clock();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    uart_putchar(<span class="charliteral">&#39;c&#39;</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    uart_putchar(<span class="charliteral">&#39;o&#39;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    uart_putchar(<span class="charliteral">&#39;\r&#39;</span>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    uart_putchar(<span class="charliteral">&#39;\n&#39;</span>);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
-<div class="ttc" id="aarm_2soc_2cortex-a7_2arch_8h_html_ace1045f1af55081a2f563625b7bd7ea6"><div class="ttname"><a href="arm_2soc_2cortex-a7_2arch_8h.html#ace1045f1af55081a2f563625b7bd7ea6">ccu_init_clock</a></div><div class="ttdeci">void ccu_init_clock(void)</div><div class="ttdef"><b>Definition:</b> <a href="ccu_8c_source.html#l00008">ccu.c:8</a></div></div>
-<div class="ttc" id="aarm_2soc_2cortex-a7_2init_8c_html_a42ace81c89978597115689472c5d63e8"><div class="ttname"><a href="arm_2soc_2cortex-a7_2init_8c.html#a42ace81c89978597115689472c5d63e8">arch_init</a></div><div class="ttdeci">void arch_init(void)</div><div class="ttdef"><b>Definition:</b> <a href="arm_2soc_2cortex-a7_2init_8c_source.html#l00035">init.c:35</a></div></div>
-<div class="ttc" id="ariscv64_2init_8c_html_a1c49b1fcb3642bb2ee92314824d59e27"><div class="ttname"><a href="riscv64_2init_8c.html#a1c49b1fcb3642bb2ee92314824d59e27">uart_putchar</a></div><div class="ttdeci">void uart_putchar(uint8_t c)</div><div class="ttdef"><b>Definition:</b> <a href="arm_2soc_2cortex-a7_2uart_8c_source.html#l00039">uart.c:39</a></div></div>
-<div class="ttc" id="az80_2arch_8h_html"><div class="ttname"><a href="z80_2arch_8h.html">arch.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_f78b31b02ba3f15be9e78b6cafeb904e.html">arm</a></li><li class="navelem"><a class="el" href="dir_5ad754ae98f32b393e26c48d03c0f17d.html">soc</a></li><li class="navelem"><a class="el" href="dir_e6306f09eac0903239a08a8beedbbde7.html">cortex-a7</a></li><li class="navelem"><a class="el" href="arm_2soc_2cortex-a7_2init_8c.html">init.c</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_e5848ae0f4e0f1a2a4d09f40991e48b1.html">arm</a></li><li class="navelem"><a class="el" href="dir_592e42ead569eb10c31b8e3d6ba268b1.html">soc</a></li><li class="navelem"><a class="el" href="dir_733babd4979f8d1dc64aa1375051a896.html">cortex-a7</a></li><li class="navelem"><b>init.c</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>QDNix: src/sys/sys/utsname.h Source File</title>
+<title>QDNix: sys/sys/utsname.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,33 +87,27 @@ $(document).ready(function(){initNavTree('utsname_8h_source.html',''); initResiz
 <div class="title">utsname.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="utsname_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SYS_UTSNAME_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SYS_UTSNAME_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"># define SYS_UTSNAME_H 1</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="structutsname.html">    4</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structutsname.html">utsname</a> {</div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="structutsname.html#af6cb1587cd5a96b2cce279af6357ac47">    5</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutsname.html#af6cb1587cd5a96b2cce279af6357ac47">sysname</a>[36];</div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="structutsname.html#ae7169b3c85f408c191c73421415eefbe">    6</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutsname.html#ae7169b3c85f408c191c73421415eefbe">nodename</a>[36];</div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="structutsname.html#a34d2c2c6a935e1c510c61941fb635d7b">    7</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutsname.html#a34d2c2c6a935e1c510c61941fb635d7b">release</a>[36];</div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structutsname.html#a3dc0b268c18703f7b08bb33bba245de8">    8</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutsname.html#a3dc0b268c18703f7b08bb33bba245de8">version</a>[36];</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structutsname.html#a6d7775f2aafe9c2acca5cfa1509f1a4a">    9</a></span>&#160;    <span class="keywordtype">char</span> <a class="code" href="structutsname.html#a6d7775f2aafe9c2acca5cfa1509f1a4a">machine</a>[36];</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordtype">char</span> sysname[36];</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordtype">char</span> nodename[36];</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordtype">char</span> release[36];</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordtype">char</span> version[36];</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">char</span> machine[36];</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;};</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="utsname_8h.html#a883b5b5a1cd4a1f6a5837c1cf98ede1c">   12</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="utsname_8h.html#a883b5b5a1cd4a1f6a5837c1cf98ede1c">uname</a>(<span class="keyword">struct</span> <a class="code" href="structutsname.html">utsname</a> *);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">int</span> uname(<span class="keyword">struct</span> <a class="code" href="structutsname.html">utsname</a> *);</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !SYS_UTSNAME_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="astructutsname_html"><div class="ttname"><a href="structutsname.html">utsname</a></div><div class="ttdef"><b>Definition:</b> <a href="utsname_8h_source.html#l00004">utsname.h:4</a></div></div>
-<div class="ttc" id="astructutsname_html_a34d2c2c6a935e1c510c61941fb635d7b"><div class="ttname"><a href="structutsname.html#a34d2c2c6a935e1c510c61941fb635d7b">utsname::release</a></div><div class="ttdeci">char release[36]</div><div class="ttdef"><b>Definition:</b> <a href="utsname_8h_source.html#l00007">utsname.h:7</a></div></div>
-<div class="ttc" id="astructutsname_html_a3dc0b268c18703f7b08bb33bba245de8"><div class="ttname"><a href="structutsname.html#a3dc0b268c18703f7b08bb33bba245de8">utsname::version</a></div><div class="ttdeci">char version[36]</div><div class="ttdef"><b>Definition:</b> <a href="utsname_8h_source.html#l00008">utsname.h:8</a></div></div>
-<div class="ttc" id="astructutsname_html_a6d7775f2aafe9c2acca5cfa1509f1a4a"><div class="ttname"><a href="structutsname.html#a6d7775f2aafe9c2acca5cfa1509f1a4a">utsname::machine</a></div><div class="ttdeci">char machine[36]</div><div class="ttdef"><b>Definition:</b> <a href="utsname_8h_source.html#l00009">utsname.h:9</a></div></div>
-<div class="ttc" id="astructutsname_html_ae7169b3c85f408c191c73421415eefbe"><div class="ttname"><a href="structutsname.html#ae7169b3c85f408c191c73421415eefbe">utsname::nodename</a></div><div class="ttdeci">char nodename[36]</div><div class="ttdef"><b>Definition:</b> <a href="utsname_8h_source.html#l00006">utsname.h:6</a></div></div>
-<div class="ttc" id="astructutsname_html_af6cb1587cd5a96b2cce279af6357ac47"><div class="ttname"><a href="structutsname.html#af6cb1587cd5a96b2cce279af6357ac47">utsname::sysname</a></div><div class="ttdeci">char sysname[36]</div><div class="ttdef"><b>Definition:</b> <a href="utsname_8h_source.html#l00005">utsname.h:5</a></div></div>
-<div class="ttc" id="autsname_8h_html_a883b5b5a1cd4a1f6a5837c1cf98ede1c"><div class="ttname"><a href="utsname_8h.html#a883b5b5a1cd4a1f6a5837c1cf98ede1c">uname</a></div><div class="ttdeci">int uname(struct utsname *)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_c529fe1005f766361284165817aae3f9.html">sys</a></li><li class="navelem"><a class="el" href="utsname_8h.html">utsname.h</a></li>
+    <li class="navelem"><a class="el" href="dir_a408b6d3a4a484720bc3ecfeac8947e3.html">sys</a></li><li class="navelem"><a class="el" href="dir_5e12759b7d1a9c76440d3589702ad161.html">sys</a></li><li class="navelem"><b>utsname.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

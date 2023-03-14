@@ -25,36 +25,23 @@
 var NAVTREE =
 [
   [ "QDNix", "index.html", [
-    [ "QDNix Source", "md_src_README.html", null ],
-    [ "QDNix Kernel Source Code", "md_src_sys_README.html", "md_src_sys_README" ],
+    [ "QDNix Source", "md_README.html", null ],
+    [ "QDNix Kernel Source Code", "md_sys_README.html", "md_sys_README" ],
     [ "Bibliography", "citelist.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
-      [ "Data Structure Index", "classes.html", null ],
-      [ "Data Fields", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Variables", "functions_vars.html", null ]
-      ] ]
+      [ "Data Structure Index", "classes.html", null ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "Globals", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
-        [ "Typedefs", "globals_type.html", null ],
-        [ "Enumerations", "globals_enum.html", null ],
-        [ "Enumerator", "globals_eval.html", null ],
-        [ "Macros", "globals_defs.html", null ]
-      ] ]
+      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"8250_8c.html",
-"riscv64_2board_2virt_2platform_8c.html"
+"8250_8c_source.html",
+"vm_8c_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
