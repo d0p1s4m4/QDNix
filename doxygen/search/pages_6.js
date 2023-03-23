@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['risc_2dv_59',['RISC-V',['../riscv64.html',1,'md_sys_README']]]
+  ['nrf52_20dk_66',['nRF52 DK',['../nrf52dk.html',1,'arm_board']]]
 ];

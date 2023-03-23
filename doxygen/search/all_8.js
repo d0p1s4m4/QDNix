@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['nlist_14',['nlist',['../structnlist.html',1,'']]],
-  ['nrf52_20dk_15',['nRF52 DK',['../nrf52dk.html',1,'arm_board']]]
+  ['license_14',['LICENSE',['../md__home_runner_work_QDNix_QDNix_LICENSE.html',1,'']]]
 ];

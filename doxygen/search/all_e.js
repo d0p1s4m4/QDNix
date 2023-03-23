@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['uartregister_24',['UARTRegister',['../structUARTRegister.html',1,'']]],
-  ['utsname_25',['utsname',['../structutsname.html',1,'']]]
+  ['serialdevice_26',['SerialDevice',['../structSerialDevice.html',1,'']]],
+  ['soc_27',['SoC',['../arm_soc.html',1,'arm']]],
+  ['stat_28',['stat',['../structstat.html',1,'']]]
 ];

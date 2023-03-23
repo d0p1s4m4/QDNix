@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['device_32',['Device',['../structDevice.html',1,'']]]
+  ['device_38',['Device',['../structDevice.html',1,'']]]
 ];

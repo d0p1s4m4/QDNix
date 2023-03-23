@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['qdnix_20kernel_20source_20code_17',['QDNix Kernel Source Code',['../md_sys_README.html',1,'']]],
-  ['qdnix_20source_18',['QDNix Source',['../md_README.html',1,'']]]
+  ['nlist_19',['nlist',['../structnlist.html',1,'']]],
+  ['nrf52_20dk_20',['nRF52 DK',['../nrf52dk.html',1,'arm_board']]]
 ];
