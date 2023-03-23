@@ -6,13 +6,26 @@
 static __inline__ void
 mmio_write8(uintptr_t addr, uint8_t value)
 {
+#ifdef __i386__
+	__asm__ volatile ( "outb %0, %1" : : "a"(value), "Nd"((uint16_t)addr) );
+#else
 	*(volatile uint8_t *)(addr) = value;
+#endif
 }
 
 static __inline__ uint8_t
 mmio_read8(uintptr_t addr)
 {
+#ifdef __i386__
+	uint8_t ret;
+
+    __asm__ volatile ( "inb %1, %0"
+                   : "=a"(ret)
+                   : "Nd"((uint16_t)addr) );
+    return (ret);
+#else
 	return (*(volatile uint8_t *)addr);
+#endif
 }
 
 static __inline__ void

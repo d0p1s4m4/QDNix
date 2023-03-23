@@ -1,0 +1,3 @@
+SUBDIR = man1 man2 man3 man4 man5 man6 man7 man8 man9
+
+.include <qdnix.subdir.mk>

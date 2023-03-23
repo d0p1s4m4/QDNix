@@ -1,4 +1,4 @@
-# QDNix Kernel Source Code
+# Kernel {#sys}
 
 ### Source Roadmap
 
@@ -15,7 +15,9 @@
 | @subpage netinet "netinet" |                                                 |
 | @subpage pdp11 "pdp11"     | PDP-11 architecture support                     |
 | @subpage riscv64 "riscv64" | 64-bit RISC-V architecture support              |
-| @subpage sys "sys"         | kernel headers                                  |
-| @subpage vmm "vmm"         | Virtual Memory Manager                          |
+| @subpage sys_sys "sys"     | kernel headers                                  |
+| @subpage vm "vm"           | machine independent Virtual Memory Manager      |
+| @subpage x86 "x86"         |                                                 |
 | @subpage z80 "z80"         | z80 architecture support                        |
 
+@mermaid{qdnix_boot}

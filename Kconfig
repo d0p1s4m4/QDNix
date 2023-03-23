@@ -25,6 +25,9 @@ config ARCH_6502
 config ARCH_PDP11
 	bool "PDP-11 architecture"
 
+config ARCH_X86
+	bool "x86 architecture"
+
 endchoice
 
 source "make/Kconfig"

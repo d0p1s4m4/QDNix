@@ -11,7 +11,7 @@ config GNU
 
 config LLVM
 	bool "LLVM"
-	depends on ARCH_ARM || ARCH_RISCV64 || ARCH_MIPS
+	depends on ARCH_ARM || ARCH_RISCV64 || ARCH_MIPS ||  ARCH_X86
 
 config CC65
 	bool "CC65"

@@ -1,9 +1,9 @@
-mov rdi, 1
-mov rsi, msg
-mov rdx, size
-mov rax, 1
+movq $1, %rdi
+movq $msg, %rsi
+movq $size, %rdx
+movq $1, %rax
 syscall
 
-mov rdi, 0
-mov rax, 60
+mov $0, %rdi
+mov $60, %rax
 syscall

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="$lang$">
-
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
@@ -16,9 +15,10 @@
 	$if(description-meta)$
 	<meta name="description" content="$description-meta$" />
 	$endif$
-	<title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+	<title>Quick'n'dirty *NIX$if(title)$ – $pagetitle$$endif$</title>
 
 	<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+	<link rel="stylesheet" href="/assets/css/qdnix.css" />
 	$for(css)$
 	<link rel="stylesheet" href="$css$" />
 	$endfor$
@@ -39,7 +39,7 @@
 			<a href="/doxygen">Doxygen</a>
 		</nav>
 
-		<img src="/logo.png" alt="QDNix logo" />
+		<img src="/assets/img/logo.png" alt="QDNix logo" />
 		<blockquote>
 			<p>"UNIX is very simple, it just needs a genius to understand its simplicity."</p>
 			<p><cite>– Dennis Ritchie</cite></p>
@@ -72,9 +72,11 @@
 		$endif$
 		$table-of-contents$
 	</nav>
-
 	$endif$
-	$body$
+
+	<main>
+		$body$
+	</main>
 
 	<footer>
 		<p>
@@ -82,20 +84,23 @@
 				<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
 			</a>
 			<a href="https://www.gnu.org/software/emacs/">
-				<img alt="Created with emacs" src="/images/88x31/emacs.gif" />
+				<img alt="Created with emacs" src="/assets/img/button/emacs.gif" />
 			</a>
 			<a href="http://d0p1.eu/trans-rights-are-human-rights">
-				<img alt="Trans right now!" src="/images/88x31/trn.png" />
+				<img alt="Trans right now!" src="/assets/img/button/trn.png" />
 			</a>
 			<a href="https://web3isgoinggreat.com/">
-				<img alt="This is an Anti-NFT site" src="/images/88x31/antinft.gif" />
+				<img alt="This is an Anti-NFT site" src="/assets/img/button/antinft.gif" />
 			</a>
 			<a href="https://www.defectivebydesign.org/">
 				<img src="https://defectivebydesign.org/sites/nodrm.civicactions.net/files/images/elim_sm_btn.gif"
 					alt="Eliminate DRM!" width="88" height="31" />
 			</a>
 			<a href="https://yesterweb.org/no-to-web3/">
-				<img alt="Say no to web3" src="/images/88x31/roly-saynotoweb3.gif" />
+				<img alt="Say no to web3" src="/assets/img/button/roly-saynotoweb3.gif" />
+			</a>
+			<a href="https://www.youtube.com/watch?v=_Rua3TOeono">
+				<img src="/assets/img/button/nonazis.png" width="31" />
 			</a>
 			<a href="https://endsoftwarepatents.org/innovating-without-patents">
 				<img alt="End of software patents" style="height: 31px;"

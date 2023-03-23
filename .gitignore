@@ -1,6 +1,6 @@
 .env/
 .vscode/
-
+*~
 *.o
 *.gcda
 *.gcno
@@ -13,9 +13,7 @@
 *.rom
 
 *.html
-!/website/template/header.html
-!/website/template/nav.html
-!/website/template/footer.html
+!/website/template/*.html
 docs/html/
 
 .config

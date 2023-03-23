@@ -1,0 +1,13 @@
+flowchart TD
+    Bootloader -->|load kernel| entry
+
+    subgraph Kernel
+        subgraph ArchDependent
+           entry --> setup_cpu --> setup_console
+           setup_console --> setup
+        end
+
+        subgraph ArchIndep
+            kern_main
+        end
+    end

@@ -45,22 +45,22 @@ Page size: 128K (64 bytes)
 
 ##### MMR1
 
-| Bits  | Usage |
-|-------|-------|
-| 15-11 | Amount changed
-| 10-8  | Register Number
-| 7-3   | Amount Changed
-| 2-0   | Register Number
+| Bits  | Usage           |
+|-------|-----------------|
+| 15-11 | Amount changed  |
+| 10-8  | Register Number |
+| 7-3   | Amount Changed  |
+| 2-0   | Register Number |
 
 ##### MMR3
 
-| Bits | Usage |
-|------|-------|
-| 15-6 | Reserved
-| 5    | Enable Unibus Map
-| 4    | Enable 22bit Mapping
-| 3    | Reserved
-| 2-0  | Mode 
+| Bits | Usage                |
+|------|----------------------|
+| 15-6 | Reserved             |
+| 5    | Enable Unibus Map    |
+| 4    | Enable 22bit Mapping |
+| 3    | Reserved             |
+| 2-0  | Mode                 |
 
 | Value | Mode       |
 |-------|------------|

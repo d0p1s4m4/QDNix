@@ -16,14 +16,14 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install pandoc imagemagick doxygen texlive-binaries
+          sudo apt install pandoc imagemagick doxygen texlive-binaries build-essential
 
       - name: Generate
-        run: make html
+        run: sh build.sh www
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html
+          publish_dir: ./build/www/html
           cname: qdnix.d0p1.eu

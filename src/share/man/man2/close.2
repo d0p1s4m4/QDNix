@@ -1,0 +1,19 @@
+.TH CLOSE 2 "29 Ventôse CCXXXII"
+.SH NAME
+close \- close a file descriptor
+.SH SYNOPSIS
+.PP
+.nf
+.BI "int close(int fildes);"
+.fi
+.PP
+.SH DESCRIPTION
+.BR close() 
+closes a file descriptor so it can be reused.
+.SH RETURN VALUES
+.BR close() 
+return 0 on success and -1 on error.
+.SH SEE ALSO
+.BR creat (2),
+.BR open (2),
+.BR pipe (2)
