@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9" />
 	<meta name="generator" content="Doxygen 1.9.1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>QDNix: Kernel</title>
+	<title>QDNix: 32-bit x86 architecture support</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="dynsections.js"></script>
@@ -78,7 +78,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('sys.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('i386.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -98,62 +98,10 @@ $(document).ready(function(){initNavTree('sys.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Kernel </div>  </div>
+<div class="title">32-bit x86 architecture support </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_sys_README"></a> </p>
-<h2><a class="anchor" id="autotoc_md2"></a>
-Source Roadmap</h2>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Directory   </th><th class="markdownTableHeadNone">Description    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="arm.html">arm</a>   </td><td class="markdownTableBodyNone">32-bit ARM architecture support    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">athena   </td><td class="markdownTableBodyNone">Athena architecture support    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">dev   </td><td class="markdownTableBodyNone">device drivers    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="i386.html">i386</a>   </td><td class="markdownTableBodyNone">32-bit x86 architecture support    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">kern   </td><td class="markdownTableBodyNone">main part of the kernel    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">libkern   </td><td class="markdownTableBodyNone">libc and other support functions for kernel use    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">minixfs   </td><td class="markdownTableBodyNone">Minix File System    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="mips.html">mips</a>   </td><td class="markdownTableBodyNone">MIPS architecture support    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">netinet   </td><td class="markdownTableBodyNone"></td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="pdp11.html">pdp11</a>   </td><td class="markdownTableBodyNone">PDP-11 architecture support    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="riscv64.html">riscv64</a>   </td><td class="markdownTableBodyNone">64-bit RISC-V architecture support    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">sys   </td><td class="markdownTableBodyNone">kernel headers    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="vm.html">vm</a>   </td><td class="markdownTableBodyNone">machine independent Virtual Memory Manager    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="x86.html">x86</a>   </td><td class="markdownTableBodyNone"></td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="z80.html">z80</a>   </td><td class="markdownTableBodyNone">z80 architecture support   </td></tr>
-</table>
-<p> <div class="mermaid"> 
-   flowchart TD
-    Bootloader -->|load kernel| entry
-
-    subgraph Kernel
-        subgraph ArchDependent
-           entry --> setup_cpu --> setup_console
-           setup_console --> setup
-        end
-
-        subgraph ArchIndep
-            kern_main
-        end
-    end
- 
-  </div>  </p>
+<div class="textblock"><p><a class="anchor" id="md_sys_i386_README"></a></p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
@@ -161,7 +109,7 @@ Source Roadmap</h2>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
 	<ul>
-		<li class="navelem"><a class="el" href="md_README.html">QDNix Source</a></li>
+		<li class="navelem"><a class="el" href="md_README.html">QDNix Source</a></li><li class="navelem"><a class="el" href="sys.html">Kernel</a></li>
 		<li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer"
 					src="doxygen.svg" width="104" height="31" alt="doxygen" /></a> 1.9.1 </li>
 		<li class="footer-button">

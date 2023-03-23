@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['soc_71',['SoC',['../arm_soc.html',1,'arm']]]
+  ['risc_2dv_73',['RISC-V',['../riscv64.html',1,'sys']]]
 ];

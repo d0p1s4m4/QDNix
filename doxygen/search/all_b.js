@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pdp_2d11_21',['PDP-11',['../pdp11.html',1,'sys']]]
+  ['nlist_20',['nlist',['../structnlist.html',1,'']]],
+  ['nrf52_20dk_21',['nRF52 DK',['../nrf52dk.html',1,'arm_board']]]
 ];

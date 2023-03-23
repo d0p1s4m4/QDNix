@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['gpioregister_12',['GpioRegister',['../structGpioRegister.html',1,'']]]
+  ['fdtentry_10',['FDTEntry',['../structFDTEntry.html',1,'']]],
+  ['fdtheader_11',['FDTHeader',['../structFDTHeader.html',1,'']]],
+  ['fdtprop_12',['FDTProp',['../structFDTProp.html',1,'']]]
 ];

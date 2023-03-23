@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['serialdevice_26',['SerialDevice',['../structSerialDevice.html',1,'']]],
-  ['soc_27',['SoC',['../arm_soc.html',1,'arm']]],
-  ['stat_28',['stat',['../structstat.html',1,'']]]
+  ['relocation_5finfo_25',['relocation_info',['../structrelocation__info.html',1,'']]],
+  ['risc_2dv_26',['RISC-V',['../riscv64.html',1,'sys']]]
 ];

@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"structnlist.html#abf3c7edca68c063d5c1d254d2cd30c45":[8,0,10,1],
 "structrelocation__info.html":[8,0,11],
 "structrelocation__info.html#a38eb0f4ca0694ad876b2fc32041d5ff4":[8,0,11,3],
 "structrelocation__info.html#a683c023a0368068ddd628e835cc2577e":[8,0,11,2],
@@ -29,11 +30,12 @@ var NAVTREEINDEX1 =
 "vfs_8h_source.html":[9,0,2,2,2],
 "vga_8h_source.html":[9,0,2,1,1,1],
 "vga__console_8c_source.html":[9,0,2,1,1,0,0],
-"vm.html":[2,0,5],
+"vm.html":[2,0,6],
 "vm_8c_source.html":[9,0,2,5,4],
 "vmm_8h.html":[9,0,2,9,2],
 "vmm_8h_source.html":[9,0,2,9,2],
-"z80.html":[2,0,6],
+"x86.html":[2,0,7],
+"z80.html":[2,0,8],
 "z80_2arch_8h_source.html":[9,0,2,10,0],
 "z80_2init_8c_source.html":[9,0,2,10,1]
 };
