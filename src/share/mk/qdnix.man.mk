@@ -33,4 +33,5 @@ maninstall:
 	${MANINSTALL} ${MAN9} ${DESTDIR}${MANDIR}9/
 .endif
 
-htmlinstall:
+htmlmaninstall:
+	mkdir -p ${DESTDIR}/man1

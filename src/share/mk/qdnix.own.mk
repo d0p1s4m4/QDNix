@@ -3,8 +3,6 @@ _QDNIX_OWN_MK_=1
 
 .if defined(MKCONF) && exists(${MKCONF})
 .include "${MKCONF}"
-.else
-.error "ok"
 .endif
 
 BINDIR		= /bin
