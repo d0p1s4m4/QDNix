@@ -3,7 +3,7 @@
 	url = https://github.com/kohi-gnu/unix-utils.git
 [submodule "thirdparty/chadlibc"]
 	path = thirdparty/lgpl3/chadlibc/dist
-	url = https://github.com/cute-engineewing/chadlibc.git
+	url = https://github.com/cute-engineering/chadlibc.git
 [submodule "thirdparty/bsd3/mulderx/mulderX"]
 	path = thirdparty/bsd3/mulderx/dist
 	url = https://github.com/d0p1s4m4/mulderX.git
@@ -20,4 +20,4 @@
 	branch = releases/gcc-12
 [submodule "thirdparty/bsd3/bmake/dist"]
 	path = thirdparty/bsd3/bmake/dist
-	url = git@github.com:d0p1s4m4/bmake.git
+	url = https://github.com/d0p1s4m4/bmake.git
