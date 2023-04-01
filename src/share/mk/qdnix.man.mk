@@ -2,7 +2,7 @@
 
 MANINSTALL = install -o ${MANOWNER} -g ${MANGROUP} -m ${MANMODE}
 
-.PHONY: maninstall htmlinstall
+.PHONY: maninstall htmlinstall htmlpages
 
 maninstall:
 .if defined(MAN1) && !empty(MAN1)
@@ -33,5 +33,5 @@ maninstall:
 	${MANINSTALL} ${MAN9} ${DESTDIR}${MANDIR}9/
 .endif
 
-htmlmaninstall:
+htmlinstall:
 	mkdir -p ${DESTDIR}/man1

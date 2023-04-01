@@ -4,7 +4,7 @@ flowchart TD
     subgraph Kernel
         subgraph ArchDependent
            entry --> setup_cpu --> setup_console
-           setup_console --> setup
+           setup_console --> setup_disk
         end
 
         subgraph ArchIndep

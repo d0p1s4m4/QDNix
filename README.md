@@ -1,6 +1,6 @@
 <div align="center">
 
-![Logo](.github/logo.png)
+![Logo](website/img/logo.png)
 
 # QDNix (Quick'n'Dirty *NIX)
 
