@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nrf52_20dk_69',['nRF52 DK',['../nrf52dk.html',1,'arm_board']]]
+  ['mips_75',['MIPS',['../mips.html',1,'sys']]],
+  ['mk_76',['mk',['../mk.html',1,'share']]]
 ];

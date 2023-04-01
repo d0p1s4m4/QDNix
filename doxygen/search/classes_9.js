@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ttydevice_53',['TTYDevice',['../structTTYDevice.html',1,'']]]
+  ['ttydevice_58',['TTYDevice',['../structTTYDevice.html',1,'']]]
 ];

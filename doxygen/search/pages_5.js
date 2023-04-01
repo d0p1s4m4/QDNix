@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['license_67',['LICENSE',['../md__home_runner_work_QDNix_QDNix_LICENSE.html',1,'']]]
+  ['kernel_73',['Kernel',['../sys.html',1,'md_README']]]
 ];
