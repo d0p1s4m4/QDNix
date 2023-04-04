@@ -73,6 +73,8 @@ rebuild_make() {
 			--prefix="$HOST_DIR"; \
 		make; \
 		make install)
+
+		date > "${HOST_DIR}/update"
 	fi
 }
 

@@ -14,6 +14,13 @@ jobs:
         with:
           submodules: true
 
+      - name: Cache tools
+        id: cache-tools
+        uses: actions/cache@v3
+        with:
+          path: build/host
+          key: ${{ runner.os }}-tools
+
       - name: Install dependencies
         run: |
           sudo apt update

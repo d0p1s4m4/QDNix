@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        machine: ['arm', 'i386', 'mips', 'pdp11']
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Cache tools
+        id: cache-tools
+        uses: actions/cache@v3
+        with:
+          path: build/host
+          key: ${{ runner.os }}-tools
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install build-essential
