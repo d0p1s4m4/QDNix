@@ -25,10 +25,8 @@
 var NAVTREE =
 [
   [ "QDNix", "index.html", [
-    [ "QDNix (Quick'n'Dirty *NIX)", "index.html#autotoc_md16", [
-      [ "Credits", "index.html#autotoc_md17", null ]
-    ] ],
-    [ "License", "index.html#autotoc_md18", null ],
+    [ "QDNix (Quick'n'Dirty *NIX)", "index.html#autotoc_md16", null ],
+    [ "License", "index.html#autotoc_md17", null ],
     [ "QDNix Source", "md_README.html", "md_README" ],
     [ "QDNix Code of Conduct", "md__home_runner_work_QDNix_QDNix_CODE_OF_CONDUCT.html", null ],
     [ "Contributing to QDNix", "md__home_runner_work_QDNix_QDNix_CONTRIBUTING.html", [
@@ -61,7 +59,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "8250_8c_source.html",
-"structUARTRegister.html#a5fffdf6d12e63d6aa607812e0f62783f"
+"structUARTRegister.html#a6072372fd917e00805213a0f3e362991"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
