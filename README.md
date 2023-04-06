@@ -1,6 +1,6 @@
 <div align="center">
 
-![Logo](website/img/logo.png)
+![Logo](https://qdnix.d0p1.eu/assets/img/logo.png)
 
 # QDNix (Quick'n'Dirty *NIX)
 
@@ -11,10 +11,6 @@
 </div>
 
 QDNix is an UNIX-like for [ARM](src/sys/arm/README.md) and [MIPS](src/sys/mips/README.md) based evkit....
-
-## Credits
-
-This project takes inspirations and/or reuse code from the [following projects](./docs/site/credits.md).
 
 # License
 
