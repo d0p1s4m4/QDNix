@@ -1,1 +1,0 @@
-TRIPLE := athena-unknown-elf

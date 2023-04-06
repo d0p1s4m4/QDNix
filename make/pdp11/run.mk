@@ -1,3 +1,0 @@
-
-run: vmqdnix
-	pdp11

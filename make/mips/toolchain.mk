@@ -1,1 +1,0 @@
-TRIPLE := mips-unknown-elf

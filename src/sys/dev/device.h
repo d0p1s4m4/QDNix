@@ -27,4 +27,11 @@ typedef struct device {
 	struct device *child;
 } Device;
 
+typedef struct {
+	const char *name;
+	Device **devs;
+	DeviceClass class;
+} Driver;
+
+
 #endif /* !_DEV_DEVICE_H */

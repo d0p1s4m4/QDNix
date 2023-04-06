@@ -1,0 +1,8 @@
+menu "x86 architecture"
+	depends on ARCH_X86
+
+config ARCH
+	string
+	default "i386"
+
+endmenu

@@ -25,7 +25,6 @@ typedef enum {
 typedef struct vfs {
 	struct vfs *next;
 	VSFOps *op;
-
 } VFS;
 
 #endif /* !SYS_KERN_VFS_H */

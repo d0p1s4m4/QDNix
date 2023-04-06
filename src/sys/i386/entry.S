@@ -1,7 +1,7 @@
 /*
  * BSD 3-Clause License
  *
- * Copyright (c) 2022, d0p1
+ * Copyright (c) 2023, d0p1
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,23 +29,60 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "arch.h"
+#include <machine/multiboot.h>
 
-/**
-  * @weakgroup arm
-  * @{
-  */
+#define MULTIBOOT_FLAGS MULTIBOOT_HEADER_PAGE_ALIGN \
+		| MULTIBOOT_HEADER_MEM_INFO \
+		| MULTIBOOT_HEADER_VIDEO_MODE
+#define MULTIBOOT_CHKSUM -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_FLAGS)
 
-void
-arch_init(void)
-{
-	ccu_init_clock();
-	uart_putchar('c');
-	uart_putchar('o');
-	uart_putchar('\r');
-	uart_putchar('\n');
-}
+.section .bss
+.align 8
+stack_bottom:
+.space 16384
+stack_top:
 
-/**
- * @}
- */
+.section .multiboot
+.align 4
+.long MULTIBOOT_HEADER_MAGIC
+.long MULTIBOOT_FLAGS
+.long MULTIBOOT_CHKSUM
+
+.long 0
+.long 0
+.long 0
+.long 0
+.long 0
+
+.long 0
+.long 1024
+.long 768
+.long 32
+
+.section .text
+.globl _entry
+_entry:
+	movl $stack_top, %esp
+
+	movl %eax, %edx /* save boot magic */
+
+	cli
+
+	/* clear bss */
+	xorl %eax, %eax
+	movl $bss_begin, %edi
+	movl $bss_end, %ecx
+	subl %edi, %ecx
+	cld
+	rep
+	stosb
+
+	push %ebx /* boot info */
+	push %edx /* magic */
+
+	call arch_init
+
+	cli
+halt:
+	hlt
+	jmp halt

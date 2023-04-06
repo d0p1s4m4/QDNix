@@ -1,1 +1,0 @@
-TRIPLE := arm-none-eabi

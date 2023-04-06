@@ -30,6 +30,5 @@ config ARCH_X86
 
 endchoice
 
-source "make/Kconfig"
 source "src/Kconfig"
 source "test/Kconfig"
