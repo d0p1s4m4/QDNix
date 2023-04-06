@@ -1,7 +1,9 @@
 var annotated_dup =
 [
     [ "Console", "structConsole.html", "structConsole" ],
+    [ "ConsoleDevice", "structConsoleDevice.html", "structConsoleDevice" ],
     [ "Device", "structDevice.html", "structDevice" ],
+    [ "Driver", "structDriver.html", "structDriver" ],
     [ "exec", "structexec.html", "structexec" ],
     [ "FDTEntry", "structFDTEntry.html", "structFDTEntry" ],
     [ "FDTHeader", "structFDTHeader.html", "structFDTHeader" ],
@@ -10,6 +12,9 @@ var annotated_dup =
     [ "minix_dir_entry", "structminix__dir__entry.html", "structminix__dir__entry" ],
     [ "minix_inode", "structminix__inode.html", "structminix__inode" ],
     [ "minix_super_block", "structminix__super__block.html", "structminix__super__block" ],
+    [ "Multiboot", "structMultiboot.html", "structMultiboot" ],
+    [ "MultibootDriveEntry", "structMultibootDriveEntry.html", "structMultibootDriveEntry" ],
+    [ "MultibootMemEntry", "structMultibootMemEntry.html", "structMultibootMemEntry" ],
     [ "nlist", "structnlist.html", "structnlist" ],
     [ "relocation_info", "structrelocation__info.html", "structrelocation__info" ],
     [ "SerialDevice", "structSerialDevice.html", "structSerialDevice" ],

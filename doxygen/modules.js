@@ -1,4 +1,4 @@
 var modules =
 [
-    [ "Cortex-a7", "group__cortex-a7.html", null ]
+    [ "Arm", "group__arm.html", "group__arm" ]
 ];
