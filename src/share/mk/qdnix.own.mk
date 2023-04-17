@@ -5,6 +5,8 @@ _QDNIX_OWN_MK_=1
 .include "${MKCONF}"
 .endif
 
+DESTDIR		?=
+
 BINDIR		= /bin
 BINGROUP	= bin
 BINOWNER	= root
@@ -24,11 +26,17 @@ INCSDIR		= /usr/include
 
 .include <qdnix.host.mk>
 
+AR	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-ar
+AS	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-as
+LD	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-ld
+NM	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-nm
+OBJCOPY = ${TOOLDIR}/bin/${MACHINE_PLATFORM}-objcopy
+OBJDUMP = ${TOOLDIR}/bin/${MACHINE_PLATFORM}-objdump
+
 CFLAGS += -std=c99 -pedantic \
 			-Wall -Wextra \
 			-Werror
 
-DESTDIR	?=
 .if !defined(HOSTPROG)
 .if ${DESTDIR} != ""
 .if empty(CPPFLAGS:M*--sysroot=*)

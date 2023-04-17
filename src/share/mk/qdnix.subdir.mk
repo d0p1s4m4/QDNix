@@ -26,3 +26,9 @@ www: _SUBDIRUSE
 .if !target(distrib-dirs)
 distrib-dirs: _SUBDIRUSE
 .endif
+
+.if !target(maninstall)
+maninstall: _SUBDIRUSE
+.endif
+
+${TARGETS}:

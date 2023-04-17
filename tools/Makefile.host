@@ -1,0 +1,5 @@
+HOSTDIR ?= ${.CURDIR}/../../thirdparty/${LICENSE}/${MODULE}/dist
+
+CONFIGURE_ENV+= \
+	AR=${HOST_AR} \
+	CC=${HOST_CC} 

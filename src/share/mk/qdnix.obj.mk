@@ -10,4 +10,8 @@ obj:
 	@if [ ! -d "${MAKEOBJDIR}" ];
 .endif
 .endif
+
+print-objdir:
+	@echo ${.OBJDIR}
+
 .endif # !defined(_QDNIX_OBJ_MK_)

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        machine: ['arm', 'i386', 'mips', 'pdp11']
+        machine: ['arm', 'i386', 'mips', 'pdp11', 'riscv64']
 
     steps:
       - uses: actions/checkout@v3
@@ -28,3 +28,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install build-essential
+        
+      - name: Build
+        run: |
+          ./build.sh build

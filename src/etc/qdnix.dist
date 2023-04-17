@@ -1,6 +1,6 @@
 /bin
 /sbin
-/include
+/usr/include
 /lib
 /root
 /usr/share/man/man1
@@ -12,4 +12,8 @@
 /usr/share/man/man7
 /usr/share/man/man8
 /usr/share/man/man9
-/var/www
+/usr/share/mk
+/usr/share/docs
+/usr/share/calendar
+/home/demo
+/etc

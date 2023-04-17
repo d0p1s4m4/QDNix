@@ -26,9 +26,12 @@ unset TERMINFO
 
 MACHINE_ARCH=i386
 MACHINE_CPU=i386
-MACHINE_BOARD=pc
+MACHINE_BOARD=generic
+
+DISTRIBVER=$(git describe 2>/dev/null || echo -n "0.0")
 
 DESTDIR="${BUILD_DIR}/${MACHINE_ARCH}-${MACHINE_BOARD}-${MACHINE_CPU}"
+MAKEOBJDIRPREFIX=""
 
 # -----------------------------------------------------------------------------
 # global variable
@@ -98,8 +101,11 @@ main() {
 		www)
 			DESTDIR="${WEBSITE_DIR}" "${HOST_BIN_DIR}/bmake" www
 			;;
+		tools)
+			;;
 		build)
-			MAKEOBJDIR=obj.${MACHINE}.${TARGET}
+			export DESTDIR
+			MAKEOBJDIR=obj.${MACHINE}.${TARGET} "${HOST_BIN_DIR}/bmake" build
 			;;
 		esac
 	done
