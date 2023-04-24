@@ -34,3 +34,5 @@ a.out
 
 parser.tab.h
 parser.tab.c
+
+website/page/man.md

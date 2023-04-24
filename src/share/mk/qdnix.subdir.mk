@@ -31,4 +31,8 @@ distrib-dirs: _SUBDIRUSE
 maninstall: _SUBDIRUSE
 .endif
 
+.if !target(htmlinstall)
+htmlinstall: _SUBDIRUSE
+.endif
+
 ${TARGETS}:

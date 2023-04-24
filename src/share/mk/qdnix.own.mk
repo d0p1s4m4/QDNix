@@ -53,5 +53,6 @@ LDFLAGS	+= --sysroot=/
 
 all:
 www:
+htmlinstall:
 
 .endif

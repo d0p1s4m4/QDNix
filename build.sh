@@ -40,7 +40,7 @@ qdn_do_rebuild_bmake=false
 qdn_do_config=false
 
 # -----------------------------------------------------------------------------
-# 
+# log reporting
 # -----------------------------------------------------------------------------
 error() {
 	echo -e "\033[31m[-] $@\033[0m"
@@ -55,6 +55,38 @@ success() {
 	echo -e "\033[32m[+] $@\033[0m"
 }
 
+# -----------------------------------------------------------------------------
+#  Supported machine and arch
+# -----------------------------------------------------------------------------
+supported_machine='
+MACHINE=athenasim MACHINE_ARCH=athena
+MACHINE=malta     MACHINE_ARCH=mips
+MACHINE=mipssim   MACHINE_ARCH=mips
+MACHINE=nrf52dk   MACHINE_ARCH=arm
+MACHINE=pc        MACHINE_ARCH=i386     DEFAULT
+MACHINE=pdp11     MACHINE_ARCH=pdp11
+MACHINE=virt      MACHINE_ARCH=riscv64
+'
+
+
+# -----------------------------------------------------------------------------
+#  Rebuild tools
+# -----------------------------------------------------------------------------
+rebuild_make() {
+	if ${qdn_do_rebuild_bmake}; then
+		(cd thirdparty/bsd3/bmake/dist; \
+		./configure --with-default-sys-path="${SRC_DIR}/share/mk" \
+			--prefix="$HOST_DIR"; \
+		make; \
+		make install)
+
+		date > "${HOST_DIR}/update"
+	fi
+}
+
+# -----------------------------------------------------------------------------
+#  entry 
+# -----------------------------------------------------------------------------
 print_help() {
 	cat <<EOF
 Usage: $PRGNAME COMMANDS [OPTIONS...]
@@ -69,19 +101,8 @@ EOF
 	exit 0
 }
 
-rebuild_make() {
-	if ${qdn_do_rebuild_bmake}; then
-		(cd thirdparty/bsd3/bmake/dist; \
-		./configure --with-default-sys-path="${SRC_DIR}/share/mk" \
-			--prefix="$HOST_DIR"; \
-		make; \
-		make install)
-
-		date > "${HOST_DIR}/update"
-	fi
-}
-
 main() {
+	build_start="$(date)"
 	[ -f "${HOST_BIN_DIR}/bmake" ] || qdn_do_rebuild_bmake=true
 	if [ -f .config ]; then
 		. ./.config

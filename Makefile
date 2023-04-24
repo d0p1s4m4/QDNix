@@ -11,7 +11,8 @@ SUBDIR = src
 .ORDER: ${BUILDTARGETS}
 
 www:
-	mkdir -p ${.CURDIR}/build/www/html/
+	mkdir -p ${DESTDIR}/html
+	(cd "${.CURDIR}/src" && ${MAKE} htmlinstall)
 	(cd "${.CURDIR}/website" && ${MAKE} www)
 	doxygen "${.CURDIR}/Doxyfile"
 

@@ -1,0 +1,58 @@
+%%{ init: { 'flowchart': { 'curve': 'stepAfter' } } }%%
+flowchart TB
+	top("/") --- bin("bin/")
+	top --- dev("dev/")
+	top --- etc("etc/")
+	top --- home("home/")
+	top --- lib("lib/")
+	top --- usr("usr/")
+	top --- root("root/")
+	top --- sbin("sbin/")
+	top --- var("var/")
+
+    subgraph bing["essential user command binaries"]
+        direction LR
+        bin --- cat["cat"]
+        bin --- ls["ls"]
+
+    end
+
+    subgraph devg["device files"]
+        dev --- null["null"]
+        dev --- random["random"]
+    end 
+
+	subgraph usrg
+		usr --- share("share/")
+		usr --- include("include/")
+
+		subgraph shareg
+            direction LR
+			share --- calendar("calendar/")
+            share --- docs("/docs")
+			share --- man("man/")
+			share --- mk("mk/")
+
+			subgraph mang["manual pages"]
+                direction LR
+				man --- man1("man1/")
+				man --- man2("man2/")
+				man --- man3("man3/")
+				man --- man4("man4/")
+				man --- man5("man5/")
+				man --- man6("man6/")
+				man --- man7("man7/")
+				man --- man8("man8/")
+				man --- man9("man9/")
+			end
+		end
+	end
+
+	var --- log("log/")
+
+	linkStyle 0,1,2,3,4,5,6 stroke-width:1px;
+    style devg fill:transparent,stroke:#E5E5E5,stroke-width:1px,stroke-dasharray:5;
+    style bing fill:transparent,stroke:#E5E5E5,stroke-width:1px,stroke-dasharray:5;
+	style usrg fill:transparent,stroke:#E5E5E5,stroke-width:1px,stroke-dasharray:5;
+	style shareg fill:transparent,stroke:#E5E5E5,stroke-width:1px,stroke-dasharray:5;
+	style mang fill:transparent,stroke:#E5E5E5,stroke-width:1px,stroke-dasharray:5;
