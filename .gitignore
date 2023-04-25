@@ -36,3 +36,4 @@ parser.tab.h
 parser.tab.c
 
 website/page/man.md
+website/sass/*.css

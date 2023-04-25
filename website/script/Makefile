@@ -1,3 +1,3 @@
-CSS = qdnix.css doxygen.css
+JS = quote.js
 
 .include <qdnix.website.mk>

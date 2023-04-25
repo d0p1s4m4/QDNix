@@ -1,10 +1,11 @@
 .include <qdnix.init.mk>
 
-.SUFFIXES: .md .html .png .scss .css .png .gif
+.SUFFIXES: .md .html .png .scss .css .png .gif .js
 
 WEBSITE_DIR ?= /html
 CSS_DIR ?= /assets/css
 IMG_DIR ?= /assets/img
+JS_DIR ?= /assets/js
 HTML_DIR ?= 
 
 PANDOC = pandoc
@@ -36,6 +37,10 @@ www: ${CSS} ${HTML} ${IMG} _SUBDIRUSE
 .if defined(IMG) && !empty(IMG)
 	mkdir -p ${DESTDIR}${WEBSITE_DIR}${IMG_DIR}/
 	${WEBINSTALL} ${IMG} ${DESTDIR}${WEBSITE_DIR}${IMG_DIR}/
+.endif
+.if defined(JS) && !empty(JS)
+	mkdir -p ${DESTDIR}${WEBSITE_DIR}${JS_DIR}/
+	${WEBINSTALL} ${JS} ${DESTDIR}${WEBSITE_DIR}${JS_DIR}/
 .endif
 
 .if !target(clean)

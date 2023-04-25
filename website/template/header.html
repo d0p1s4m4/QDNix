@@ -20,6 +20,7 @@
 	$mathjax
 	<link href="$relpath^$stylesheet" rel="stylesheet" type="text/css" />
 	$extrastylesheet
+	<link href="/assets/css/doxygen.css" rel="stylesheet" type="text/css" />
 	<style>
 		li.footer-button {
 			list-style-type: none;
@@ -36,40 +37,24 @@
 <body>
 	<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 	<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-
 		<!--BEGIN TITLEAREA-->
-		<div id="titlearea">
-			<table cellspacing="0" cellpadding="0">
-				<tbody>
-					<tr style="height: 56px;">
-						<!--BEGIN PROJECT_LOGO-->
-						<td id="projectlogo"><img alt="Logo" src="$relpath^$projectlogo" /></td>
-						<!--END PROJECT_LOGO-->
-						<!--BEGIN PROJECT_NAME-->
-						<td id="projectalign" style="padding-left: 0.5em;">
-							<div id="projectname">$projectname
-								<!--BEGIN PROJECT_NUMBER-->&#160;<span
-									id="projectnumber">$projectnumber</span><!--END PROJECT_NUMBER-->
-							</div>
-							<!--BEGIN PROJECT_BRIEF-->
-							<div id="projectbrief">$projectbrief</div><!--END PROJECT_BRIEF-->
-						</td>
-						<!--END PROJECT_NAME-->
-						<!--BEGIN !PROJECT_NAME-->
-						<!--BEGIN PROJECT_BRIEF-->
-						<td style="padding-left: 0.5em;">
-							<div id="projectbrief">$projectbrief</div>
-						</td>
-						<!--END PROJECT_BRIEF-->
-						<!--END !PROJECT_NAME-->
-						<!--BEGIN DISABLE_INDEX-->
+		<header id="navbar">
+			<nav aria-label="Main navigation">
+				<div class="navbar-brand">
+					<h1><a href="/" title="Quick'n'dirty *NIX">QDNix</a></h1>
+				</div>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/propaganda.html">Propaganda</a></li>
+					<li><a href="/man.html">Manual</a></li>
+					<li><a href="/doxygen">Doxygen</a></li>
+					<!--BEGIN DISABLE_INDEX-->
 						<!--BEGIN SEARCHENGINE-->
-						<td>$searchbox</td>
+						<li>$searchbox</li>
 						<!--END SEARCHENGINE-->
 						<!--END DISABLE_INDEX-->
-					</tr>
-				</tbody>
-			</table>
-		</div>
+				</ul>
+			</nav>
+		</header>
 		<!--END TITLEAREA-->
 		<!-- end header part -->

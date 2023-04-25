@@ -1,4 +1,4 @@
-IMG = qdnix_unix_science.png logo.png
+IMG = qdnix_unix_science.png logo.png logo-mini.png
 
 SUBDIR = button
 

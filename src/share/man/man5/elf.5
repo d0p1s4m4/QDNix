@@ -1,20 +1,15 @@
-% elf(5)
-% d0p1
-% 28 Brumaire CCXXXI
-
-# NAME
-
-elf - format of Executable and Linking Format (ELF) file
-
-# SYNOPSIS
-
-```c
+.TH ELF 5 "28 Brumaire CCXXXI"
+.SH NAME
+elf \- format of Executable and Linking Format (ELF) file
+.SH SYNOPSIS
+.PP
+.nf
 #include <elf.h>
-```
-
-# DESCRIPTION
-
-```c
+.fi
+.PP
+.SH DESCRIPTION
+.PP
+.nf
 #define EI_NIDENT 16
 
 typedef struct {
@@ -50,4 +45,5 @@ typedef struct {
 	uint16_t e_shnum;
 	uint16_t e_shstrndx;
 } Elf64_Ehdr;
-```
+.fi
+.PP
