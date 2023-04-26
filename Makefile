@@ -15,6 +15,7 @@ www:
 	(cd "${.CURDIR}/src" && ${MAKE} htmlinstall)
 	(cd "${.CURDIR}/website" && ${MAKE} www)
 	doxygen "${.CURDIR}/Doxyfile"
+	${.CURDIR}/tools/site-map-gen.sh ${DESTDIR}/html > ${DESTDIR}/html/sitemap.xml
 
 do-tools: .PHONY .MAKE
 	@true
