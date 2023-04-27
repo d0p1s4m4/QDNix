@@ -56,6 +56,22 @@ html {
 	}
 }
 
+#man-header {
+	display: flex;
+	border-bottom: 1px dotted #c08;
+	margin-bottom: 1em;
+	font-size: smaller;
+
+	.title {
+		flex: 1;
+	}
+
+	.date {
+		flex: 1;
+		text-align: right;
+	}
+}
+
 div.box {
 	margin-bottom: 1.5em;
 	padding: .65em;
