@@ -13,6 +13,7 @@ SUBDIR = src
 www:
 	mkdir -p ${DESTDIR}/html
 	(cd "${.CURDIR}/src" && ${MAKE} htmlinstall)
+	(cd "${.CURDIR}/thirdparty" && ${MAKE} htmlinstall)
 	(cd "${.CURDIR}/website" && ${MAKE} www)
 	doxygen "${.CURDIR}/Doxyfile"
 	${.CURDIR}/tools/site-map-gen.sh ${DESTDIR}/html > ${DESTDIR}/html/sitemap.xml

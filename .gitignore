@@ -13,6 +13,7 @@
 *.rom
 
 *.html
+*.html*
 !/website/template/*.html
 docs/html/
 
