@@ -39,3 +39,6 @@
 [submodule "thirdparty/mit/libparserutils/dist"]
 	path = thirdparty/mit/libparserutils/dist
 	url = git://git.netsurf-browser.org/libparserutils.git
+[submodule "thirdparty/bsd3/ksh/dist"]
+	path = thirdparty/bsd3/ksh/dist
+	url = https://github.com/kohi-gnu/ksh.git

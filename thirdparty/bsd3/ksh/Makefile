@@ -1,3 +1,3 @@
-SUBDIR	= bmake ksh
+SUBDIR	= bin
 
 .include <qdnix.subdir.mk>

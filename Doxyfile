@@ -7,7 +7,7 @@ DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "QDNix"
 PROJECT_NUMBER         = 
 PROJECT_BRIEF          = "Quick’n’dirty *NIX"
-PROJECT_LOGO           = docs/html/logo-tiny.png
+PROJECT_LOGO           = website/img/logo-mini.png
 OUTPUT_DIRECTORY       = build/www/html/
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
@@ -105,7 +105,7 @@ CITE_BIB_FILES         = refs.bib
 #---------------------------------------------------------------------------
 # Configuration options related to warning and progress messages
 #---------------------------------------------------------------------------
-QUIET                  = NO
+QUIET                  = YES
 WARNINGS               = YES
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
