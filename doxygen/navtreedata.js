@@ -44,6 +44,7 @@ var NAVTREE =
       ] ]
     ] ],
     [ "LICENSE", "md__home_runner_work_QDNix_QDNix_LICENSE.html", null ],
+    [ "Modula-2 compiler", "m2.html", null ],
     [ "Bibliography", "citelist.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [
@@ -59,7 +60,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "8250_8c_source.html",
-"structUARTRegister.html#a6072372fd917e00805213a0f3e362991"
+"structUARTRegister.html#a5fffdf6d12e63d6aa607812e0f62783f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
