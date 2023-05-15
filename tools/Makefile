@@ -1,1 +1,3 @@
-.include <bsd.own.mk>
+.include <qdnix.own.mk>
+
+${TARGETS}:

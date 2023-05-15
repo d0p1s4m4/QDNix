@@ -6,4 +6,4 @@ _QDNIX_INIT_MK_=1
 
 .MAIN: all
 
-.endif
+.endif # !defined(_QDNIX_INIT_MK_)

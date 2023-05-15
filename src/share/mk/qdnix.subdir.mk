@@ -1,38 +1,41 @@
-.MAIN: all
+#	$NetBSD: bsd.subdir.mk,v 1.56 2022/07/10 21:32:09 rillig Exp $
+#	@(#)bsd.subdir.mk	8.1 (Berkeley) 6/8/93
 
-_SUBDIRUSE: .USE
-	@for entry in ${SUBDIR}; do \
-		echo "===> $$entry"; \
-		cd "${.CURDIR}/$${entry}"; \
-		${MAKE} ${.TARGET:realinstall=install}; \
-	done
+.include <qdnix.init.mk>
 
-${SUBDIR}::
-	echo ${.MAKEFLAGS}
-	cd ${.CURDIR}/${.TARGET}; ${.MAKE} all
+.if !defined(NOSUBDIR)					# {
 
-.if !target(all)
-all: _SUBDIRUSE
+.for dir in ${SUBDIR}
+.if ${dir} != ".WAIT" && exists(${.CURDIR}/${dir}.${MACHINE})
+__REALSUBDIR+=${dir}.${MACHINE}
+.else
+__REALSUBDIR+=${dir}
+.endif
+.endfor
+
+__recurse: .USE
+	${MAKEDIRTARGET} ${.TARGET:C/^[^-]*-//} ${.TARGET:C/-.*$//}
+
+.if make(cleandir)
+__RECURSETARG=	${TARGETS:Nclean}
+clean:
+.else
+__RECURSETARG=	${TARGETS}
 .endif
 
-.if !target(clean)
-clean: _SUBDIRUSE
+.for targ in ${__RECURSETARG}
+.for dir in ${__REALSUBDIR}
+.if ${dir} == ".WAIT"
+SUBDIR_${targ}+= .WAIT
+.elif !commands(${targ}-${dir})
+${targ}-${dir}: .PHONY .MAKE __recurse
+SUBDIR_${targ}+= ${targ}-${dir}
 .endif
+.endfor
+subdir-${targ}: .PHONY ${SUBDIR_${targ}}
+${targ}: subdir-${targ}
+.endfor
 
-.if !target(www)
-www: _SUBDIRUSE
-.endif
+.endif	# ! NOSUBDIR					# }
 
-.if !target(distrib-dirs)
-distrib-dirs: _SUBDIRUSE
-.endif
-
-.if !target(maninstall)
-maninstall: _SUBDIRUSE
-.endif
-
-.if !target(htmlinstall)
-htmlinstall: _SUBDIRUSE
-.endif
-
-${TARGETS}:
+${TARGETS}:	# ensure existence

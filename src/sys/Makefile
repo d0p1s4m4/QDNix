@@ -3,4 +3,4 @@
 all:
 	echo ${CONFIG_ARCH}
 
-SUBDIR = sys
+${TARGETS}:

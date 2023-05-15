@@ -1,3 +1,6 @@
+NOOBJS=
+
 INCS = a.out.h
 
-.include <qdnix.inc.mk>
+.include <qdnix.prog.mk>
+.include <qdnix.subdir.mk>

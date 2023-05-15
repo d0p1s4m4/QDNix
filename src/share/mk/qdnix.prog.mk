@@ -43,3 +43,8 @@ clean:
     defined(MAN5) || defined(MAN6) || defined(MAN7) || defined(MAN8) 
 .include <qdnix.man.mk>
 .endif
+
+.include <qdnix.clean.mk>
+.include <qdnix.inc.mk>
+
+${TARGETS}:	# ensure existence

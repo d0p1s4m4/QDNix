@@ -50,11 +50,9 @@ level of source directory"
 
 	DISTRIBVER=$(git describe 2>/dev/null || echo -n "0.0")
 
-	MAKEOBJDIRPREFIX=""
-
 	[ -f .config ] && . "$(dirname $0)/.config"
 
-	DESTDIR="${BUILD_DIR}/${MACHINE_ARCH}-${MACHINE_BOARD}-${MACHINE_CPU}"
+	DESTDIR="${BUILD_DIR}/distro/${MACHINE_ARCH}-${MACHINE_BOARD}-${MACHINE_CPU}"
 }
 
 # -----------------------------------------------------------------------------
@@ -157,7 +155,7 @@ main() {
 			;;
 		build)
 			export DESTDIR
-			MAKEOBJDIR=obj.${MACHINE}.${TARGET} "${HOST_BIN_DIR}/bmake" build
+			MAKEOBJDIR=${BUILD_DIR}/obj.${MACHINE_ARCH}.${MACHINE_CPU} "${HOST_BIN_DIR}/bmake" build
 			;;
 		esac
 	done

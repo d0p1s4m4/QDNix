@@ -47,7 +47,8 @@ __installpage: .USE
 .for S in ${_MSECTIONS}
 	@mkdir -p ${DESTDIR}/html/man/man${S}
 .endfor
-	install ${.ALLSRC} ${.TARGET}
+	@${_MKSHMSG_INSTALL} ${.TARGET}; \
+		install ${.ALLSRC} ${.TARGET}
 
 htmlinstall: htmlpages
 htmlpages::
@@ -71,3 +72,8 @@ htmlpages::	${_F}
 
 ### Clean
 .undef _F
+CLEANDIRFILES+= ${HTMLPAGES}
+
+.include <qdnix.clean.mk>
+
+${TARGETS}:

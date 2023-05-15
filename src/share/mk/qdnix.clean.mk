@@ -26,8 +26,8 @@
 # delete a directory as part of "make clean" or "make cleandir" then you
 # need to provide your own target.
 
-.if !defined(_BSD_CLEAN_MK_)
-_BSD_CLEAN_MK_=1
+.if !defined(_QDNIX_CLEAN_MK_)
+_QDNIX_CLEAN_MK_=1
 
 .include <qdnix.init.mk>
 
@@ -88,4 +88,4 @@ __cleanuse: .USE
 .MAKE.DEPENDFILE := .depend.no-such-file
 .endif
 
-.endif	# !defined(_BSD_CLEAN_MK)
+.endif	# !defined(_QDNIX_CLEAN_MK)
