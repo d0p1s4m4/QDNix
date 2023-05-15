@@ -16,8 +16,8 @@ config ARCH_RISCV64
 config ARCH_MIPS
 	bool "MIPS architecture"
 
-config ARCH_Z80
-	bool "Z80 architecture"
+config ARCH_EZ80
+	bool "eZ80 architecture"
 
 config ARCH_6502
 	bool "6502 architecture"

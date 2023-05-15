@@ -1,3 +1,5 @@
+.include <qdnix.hostinit.mk>
+
 LICENSE = gpl3
 MODULE = gcc
 

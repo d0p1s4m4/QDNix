@@ -18,6 +18,6 @@
 | @subpage sys_sys "sys"     | kernel headers                                  |
 | @subpage vm "vm"           | machine independent Virtual Memory Manager      |
 | @subpage x86 "x86"         |                                                 |
-| @subpage z80 "z80"         | z80 architecture support                        |
+| @subpage z80 "z80"         | eZ80 architecture support                        |
 
 @mermaid{qdnix_boot}

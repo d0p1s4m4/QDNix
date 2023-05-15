@@ -1,7 +1,7 @@
 #ifndef _calendar_all_
 #define _calendar_all_
 
-#include "calendar.revolutionary"
-#include "calendar.satanist"
+#include <calendar.revolutionary>
+#include <calendar.satanist>
 
 #endif /* !_calendar_all_ */

@@ -1,8 +1,0 @@
-menu "z80 architecture"
-	depends on ARCH_Z80
-
-	config ARCH
-		string
-		default "z80"
-
-endmenu

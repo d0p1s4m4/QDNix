@@ -1,5 +1,25 @@
+.include <qdnix.own.mk>
+
 HOSTDIR ?= ${.CURDIR}/../../thirdparty/${LICENSE}/${MODULE}/dist
 
 CONFIGURE_ENV+= \
-	AR=${HOST_AR} \
-	CC=${HOST_CC} 
+	AR=${HOST_AR:Q} \
+	AWK=${TOOL_AWK:Q} \
+	CC=${HOST_CC:Q} \
+	CFLAGS=${HOST_CFLAGS:Q} \
+	CPPFLAGS=${HOST_CPPFLAGS:Q} \
+	CXX=${HOST_CXX:Q} \
+	CXXFLAGS=${HOST_CXXFLAGS:Q} \
+	INSTALL=${HOST_INSTALL_FILE:Q} \
+	LDFLAGS=${HOST_LDFLAGS:Q} \
+	LEX=${LEX:Q} \
+	FLEX=${LEX:Q} \
+	M4=${TOOL_M4:Q} \
+	PATH="${TOOLDIR}/bin:$$PATH" \
+	RANLIB=${HOST_RANLIB:Q} \
+	YACC=${YACC:Q}
+
+CONFIGURE_ARGS+=--prefix=${TOOLDIR}
+
+
+.include <bsd.hostprog.mk>

@@ -1,3 +1,3 @@
-SUBDIR = geminid
+SUBDIR = geminid httpd
 
 .include <qdnix.subdir.mk>

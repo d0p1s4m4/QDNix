@@ -5,24 +5,36 @@ _QDNIX_OWN_MK_=1
 .include "${MKCONF}"
 .endif
 
+
 DESTDIR		?=
 
 BINDIR		= /bin
 BINGROUP	= bin
 BINOWNER	= root
 BINMODE		= 555
+NONBINMODE	= 444
 
 LIBDIR		= /lib
 LIBGROUP	= bin
 LIBOWNER	= root
-LIBMODE		= 444
+LIBMODE		= ${NONBINMODE}
 
 MANDIR		= /usr/share/man
 MANOWNER	= root
 MANGROUP	= bin
-MANMODE		= 444
+MANMODE		= ${NONBINMODE}
+
+DOCDIR		= /usr/share/doc
+DOCOWNER	= root
+DOCGROUP	= bin
+DOCMODE		= ${NONBINMODE}
 
 INCSDIR		= /usr/include
+INCSOWNER	= root
+INCSGROUP	= bin
+INCSMODE	= ${NONBINMODE}
+
+MKDIRMODE	= 0755
 
 .include <qdnix.host.mk>
 
@@ -54,5 +66,8 @@ LDFLAGS	+= --sysroot=/
 all:
 www:
 htmlinstall:
+
+MAKEVERBOSE ?= 2
+
 
 .endif
