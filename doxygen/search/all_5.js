@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['exec_12',['exec',['../structexec.html',1,'']]]
+  ['exec_13',['exec',['../structexec.html',1,'']]],
+  ['ez80_14',['ez80',['../ez80.html',1,'']]]
 ];

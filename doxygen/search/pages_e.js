@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x86_100',['x86',['../x86.html',1,'sys']]]
+  ['virtual_20memory_20manager_102',['Virtual Memory Manager',['../vm.html',1,'sys']]]
 ];

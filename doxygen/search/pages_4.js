@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['geminid_85',['geminid',['../geminid.html',1,'sbin']]]
+  ['ez80_87',['ez80',['../ez80.html',1,'']]]
 ];

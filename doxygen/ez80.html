@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9" />
 	<meta name="generator" content="Doxygen 1.9.1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>QDNix: sys/vmm/vmm.h File Reference</title>
+	<title>QDNix: ez80</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="dynsections.js"></script>
@@ -78,7 +78,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('vmm_2vmm_8h.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('ez80.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -96,24 +96,64 @@ $(document).ready(function(){initNavTree('vmm_2vmm_8h.html',''); initResizable()
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">vmm.h File Reference</div>  </div>
+<div class="title">ez80 </div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><a href="vmm_2vmm_8h_source.html">Go to the source code of this file.</a></p>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>vmm </p>
-
-<p class="definition">Definition in file <a class="el" href="vmm_2vmm_8h_source.html">vmm.h</a>.</p>
+<div class="textblock"><p><a class="anchor" id="md_sys_ez80_README"></a> </p>
+<h1><a class="anchor" id="autotoc_md25"></a>
+Registers</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">16Bits   </th><th class="markdownTableHeadNone">High   </th><th class="markdownTableHeadNone">Low   </th><th class="markdownTableHeadNone">Usage    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">PC   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Program counter    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SP   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">Stack pointer    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">IX   </td><td class="markdownTableBodyNone">XH   </td><td class="markdownTableBodyNone">XL   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">IY   </td><td class="markdownTableBodyNone">YH   </td><td class="markdownTableBodyNone">YL   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">AF   </td><td class="markdownTableBodyNone">A   </td><td class="markdownTableBodyNone">F   </td><td class="markdownTableBodyNone"><code>A</code> 8bit accumulator, <code>F</code> flags registers    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">BC   </td><td class="markdownTableBodyNone">B   </td><td class="markdownTableBodyNone">C   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">DE   </td><td class="markdownTableBodyNone">D   </td><td class="markdownTableBodyNone">E   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">HL   </td><td class="markdownTableBodyNone">H   </td><td class="markdownTableBodyNone">L   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">AF'   </td><td class="markdownTableBodyNone">A'   </td><td class="markdownTableBodyNone">F'   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">BC'   </td><td class="markdownTableBodyNone">B'   </td><td class="markdownTableBodyNone">C'   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">DE'   </td><td class="markdownTableBodyNone">D'   </td><td class="markdownTableBodyNone">E'   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">HL'   </td><td class="markdownTableBodyNone">H'   </td><td class="markdownTableBodyNone">L'   </td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">I   </td><td class="markdownTableBodyNone">R   </td><td class="markdownTableBodyNone"></td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md26"></a>
+F</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">7   </th><th class="markdownTableHeadNone">6   </th><th class="markdownTableHeadNone">5   </th><th class="markdownTableHeadNone">4   </th><th class="markdownTableHeadNone">3   </th><th class="markdownTableHeadNone">2   </th><th class="markdownTableHeadNone">1   </th><th class="markdownTableHeadNone">0    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">S   </td><td class="markdownTableBodyNone">Z   </td><td class="markdownTableBodyNone">y   </td><td class="markdownTableBodyNone">H   </td><td class="markdownTableBodyNone">x   </td><td class="markdownTableBodyNone">V   </td><td class="markdownTableBodyNone">N   </td><td class="markdownTableBodyNone">C   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md27"></a>
+Memory Management</h1>
+<h1><a class="anchor" id="autotoc_md28"></a>
+Calling Conventions</h1>
+<p><a class="el" href="citelist.html#CITEREF_krause2022efficient">[4]</a> <a class="el" href="citelist.html#CITEREF_zeal8bit">[2]</a> </p>
 </div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.1-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
 	<ul>
-		<li class="navelem"><a class="el" href="dir_220d2bd384b446346a1cdcf02b1b2295.html">sys</a></li><li class="navelem"><a class="el" href="dir_6690c7b0d10181f1051c48ae9fb35cd7.html">vmm</a></li><li class="navelem"><a class="el" href="vmm_2vmm_8h.html">vmm.h</a></li>
 		<li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer"
 					src="doxygen.svg" width="104" height="31" alt="doxygen" /></a> 1.9.1 </li>
 		<li class="footer-button">

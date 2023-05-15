@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gpioregister_59',['GpioRegister',['../structGpioRegister.html',1,'']]]
+  ['gpioregister_60',['GpioRegister',['../structGpioRegister.html',1,'']]]
 ];
