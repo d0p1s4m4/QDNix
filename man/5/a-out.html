@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>
+      Quick&#39;n&#39;dirty *NIX
+      
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="contact@qdnix.d0p1.eu" />
+    <meta name="description" content="Portable UNIX-like Operating System" />
+    
+    
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://qdnix.d0p1.eu/static/style.css" type="text/css" />
+    
+  </head>
+  <body>
+    
+    
+      <header class="navbar">
+		<nav aria-label="Main navigation">
+			<div class="navbar-brand">
+				<h1><a href="https://qdnix.d0p1.eu/" title="Quick'n'dirty *NIX">Quick&#39;n&#39;dirty *NIX</a></h1>
+			</div>
+			<ul>
+				<li><a href="https://qdnix.d0p1.eu/">Home</a></li>
+				<li><a href="https://qdnix.d0p1.eu/propaganda.html">Propaganda</a></li>
+				<li><a href="https://qdnix.d0p1.eu/man">Manual</a></li>
+				<li><a href="https://qdnix.d0p1.eu/doxygen">Doxygen</a></li>
+			</ul>
+		</nav>
+      </header>
+    
+
+	<div class="page">
+	  
+    <main id="main">
+      
+  <article class="page">
+    <section>
+      <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    table.head, table.foot { width: 100%; }
+    td.head-rtitle, td.foot-os { text-align: right; }
+    td.head-vol { text-align: center; }
+    .Nd, .Bf, .Op { display: inline; }
+    .Pa, .Ad { font-style: italic; }
+    .Ms { font-weight: bold; }
+    .Bl-diag > dt { font-weight: bold; }
+    code.Nm, .Fl, .Cm, .Ic, code.In, .Fd, .Fn, .Cd { font-weight: bold;
+      font-family: inherit; }
+  </style>
+  <title>A.OUT(5)</title>
+</head>
+<body>
+<table class="head">
+  <tr>
+    <td class="head-ltitle">A.OUT(5)</td>
+    <td class="head-vol">File Formats Manual</td>
+    <td class="head-rtitle">A.OUT(5)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<section class="Sh">
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<p class="Pp">a.out - assembler and lik editor output</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<pre>#include &lt;a.out.h&gt;</pre>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<pre>struct exec {
+	int a_magic;
+	unsigned a_text;
+	unsigned a_data;
+	unsigned a_bss;
+	unsigned a_syms;
+	unsigned a_entry;
+	unsigned a_trsize;
+	unsigned a_drsize;
+};</pre>
+<p class="Pp">`a_magic`
+  <br/>
+   - OMAGIC
+  <br/>
+   - NMAGIC
+  <br/>
+   - ZMAGIC `a_text` `a_data` `a_bss` `a_syms` `a_entry` `a_trsize`
+  `a_drsize`</p>
+<p class="Pp"></p>
+<p class="Pp"></p>
+<pre>struct nlist {
+	union {
+		char const *n_name;
+		long n_strx;
+	} n_un;
+	unsigned char n_type;
+	char n_other;
+	short n_desc;
+	unsigned n_value;
+};</pre>
+<p class="Pp">`n_un` - `n_name` - `n_strx` `n_type` `n_other` `n_desc`
+  `n_value`</p>
+<p class="Pp"></p>
+<p class="Pp"></p>
+<pre>struct relocation_info {
+	int r_address;
+	unsigned r_symbolnum:24,
+			r_pcrel:1,
+			r_length:2,
+			r_extern:1,
+			pad:4;
+};</pre>
+<p class="Pp">- `r_address` - `r_symbolnum` - `r_pcrel` - `r_length` -
+    `r_extern`</p>
+<p class="Pp"></p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><b>nm</b>(1)</p>
+</section>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">29 Vent&#x00F4;se CCXXXII</td>
+    <td class="foot-os"></td>
+  </tr>
+</table>
+</body>
+</html>
+
+    </section>
+  </article>
+
+    </main>
+
+    
+	<footer>
+		<p class="button">
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+				<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+			</a>
+			<a href="https://emacs.love/weblorg/" target="_blank">
+				<img alt="Created with emacs" src="https://qdnix.d0p1.eu/static/img/button/emacs.gif" />
+			</a>
+			<a href="http://d0p1.eu/trans-rights-are-human-rights" target="_blank">
+				<img alt="Trans right now!" src="https://qdnix.d0p1.eu/static/img/button/trn.png" />
+			</a>
+			<a href="https://web3isgoinggreat.com/" target="_blank">
+				<img alt="This is an Anti-NFT site" src="https://qdnix.d0p1.eu/static/img/button/antinft.gif" />
+			</a>
+			<a href="https://www.defectivebydesign.org/" target="_blank">
+				<img src="https://defectivebydesign.org/sites/nodrm.civicactions.net/files/images/elim_sm_btn.gif"
+					alt="Eliminate DRM!" width="88" height="31" />
+			</a>
+			<a href="https://yesterweb.org/no-to-web3/" target="_blank">
+				<img alt="Say no to web3" src="https://qdnix.d0p1.eu/static/img/button/roly-saynotoweb3.gif" />
+			</a>
+			<a href="https://www.youtube.com/watch?v=_Rua3TOeono" target="_blank">
+				<img src="https://qdnix.d0p1.eu/static/img/button/nonazis.png" width="31" />
+			</a>
+			<a href="https://endsoftwarepatents.org/innovating-without-patents" target="_blank">
+				<img alt="End of software patents" style="height: 31px;"
+					src="https://static.fsf.org/nosvn/esp/logos/patent-free.svg">
+			</a>
+			<a href="https://liberapay.com/d0p1/donate" target="_blank">
+				<img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+			<br />
+		</p>
+	</footer>
+    
+	</div>
+
+	
+  </body>
+</html>

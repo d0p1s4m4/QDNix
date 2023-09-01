@@ -1,0 +1,5759 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>
+      Quick&#39;n&#39;dirty *NIX
+      
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="contact@qdnix.d0p1.eu" />
+    <meta name="description" content="Portable UNIX-like Operating System" />
+    
+    
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://qdnix.d0p1.eu/static/style.css" type="text/css" />
+    
+  </head>
+  <body>
+    
+    
+      <header class="navbar">
+		<nav aria-label="Main navigation">
+			<div class="navbar-brand">
+				<h1><a href="https://qdnix.d0p1.eu/" title="Quick'n'dirty *NIX">Quick&#39;n&#39;dirty *NIX</a></h1>
+			</div>
+			<ul>
+				<li><a href="https://qdnix.d0p1.eu/">Home</a></li>
+				<li><a href="https://qdnix.d0p1.eu/propaganda.html">Propaganda</a></li>
+				<li><a href="https://qdnix.d0p1.eu/man">Manual</a></li>
+				<li><a href="https://qdnix.d0p1.eu/doxygen">Doxygen</a></li>
+			</ul>
+		</nav>
+      </header>
+    
+
+	<div class="page">
+	  
+    <main id="main">
+      
+  <article class="page">
+    <section>
+      <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    table.head, table.foot { width: 100%; }
+    td.head-rtitle, td.foot-os { text-align: right; }
+    td.head-vol { text-align: center; }
+    .Nd, .Bf, .Op { display: inline; }
+    .Pa, .Ad { font-style: italic; }
+    .Ms { font-weight: bold; }
+    .Bl-diag > dt { font-weight: bold; }
+    code.Nm, .Fl, .Cm, .Ic, code.In, .Fd, .Fn, .Cd { font-weight: bold;
+      font-family: inherit; }
+  </style>
+  <title>()</title>
+</head>
+<body>
+<table class="head">
+  <tr>
+    <td class="head-ltitle">()</td>
+    <td class="head-vol"></td>
+    <td class="head-rtitle">()</td>
+  </tr>
+</table>
+<div class="manual-text">/* Copyright (C) 2021 Free Software Foundation, Inc.
+<br/>
+ Contributed by Oracle.
+<p class="Pp">
+  <br/>
+   This file is part of GNU Binutils.</p>
+<p class="Pp">
+  <br/>
+   This program is free software; you can redistribute it and/or modify
+  <br/>
+   it under the terms of the GNU General Public License as published by
+  <br/>
+   the Free Software Foundation; either version 3, or (at your option)
+  <br/>
+   any later version.</p>
+<p class="Pp">
+  <br/>
+   This program is distributed in the hope that it will be useful,
+  <br/>
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+  <br/>
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  <br/>
+   GNU General Public License for more details.</p>
+<p class="Pp">
+  <br/>
+   You should have received a copy of the GNU General Public License
+  <br/>
+   along with this program; if not, write to the Free Software
+  <br/>
+   Foundation, 51 Franklin Street - Fifth Floor, Boston,
+  <br/>
+   MA 02110-1301, USA. */</p>
+<p class="Pp">#include &quot;config.h&quot; #include &lt;ctype.h&gt; #include
+    &lt;stdio.h&gt; #include &lt;dirent.h&gt; #include &lt;unistd.h&gt; #include
+    &lt;sys/types.h&gt; #include &lt;errno.h&gt; #include
+  &lt;sys/param.h&gt;</p>
+<p class="Pp">#include &quot;util.h&quot; #include &quot;Application.h&quot;
+    #include &quot;Experiment.h&quot; #include &quot;ExpGroup.h&quot; #include
+    &quot;Expression.h&quot; #include &quot;DataObject.h&quot; #include
+    &quot;Elf.h&quot; #include &quot;Function.h&quot; #include
+    &quot;DbeSession.h&quot; #include &quot;LoadObject.h&quot; #include
+    &quot;DbeSyncMap.h&quot; #include &quot;DbeThread.h&quot; #include
+    &quot;ClassFile.h&quot; #include &quot;IndexObject.h&quot; #include
+    &quot;PathTree.h&quot; #include &quot;Print.h&quot; #include
+    &quot;QLParser.tab.hh&quot; #include &quot;DbeView.h&quot; #include
+    &quot;MemorySpace.h&quot; #include &quot;Module.h&quot; #include
+    &quot;SourceFile.h&quot; #include &quot;StringBuilder.h&quot; #include
+    &quot;BaseMetric.h&quot; #include &quot;BaseMetricTreeNode.h&quot; #include
+    &quot;Command.h&quot; #include &quot;UserLabel.h&quot; #include
+    &quot;StringMap.h&quot; #include &quot;DbeFile.h&quot; #include
+    &quot;DbeJarFile.h&quot; #include &quot;IOActivity.h&quot; #include
+    &quot;HeapActivity.h&quot;</p>
+<p class="Pp">// This is a universal List structure to organize objects // of
+    various types, even if different. struct List {
+  <br/>
+   List *next;
+  <br/>
+   void *val; };</p>
+<p class="Pp">struct Countable {
+  <br/>
+   Countable (void *_item)
+  <br/>
+   {
+  <br/>
+   item = _item;
+  <br/>
+   ref_count = 0;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   void *item;
+  <br/>
+   int ref_count; };</p>
+<p class="Pp">Platform_t DbeSession::platform = #if ARCH(SPARC)
+  <br/>
+   Sparc; #elif ARCH(Aarch64)
+  <br/>
+   Aarch64; #else // ARCH(Intel)
+  <br/>
+   Intel; #endif</p>
+<p class="Pp">// This constant determines the size of the data object name hash
+    table. static const int HTableSize = 8192; static int DEFAULT_TINY_THRESHOLD
+    = -1;</p>
+<p class="Pp">unsigned int mpmt_debug_opt = 0; DbeSession *dbeSession =
+  NULL;</p>
+<p class="Pp">DbeSession::DbeSession (Settings *_settings, bool _ipc_mode, bool
+    _rdt_mode) {
+  <br/>
+   dbeSession = this;
+  <br/>
+   ipc_mode = _ipc_mode;
+  <br/>
+   rdt_mode = _rdt_mode;
+  <br/>
+   settings = new Settings (_settings);
+  <br/>
+   views = new Vector&lt;DbeView*&gt;;
+  <br/>
+   exps = new Vector&lt;Experiment*&gt;;
+  <br/>
+   lobjs = new Vector&lt;LoadObject*&gt;;
+  <br/>
+   objs = new Vector&lt;Histable*&gt;;
+  <br/>
+   dobjs = new Vector&lt;DataObject*&gt;;
+  <br/>
+   metrics = new Vector&lt;Countable*&gt;;
+  <br/>
+   reg_metrics = new Vector&lt;BaseMetric*&gt;;
+  <br/>
+   hwcentries = NULL;
+  <br/>
+   reg_metrics_tree = NULL; // BaseMetric() requires DbeSession::ql_parse
+  <br/>
+   idxobjs = new Vector&lt;HashMap&lt;uint64_t, Histable*&gt;*&gt;;
+  <br/>
+   tmp_files = new Vector&lt;char*&gt;;
+  <br/>
+   search_path = new Vector&lt;char*&gt;;
+  <br/>
+   classpath = new Vector&lt;char*&gt;;
+  <br/>
+   classpath_df = NULL;
+  <br/>
+   expGroups = new Vector&lt;ExpGroup*&gt;;
+  <br/>
+   sourcesMap = new HashMap&lt;char*, SourceFile*&gt;;
+  <br/>
+   sources = new Vector&lt;SourceFile*&gt;;
+  <br/>
+   comp_lobjs = new HashMap&lt;char*, LoadObject*&gt;;
+  <br/>
+   comp_dbelines = new HashMap&lt;char*, DbeLine*&gt;;
+  <br/>
+   comp_sources = new HashMap&lt;char*, SourceFile*&gt;;
+  <br/>
+   loadObjMap = new DbeSyncMap&lt;LoadObject&gt;;
+  <br/>
+   f_special = new Vector&lt;Function*&gt;(LastSpecialFunction);
+  <br/>
+   omp_functions = new Vector&lt;Function*&gt;(OMP_LAST_STATE);
+  <br/>
+   interactive = false;
+  <br/>
+   lib_visibility_used = false;</p>
+<p class="Pp">
+  <br/>
+   // Define all known property names
+  <br/>
+   propNames = new Vector&lt;PropDescr*&gt;;
+  <br/>
+   propNames_name_store (PROP_NONE, NTXT (&quot;&quot;));
+  <br/>
+   propNames_name_store (PROP_ATSTAMP, NTXT (&quot;ATSTAMP&quot;));
+  <br/>
+   propNames_name_store (PROP_ETSTAMP, NTXT (&quot;ETSTAMP&quot;));
+  <br/>
+   propNames_name_store (PROP_TSTAMP, NTXT (&quot;TSTAMP&quot;));
+  <br/>
+   propNames_name_store (PROP_THRID, NTXT (&quot;THRID&quot;));
+  <br/>
+   propNames_name_store (PROP_LWPID, NTXT (&quot;LWPID&quot;));
+  <br/>
+   propNames_name_store (PROP_CPUID, NTXT (&quot;CPUID&quot;));
+  <br/>
+   propNames_name_store (PROP_FRINFO, NTXT (&quot;FRINFO&quot;));
+  <br/>
+   propNames_name_store (PROP_EVT_TIME, NTXT (&quot;EVT_TIME&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Samples
+  <br/>
+   propNames_name_store (PROP_SMPLOBJ, NTXT (&quot;SMPLOBJ&quot;));
+  <br/>
+   propNames_name_store (PROP_SAMPLE, NTXT (&quot;SAMPLE&quot;));</p>
+<p class="Pp">
+  <br/>
+   // GCEvents
+  <br/>
+   propNames_name_store (PROP_GCEVENTOBJ, NTXT (&quot;GCEVENTOBJ&quot;));
+  <br/>
+   propNames_name_store (PROP_GCEVENT, NTXT (&quot;GCEVENT&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Metadata used by some packet types
+  <br/>
+   propNames_name_store (PROP_VOIDP_OBJ, NTXT (&quot;VOIDP_OBJ&quot;),
+  <br/>
+   NULL, TYPE_UINT64, DDFLAG_NOSHOW);</p>
+<p class="Pp">
+  <br/>
+   // Clock profiling properties
+  <br/>
+   propNames_name_store (PROP_UCPU, NTXT (&quot;UCPU&quot;));
+  <br/>
+   propNames_name_store (PROP_SCPU, NTXT (&quot;SCPU&quot;));
+  <br/>
+   propNames_name_store (PROP_TRAP, NTXT (&quot;TRAP&quot;));
+  <br/>
+   propNames_name_store (PROP_TFLT, NTXT (&quot;TFLT&quot;));
+  <br/>
+   propNames_name_store (PROP_DFLT, NTXT (&quot;DFLT&quot;));
+  <br/>
+   propNames_name_store (PROP_KFLT, NTXT (&quot;KFLT&quot;));
+  <br/>
+   propNames_name_store (PROP_ULCK, NTXT (&quot;ULCK&quot;));
+  <br/>
+   propNames_name_store (PROP_TSLP, NTXT (&quot;TSLP&quot;));
+  <br/>
+   propNames_name_store (PROP_WCPU, NTXT (&quot;WCPU&quot;));
+  <br/>
+   propNames_name_store (PROP_TSTP, NTXT (&quot;TSTP&quot;));</p>
+<p class="Pp">
+  <br/>
+   propNames_name_store (PROP_MSTATE, NTXT (&quot;MSTATE&quot;));
+  <br/>
+   propNames_name_store (PROP_NTICK, NTXT (&quot;NTICK&quot;));
+  <br/>
+   propNames_name_store (PROP_OMPSTATE, NTXT (&quot;OMPSTATE&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Synchronization tracing properties
+  <br/>
+   propNames_name_store (PROP_SRQST, NTXT (&quot;SRQST&quot;));
+  <br/>
+   propNames_name_store (PROP_SOBJ, NTXT (&quot;SOBJ&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Hardware counter profiling properties
+  <br/>
+   propNames_name_store (PROP_HWCTAG, NTXT (&quot;HWCTAG&quot;));
+  <br/>
+   propNames_name_store (PROP_HWCINT, NTXT (&quot;HWCINT&quot;));
+  <br/>
+   propNames_name_store (PROP_VADDR, NTXT (&quot;VADDR&quot;));
+  <br/>
+   propNames_name_store (PROP_PADDR, NTXT (&quot;PADDR&quot;));
+  <br/>
+   propNames_name_store (PROP_VIRTPC, NTXT (&quot;VIRTPC&quot;));
+  <br/>
+   propNames_name_store (PROP_PHYSPC, NTXT (&quot;PHYSPC&quot;));
+  <br/>
+   propNames_name_store (PROP_LWP_LGRP_HOME, NTXT (&quot;LWP_LGRP_HOME&quot;));
+  <br/>
+   propNames_name_store (PROP_PS_LGRP_HOME, NTXT (&quot;PS_LGRP_HOME&quot;));
+  <br/>
+   propNames_name_store (PROP_EA_PAGESIZE, NTXT (&quot;EA_PAGESIZE&quot;));
+  <br/>
+   propNames_name_store (PROP_EA_LGRP, NTXT (&quot;EA_LGRP&quot;));
+  <br/>
+   propNames_name_store (PROP_PC_PAGESIZE, NTXT (&quot;PC_PAGESIZE&quot;));
+  <br/>
+   propNames_name_store (PROP_PC_LGRP, NTXT (&quot;PC_LGRP&quot;));
+  <br/>
+   propNames_name_store (PROP_HWCDOBJ, NTXT (&quot;HWCDOBJ&quot;));
+  <br/>
+   propNames_name_store (PROP_MEM_LAT, NTXT (&quot;MEM_LAT&quot;));
+  <br/>
+   propNames_name_store (PROP_MEM_SRC, NTXT (&quot;MEM_SRC&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Heap tracing properties
+  <br/>
+   propNames_name_store (PROP_HTYPE, NTXT (&quot;HTYPE&quot;));
+  <br/>
+   propNames_name_store (PROP_HSIZE, NTXT (&quot;HSIZE&quot;));
+  <br/>
+   propNames_name_store (PROP_HVADDR, NTXT (&quot;HVADDR&quot;));
+  <br/>
+   propNames_name_store (PROP_HOVADDR, NTXT (&quot;HOVADDR&quot;));
+  <br/>
+   propNames_name_store (PROP_HLEAKED, NTXT (&quot;HLEAKED&quot;),
+  <br/>
+   GTXT (&quot;Leaked bytes&quot;), TYPE_UINT64, 0);
+  <br/>
+   propNames_name_store (PROP_HMEM_USAGE, NTXT (&quot;HMEM_USAGE&quot;));
+  <br/>
+   propNames_name_store (PROP_HFREED, NTXT (&quot;HFREED&quot;),
+  <br/>
+   GTXT (&quot;Freed bytes&quot;), TYPE_UINT64, 0);
+  <br/>
+   propNames_name_store (PROP_HCUR_ALLOCS, NTXT (&quot;HCUR_ALLOCS&quot;),
+  <br/>
+   GTXT (&quot;Current allocations&quot;), TYPE_INT64, 0);
+  <br/>
+   propNames_name_store (PROP_HCUR_NET_ALLOC, NTXT (&quot;HCUR_NET_ALLOC&quot;),
+  <br/>
+   NULL, TYPE_INT64, DDFLAG_NOSHOW);
+  <br/>
+   propNames_name_store (PROP_HCUR_LEAKS, NTXT (&quot;HCUR_LEAKS&quot;),
+  <br/>
+   GTXT (&quot;Current leaks&quot;), TYPE_UINT64, 0);
+  <br/>
+   propNames_name_store (PROP_DDSCR_LNK, NTXT (&quot;DDSCR_LNK&quot;),
+  <br/>
+   NULL, TYPE_UINT64, DDFLAG_NOSHOW);</p>
+<p class="Pp">
+  <br/>
+   // IO tracing properties
+  <br/>
+   propNames_name_store (PROP_IOTYPE, NTXT (&quot;IOTYPE&quot;));
+  <br/>
+   propNames_name_store (PROP_IOFD, NTXT (&quot;IOFD&quot;));
+  <br/>
+   propNames_name_store (PROP_IONBYTE, NTXT (&quot;IONBYTE&quot;));
+  <br/>
+   propNames_name_store (PROP_IORQST, NTXT (&quot;IORQST&quot;));
+  <br/>
+   propNames_name_store (PROP_IOOFD, NTXT (&quot;IOOFD&quot;));
+  <br/>
+   propNames_name_store (PROP_IOFNAME, NTXT (&quot;IOFNAME&quot;));
+  <br/>
+   propNames_name_store (PROP_IOVFD, NTXT (&quot;IOVFD&quot;));
+  <br/>
+   propNames_name_store (PROP_IOFSTYPE, NTXT (&quot;IOFSTYPE&quot;));</p>
+<p class="Pp">
+  <br/>
+   // omptrace raw properties
+  <br/>
+   propNames_name_store (PROP_CPRID, NTXT (&quot;CPRID&quot;));
+  <br/>
+   propNames_name_store (PROP_PPRID, NTXT (&quot;PPRID&quot;));
+  <br/>
+   propNames_name_store (PROP_TSKID, NTXT (&quot;TSKID&quot;));
+  <br/>
+   propNames_name_store (PROP_PTSKID, NTXT (&quot;PTSKID&quot;));
+  <br/>
+   propNames_name_store (PROP_PRPC, NTXT (&quot;PRPC&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Data race detection properties
+  <br/>
+   propNames_name_store (PROP_RID, NTXT (&quot;RID&quot;));
+  <br/>
+   propNames_name_store (PROP_RTYPE, NTXT (&quot;RTYPE&quot;));
+  <br/>
+   propNames_name_store (PROP_LEAFPC, NTXT (&quot;LEAFPC&quot;));
+  <br/>
+   propNames_name_store (PROP_RVADDR, NTXT (&quot;RVADDR&quot;));
+  <br/>
+   propNames_name_store (PROP_RCNT, NTXT (&quot;RCNT&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Deadlock detection properties
+  <br/>
+   propNames_name_store (PROP_DID, NTXT (&quot;DID&quot;));
+  <br/>
+   propNames_name_store (PROP_DLTYPE, NTXT (&quot;DLTYPE&quot;));
+  <br/>
+   propNames_name_store (PROP_DTYPE, NTXT (&quot;DTYPE&quot;));
+  <br/>
+   propNames_name_store (PROP_DVADDR, NTXT (&quot;DVADDR&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Synthetic properties (queries only)
+  <br/>
+   propNames_name_store (PROP_STACK, NTXT (&quot;STACK&quot;));
+  <br/>
+   propNames_name_store (PROP_MSTACK, NTXT (&quot;MSTACK&quot;));
+  <br/>
+   propNames_name_store (PROP_USTACK, NTXT (&quot;USTACK&quot;));
+  <br/>
+   propNames_name_store (PROP_XSTACK, NTXT (&quot;XSTACK&quot;));
+  <br/>
+   propNames_name_store (PROP_HSTACK, NTXT (&quot;HSTACK&quot;));
+  <br/>
+   propNames_name_store (PROP_STACKID, NTXT (&quot;STACKID&quot;));
+  <br/>
+   //propNames_name_store( PROP_CPRID, NTXT(&quot;CPRID&quot;) );
+  <br/>
+   //propNames_name_store( PROP_TSKID, NTXT(&quot;TSKID&quot;) );
+  <br/>
+   propNames_name_store (PROP_JTHREAD, NTXT (&quot;JTHREAD&quot;),
+  <br/>
+   GTXT (&quot;Java thread number&quot;), TYPE_UINT64, 0);</p>
+<p class="Pp">
+  <br/>
+   propNames_name_store (PROP_LEAF, NTXT (&quot;LEAF&quot;));
+  <br/>
+   propNames_name_store (PROP_DOBJ, NTXT (&quot;DOBJ&quot;));
+  <br/>
+   propNames_name_store (PROP_SAMPLE_MAP, NTXT (&quot;SAMPLE_MAP&quot;));
+  <br/>
+   propNames_name_store (PROP_GCEVENT_MAP, NTXT (&quot;GCEVENT_MAP&quot;));
+  <br/>
+   propNames_name_store (PROP_PID, NTXT (&quot;PID&quot;),
+  <br/>
+   GTXT (&quot;Process id&quot;), TYPE_UINT64, 0);
+  <br/>
+   propNames_name_store (PROP_EXPID, NTXT (&quot;EXPID&quot;),
+  <br/>
+   GTXT (&quot;Experiment id&quot;), TYPE_UINT64, DDFLAG_NOSHOW);
+  <br/>
+   propNames_name_store (PROP_EXPID_CMP, NTXT (&quot;EXPID_CMP&quot;),
+  <br/>
+   GTXT (&quot;Comparable Experiment Id&quot;), TYPE_UINT64,
+  <br/>
+   DDFLAG_NOSHOW); //YXXX find better description
+  <br/>
+   propNames_name_store (PROP_EXPGRID, NTXT (&quot;EXPGRID&quot;),
+  <br/>
+   GTXT (&quot;Comparison Group id&quot;), TYPE_UINT64, 0);
+  <br/>
+   propNames_name_store (PROP_PARREG, NTXT (&quot;PARREG&quot;));
+  <br/>
+   propNames_name_store (PROP_TSTAMP_LO, NTXT (&quot;TSTAMP_LO&quot;),
+  <br/>
+   GTXT (&quot;Start Timestamp (nanoseconds)&quot;), TYPE_UINT64, 0);
+  <br/>
+   propNames_name_store (PROP_TSTAMP_HI, NTXT (&quot;TSTAMP_HI&quot;),
+  <br/>
+   GTXT (&quot;End Timestamp (nanoseconds)&quot;), TYPE_UINT64, 0);
+  <br/>
+   propNames_name_store (PROP_TSTAMP2, NTXT (&quot;TSTAMP2&quot;),
+  <br/>
+   GTXT (&quot;End Timestamp (nanoseconds)&quot;), TYPE_UINT64,
+  <br/>
+   DDFLAG_NOSHOW);
+  <br/>
+   propNames_name_store (PROP_FREQ_MHZ, NTXT (&quot;FREQ_MHZ&quot;),
+  <br/>
+   GTXT (&quot;CPU Frequency, MHz&quot;), TYPE_UINT32, 0);
+  <br/>
+   propNames_name_store (PROP_NTICK_USEC, NTXT (&quot;NTICK_USEC&quot;),
+  <br/>
+   GTXT (&quot;Clock Profiling Interval, Microseconds&quot;),
+  <br/>
+   TYPE_UINT64, 0);</p>
+<p class="Pp">
+  <br/>
+   propNames_name_store (PROP_IOHEAPBYTES, NTXT (&quot;IOHEAPBYTES&quot;));</p>
+<p class="Pp">
+  <br/>
+   propNames_name_store (PROP_STACKL, NTXT (&quot;STACKL&quot;));
+  <br/>
+   propNames_name_store (PROP_MSTACKL, NTXT (&quot;MSTACKL&quot;));
+  <br/>
+   propNames_name_store (PROP_USTACKL, NTXT (&quot;USTACKL&quot;));
+  <br/>
+   propNames_name_store (PROP_XSTACKL, NTXT (&quot;XSTACKL&quot;));</p>
+<p class="Pp">
+  <br/>
+   propNames_name_store (PROP_STACKI, NTXT (&quot;STACKI&quot;));
+  <br/>
+   propNames_name_store (PROP_MSTACKI, NTXT (&quot;MSTACKI&quot;));
+  <br/>
+   propNames_name_store (PROP_USTACKI, NTXT (&quot;USTACKI&quot;));
+  <br/>
+   propNames_name_store (PROP_XSTACKI, NTXT (&quot;XSTACKI&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Make sure predefined names are not used for dynamic properties
+  <br/>
+   propNames_name_store (PROP_LAST, NTXT (&quot;&quot;));</p>
+<p class="Pp">
+  <br/>
+   localized_SP_UNKNOWN_NAME = GTXT (&quot;(unknown)&quot;);</p>
+<p class="Pp">
+  <br/>
+   // define Index objects
+  <br/>
+   dyn_indxobj = new Vector&lt;IndexObjType_t*&gt;();
+  <br/>
+   dyn_indxobj_indx = 0;
+  <br/>
+   char *s = dbe_sprintf (NTXT (&quot;((EXPID_CMP&lt;&lt;%llu) | THRID)&quot;),
+  <br/>
+   (unsigned long long) IndexObject::INDXOBJ_EXPID_SHIFT);
+  <br/>
+   indxobj_define (NTXT (&quot;Threads&quot;), GTXT (&quot;Threads&quot;), s,
+    NULL, NULL);
+  <br/>
+   free (s);
+  <br/>
+   indxobj_define (NTXT (&quot;CPUs&quot;), GTXT (&quot;CPUs&quot;), NTXT
+    (&quot;(CPUID)&quot;), NULL, NULL);
+  <br/>
+   indxobj_define (NTXT (&quot;Samples&quot;), GTXT (&quot;Samples&quot;), NTXT
+    (&quot;(SAMPLE_MAP)&quot;),
+  <br/>
+   NULL, NULL);
+  <br/>
+   indxobj_define (NTXT (&quot;GCEvents&quot;), GTXT (&quot;GCEvents&quot;),
+    NTXT (&quot;(GCEVENT_MAP)&quot;),
+  <br/>
+   NULL, NULL);
+  <br/>
+   indxobj_define (NTXT (&quot;Seconds&quot;), GTXT (&quot;Seconds&quot;),
+  <br/>
+   NTXT (&quot;(TSTAMP/1000000000)&quot;), NULL, NULL);
+  <br/>
+   indxobj_define (NTXT (&quot;Processes&quot;), GTXT (&quot;Processes&quot;),
+    NTXT (&quot;(EXPID_CMP)&quot;),
+  <br/>
+   NULL, NULL);
+  <br/>
+   s = dbe_sprintf (NTXT (&quot;((EXPGRID&lt;&lt;%llu) |
+    (EXPID&lt;&lt;%llu))&quot;),
+  <br/>
+   (unsigned long long) IndexObject::INDXOBJ_EXPGRID_SHIFT,
+  <br/>
+   (unsigned long long) IndexObject::INDXOBJ_EXPID_SHIFT);
+  <br/>
+   indxobj_define (NTXT (&quot;Experiment_IDs&quot;), GTXT
+    (&quot;Experiment_IDs&quot;), s, NULL, NULL);
+  <br/>
+   free (s);
+  <br/>
+   indxobj_define (NTXT (&quot;Datasize&quot;), GTXT (&quot;Datasize&quot;),
+  <br/>
+   &quot;(IOHEAPBYTES==0?0:&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;0)?(1&lt;&lt;0):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;2)?(1&lt;&lt;2):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;4)?(1&lt;&lt;4):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;6)?(1&lt;&lt;6):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;8)?(1&lt;&lt;8):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;10)?(1&lt;&lt;10):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;12)?(1&lt;&lt;12):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;14)?(1&lt;&lt;14):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;16)?(1&lt;&lt;16):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;18)?(1&lt;&lt;18):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;20)?(1&lt;&lt;20):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;22)?(1&lt;&lt;22):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;24)?(1&lt;&lt;24):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;26)?(1&lt;&lt;26):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;28)?(1&lt;&lt;28):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;30)?(1&lt;&lt;30):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;32)?(1&lt;&lt;32):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;34)?(1&lt;&lt;34):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;36)?(1&lt;&lt;36):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;38)?(1&lt;&lt;38):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;40)?(1&lt;&lt;40):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;42)?(1&lt;&lt;42):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;44)?(1&lt;&lt;44):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;46)?(1&lt;&lt;46):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;48)?(1&lt;&lt;48):&quot;
+  <br/>
+   &quot;((IOHEAPBYTES&lt;=(1&lt;&lt;50)?(1&lt;&lt;50):&quot;
+  <br/>
+   &quot;(IOHEAPBYTES==-1?-1:(1&lt;&lt;50|1)&quot;
+  <br/>
+   &quot;))))))))))))))))))))))))))))))))))))))))))))))))))))))&quot;,
+  <br/>
+   NULL, NULL);
+  <br/>
+   indxobj_define (NTXT (&quot;Duration&quot;), GTXT (&quot;Duration&quot;),
+  <br/>
+   &quot;((TSTAMP_HI-TSTAMP_LO)==0?0:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=1000?1000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=10000?10000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=100000?100000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=1000000?1000000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=10000000?10000000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=100000000?100000000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=1000000000?1000000000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=10000000000?10000000000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=100000000000?100000000000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=1000000000000?1000000000000:&quot;
+  <br/>
+   &quot;(((TSTAMP_HI-TSTAMP_LO)&lt;=10000000000000?10000000000000:&quot;
+  <br/>
+   &quot;(10000000000001))))))))))))))))))))))))&quot;, NULL, NULL);
+  <br/>
+   dyn_indxobj_indx_fixed = dyn_indxobj_indx;
+  <br/>
+   Elf::elf_init ();
+  <br/>
+   defExpName = NULL;
+  <br/>
+   mach_model_loaded = NULL;
+  <br/>
+   tmp_dir_name = NULL;
+  <br/>
+   settings-&gt;read_rc (ipc_mode || rdt_mode);</p>
+<p class="Pp">
+  <br/>
+   init (); }</p>
+<p class="Pp">DbeSession::~DbeSession () {
+  <br/>
+   Destroy (views);
+  <br/>
+   Destroy (exps);
+  <br/>
+   Destroy (dobjs);
+  <br/>
+   Destroy (metrics);
+  <br/>
+   Destroy (search_path);
+  <br/>
+   Destroy (classpath);
+  <br/>
+   Destroy (propNames);
+  <br/>
+   Destroy (expGroups);
+  <br/>
+   Destroy (userLabels);
+  <br/>
+   if (hwcentries)
+  <br/>
+   {
+  <br/>
+   for (long i = 0, sz = hwcentries-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   Hwcentry *h = hwcentries-&gt;get (i);
+  <br/>
+   free (h-&gt;int_name);
+  <br/>
+   free (h-&gt;name);
+  <br/>
+   delete h;
+  <br/>
+   }
+  <br/>
+   delete hwcentries;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   if (idxobjs)
+  <br/>
+   {
+  <br/>
+   for (int i = 0; i &lt; idxobjs-&gt;size (); ++i)
+  <br/>
+   {
+  <br/>
+   HashMap&lt;uint64_t, Histable*&gt; *hMap = idxobjs-&gt;get (i);
+  <br/>
+   if (hMap)
+  <br/>
+   {
+  <br/>
+   hMap-&gt;values ()-&gt;destroy ();
+  <br/>
+   delete hMap;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   delete idxobjs;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   for (int i = 0; i &lt; HTableSize; i++)
+  <br/>
+   {
+  <br/>
+   List *list = dnameHTable[i];
+  <br/>
+   while (list)
+  <br/>
+   {
+  <br/>
+   List *tmp = list;
+  <br/>
+   list = list-&gt;next;
+  <br/>
+   delete tmp;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   delete[] dnameHTable;
+  <br/>
+   delete classpath_df;
+  <br/>
+   Destroy (objs);
+  <br/>
+   Destroy (reg_metrics);
+  <br/>
+   Destroy (dyn_indxobj);
+  <br/>
+   delete lobjs;
+  <br/>
+   delete f_special;
+  <br/>
+   destroy_map (DbeFile *, dbeFiles);
+  <br/>
+   destroy_map (DbeJarFile *, dbeJarFiles);
+  <br/>
+   delete loadObjMap;
+  <br/>
+   delete omp_functions;
+  <br/>
+   delete sourcesMap;
+  <br/>
+   delete sources;
+  <br/>
+   delete comp_lobjs;
+  <br/>
+   delete comp_dbelines;
+  <br/>
+   delete comp_sources;
+  <br/>
+   delete reg_metrics_tree;
+  <br/>
+   delete settings;
+  <br/>
+   free (mach_model_loaded);</p>
+<p class="Pp">
+  <br/>
+   if (defExpName != NULL)
+  <br/>
+   {
+  <br/>
+   StringBuilder *sb = new StringBuilder ();
+  <br/>
+   sb-&gt;append (NTXT (&quot;/bin/rm -rf &quot;));
+  <br/>
+   sb-&gt;append (defExpName);
+  <br/>
+   char *cmd = sb-&gt;toString ();
+  <br/>
+   system (cmd);
+  <br/>
+   free (cmd);
+  <br/>
+   delete sb;
+  <br/>
+   free (defExpName);
+  <br/>
+   }
+  <br/>
+   unlink_tmp_files ();
+  <br/>
+   delete tmp_files;
+  <br/>
+   dbeSession = NULL; }</p>
+<p class="Pp">void DbeSession::unlink_tmp_files () {
+  <br/>
+   if (tmp_files)
+  <br/>
+   {
+  <br/>
+   for (int i = 0, sz = tmp_files-&gt;size (); i &lt; sz; i++)
+  <br/>
+   unlink (tmp_files-&gt;fetch (i));
+  <br/>
+   tmp_files-&gt;destroy ();
+  <br/>
+   delete tmp_files;
+  <br/>
+   tmp_files = NULL;
+  <br/>
+   }
+  <br/>
+   if (tmp_dir_name)
+  <br/>
+   {
+  <br/>
+   char *cmd = dbe_sprintf (NTXT (&quot;/bin/rm -rf %s&quot;), tmp_dir_name);
+  <br/>
+   system (cmd);
+  <br/>
+   free (cmd);
+  <br/>
+   free (tmp_dir_name);
+  <br/>
+   tmp_dir_name = NULL;
+  <br/>
+   } }</p>
+<p class="Pp">char * DbeSession::get_tmp_file_name (const char *nm, bool
+    for_java) {
+  <br/>
+   if (tmp_dir_name == NULL)
+  <br/>
+   {
+  <br/>
+   tmp_dir_name = dbe_sprintf (NTXT (&quot;/tmp/analyzer.%llu.%lld&quot;),
+  <br/>
+   (unsigned long long) getuid (), (long long) getpid ());
+  <br/>
+   mkdir (tmp_dir_name, S_IRWXU);
+  <br/>
+   }
+  <br/>
+   char *fnm = dbe_sprintf (NTXT (&quot;%s/%s&quot;), tmp_dir_name, nm);
+  <br/>
+   if (for_java)
+  <br/>
+   for (char *s = fnm + strlen (tmp_dir_name) + 1; *s; s++)
+  <br/>
+   if (*s == '/')
+  <br/>
+   *s = '.';
+  <br/>
+   return fnm; }</p>
+<p class="Pp">void DbeSession::init () {
+  <br/>
+   user_exp_id_counter = 0;
+  <br/>
+   status_ompavail = 0;
+  <br/>
+   archive_mode = 0;</p>
+<p class="Pp">#if DEBUG
+  <br/>
+   char *s = getenv (NTXT (&quot;MPMT_DEBUG&quot;));
+  <br/>
+   if (s)
+  <br/>
+   mpmt_debug_opt = atoi (s); #endif /* DEBUG */
+  <br/>
+   dbeFiles = new StringMap&lt;DbeFile*&gt;();
+  <br/>
+   dbeJarFiles = new StringMap&lt;DbeJarFile*&gt;(128, 128);</p>
+<p class="Pp">
+  <br/>
+   // set up the initial (after .rc file reading) search path
+  <br/>
+   set_search_path (settings-&gt;str_search_path, true);
+  <br/>
+   userLabels = NULL;</p>
+<p class="Pp">
+  <br/>
+   // Preset all objects as they may reuse each other
+  <br/>
+   lo_unknown = NULL;
+  <br/>
+   f_unknown = NULL;
+  <br/>
+   j_unknown = NULL;
+  <br/>
+   lo_total = NULL;
+  <br/>
+   sf_unknown = NULL;
+  <br/>
+   f_total = NULL;
+  <br/>
+   f_jvm = NULL;
+  <br/>
+   d_total = NULL;
+  <br/>
+   d_scalars = NULL;
+  <br/>
+   d_unknown = NULL;
+  <br/>
+   expGroups-&gt;destroy ();
+  <br/>
+   f_special-&gt;reset ();
+  <br/>
+   for (int i = 0; i &lt; LastSpecialFunction; i++)
+  <br/>
+   f_special-&gt;append (NULL);</p>
+<p class="Pp">
+  <br/>
+   lo_omp = NULL;
+  <br/>
+   omp_functions-&gt;reset ();
+  <br/>
+   for (int i = 0; i &lt; OMP_LAST_STATE; i++)
+  <br/>
+   omp_functions-&gt;append (NULL);</p>
+<p class="Pp">
+  <br/>
+   // make sure the metric list is initialized
+  <br/>
+   register_metric (Metric::SIZES);
+  <br/>
+   register_metric (Metric::ADDRESS);
+  <br/>
+   register_metric (Metric::ONAME);</p>
+<p class="Pp">
+  <br/>
+   // This is needed only to maintain loadobject id's
+  <br/>
+   // for &lt;Total&gt; and &lt;Unknown&gt; in tests
+  <br/>
+   (void) get_Unknown_LoadObject ();
+  <br/>
+   (void) get_Total_LoadObject ();</p>
+<p class="Pp">
+  <br/>
+   // Create the data object name hash table.
+  <br/>
+   dnameHTable = new List*[HTableSize];
+  <br/>
+   for (int i = 0; i &lt; HTableSize; i++)
+  <br/>
+   dnameHTable[i] = NULL;</p>
+<p class="Pp">
+  <br/>
+   d_total = createDataObject ();
+  <br/>
+   d_total-&gt;set_name (NTXT (&quot;&lt;Total&gt;&quot;));</p>
+<p class="Pp">
+  <br/>
+   // XXXX &lt;Scalars&gt; only appropriate for Program/Data-oriented analyses
+  <br/>
+   d_scalars = createDataObject ();
+  <br/>
+   d_scalars-&gt;set_name (GTXT (&quot;&lt;Scalars&gt;&quot;));</p>
+<p class="Pp">
+  <br/>
+   d_unknown = createDataObject ();
+  <br/>
+   d_unknown-&gt;set_name (GTXT (&quot;&lt;Unknown&gt;&quot;));</p>
+<p class="Pp">
+  <br/>
+   // assign d_unknown's children so data_olayout has consistent sorting
+  <br/>
+   for (unsigned pp_code = 1; pp_code &lt; NUM_ABS_PP_CODES + 2; pp_code++)
+  <br/>
+   {
+  <br/>
+   char *errcode;
+  <br/>
+   DataObject* dobj = createDataObject ();
+  <br/>
+   switch (pp_code)
+  <br/>
+   {
+  <br/>
+   case NUM_ABS_PP_CODES + 1:
+  <br/>
+   errcode = PTXT (DOBJ_UNDETERMINED);
+  <br/>
+   break;
+  <br/>
+   case NUM_ABS_PP_CODES:
+  <br/>
+   errcode = PTXT (DOBJ_UNSPECIFIED);
+  <br/>
+   break;
+  <br/>
+   case NUM_ABS_PP_CODES - 1:
+  <br/>
+   errcode = PTXT (DOBJ_UNIDENTIFIED);
+  <br/>
+   break;
+  <br/>
+   default:
+  <br/>
+   errcode = PTXT (ABS_PP_CODES[pp_code]);
+  <br/>
+   }
+  <br/>
+   dobj-&gt;parent = d_unknown;
+  <br/>
+   dobj-&gt;set_dobjname (errcode, NULL); // dobj-&gt;parent must already be set
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   for (unsigned rt_code = 1; rt_code &lt; NUM_ABS_RT_CODES - 1; rt_code++)
+  <br/>
+   {
+  <br/>
+   DataObject* dobj = createDataObject ();
+  <br/>
+   dobj-&gt;parent = d_unknown;
+  <br/>
+   dobj-&gt;set_dobjname (PTXT (ABS_RT_CODES[rt_code]), NULL); //
+    dobj-&gt;parent must already be set
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::reset_data () {
+  <br/>
+   for (long i = 0, sz = VecSize (idxobjs); i &lt; sz; ++i)
+  <br/>
+   if (idxobjs-&gt;get (i))
+  <br/>
+   idxobjs-&gt;get (i)-&gt;reset (); }</p>
+<p class="Pp">void DbeSession::reset () {
+  <br/>
+   loadObjMap-&gt;reset ();
+  <br/>
+   DbeView *dbev;
+  <br/>
+   int index;</p>
+<p class="Pp">
+  <br/>
+   Vec_loop (DbeView*, views, index, dbev)
+  <br/>
+   {
+  <br/>
+   dbev-&gt;reset ();
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   destroy_map (DbeFile *, dbeFiles);
+  <br/>
+   destroy_map (DbeJarFile *, dbeJarFiles);
+  <br/>
+   exps-&gt;destroy ();
+  <br/>
+   lobjs-&gt;reset (); // all LoadObjects belong to objs
+  <br/>
+   dobjs-&gt;destroy (); // deletes d_unknown and d_total as well
+  <br/>
+   objs-&gt;destroy ();
+  <br/>
+   comp_lobjs-&gt;clear ();
+  <br/>
+   comp_dbelines-&gt;clear ();
+  <br/>
+   comp_sources-&gt;clear ();
+  <br/>
+   sourcesMap-&gt;clear ();
+  <br/>
+   sources-&gt;reset ();</p>
+<p class="Pp">
+  <br/>
+   // Delete the data object name hash table.
+  <br/>
+   for (int i = 0; i &lt; HTableSize; i++)
+  <br/>
+   {
+  <br/>
+   List *list = dnameHTable[i];
+  <br/>
+   while (list)
+  <br/>
+   {
+  <br/>
+   List *tmp = list;
+  <br/>
+   list = list-&gt;next;
+  <br/>
+   delete tmp;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   delete[] dnameHTable;</p>
+<p class="Pp">
+  <br/>
+   // IndexObect definitions remain, objects themselves may go
+  <br/>
+   for (int i = 0; i &lt; idxobjs-&gt;size (); ++i)
+  <br/>
+   {
+  <br/>
+   HashMap&lt;uint64_t, Histable*&gt; *v = idxobjs-&gt;fetch (i);
+  <br/>
+   if (v != NULL)
+  <br/>
+   {
+  <br/>
+   v-&gt;values ()-&gt;destroy ();
+  <br/>
+   v-&gt;clear ();
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   init (); }</p>
+<p class="Pp">Vector&lt;SourceFile*&gt; * DbeSession::get_sources () {
+  <br/>
+   return sources; }</p>
+<p class="Pp">DbeFile * DbeSession::getDbeFile (char *filename, int filetype) {
+  <br/>
+   Dprintf (DEBUG_DBE_FILE, NTXT (&quot;DbeSession::getDbeFile filetype=0x%x
+    %s0), filetype, filename);
+  <br/>
+   if (strncmp (filename, NTXT (&quot;./&quot;), 2) == 0)
+  <br/>
+   filename += 2;
+  <br/>
+   DbeFile *dbeFile = dbeFiles-&gt;get (filename);
+  <br/>
+   if (dbeFile == NULL)
+  <br/>
+   {
+  <br/>
+   dbeFile = new DbeFile (filename);
+  <br/>
+   dbeFiles-&gt;put (filename, dbeFile);
+  <br/>
+   }
+  <br/>
+   dbeFile-&gt;filetype |= filetype;
+  <br/>
+   return dbeFile; }</p>
+<p class="Pp">LoadObject * DbeSession::get_Total_LoadObject () {
+  <br/>
+   if (lo_total == NULL)
+  <br/>
+   {
+  <br/>
+   lo_total = createLoadObject (NTXT (&quot;&lt;Total&gt;&quot;));
+  <br/>
+   lo_total-&gt;dbeFile-&gt;filetype |= DbeFile::F_FICTION;
+  <br/>
+   }
+  <br/>
+   return lo_total; }</p>
+<p class="Pp">Function * DbeSession::get_Total_Function () {
+  <br/>
+   if (f_total == NULL)
+  <br/>
+   {
+  <br/>
+   f_total = createFunction ();
+  <br/>
+   f_total-&gt;flags |= FUNC_FLAG_SIMULATED | FUNC_FLAG_NO_OFFSET;
+  <br/>
+   f_total-&gt;set_name (NTXT (&quot;&lt;Total&gt;&quot;));
+  <br/>
+   Module *mod = get_Total_LoadObject ()-&gt;noname;
+  <br/>
+   f_total-&gt;module = mod;
+  <br/>
+   mod-&gt;functions-&gt;append (f_total);
+  <br/>
+   }
+  <br/>
+   return f_total; }</p>
+<p class="Pp">LoadObject * DbeSession::get_Unknown_LoadObject () {
+  <br/>
+   if (lo_unknown == NULL)
+  <br/>
+   {
+  <br/>
+   lo_unknown = createLoadObject (GTXT (&quot;&lt;Unknown&gt;&quot;));
+  <br/>
+   lo_unknown-&gt;type = LoadObject::SEG_TEXT; // makes it expandable
+  <br/>
+   lo_unknown-&gt;dbeFile-&gt;filetype |= DbeFile::F_FICTION;</p>
+<p class="Pp">
+  <br/>
+   // force creation of the &lt;Unknown&gt; function
+  <br/>
+   (void) get_Unknown_Function ();
+  <br/>
+   }
+  <br/>
+   return lo_unknown; }</p>
+<p class="Pp">SourceFile * DbeSession::get_Unknown_Source () {
+  <br/>
+   if (sf_unknown == NULL)
+  <br/>
+   {
+  <br/>
+   sf_unknown = createSourceFile (localized_SP_UNKNOWN_NAME);
+  <br/>
+   sf_unknown-&gt;dbeFile-&gt;filetype |= DbeFile::F_FICTION;
+  <br/>
+   sf_unknown-&gt;flags |= SOURCE_FLAG_UNKNOWN;
+  <br/>
+   }
+  <br/>
+   return sf_unknown; }</p>
+<p class="Pp">Function * DbeSession::get_Unknown_Function () {
+  <br/>
+   if (f_unknown == NULL)
+  <br/>
+   {
+  <br/>
+   f_unknown = createFunction ();
+  <br/>
+   f_unknown-&gt;flags |= FUNC_FLAG_SIMULATED;
+  <br/>
+   f_unknown-&gt;set_name (GTXT (&quot;&lt;Unknown&gt;&quot;));
+  <br/>
+   Module *mod = get_Unknown_LoadObject ()-&gt;noname;
+  <br/>
+   f_unknown-&gt;module = mod;
+  <br/>
+   mod-&gt;functions-&gt;append (f_unknown);
+  <br/>
+   }
+  <br/>
+   return f_unknown; }</p>
+<p class="Pp">// LIBRARY_VISIBILITY</p>
+<p class="Pp">Function * DbeSession::create_hide_function (LoadObject *lo) {
+  <br/>
+   Function *h_function = createFunction ();
+  <br/>
+   h_function-&gt;set_name (lo-&gt;get_name ());
+  <br/>
+   h_function-&gt;module = lo-&gt;noname;
+  <br/>
+   h_function-&gt;isHideFunc = true;
+  <br/>
+   lo-&gt;noname-&gt;functions-&gt;append (h_function);
+  <br/>
+   return h_function; }</p>
+<p class="Pp">Function * DbeSession::get_JUnknown_Function () {
+  <br/>
+   if (j_unknown == NULL)
+  <br/>
+   {
+  <br/>
+   j_unknown = createFunction ();
+  <br/>
+   j_unknown-&gt;flags |= FUNC_FLAG_SIMULATED;
+  <br/>
+   j_unknown-&gt;set_name (GTXT (&quot;&lt;no Java callstack
+    recorded&gt;&quot;));
+  <br/>
+   Module *mod = get_Unknown_LoadObject ()-&gt;noname;
+  <br/>
+   j_unknown-&gt;module = mod;
+  <br/>
+   mod-&gt;functions-&gt;append (j_unknown);
+  <br/>
+   }
+  <br/>
+   return j_unknown; }</p>
+<p class="Pp">Function * DbeSession::get_jvm_Function () {
+  <br/>
+   if (f_jvm == NULL)
+  <br/>
+   {
+  <br/>
+   f_jvm = createFunction ();
+  <br/>
+   f_jvm-&gt;flags |= FUNC_FLAG_SIMULATED | FUNC_FLAG_NO_OFFSET;
+  <br/>
+   f_jvm-&gt;set_name (GTXT (&quot;&lt;JVM-System&gt;&quot;));</p>
+<p class="Pp">
+  <br/>
+   // Find the JVM LoadObject
+  <br/>
+   LoadObject *jvm = get_Unknown_LoadObject ();
+  <br/>
+   for (int i = 0; i &lt; lobjs-&gt;size (); ++i)
+  <br/>
+   {
+  <br/>
+   LoadObject *lo = lobjs-&gt;fetch (i);
+  <br/>
+   if (lo-&gt;flags &amp; SEG_FLAG_JVM)
+  <br/>
+   {
+  <br/>
+   jvm = lo;
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   Module *mod = jvm-&gt;noname;
+  <br/>
+   f_jvm-&gt;module = mod;
+  <br/>
+   mod-&gt;functions-&gt;append (f_jvm);
+  <br/>
+   // XXXX is it required? no consistency among all special functions
+  <br/>
+   // jvm-&gt;functions-&gt;append( f_jvm );
+  <br/>
+   }
+  <br/>
+   return f_jvm; }</p>
+<p class="Pp">Function * DbeSession::getSpecialFunction (SpecialFunction kind) {
+  <br/>
+   if (kind &lt; 0 || kind &gt;= LastSpecialFunction)
+  <br/>
+   return NULL;</p>
+<p class="Pp">
+  <br/>
+   Function *func = f_special-&gt;fetch (kind);
+  <br/>
+   if (func == NULL)
+  <br/>
+   {
+  <br/>
+   char *fname;
+  <br/>
+   switch (kind)
+  <br/>
+   {
+  <br/>
+   case TruncatedStackFunc:
+  <br/>
+   fname = GTXT (&quot;&lt;Truncated-stack&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case FailedUnwindFunc:
+  <br/>
+   fname = GTXT (&quot;&lt;Stack-unwind-failed&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   default:
+  <br/>
+   return NULL;
+  <br/>
+   }
+  <br/>
+   func = createFunction ();
+  <br/>
+   func-&gt;flags |= FUNC_FLAG_SIMULATED | FUNC_FLAG_NO_OFFSET;
+  <br/>
+   Module *mod = get_Total_LoadObject ()-&gt;noname;
+  <br/>
+   func-&gt;module = mod;
+  <br/>
+   mod-&gt;functions-&gt;append (func);
+  <br/>
+   func-&gt;set_name (fname);
+  <br/>
+   f_special-&gt;store (kind, func);
+  <br/>
+   }
+  <br/>
+   return func; }</p>
+<p class="Pp">LoadObject * DbeSession::get_OMP_LoadObject () {
+  <br/>
+   if (lo_omp == NULL)
+  <br/>
+   {
+  <br/>
+   for (int i = 0, sz = lobjs-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   LoadObject *lo = lobjs-&gt;fetch (i);
+  <br/>
+   if (lo-&gt;flags &amp; SEG_FLAG_OMP)
+  <br/>
+   {
+  <br/>
+   lo_omp = lo;
+  <br/>
+   return lo_omp;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   lo_omp = createLoadObject (GTXT (&quot;&lt;OMP&gt;&quot;));
+  <br/>
+   lo_omp-&gt;type = LoadObject::SEG_TEXT;
+  <br/>
+   lo_omp-&gt;dbeFile-&gt;filetype |= DbeFile::F_FICTION;
+  <br/>
+   }
+  <br/>
+   return lo_omp; }</p>
+<p class="Pp">Function * DbeSession::get_OMP_Function (int n) {
+  <br/>
+   if (n &lt; 0 || n &gt;= OMP_LAST_STATE)
+  <br/>
+   return NULL;</p>
+<p class="Pp">
+  <br/>
+   Function *func = omp_functions-&gt;fetch (n);
+  <br/>
+   if (func == NULL)
+  <br/>
+   {
+  <br/>
+   char *fname;
+  <br/>
+   switch (n)
+  <br/>
+   {
+  <br/>
+   case OMP_OVHD_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-overhead&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case OMP_IDLE_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-idle&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case OMP_RDUC_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-reduction&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case OMP_IBAR_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-implicit_barrier&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case OMP_EBAR_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-explicit_barrier&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case OMP_LKWT_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-lock_wait&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case OMP_CTWT_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-critical_section_wait&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case OMP_ODWT_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-ordered_section_wait&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   case OMP_ATWT_STATE:
+  <br/>
+   fname = GTXT (&quot;&lt;OMP-atomic_wait&gt;&quot;);
+  <br/>
+   break;
+  <br/>
+   default:
+  <br/>
+   return NULL;
+  <br/>
+   }
+  <br/>
+   func = createFunction ();
+  <br/>
+   func-&gt;flags |= FUNC_FLAG_SIMULATED | FUNC_FLAG_NO_OFFSET;
+  <br/>
+   func-&gt;set_name (fname);</p>
+<p class="Pp">
+  <br/>
+   LoadObject *omp = get_OMP_LoadObject ();
+  <br/>
+   func-&gt;module = omp-&gt;noname;
+  <br/>
+   omp-&gt;noname-&gt;functions-&gt;append (func);
+  <br/>
+   omp-&gt;functions-&gt;append (func);
+  <br/>
+   omp_functions-&gt;store (n, func);
+  <br/>
+   }
+  <br/>
+   return func; }</p>
+<p class="Pp">// Divide the original createExperiment() into two steps // In
+    part1, we just create the data structure, in part2, if // we decide to keep
+    the experiment around, add it to various // lists in DbeSession Experiment *
+    DbeSession::createExperimentPart1 () {
+  <br/>
+   Experiment *exp = new Experiment ();
+  <br/>
+   return exp; }</p>
+<p class="Pp">void DbeSession::createExperimentPart2 (Experiment *exp) {
+  <br/>
+   int ind = expGroups-&gt;size ();
+  <br/>
+   if (ind &gt; 0)
+  <br/>
+   {
+  <br/>
+   ExpGroup *gr = expGroups-&gt;fetch (ind - 1);
+  <br/>
+   exp-&gt;groupId = gr-&gt;groupId;
+  <br/>
+   gr-&gt;append (exp);
+  <br/>
+   }
+  <br/>
+   exp-&gt;setExpIdx (exps-&gt;size ());
+  <br/>
+   exp-&gt;setUserExpId (++user_exp_id_counter);
+  <br/>
+   exps-&gt;append (exp); }</p>
+<p class="Pp">Experiment * DbeSession::createExperiment () {
+  <br/>
+   Experiment *exp = new Experiment ();
+  <br/>
+   append (exp);
+  <br/>
+   return exp; }</p>
+<p class="Pp">void DbeSession::append (Experiment *exp) {
+  <br/>
+   exp-&gt;setExpIdx (exps-&gt;size ());
+  <br/>
+   exp-&gt;setUserExpId (++user_exp_id_counter);
+  <br/>
+   exps-&gt;append (exp);
+  <br/>
+   if (exp-&gt;founder_exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;founder_exp-&gt;children_exps == NULL)
+  <br/>
+   exp-&gt;founder_exp-&gt;children_exps = new Vector&lt;Experiment *&gt;;
+  <br/>
+   exp-&gt;founder_exp-&gt;children_exps-&gt;append (exp);
+  <br/>
+   if (exp-&gt;founder_exp-&gt;groupId &gt; 0)
+  <br/>
+   {
+  <br/>
+   exp-&gt;groupId = exp-&gt;founder_exp-&gt;groupId;
+  <br/>
+   expGroups-&gt;get (exp-&gt;groupId - 1)-&gt;append (exp);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   if (exp-&gt;groupId == 0)
+  <br/>
+   {
+  <br/>
+   long ind = VecSize (expGroups);
+  <br/>
+   if (ind &gt; 0)
+  <br/>
+   {
+  <br/>
+   ExpGroup *gr = expGroups-&gt;get (ind - 1);
+  <br/>
+   exp-&gt;groupId = gr-&gt;groupId;
+  <br/>
+   gr-&gt;append (exp);
+  <br/>
+   }
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::append (Hwcentry *h) {
+  <br/>
+   if (hwcentries == NULL)
+  <br/>
+   hwcentries = new Vector&lt;Hwcentry*&gt;;
+  <br/>
+   hwcentries-&gt;append (h); }</p>
+<p class="Pp">int DbeSession::ngoodexps () {
+  <br/>
+   int cnt = 0;
+  <br/>
+   for (long i = 0, sz = VecSize (exps); i &lt; sz; i++)
+  <br/>
+   if (exps-&gt;get (i)-&gt;get_status () == Experiment::SUCCESS)
+  <br/>
+   cnt++;
+  <br/>
+   return cnt; }</p>
+<p class="Pp">int DbeSession::createView (int index, int cloneindex) {
+  <br/>
+   // ensure that there is no view with that index
+  <br/>
+   DbeView *dbev = getView (index);
+  <br/>
+   if (dbev != NULL)
+  <br/>
+   abort ();</p>
+<p class="Pp">
+  <br/>
+   // find the view to be cloned
+  <br/>
+   dbev = getView (cloneindex);
+  <br/>
+   DbeView *newview;
+  <br/>
+   if (dbev == NULL)
+  <br/>
+   newview = new DbeView (theApplication, settings, index);
+  <br/>
+   else
+  <br/>
+   newview = new DbeView (dbev, index);
+  <br/>
+   views-&gt;append (newview);
+  <br/>
+   return index; }</p>
+<p class="Pp">DbeView * DbeSession::getView (int index) {
+  <br/>
+   int i;
+  <br/>
+   DbeView *dbev;
+  <br/>
+   Vec_loop (DbeView*, views, i, dbev)
+  <br/>
+   {
+  <br/>
+   if (dbev-&gt;vindex == index)
+  <br/>
+   return dbev;
+  <br/>
+   }
+  <br/>
+   return NULL; }</p>
+<p class="Pp">void DbeSession::dropView (int index) {
+  <br/>
+   int i;
+  <br/>
+   DbeView *dbev;</p>
+<p class="Pp">
+  <br/>
+   Vec_loop (DbeView*, views, i, dbev)
+  <br/>
+   {
+  <br/>
+   if (dbev-&gt;vindex == index)
+  <br/>
+   {
+  <br/>
+   views-&gt;remove (i);
+  <br/>
+   delete dbev;
+  <br/>
+   return;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   // view not found; ignore for now }</p>
+<p class="Pp">Vector&lt;char*&gt; * DbeSession::get_group_or_expt (char *path) {
+  <br/>
+   Vector&lt;char*&gt; *exp_list = new Vector&lt;char*&gt;;
+  <br/>
+   FILE *fptr;
+  <br/>
+   char *new_path, buf[MAXPATHLEN], name[MAXPATHLEN];</p>
+<p class="Pp">
+  <br/>
+   fptr = fopen (path, NTXT (&quot;r&quot;));
+  <br/>
+   if (!fptr || !fgets (buf, (int) sizeof (buf), fptr)
+  <br/>
+   || strncmp (buf, SP_GROUP_HEADER, strlen (SP_GROUP_HEADER)))
+  <br/>
+   {
+  <br/>
+   // it's not an experiment group
+  <br/>
+   new_path = dbe_strdup (path);
+  <br/>
+   new_path = canonical_path (new_path);
+  <br/>
+   exp_list-&gt;append (new_path);
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   // it is an experiment group, read the list to get them all
+  <br/>
+   while (fgets (buf, (int) sizeof (buf), fptr))
+  <br/>
+   {
+  <br/>
+   if ((*buf != '#') &amp;&amp; (sscanf (buf, NTXT (&quot;%s&quot;), name) ==
+    1))
+  <br/>
+   {
+  <br/>
+   new_path = dbe_strdup (name);
+  <br/>
+   new_path = canonical_path (new_path);
+  <br/>
+   exp_list-&gt;append (new_path);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   if (fptr)
+  <br/>
+   fclose (fptr);
+  <br/>
+   return exp_list; }</p>
+<p class="Pp">#define GET_INT_VAL(v, s, len) for (v = len = 0; isdigit(*s); s++,
+    len++) { v = v * 10 + (*s -'0'); }</p>
+<p class="Pp">static int dir_name_cmp (const void *a, const void *b) {
+  <br/>
+   char *s1 = *((char **) a);
+  <br/>
+   char *s2 = *((char **) b);
+  <br/>
+   while (*s1)
+  <br/>
+   {
+  <br/>
+   if (isdigit (*s1) &amp;&amp; isdigit (*s2))
+  <br/>
+   {
+  <br/>
+   int v1, v2, len1, len2;
+  <br/>
+   GET_INT_VAL (v1, s1, len1);
+  <br/>
+   GET_INT_VAL (v2, s2, len2);
+  <br/>
+   if (v1 != v2)
+  <br/>
+   return v1 - v2;
+  <br/>
+   if (len1 != len2)
+  <br/>
+   return len2 - len1;
+  <br/>
+   continue;
+  <br/>
+   }
+  <br/>
+   if (*s1 != *s2)
+  <br/>
+   break;
+  <br/>
+   s1++;
+  <br/>
+   s2++;
+  <br/>
+   }
+  <br/>
+   return *s1 - *s2; }</p>
+<p class="Pp">static int read_experiment_data_in_parallel (void *arg) {
+  <br/>
+   exp_ctx *ctx = (exp_ctx *) arg;
+  <br/>
+   Experiment *dexp = ctx-&gt;exp;
+  <br/>
+   bool read_ahead = ctx-&gt;read_ahead;
+  <br/>
+   dexp-&gt;read_experiment_data (read_ahead);
+  <br/>
+   free (ctx);
+  <br/>
+   return 0; }</p>
+<p class="Pp">void DbeSession::open_experiment (Experiment *exp, char *path) {
+  <br/>
+   exp-&gt;open (path);
+  <br/>
+   if (exp-&gt;get_status () != Experiment::FAILURE)
+  <br/>
+   exp-&gt;read_experiment_data (false);
+  <br/>
+   exp-&gt;open_epilogue ();</p>
+<p class="Pp">
+  <br/>
+   // Update all DbeViews
+  <br/>
+   for (int i = 0, sz = views-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   DbeView *dbev = views-&gt;fetch (i);
+  <br/>
+   dbev-&gt;add_experiment (exp-&gt;getExpIdx (), true);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   if (exp-&gt;get_status () == Experiment::FAILURE)
+  <br/>
+   {
+  <br/>
+   check_tab_avail ();
+  <br/>
+   return;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   char *discard_tiny = getenv (NTXT
+    (&quot;SP_ANALYZER_DISCARD_TINY_EXPERIMENTS&quot;));
+  <br/>
+   int user_specified_tiny_threshold = DEFAULT_TINY_THRESHOLD; // in
+    milliseconds
+  <br/>
+   if (discard_tiny != NULL)
+  <br/>
+   {
+  <br/>
+   user_specified_tiny_threshold = (atoi (discard_tiny));
+  <br/>
+   if (user_specified_tiny_threshold &lt; 0)
+  <br/>
+   user_specified_tiny_threshold = DEFAULT_TINY_THRESHOLD;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   // Open descendant experiments
+  <br/>
+   DIR *exp_dir = opendir (path);
+  <br/>
+   if (exp_dir == NULL)
+  <br/>
+   {
+  <br/>
+   check_tab_avail ();
+  <br/>
+   return;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   Vector&lt;char*&gt; *exp_names = new Vector&lt;char*&gt;();
+  <br/>
+   struct dirent *entry = NULL;
+  <br/>
+   while ((entry = readdir (exp_dir)) != NULL)
+  <br/>
+   {
+  <br/>
+   if (entry-&gt;d_name[0] != '_')
+  <br/>
+   continue;
+  <br/>
+   size_t len = strlen (entry-&gt;d_name);
+  <br/>
+   if (len &lt; 3 || strcmp (entry-&gt;d_name + len - 3, NTXT (&quot;.er&quot;))
+    != 0)
+  <br/>
+   continue;
+  <br/>
+   exp_names-&gt;append (dbe_strdup (entry-&gt;d_name));
+  <br/>
+   }
+  <br/>
+   closedir (exp_dir);
+  <br/>
+   exp_names-&gt;sort (dir_name_cmp);
+  <br/>
+   Experiment **t_exp_list = new Experiment *[exp_names-&gt;size ()];
+  <br/>
+   int nsubexps = 0;</p>
+<p class="Pp">
+  <br/>
+   for (int j = 0, jsz = exp_names-&gt;size (); j &lt; jsz; j++)
+  <br/>
+   {
+  <br/>
+   t_exp_list[j] = NULL;</p>
+<p class="Pp">
+  <br/>
+   char *lineage_name = exp_names-&gt;fetch (j);
+  <br/>
+   struct stat64 sbuf;
+  <br/>
+   char *dpath = dbe_sprintf (NTXT (&quot;%s/%s&quot;), path, lineage_name);</p>
+<p class="Pp">
+  <br/>
+   // look for experiments with no profile collected
+  <br/>
+   if (user_specified_tiny_threshold == DEFAULT_TINY_THRESHOLD)
+  <br/>
+   {
+  <br/>
+   char *frinfoname = dbe_sprintf (NTXT (&quot;%s/%s&quot;), dpath,
+    &quot;data.&quot; SP_FRINFO_FILE);
+  <br/>
+   int st = dbe_stat (frinfoname, &amp;sbuf);
+  <br/>
+   free (frinfoname);
+  <br/>
+   if (st == 0)
+  <br/>
+   {
+  <br/>
+   // if no profile/trace data do not process this experiment any further
+  <br/>
+   if (sbuf.st_size == 0)
+  <br/>
+   {
+  <br/>
+   free (dpath);
+  <br/>
+   continue;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   { // check if dpath is a directory
+  <br/>
+   if (dbe_stat (dpath, &amp;sbuf) != 0)
+  <br/>
+   {
+  <br/>
+   free (dpath);
+  <br/>
+   continue;
+  <br/>
+   }
+  <br/>
+   else if (!S_ISDIR (sbuf.st_mode))
+  <br/>
+   {
+  <br/>
+   free (dpath);
+  <br/>
+   continue;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   size_t lineage_name_len = strlen (lineage_name);
+  <br/>
+   lineage_name[lineage_name_len - 3] = 0; /* remove .er */
+  <br/>
+   Experiment *dexp = new Experiment ();
+  <br/>
+   dexp-&gt;founder_exp = exp;
+  <br/>
+   if (user_specified_tiny_threshold &gt; DEFAULT_TINY_THRESHOLD)
+  <br/>
+   {
+  <br/>
+   dexp-&gt;setTinyThreshold (user_specified_tiny_threshold);
+  <br/>
+   dexp-&gt;open (dpath);
+  <br/>
+   if (dexp-&gt;isDiscardedTinyExperiment ())
+  <br/>
+   {
+  <br/>
+   delete dexp;
+  <br/>
+   free (dpath);
+  <br/>
+   continue;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   dexp-&gt;open (dpath);
+  <br/>
+   append (dexp);
+  <br/>
+   t_exp_list[j] = dexp;
+  <br/>
+   nsubexps++;
+  <br/>
+   dexp-&gt;set_clock (exp-&gt;clock);</p>
+<p class="Pp">
+  <br/>
+   // DbeView add_experiment() is split into two parts
+  <br/>
+   // add_subexperiment() is called repeeatedly for
+  <br/>
+   // all sub_experiments, later add_experiment_epilogue() finishes up the task
+  <br/>
+   for (int i = 0, sz = views-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   DbeView *dbev = views-&gt;fetch (i);
+  <br/>
+   bool enabled = settings-&gt;check_en_desc (lineage_name, dexp-&gt;utargname);
+  <br/>
+   dbev-&gt;add_subexperiment (dexp-&gt;getExpIdx (), enabled);
+  <br/>
+   }
+  <br/>
+   free (dpath);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   for (int i = 0, sz = views-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   DbeView *dbev = views-&gt;fetch (i);
+  <br/>
+   dbev-&gt;add_experiment_epilogue ();
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   DbeThreadPool * threadPool = new DbeThreadPool (-1);
+  <br/>
+   for (int j = 0, jsz = exp_names-&gt;size (); j &lt; jsz; j++)
+  <br/>
+   {
+  <br/>
+   if (t_exp_list[j] == NULL) continue;
+  <br/>
+   Experiment *dexp = t_exp_list[j];
+  <br/>
+   exp_ctx *new_ctx = (exp_ctx*) malloc (sizeof (exp_ctx));
+  <br/>
+   new_ctx-&gt;path = NULL;
+  <br/>
+   new_ctx-&gt;exp = dexp;
+  <br/>
+   new_ctx-&gt;ds = this;
+  <br/>
+   new_ctx-&gt;read_ahead = true;
+  <br/>
+   DbeQueue *q = new DbeQueue (read_experiment_data_in_parallel, new_ctx);
+  <br/>
+   threadPool-&gt;put_queue (q);
+  <br/>
+   }
+  <br/>
+   threadPool-&gt;wait_queues ();
+  <br/>
+   delete threadPool;</p>
+<p class="Pp">
+  <br/>
+   for (long j = 0, jsz = exp_names-&gt;size (); j &lt; jsz; j++)
+  <br/>
+   {
+  <br/>
+   if (t_exp_list[j] == NULL) continue;
+  <br/>
+   Experiment *dexp = t_exp_list[j];
+  <br/>
+   dexp-&gt;open_epilogue ();
+  <br/>
+   }
+  <br/>
+   exp_names-&gt;destroy ();
+  <br/>
+   delete[] t_exp_list;
+  <br/>
+   delete exp_names;</p>
+<p class="Pp">
+  <br/>
+   // update setting for leaklist and dataspace
+  <br/>
+   check_tab_avail (); }</p>
+<p class="Pp">void DbeSession::append_mesgs (StringBuilder *sb, char *path,
+    Experiment *exp) {
+  <br/>
+   if (exp-&gt;fetch_errors () != NULL)
+  <br/>
+   {
+  <br/>
+   // yes, there were errors
+  <br/>
+   char *ststr = pr_mesgs (exp-&gt;fetch_errors (), NTXT (&quot;&quot;), NTXT
+    (&quot;&quot;));
+  <br/>
+   sb-&gt;append (path);
+  <br/>
+   sb-&gt;append (NTXT (&quot;: &quot;));
+  <br/>
+   sb-&gt;append (ststr);
+  <br/>
+   free (ststr);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   Emsg *m = exp-&gt;fetch_warnings ();
+  <br/>
+   if (m != NULL)
+  <br/>
+   {
+  <br/>
+   sb-&gt;append (path);
+  <br/>
+   sb-&gt;append (NTXT (&quot;: &quot;));
+  <br/>
+   if (!is_interactive ())
+  <br/>
+   sb-&gt;append (GTXT (&quot;Experiment has warnings, see header for
+    details0));
+  <br/>
+   else
+  <br/>
+   sb-&gt;append (GTXT (&quot;Experiment has warnings, see experiment panel for
+    details0));
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   // Check for descendant experiments that are not loaded
+  <br/>
+   int num_desc = VecSize (exp-&gt;children_exps);
+  <br/>
+   if ((num_desc &gt; 0) &amp;&amp; !settings-&gt;check_en_desc (NULL, NULL))
+  <br/>
+   {
+  <br/>
+   char *s;
+  <br/>
+   if (!is_interactive ())
+  <br/>
+   s = dbe_sprintf (GTXT (&quot;Has %d descendant(s), use commands controlling
+    selection to load descendant data0), num_desc);
+  <br/>
+   else
+  <br/>
+   s = dbe_sprintf (GTXT (&quot;Has %d descendant(s), use filter panel to load
+    descendant data0), num_desc);
+  <br/>
+   sb-&gt;append (path);
+  <br/>
+   sb-&gt;append (NTXT (&quot;: &quot;));
+  <br/>
+   sb-&gt;append (s);
+  <br/>
+   free (s);
+  <br/>
+   } }</p>
+<p class="Pp">Experiment * DbeSession::get_exp (int exp_ind) {
+  <br/>
+   if (exp_ind &lt; 0 || exp_ind &gt;= exps-&gt;size ())
+  <br/>
+   return NULL;
+  <br/>
+   Experiment *exp = exps-&gt;fetch (exp_ind);
+  <br/>
+   exp-&gt;setExpIdx (exp_ind);
+  <br/>
+   return exp; }</p>
+<p class="Pp">Vector&lt;Vector&lt;char*&gt;*&gt; *
+    DbeSession::getExperimensGroups () {
+  <br/>
+   if (dbeSession-&gt;expGroups == NULL || dbeSession-&gt;expGroups-&gt;size ()
+    == 0)
+  <br/>
+   return NULL;
+  <br/>
+   bool compare_mode = expGroups-&gt;size () &gt; 1;
+  <br/>
+   Vector&lt;Vector&lt;char*&gt;*&gt; *groups = new
+    Vector&lt;Vector&lt;char*&gt;*&gt; (
+  <br/>
+   compare_mode ? expGroups-&gt;size () : 1);
+  <br/>
+   for (int i = 0; i &lt; expGroups-&gt;size (); i++)
+  <br/>
+   {
+  <br/>
+   ExpGroup *grp = expGroups-&gt;fetch (i);
+  <br/>
+   Vector&lt;Experiment*&gt; *founders = grp-&gt;get_founders ();
+  <br/>
+   if (founders &amp;&amp; founders-&gt;size () != 0)
+  <br/>
+   {
+  <br/>
+   Vector&lt;char *&gt; *names = new Vector&lt;char*&gt; (founders-&gt;size ());
+  <br/>
+   for (int j = 0; j &lt; founders-&gt;size (); j++)
+  <br/>
+   {
+  <br/>
+   Experiment *exp = founders-&gt;fetch (j);
+  <br/>
+   names-&gt;append (dbe_strdup (exp-&gt;get_expt_name ()));
+  <br/>
+   }
+  <br/>
+   if (compare_mode || groups-&gt;size () == 0)
+  <br/>
+   groups-&gt;append (names);
+  <br/>
+   else
+  <br/>
+   groups-&gt;fetch (0)-&gt;addAll (names);
+  <br/>
+   }
+  <br/>
+   delete founders;
+  <br/>
+   }
+  <br/>
+   return groups; }</p>
+<p class="Pp">char * DbeSession::setExperimentsGroups
+    (Vector&lt;Vector&lt;char*&gt;*&gt; *groups) {
+  <br/>
+   StringBuilder sb;
+  <br/>
+   for (int i = 0; i &lt; groups-&gt;size (); i++)
+  <br/>
+   {
+  <br/>
+   Vector&lt;char *&gt; *names = groups-&gt;fetch (i);
+  <br/>
+   ExpGroup *grp;
+  <br/>
+   if (names-&gt;size () == 1)
+  <br/>
+   grp = new ExpGroup (names-&gt;fetch (0));
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   char *nm = dbe_sprintf (GTXT (&quot;Group %d&quot;), i + 1);
+  <br/>
+   grp = new ExpGroup (nm);
+  <br/>
+   free (nm);
+  <br/>
+   }
+  <br/>
+   expGroups-&gt;append (grp);
+  <br/>
+   grp-&gt;groupId = expGroups-&gt;size ();</p>
+<p class="Pp">
+  <br/>
+   for (int j = 0; j &lt; names-&gt;size (); j++)
+  <br/>
+   {
+  <br/>
+   char *path = names-&gt;fetch (j);
+  <br/>
+   size_t len = strlen (path);
+  <br/>
+   if ((len &gt; 4) &amp;&amp; !strcmp (path + len - 4, NTXT
+    (&quot;.erg&quot;)))
+  <br/>
+   {
+  <br/>
+   Vector&lt;char*&gt; *lst = get_group_or_expt (path);
+  <br/>
+   for (int j1 = 0; j1 &lt; lst-&gt;size (); j1++)
+  <br/>
+   {
+  <br/>
+   Experiment *exp = new Experiment ();
+  <br/>
+   append (exp);
+  <br/>
+   open_experiment (exp, lst-&gt;get (j1));
+  <br/>
+   if (exp-&gt;get_status () == Experiment::FAILURE)
+  <br/>
+   append_mesgs (&amp;sb, path, exp);
+  <br/>
+   }
+  <br/>
+   lst-&gt;destroy ();
+  <br/>
+   delete lst;
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   Experiment *exp = new Experiment ();
+  <br/>
+   append (exp);
+  <br/>
+   open_experiment (exp, path);
+  <br/>
+   if (exp-&gt;get_status () == Experiment::FAILURE)
+  <br/>
+   append_mesgs (&amp;sb, path, exp);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   for (int i = 0, sz = views-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   DbeView *dbev = views-&gt;fetch (i);
+  <br/>
+   dbev-&gt;update_advanced_filter ();
+  <br/>
+   int cmp = dbev-&gt;get_settings ()-&gt;get_compare_mode ();
+  <br/>
+   dbev-&gt;set_compare_mode (CMP_DISABLE);
+  <br/>
+   dbev-&gt;set_compare_mode (cmp);
+  <br/>
+   }
+  <br/>
+   return sb.length () == 0 ? NULL : sb.toString (); }</p>
+<p class="Pp">char * DbeSession::drop_experiment (int exp_ind) {
+  <br/>
+   DbeView *dbev;
+  <br/>
+   int index;
+  <br/>
+   Experiment *exp2;</p>
+<p class="Pp">
+  <br/>
+   status_ompavail = -1;
+  <br/>
+   Experiment *exp = exps-&gt;fetch (exp_ind);</p>
+<p class="Pp">
+  <br/>
+   // If this is a sub experiment, don't do it
+  <br/>
+   if (exp-&gt;founder_exp != NULL) // this is a sub experiment; don't do it
+  <br/>
+   return (dbe_strdup (GTXT (&quot;Can not drop subexperiments&quot;)));</p>
+<p class="Pp">
+  <br/>
+   if (VecSize (exp-&gt;children_exps) &gt; 0)
+  <br/>
+   for (;;)
+  <br/>
+   {
+  <br/>
+   // search the list of experiments to find all that have this one as founder
+  <br/>
+   bool found = false;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp2)
+  <br/>
+   {
+  <br/>
+   if (exp2-&gt;founder_exp == exp)
+  <br/>
+   {
+  <br/>
+   exp2-&gt;founder_exp = NULL;
+  <br/>
+   drop_experiment (index);
+  <br/>
+   found = true;
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   if (found == false)
+  <br/>
+   break;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   // then proceed to finish the drop
+  <br/>
+   Vec_loop (DbeView*, views, index, dbev)
+  <br/>
+   {
+  <br/>
+   dbev-&gt;drop_experiment (exp_ind);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   int old_cnt = expGroups-&gt;size ();
+  <br/>
+   for (int i = 0; i &lt; old_cnt; i++)
+  <br/>
+   {
+  <br/>
+   ExpGroup *gr = expGroups-&gt;fetch (i);
+  <br/>
+   if (gr-&gt;groupId == exp-&gt;groupId)
+  <br/>
+   {
+  <br/>
+   gr-&gt;drop_experiment (exp);
+  <br/>
+   if ((gr-&gt;founder == NULL) &amp;&amp; (gr-&gt;exps-&gt;size () == 0))
+  <br/>
+   {
+  <br/>
+   delete gr;
+  <br/>
+   expGroups-&gt;remove (i);
+  <br/>
+   }
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   delete exps-&gt;remove (exp_ind);
+  <br/>
+   if (old_cnt != expGroups-&gt;size ())
+  <br/>
+   {
+  <br/>
+   for (int i = 0, sz = expGroups-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   ExpGroup *gr = expGroups-&gt;fetch (i);
+  <br/>
+   gr-&gt;groupId = i + 1;
+  <br/>
+   Vector&lt;Experiment*&gt; *expList = gr-&gt;exps;
+  <br/>
+   for (int i1 = 0, sz1 = expList-&gt;size (); i1 &lt; sz1; i1++)
+  <br/>
+   expList-&gt;fetch (i1)-&gt;groupId = gr-&gt;groupId;
+  <br/>
+   }
+  <br/>
+   for (int i = 0, sz = views-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   dbev = views-&gt;fetch (i);
+  <br/>
+   int cmp = dbev-&gt;get_compare_mode ();
+  <br/>
+   dbev-&gt;set_compare_mode (CMP_DISABLE);
+  <br/>
+   dbev-&gt;set_compare_mode (cmp);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   check_tab_avail (); // update tab availability
+  <br/>
+   return NULL; }</p>
+<p class="Pp">int DbeSession::find_experiment (char *path) {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (strcmp (exp-&gt;get_expt_name (), path) == 0)
+  <br/>
+   return exp-&gt;getExpIdx ();
+  <br/>
+   }
+  <br/>
+   return -1; }</p>
+<p class="Pp">LoadObject * DbeSession::createLoadObject (const char *nm, int64_t
+    cksum) {
+  <br/>
+   return loadObjMap-&gt;sync_create_item (nm, cksum); }</p>
+<p class="Pp">LoadObject * DbeSession::createLoadObject (const char *nm, const
+    char *runTimePath, DbeFile *df) {
+  <br/>
+   return loadObjMap-&gt;sync_create_item (nm, runTimePath, df); }</p>
+<p class="Pp">void DbeSession::append (LoadObject *lobj) {
+  <br/>
+   Histable *obj = lobj; // workaround for a C++ problem
+  <br/>
+   objs-&gt;append (obj);
+  <br/>
+   lobj-&gt;id = objs-&gt;size () - 1;
+  <br/>
+   lobjs-&gt;append (lobj);
+  <br/>
+   lobj-&gt;seg_idx = lobjs-&gt;size () - 1;
+  <br/>
+   char *loname = lobj-&gt;get_pathname ();
+  <br/>
+   dbeFiles-&gt;put (loname, lobj-&gt;dbeFile); }</p>
+<p class="Pp">DbeJarFile * DbeSession::get_JarFile (const char *name) {
+  <br/>
+   DbeJarFile *jf = dbeJarFiles-&gt;get (name);
+  <br/>
+   if (jf == NULL)
+  <br/>
+   {
+  <br/>
+   jf = new DbeJarFile (name);
+  <br/>
+   dbeJarFiles-&gt;put (name, jf);
+  <br/>
+   }
+  <br/>
+   return jf; }</p>
+<p class="Pp">Module * DbeSession::createModule (LoadObject *lo, const char *nm)
+    {
+  <br/>
+   Module *mod = new Module ();
+  <br/>
+   Histable *obj = mod; // workaround for a C++ problem
+  <br/>
+   objs-&gt;append (obj);
+  <br/>
+   mod-&gt;id = objs-&gt;size () - 1;
+  <br/>
+   mod-&gt;loadobject = lo;
+  <br/>
+   mod-&gt;set_name (dbe_strdup (nm ? nm : localized_SP_UNKNOWN_NAME));
+  <br/>
+   lo-&gt;seg_modules-&gt;append (mod);
+  <br/>
+   return mod; }</p>
+<p class="Pp">Module * DbeSession::createUnknownModule (LoadObject *lo) {
+  <br/>
+   Module *mod = createModule (lo, localized_SP_UNKNOWN_NAME);
+  <br/>
+   mod-&gt;flags |= MOD_FLAG_UNKNOWN;
+  <br/>
+   mod-&gt;set_file_name (dbe_strdup (localized_SP_UNKNOWN_NAME));
+  <br/>
+   return mod; }</p>
+<p class="Pp">SourceFile * DbeSession::createSourceFile (const char *_path) {
+  <br/>
+   char *path = (char *) _path;
+  <br/>
+   if (strncmp (path, NTXT (&quot;./&quot;), 2) == 0)
+  <br/>
+   path += 2;
+  <br/>
+   SourceFile *source = sourcesMap-&gt;get (path);
+  <br/>
+   if (source == NULL)
+  <br/>
+   {
+  <br/>
+   source = new SourceFile (path);
+  <br/>
+   (void) sourcesMap-&gt;put (path, source);
+  <br/>
+   append (source);
+  <br/>
+   }
+  <br/>
+   return source; }</p>
+<p class="Pp">Function * DbeSession::createFunction () {
+  <br/>
+   Function *func = new Function (objs-&gt;size ());
+  <br/>
+   Histable *obj = func; // workaround for a C++ problem
+  <br/>
+   objs-&gt;append (obj);
+  <br/>
+   return func; }</p>
+<p class="Pp">JMethod * DbeSession::createJMethod () {
+  <br/>
+   JMethod *jmthd = new JMethod (objs-&gt;size ());
+  <br/>
+   Histable *obj = jmthd; // workaround for a C++ problem
+  <br/>
+   objs-&gt;append (obj);
+  <br/>
+   return jmthd; }</p>
+<p class="Pp">Module * DbeSession::createClassFile (char *className) {
+  <br/>
+   ClassFile *cls = new ClassFile ();
+  <br/>
+   cls-&gt;set_name (className);
+  <br/>
+   char *clpath = cls-&gt;get_java_file_name (className, true);
+  <br/>
+   cls-&gt;dbeFile = getDbeFile (clpath, DbeFile::F_JAVACLASS);
+  <br/>
+   free (clpath);
+  <br/>
+   Histable *obj = cls; // workaround for a C++ problem
+  <br/>
+   objs-&gt;append (obj);
+  <br/>
+   cls-&gt;id = objs-&gt;size () - 1;
+  <br/>
+   return cls; }</p>
+<p class="Pp">Histable * DbeSession::createHistObject (Histable::Type type) {
+  <br/>
+   switch (type)
+  <br/>
+   {
+  <br/>
+   case Histable::DOBJECT:
+  <br/>
+   {
+  <br/>
+   DataObject *dataobj = new DataObject ();
+  <br/>
+   dobjs-&gt;append (dataobj);
+  <br/>
+   dataobj-&gt;id = dobjs-&gt;size () - 1;
+  <br/>
+   return dataobj;
+  <br/>
+   }
+  <br/>
+   default:
+  <br/>
+   assert (0);
+  <br/>
+   }
+  <br/>
+   return NULL; }</p>
+<p class="Pp">DataObject * DbeSession::createDataObject () {
+  <br/>
+   DataObject *dataobj = new DataObject ();
+  <br/>
+   dobjs-&gt;append (dataobj);
+  <br/>
+   dataobj-&gt;id = dobjs-&gt;size () - 1;
+  <br/>
+   return dataobj; }</p>
+<p class="Pp">DataObject * DbeSession::createDataObject (DataObject *dobj,
+    DataObject *parent) {
+  <br/>
+   DataObject *dataobj = new DataObject ();
+  <br/>
+   dataobj-&gt;size = dobj-&gt;size;
+  <br/>
+   dataobj-&gt;offset = dobj-&gt;offset;
+  <br/>
+   dataobj-&gt;parent = parent;
+  <br/>
+   dataobj-&gt;set_dobjname (dobj-&gt;get_typename (), dobj-&gt;get_instname
+    ());
+  <br/>
+   dobjs-&gt;append (dataobj);
+  <br/>
+   dataobj-&gt;id = dobjs-&gt;size () - 1;
+  <br/>
+   return dataobj; }</p>
+<p class="Pp">DataObject * DbeSession::createMasterDataObject (DataObject *dobj)
+    {
+  <br/>
+   DataObject *parent = NULL;
+  <br/>
+   if (dobj-&gt;parent)
+  <br/>
+   { // define master parent first
+  <br/>
+   parent = find_dobj_master (dobj-&gt;parent);
+  <br/>
+   if (!parent)
+  <br/>
+   { // clone master from this dataobject parent
+  <br/>
+   parent = createDataObject (dobj-&gt;parent);
+  <br/>
+   parent-&gt;scope = NULL; // master is scope-less
+  <br/>
+   Dprintf (DEBUG_DATAOBJ,
+  <br/>
+   &quot;Master DataObject(%llu) cloned from (%llu) %s0,
+  <br/>
+   (ull_t) parent-&gt;id, (ull_t) dobj-&gt;parent-&gt;id,
+  <br/>
+   dobj-&gt;parent-&gt;get_name ());
+  <br/>
+   // clone master DataObject elements
+  <br/>
+   Vector&lt;DataObject*&gt; *delem = get_dobj_elements (dobj-&gt;parent);
+  <br/>
+   int element_index = 0;
+  <br/>
+   DataObject *element = NULL;
+  <br/>
+   Vec_loop (DataObject*, delem, element_index, element)
+  <br/>
+   {
+  <br/>
+   DataObject *master_element = createDataObject (element, parent);
+  <br/>
+   master_element-&gt;scope = NULL; // master is scope-less
+  <br/>
+   Dprintf (DEBUG_DATAOBJ,
+  <br/>
+   &quot;Member DataObject(%llu) cloned from (%llu) %s0,
+  <br/>
+   (ull_t) master_element-&gt;id, (ull_t) element-&gt;id,
+  <br/>
+   element-&gt;get_name ());
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   Dprintf (DEBUG_DATAOBJ, &quot;Master DataObject(%llu) clone found (%llu) %s0,
+  <br/>
+   (ull_t) parent-&gt;id, (ull_t) dobj-&gt;parent-&gt;id,
+  <br/>
+   dobj-&gt;parent-&gt;get_name ());
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   DataObject *master = find_dobj_master (dobj);
+  <br/>
+   if (!master)
+  <br/>
+   { // clone master from this dataobject
+  <br/>
+   master = createDataObject (dobj, parent);
+  <br/>
+   master-&gt;scope = NULL; // master is scope-less
+  <br/>
+   Dprintf (DEBUG_DATAOBJ, &quot;Master DataObject(%llu) cloned from (%llu) %s0,
+  <br/>
+   (ull_t) master-&gt;id, (ull_t) dobj-&gt;id, dobj-&gt;get_name ());
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   Dprintf (DEBUG_DATAOBJ, &quot;Master DataObject(%llu) clone found (%llu) %s0,
+  <br/>
+   (ull_t) master-&gt;id, (ull_t) dobj-&gt;id, dobj-&gt;get_name ());
+  <br/>
+   return master; }</p>
+<p class="Pp">void DbeSession::insert_metric (BaseMetric *mtr,
+    Vector&lt;BaseMetric*&gt; *mlist) {
+  <br/>
+   if ((mtr-&gt;get_flavors () &amp; Metric::STATIC) == 0)
+  <br/>
+   {
+  <br/>
+   // insert in front of the first STATIC
+  <br/>
+   for (int i = 0, mlist_sz = mlist-&gt;size (); i &lt; mlist_sz; i++)
+  <br/>
+   {
+  <br/>
+   BaseMetric *m = mlist-&gt;fetch (i);
+  <br/>
+   if (m-&gt;get_flavors () &amp; Metric::STATIC)
+  <br/>
+   {
+  <br/>
+   mlist-&gt;insert (i, mtr);
+  <br/>
+   return;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   mlist-&gt;append (mtr); }</p>
+<p class="Pp">BaseMetricTreeNode* DbeSession::get_reg_metrics_tree () {
+  <br/>
+   if (reg_metrics_tree == NULL)
+  <br/>
+   // Can't init earlier because BaseMetric() requires DbeSession::ql_parse
+  <br/>
+   reg_metrics_tree = new BaseMetricTreeNode ();
+  <br/>
+   return reg_metrics_tree; }</p>
+<p class="Pp">void DbeSession::update_metric_tree (BaseMetric *m) {
+  <br/>
+   get_reg_metrics_tree ()-&gt;register_metric (m); }</p>
+<p class="Pp">BaseMetric * DbeSession::register_metric_expr (BaseMetric::Type
+    type, char *cmd, char *expr_spec) {
+  <br/>
+   BaseMetric *m = find_metric (type, cmd, expr_spec);
+  <br/>
+   if (m)
+  <br/>
+   return m;
+  <br/>
+   BaseMetric *bm = find_metric (type, cmd, NULL); // clone this version
+  <br/>
+   m = new BaseMetric (*bm);
+  <br/>
+   m-&gt;set_expr_spec (expr_spec);
+  <br/>
+   insert_metric (m, reg_metrics);
+  <br/>
+   return m; }</p>
+<p class="Pp">BaseMetric * DbeSession::register_metric (BaseMetric::Type type) {
+  <br/>
+   BaseMetric *m = find_metric (type, NULL, NULL);
+  <br/>
+   if (m)
+  <br/>
+   return m;
+  <br/>
+   m = new BaseMetric (type);
+  <br/>
+   insert_metric (m, reg_metrics);
+  <br/>
+   update_metric_tree (m);
+  <br/>
+   return m; }</p>
+<p class="Pp">BaseMetric * DbeSession::register_metric (Hwcentry *ctr, const
+    char* aux, const char* username) {
+  <br/>
+   BaseMetric *m = find_metric (BaseMetric::HWCNTR, aux, NULL);
+  <br/>
+   if (m)
+  <br/>
+   // That may be a problem when metrics aren't an exact match.
+  <br/>
+   // For example, memoryspace is disabled in one experiment and not in another.
+  <br/>
+   return m;
+  <br/>
+   if (ctr-&gt;timecvt)
+  <br/>
+   {
+  <br/>
+   char *time_cmd = dbe_sprintf (NTXT (&quot;t%s&quot;), aux);
+  <br/>
+   char *time_username = dbe_sprintf (GTXT (&quot;%s Time&quot;),
+  <br/>
+   ctr-&gt;metric ? ctr-&gt;metric :
+  <br/>
+   (ctr-&gt;name ? ctr-&gt;name : ctr-&gt;int_name));
+  <br/>
+   BaseMetric *m1;
+  <br/>
+   if (ipc_mode)
+  <br/>
+   {
+  <br/>
+   // Two visible metrics are presented in GUI
+  <br/>
+   m1 = new BaseMetric (ctr, aux, time_cmd, time_username, VAL_TIMEVAL);
+  <br/>
+   insert_metric (m1, reg_metrics);
+  <br/>
+   update_metric_tree (m1);
+  <br/>
+   m = new BaseMetric (ctr, aux, username, VAL_VALUE, m1);
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   // Only one visible metric is presented in er_print
+  <br/>
+   m1 = new BaseMetric (ctr, aux, time_cmd, time_username, VAL_TIMEVAL |
+    VAL_INTERNAL);
+  <br/>
+   insert_metric (m1, reg_metrics);
+  <br/>
+   m = new BaseMetric (ctr, aux, username, VAL_TIMEVAL | VAL_VALUE, m1);
+  <br/>
+   }
+  <br/>
+   free (time_cmd);
+  <br/>
+   free (time_username);
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   m = new BaseMetric (ctr, aux, username, VAL_VALUE);
+  <br/>
+   insert_metric (m, reg_metrics);
+  <br/>
+   update_metric_tree (m);
+  <br/>
+   return m; }</p>
+<p class="Pp">BaseMetric * DbeSession::register_metric (char *name, char
+    *username, char *_def) {
+  <br/>
+   BaseMetric *m = find_metric (BaseMetric::DERIVED, name, NULL);
+  <br/>
+   if (m)
+  <br/>
+   return m;
+  <br/>
+   Definition *p = Definition::add_definition (_def);
+  <br/>
+   if (p == NULL)
+  <br/>
+   return NULL;
+  <br/>
+   m = new BaseMetric (name, username, p);
+  <br/>
+   insert_metric (m, reg_metrics);
+  <br/>
+   update_metric_tree (m);
+  <br/>
+   return m; }</p>
+<p class="Pp">void DbeSession::drop_metric (BaseMetric *mtr) {
+  <br/>
+   Countable *cnt;
+  <br/>
+   int index;</p>
+<p class="Pp">
+  <br/>
+   Vec_loop (Countable*, metrics, index, cnt)
+  <br/>
+   {
+  <br/>
+   if (mtr == (BaseMetric *) cnt-&gt;item)
+  <br/>
+   {
+  <br/>
+   cnt-&gt;ref_count--;
+  <br/>
+   if (cnt-&gt;ref_count == 0)
+  <br/>
+   {
+  <br/>
+   // Remove this metric from all views
+  <br/>
+   DbeView *dbev;
+  <br/>
+   int index2;
+  <br/>
+   Vec_loop (DbeView*, views, index2, dbev)
+  <br/>
+   {
+  <br/>
+   dbev-&gt;reset_metrics ();
+  <br/>
+   }
+  <br/>
+   delete metrics-&gt;remove (index);
+  <br/>
+   delete mtr;
+  <br/>
+   return;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   } }</p>
+<p class="Pp">BaseMetric * DbeSession::find_metric (BaseMetric::Type type, const
+    char *cmd, const char *expr_spec) {
+  <br/>
+   for (int i = 0, sz = reg_metrics-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   BaseMetric *bm = reg_metrics-&gt;fetch (i);
+  <br/>
+   if (bm-&gt;get_type () == type &amp;&amp; dbe_strcmp (bm-&gt;get_expr_spec
+    (), expr_spec) == 0)
+  <br/>
+   {
+  <br/>
+   if ((type == BaseMetric::DERIVED || type == BaseMetric::HWCNTR)
+  <br/>
+   &amp;&amp; dbe_strcmp (bm-&gt;get_cmd (), cmd) != 0)
+  <br/>
+   continue;
+  <br/>
+   return bm;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   return NULL; }</p>
+<p class="Pp">BaseMetric * DbeSession::find_base_reg_metric (char * mcmd) {
+  <br/>
+   for (int i = 0, sz = reg_metrics-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   BaseMetric *bm = reg_metrics-&gt;fetch (i);
+  <br/>
+   if (bm-&gt;get_expr_spec () != NULL)
+  <br/>
+   continue; // skip compare metrics
+  <br/>
+   if (dbe_strcmp (bm-&gt;get_cmd (), mcmd) == 0)
+  <br/>
+   return bm;
+  <br/>
+   }
+  <br/>
+   return NULL; }</p>
+<p class="Pp">Vector&lt;BaseMetric*&gt; * DbeSession::get_base_reg_metrics () {
+  <br/>
+   Vector&lt;BaseMetric*&gt; *mlist = new Vector&lt;BaseMetric*&gt;;
+  <br/>
+   Vector&lt;BaseMetric*&gt; *ml = get_all_reg_metrics ();
+  <br/>
+   for (int i = 0, sz = ml-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   BaseMetric *m = ml-&gt;fetch (i);
+  <br/>
+   if (m-&gt;get_expr_spec () == NULL)
+  <br/>
+   mlist-&gt;append (m);
+  <br/>
+   }
+  <br/>
+   return mlist; }</p>
+<p class="Pp">void DbeSession::check_tab_avail () {
+  <br/>
+   DbeView *dbev;
+  <br/>
+   int index;
+  <br/>
+   // tell the views to update their tab lists
+  <br/>
+   Vec_loop (DbeView*, views, index, dbev)
+  <br/>
+   {
+  <br/>
+   dbev-&gt;get_settings ()-&gt;updateTabAvailability ();
+  <br/>
+   } }</p>
+<p class="Pp">bool DbeSession::is_datamode_available () {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;dataspaceavail)
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::is_leaklist_available () {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;leaklistavail)
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::is_heapdata_available () {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;heapdataavail)
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::is_iodata_available () {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;iodataavail)
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::is_racelist_available () {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;racelistavail)
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::is_deadlocklist_available () {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;deadlocklistavail)
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::is_timeline_available () {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;timelineavail)
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::is_ifreq_available () {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   if (exp-&gt;ifreqavail)
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::is_omp_available () {
+  <br/>
+   if (status_ompavail == -1)
+  <br/>
+   {
+  <br/>
+   status_ompavail = 0;
+  <br/>
+   for (int i = 0, sz = exps ? exps-&gt;size () : 0; i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   Experiment *exp = exps-&gt;fetch (i);
+  <br/>
+   if (exp-&gt;ompavail)
+  <br/>
+   {
+  <br/>
+   status_ompavail = 1;
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   return status_ompavail == 1; }</p>
+<p class="Pp">bool DbeSession::has_java () {
+  <br/>
+   int status_has_java = 0;
+  <br/>
+   for (int i = 0, sz = exps ? exps-&gt;size () : 0; i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   Experiment *exp = exps-&gt;fetch (i);
+  <br/>
+   if (exp-&gt;has_java)
+  <br/>
+   {
+  <br/>
+   status_has_java = 1;
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   return status_has_java == 1; }</p>
+<p class="Pp">bool DbeSession::has_ompavail () {
+  <br/>
+   int status_has_ompavail = 0;
+  <br/>
+   for (int i = 0, sz = exps ? exps-&gt;size () : 0; i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   Experiment *exp = exps-&gt;fetch (i);
+  <br/>
+   if (exp-&gt;ompavail)
+  <br/>
+   {
+  <br/>
+   status_has_ompavail = 1;
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   return status_has_ompavail == 1; }</p>
+<p class="Pp">int DbeSession::get_clock (int whichexp) {
+  <br/>
+   // XXXX clock frequency should be an attribute of each CPU,
+  <br/>
+   // XXX and not a property of the session
+  <br/>
+   // if whichexp is -1, pick the first exp that has a clock
+  <br/>
+   // otherwise return the clock from the numbered experiment
+  <br/>
+   Experiment *exp;
+  <br/>
+   if (whichexp != -1)
+  <br/>
+   {
+  <br/>
+   exp = get_exp (whichexp);
+  <br/>
+   if (exp != NULL)
+  <br/>
+   return exp-&gt;clock;
+  <br/>
+   return 0;
+  <br/>
+   }
+  <br/>
+   int n = nexps ();
+  <br/>
+   for (int i = 0; i &lt; n; i++)
+  <br/>
+   {
+  <br/>
+   exp = get_exp (i);
+  <br/>
+   if (exp != NULL &amp;&amp; exp-&gt;clock != 0)
+  <br/>
+   return exp-&gt;clock;
+  <br/>
+   }
+  <br/>
+   return 0; }</p>
+<p class="Pp">LoadObject * DbeSession::find_lobj_by_name (const char *lobj_name,
+    int64_t cksum) {
+  <br/>
+   return loadObjMap-&gt;get (lobj_name, cksum); }</p>
+<p class="Pp">static unsigned hash (char *s) {
+  <br/>
+   unsigned res = 0;
+  <br/>
+   for (int i = 0; i &lt; 64 &amp;&amp; *s; i++)
+  <br/>
+   res = res * 13 + *s++;
+  <br/>
+   return res; }</p>
+<p class="Pp">// This method is introduced to fix performance // problems with
+    the data space profiling in the // current release. A better design is
+    desired. void DbeSession::dobj_updateHT (DataObject *dobj) {
+  <br/>
+   unsigned index = hash (dobj-&gt;get_unannotated_name ()) % HTableSize;
+  <br/>
+   List *list = new List;
+  <br/>
+   list-&gt;val = (void*) dobj;
+  <br/>
+   list-&gt;next = dnameHTable[index];
+  <br/>
+   dnameHTable[index] = list; }</p>
+<p class="Pp">DataObject * DbeSession::find_dobj_by_name (char *dobj_name) {
+  <br/>
+   unsigned index = hash (dobj_name) % HTableSize;
+  <br/>
+   List *list = dnameHTable[index];
+  <br/>
+   for (; list; list = list-&gt;next)
+  <br/>
+   {
+  <br/>
+   DataObject *d = (DataObject*) list-&gt;val;
+  <br/>
+   if (strcmp (d-&gt;get_unannotated_name (), dobj_name) == 0)
+  <br/>
+   return d;
+  <br/>
+   }
+  <br/>
+   return (DataObject *) NULL; }</p>
+<p class="Pp">DataObject * DbeSession::find_dobj_match (DataObject *dobj) {
+  <br/>
+   char *dobj_name = dobj-&gt;get_unannotated_name ();
+  <br/>
+   unsigned index = hash (dobj_name) % HTableSize;
+  <br/>
+   List *list = dnameHTable[index];
+  <br/>
+   for (; list; list = list-&gt;next)
+  <br/>
+   {
+  <br/>
+   DataObject *d = (DataObject*) list-&gt;val;
+  <br/>
+   if (strcmp (d-&gt;get_unannotated_name (), dobj_name) == 0
+  <br/>
+   &amp;&amp; d-&gt;size == dobj-&gt;size &amp;&amp; d-&gt;offset ==
+    dobj-&gt;offset
+  <br/>
+   &amp;&amp; d-&gt;scope == dobj-&gt;scope)
+  <br/>
+   return d;
+  <br/>
+   }
+  <br/>
+   return (DataObject *) NULL; }</p>
+<p class="Pp">DataObject * DbeSession::find_dobj_master (DataObject *dobj) {
+  <br/>
+   char *dobj_name = dobj-&gt;get_unannotated_name ();
+  <br/>
+   unsigned index = hash (dobj_name) % HTableSize;
+  <br/>
+   List *list = dnameHTable[index];
+  <br/>
+   for (; list; list = list-&gt;next)
+  <br/>
+   {
+  <br/>
+   DataObject *d = (DataObject*) list-&gt;val;
+  <br/>
+   // XXXX should parent also match?
+  <br/>
+   if (strcmp (d-&gt;get_unannotated_name (), dobj_name) == 0
+  <br/>
+   &amp;&amp; d-&gt;size == dobj-&gt;size &amp;&amp; d-&gt;offset ==
+    dobj-&gt;offset
+  <br/>
+   &amp;&amp; d-&gt;master == NULL &amp;&amp; d-&gt;scope == NULL)
+  <br/>
+   return d;
+  <br/>
+   }
+  <br/>
+   return (DataObject *) NULL; }</p>
+<p class="Pp">Vector&lt;DataObject*&gt;* DbeSession::get_dobj_elements
+    (DataObject *dobj) {
+  <br/>
+   DataObject *d;
+  <br/>
+   int index;
+  <br/>
+   Vector&lt;DataObject*&gt; *elements = new Vector&lt;DataObject*&gt;;
+  <br/>
+   if (dobj == d_total)
+  <br/>
+   return elements;
+  <br/>
+   Vec_loop (DataObject*, dobjs, index, d)
+  <br/>
+   {
+  <br/>
+   if (d-&gt;get_parent () &amp;&amp; d-&gt;get_parent () == dobj)
+  <br/>
+   elements-&gt;append (d);
+  <br/>
+   }
+  <br/>
+   return elements; }</p>
+<p class="Pp">Vector&lt;LoadObject*&gt;* DbeSession::get_text_segments () {
+  <br/>
+   LoadObject *lo;
+  <br/>
+   int index;
+  <br/>
+   Vector&lt;LoadObject*&gt; *tlobjs = new Vector&lt;LoadObject*&gt;;
+  <br/>
+   Vec_loop (LoadObject*, lobjs, index, lo)
+  <br/>
+   {
+  <br/>
+   if (lo-&gt;type == LoadObject::SEG_TEXT)
+  <br/>
+   tlobjs-&gt;append (lo);
+  <br/>
+   }
+  <br/>
+   return tlobjs; }</p>
+<p class="Pp">static long long getNumber (const char *s, char * &amp;last) {
+  <br/>
+   long long val;
+  <br/>
+   char *sp;
+  <br/>
+   errno = 0;
+  <br/>
+   val = strtoll (s, &amp;sp, 0);
+  <br/>
+   if (errno == EINVAL)
+  <br/>
+   last = NULL;
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   while (isspace (*sp))
+  <br/>
+   sp++;
+  <br/>
+   last = sp;
+  <br/>
+   }
+  <br/>
+   return (val); }</p>
+<p class="Pp">bool DbeSession::find_obj (FILE *dis_file, FILE *inp_file,
+    Histable *&amp;obj,
+  <br/>
+   char *name, const char *sel, Histable::Type type, bool xdefault) {
+  <br/>
+   Vector&lt;Histable*&gt; *obj_lst;
+  <br/>
+   int which = -1;
+  <br/>
+   char *last = NULL;
+  <br/>
+   if (type != Histable::FUNCTION &amp;&amp; sel)
+  <br/>
+   {
+  <br/>
+   // check that a number has been provided
+  <br/>
+   which = (int) getNumber (sel, last);
+  <br/>
+   if (last == NULL || *last != '&#x00A0;')
+  <br/>
+   {
+  <br/>
+   fprintf (stderr, GTXT (&quot;Error: Invalid number entered: %s0), sel);
+  <br/>
+   sel = NULL;
+  <br/>
+   which = 0;
+  <br/>
+   }
+  <br/>
+   which--;
+  <br/>
+   }
+  <br/>
+   obj_lst = new Vector&lt;Histable*&gt;;
+  <br/>
+   switch (type)
+  <br/>
+   {
+  <br/>
+   case Histable::FUNCTION:
+  <br/>
+   obj = map_NametoFunction (name, obj_lst, sel);
+  <br/>
+   break;
+  <br/>
+   case Histable::MODULE:
+  <br/>
+   obj = map_NametoModule (name, obj_lst, which);
+  <br/>
+   break;
+  <br/>
+   case Histable::LOADOBJECT:
+  <br/>
+   obj = map_NametoLoadObject (name, obj_lst, which);
+  <br/>
+   break;
+  <br/>
+   case Histable::DOBJECT:
+  <br/>
+   obj = map_NametoDataObject (name, obj_lst, which);
+  <br/>
+   break;
+  <br/>
+   default:
+  <br/>
+   abort (); // unexpected Histable!
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   if ((obj == NULL) &amp;&amp; (obj_lst-&gt;size () &gt; 0))
+  <br/>
+   {
+  <br/>
+   if (obj_lst-&gt;size () == 1)
+  <br/>
+   which = 0;
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   if (sel &amp;&amp; (which &lt; 0 || which &gt;= obj_lst-&gt;size ()))
+  <br/>
+   fprintf (stderr, GTXT (&quot;Error: Invalid number entered: %s0), sel);
+  <br/>
+   if (xdefault)
+  <br/>
+   {
+  <br/>
+   fprintf (stderr, GTXT (&quot;Default selection
+  <br/>
+   which = 0;
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   which = ask_which (dis_file, inp_file, obj_lst, name);
+  <br/>
+   if (which == -1)
+  <br/>
+   {
+  <br/>
+   delete obj_lst;
+  <br/>
+   return false;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   obj = obj_lst-&gt;fetch (which);
+  <br/>
+   }
+  <br/>
+   delete obj_lst;
+  <br/>
+   return true; }</p>
+<p class="Pp">int DbeSession::ask_which (FILE *dis_file, FILE *inp_file,
+  <br/>
+   Vector&lt;Histable*&gt; *list, char *name) {
+  <br/>
+   Histable *hitem;
+  <br/>
+   Function *func;
+  <br/>
+   Module *module;
+  <br/>
+   int which, index, index1;
+  <br/>
+   char *item_name, *lo_name, *fname, *last;
+  <br/>
+   char buf[BUFSIZ];
+  <br/>
+   for (;;)
+  <br/>
+   {
+  <br/>
+   fprintf (dis_file, GTXT (&quot;Available name list:0));
+  <br/>
+   fprintf (dis_file, GTXT (&quot;%8d) Cancel0), 0);
+  <br/>
+   Vec_loop (Histable*, list, index, hitem)
+  <br/>
+   {
+  <br/>
+   index1 = index + 1;
+  <br/>
+   item_name = hitem-&gt;get_name ();
+  <br/>
+   switch (hitem-&gt;get_type ())
+  <br/>
+   {
+  <br/>
+   case Histable::FUNCTION:
+  <br/>
+   func = (Function *) hitem;
+  <br/>
+   module = func-&gt;module;</p>
+<p class="Pp">
+  <br/>
+   // id == -1 indicates er_src invocation
+  <br/>
+   if (module == NULL || (module-&gt;lang_code == Sp_lang_java
+  <br/>
+   &amp;&amp; module-&gt;loadobject-&gt;id == -1))
+  <br/>
+   fprintf (dis_file, NTXT (&quot;%8d) %s0), index1, item_name);
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   lo_name = module-&gt;loadobject-&gt;get_pathname ();
+  <br/>
+   fname = (module-&gt;file_name &amp;&amp; *module-&gt;file_name) ?
+  <br/>
+   module-&gt;file_name : module-&gt;get_name ();
+  <br/>
+   if (fname &amp;&amp; *fname)
+  <br/>
+   fprintf (dis_file, NTXT (&quot;%8d) %s %s:0x%llx (%s)0), index1,
+  <br/>
+   item_name, lo_name, (ull_t) func-&gt;img_offset, fname);
+  <br/>
+   else
+  <br/>
+   fprintf (dis_file, NTXT (&quot;%8d) %s %s:0x%llx0), index1,
+  <br/>
+   item_name, lo_name, (ull_t) func-&gt;img_offset);
+  <br/>
+   }
+  <br/>
+   break;
+  <br/>
+   case Histable::MODULE:
+  <br/>
+   module = (Module *) hitem;
+  <br/>
+   lo_name = module-&gt;loadobject-&gt;get_pathname ();
+  <br/>
+   if (name[strlen (name) - 1] ==
+  <br/>
+   module-&gt;file_name[strlen (module-&gt;file_name) - 1])
+  <br/>
+   fprintf (dis_file, NTXT (&quot;%8d) %s(%s)0), index1,
+  <br/>
+   module-&gt;file_name, lo_name);
+  <br/>
+   else
+  <br/>
+   fprintf (dis_file, NTXT (&quot;%8d) %s(%s)0), index1, item_name,
+  <br/>
+   lo_name);
+  <br/>
+   break;
+  <br/>
+   default:
+  <br/>
+   fprintf (dis_file, NTXT (&quot;%8d) %s0), index1, item_name);
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   if (inp_file != stdin)
+  <br/>
+   return -1;
+  <br/>
+   fprintf (dis_file, GTXT (&quot;Enter selection: &quot;));
+  <br/>
+   if (fgets (buf, (int) sizeof (buf), inp_file) == NULL)
+  <br/>
+   {
+  <br/>
+   fprintf (stderr, GTXT (&quot;Error: Invalid number entered:0));
+  <br/>
+   return -1;
+  <br/>
+   }
+  <br/>
+   which = (int) getNumber (buf, last);
+  <br/>
+   if (last &amp;&amp; *last == '&#x00A0;')
+  <br/>
+   if (which &gt;= 0 &amp;&amp; which &lt;= list-&gt;size ())
+  <br/>
+   return which - 1;
+  <br/>
+   fprintf (stderr, GTXT (&quot;Error: Invalid number entered: %s0), buf);
+  <br/>
+   } }</p>
+<p class="Pp">static bool match_basename (char *name, char *full_name, int len =
+    -1) {
+  <br/>
+   if (full_name == NULL)
+  <br/>
+   return false;
+  <br/>
+   if (!strchr (name, '/'))
+  <br/>
+   full_name = get_basename (full_name);
+  <br/>
+   if (len == -1)
+  <br/>
+   return streq (name, full_name);
+  <br/>
+   return strncmp (name, full_name, len) == 0; }</p>
+<p class="Pp">LoadObject * DbeSession::map_NametoLoadObject (char *name,
+    Vector&lt;Histable*&gt; *list, int which) {
+  <br/>
+   // Search the tree to find the first module whose module name
+  <br/>
+   //	matches &quot;name&quot; or whose source file name matches
+    &quot;name&quot;
+  <br/>
+   // Issues: is the name a pathname, or a base name?
+  <br/>
+   //	Should we look at suffix to disambiguate?
+  <br/>
+   LoadObject *loitem;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (LoadObject*, lobjs, index, loitem)
+  <br/>
+   {
+  <br/>
+   // try pathname first
+  <br/>
+   // if failed, try object name next
+  <br/>
+   if (match_basename (name, loitem-&gt;get_pathname ()) ||
+  <br/>
+   match_basename (name, loitem-&gt;get_name ()))
+  <br/>
+   {
+  <br/>
+   if (which == list-&gt;size ())
+  <br/>
+   return loitem;
+  <br/>
+   list-&gt;append (loitem);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   return (LoadObject *) NULL; }</p>
+<p class="Pp">Module * DbeSession::map_NametoModule (char *name,
+    Vector&lt;Histable*&gt; *list, int which) {
+  <br/>
+   // Search the tree to find the first loadobject whose loadobject name
+  <br/>
+   //	matches &quot;name&quot;.</p>
+<p class="Pp">
+  <br/>
+   // Issues: is the name a pathname, or a base name?
+  <br/>
+   //	Should we look at suffix to disambiguate?
+  <br/>
+   LoadObject *loitem;
+  <br/>
+   Module *mitem;
+  <br/>
+   int index1, index2;
+  <br/>
+   Vec_loop (LoadObject*, lobjs, index1, loitem)
+  <br/>
+   {
+  <br/>
+   Vec_loop (Module*, loitem-&gt;seg_modules, index2, mitem)
+  <br/>
+   {
+  <br/>
+   // try source name first
+  <br/>
+   // if failed, try object name next
+  <br/>
+   if (match_basename (name, mitem-&gt;file_name) ||
+  <br/>
+   match_basename (name, mitem-&gt;get_name ()))
+  <br/>
+   {
+  <br/>
+   if (which == list-&gt;size ())
+  <br/>
+   return mitem;
+  <br/>
+   list-&gt;append (mitem);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   return (Module *) NULL; }</p>
+<p class="Pp">Function * DbeSession::map_NametoFunction (char *name,
+    Vector&lt;Histable*&gt; *list,
+  <br/>
+   const char *sel) {
+  <br/>
+   // Search the tree to find the first function whose
+  <br/>
+   //	name matches &quot;name&quot;.
+  <br/>
+   // Issues: is the name a full name, or a short name?
+  <br/>
+   //	Is it a demangled name? If so, what about spaces
+  <br/>
+   //		within the name?
+  <br/>
+   //	Is there a way to return all names that match?
+  <br/>
+   //	How can the user specify a particular function of that name?
+  <br/>
+   LoadObject *loitem;
+  <br/>
+   Function *fitem, *main_func = NULL;
+  <br/>
+   Module *mitem, *main_mod = NULL;
+  <br/>
+   int index1, index2, index3, which = -1;
+  <br/>
+   if (sel)
+  <br/>
+   {
+  <br/>
+   char *last = NULL;
+  <br/>
+   if (*sel == '@')
+  <br/>
+   { // 'sel' is &quot;@seg_num:address&quot;
+  <br/>
+   which = (int) getNumber (sel + 1, last);
+  <br/>
+   if (last == NULL || *last != ':' || (which &lt; 0) || (which &gt;=
+    lobjs-&gt;size ()))
+  <br/>
+   {
+  <br/>
+   fprintf (stderr, GTXT (&quot;Error: Invalid number entered: %s0), sel);
+  <br/>
+   return NULL;
+  <br/>
+   }
+  <br/>
+   uint64_t address = getNumber (last + 1, last);
+  <br/>
+   if (last == NULL || *last != '&#x00A0;')
+  <br/>
+   {
+  <br/>
+   fprintf (stderr, GTXT (&quot;Error: Invalid number entered: %s0), sel);
+  <br/>
+   return NULL;
+  <br/>
+   }
+  <br/>
+   loitem = lobjs-&gt;fetch (which);
+  <br/>
+   Vec_loop (Module*, loitem-&gt;seg_modules, index2, mitem)
+  <br/>
+   {
+  <br/>
+   Vec_loop (Function*, mitem-&gt;functions, index3, fitem)
+  <br/>
+   {
+  <br/>
+   if (address == fitem-&gt;img_offset &amp;&amp; match_FName (name, fitem))
+  <br/>
+   return fitem;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   return NULL;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   which = (int) getNumber (sel, last);
+  <br/>
+   if (last == NULL || *last != '&#x00A0;')
+  <br/>
+   {
+  <br/>
+   fprintf (stderr, GTXT (&quot;Error: Invalid number entered: %s0), sel);
+  <br/>
+   return NULL;
+  <br/>
+   }
+  <br/>
+   which--;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   int len_path = 0;
+  <br/>
+   char *with_path = name;
+  <br/>
+   name = StrRchr (name, '`');
+  <br/>
+   if (name != with_path)
+  <br/>
+   len_path = (int) (name - with_path);
+  <br/>
+   else
+  <br/>
+   with_path = NULL;</p>
+<p class="Pp">
+  <br/>
+   Vec_loop (LoadObject*, lobjs, index1, loitem)
+  <br/>
+   {
+  <br/>
+   Vec_loop (Module*, loitem-&gt;seg_modules, index2, mitem)
+  <br/>
+   {
+  <br/>
+   if (with_path)
+  <br/>
+   { // with file name
+  <br/>
+   // try source name first
+  <br/>
+   // if failed, try object name next
+  <br/>
+   if (!match_basename (with_path, mitem-&gt;file_name, len_path) &amp;&amp;
+  <br/>
+   !match_basename (with_path, mitem-&gt;get_name (), len_path))
+  <br/>
+   continue;
+  <br/>
+   }
+  <br/>
+   Vec_loop (Function*, mitem-&gt;functions, index3, fitem)
+  <br/>
+   {
+  <br/>
+   if (match_FName (name, fitem))
+  <br/>
+   {
+  <br/>
+   if (which == list-&gt;size ())
+  <br/>
+   return fitem;
+  <br/>
+   list-&gt;append (fitem);
+  <br/>
+   continue;
+  <br/>
+   }
+  <br/>
+   if (streq (fitem-&gt;get_name (), NTXT (&quot;MAIN_&quot;)) &amp;&amp;
+    mitem-&gt;is_fortran ())
+  <br/>
+   {
+  <br/>
+   main_func = fitem;
+  <br/>
+   main_mod = mitem;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   if (main_mod &amp;&amp; main_func)
+  <br/>
+   {
+  <br/>
+   main_mod-&gt;read_stabs ();
+  <br/>
+   if (streq (main_func-&gt;get_match_name (), name) &amp;&amp; which &lt;= 1)
+  <br/>
+   return main_func;
+  <br/>
+   }
+  <br/>
+   return (Function *) NULL; }</p>
+<p class="Pp">DataObject * DbeSession::map_NametoDataObject (char *name,
+    Vector&lt;Histable*&gt; *list,
+  <br/>
+   int which) {
+  <br/>
+   // Search master list to find dataobjects whose names match &quot;name&quot;
+  <br/>
+   // selecting only the entry corresponding to &quot;which&quot; if it is not
+    -1.
+  <br/>
+   // Issues: is the name fully qualified or only partially?
+  <br/>
+   DataObject *ditem = NULL;
+  <br/>
+   int index;
+  <br/>
+   char *full_name;
+  <br/>
+   Vec_loop (DataObject*, dobjs, index, ditem)
+  <br/>
+   {
+  <br/>
+   if (ditem-&gt;scope) continue; // skip non-master dataobjects</p>
+<p class="Pp">
+  <br/>
+   // try fully-qualified dataobject name first
+  <br/>
+   if ((full_name = ditem-&gt;get_name ()) != NULL)
+  <br/>
+   {
+  <br/>
+   if (streq (name, full_name))
+  <br/>
+   {
+  <br/>
+   if (which == list-&gt;size ())
+  <br/>
+   return ditem;
+  <br/>
+   list-&gt;append (ditem);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   if (list-&gt;size () &gt; 0)
+  <br/>
+   return ditem; // return fully-qualified match</p>
+<p class="Pp">
+  <br/>
+   // if fully-qualified name doesn't match anything, try a partial match
+  <br/>
+   Vec_loop (DataObject*, dobjs, index, ditem)
+  <br/>
+   {
+  <br/>
+   if (ditem-&gt;scope) continue; // skip non-master dataobjects</p>
+<p class="Pp">
+  <br/>
+   // try fully-qualified dataobject name first
+  <br/>
+   if ((full_name = ditem-&gt;get_name ()) != NULL)
+  <br/>
+   {
+  <br/>
+   if (strstr (full_name, name))
+  <br/>
+   {
+  <br/>
+   if (which == list-&gt;size ())
+  <br/>
+   return ditem;
+  <br/>
+   list-&gt;append (ditem);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   return (DataObject *) NULL; }</p>
+<p class="Pp">bool DbeSession::match_FName (char *name, Function *func) {
+  <br/>
+   size_t len;
+  <br/>
+   char buf[MAXDBUF];
+  <br/>
+   char *full_name;
+  <br/>
+   if (streq (func-&gt;get_name (), name)) // try full name comparison
+  <br/>
+   return true;
+  <br/>
+   if (streq (func-&gt;get_mangled_name (), name)) // try mangled name
+  <br/>
+   return true;
+  <br/>
+   if (streq (func-&gt;get_match_name (), name)) // try match name
+  <br/>
+   return true;</p>
+<p class="Pp">
+  <br/>
+   Module *md = func-&gt;module; // try FORTRAN name
+  <br/>
+   if (md &amp;&amp; md-&gt;is_fortran ())
+  <br/>
+   {
+  <br/>
+   char *mangled_name = func-&gt;get_mangled_name ();
+  <br/>
+   len = strlen (name);
+  <br/>
+   if (((len + 1) == strlen (mangled_name)) &amp;&amp;
+  <br/>
+   (strncmp (name, mangled_name, len) == 0))
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   snprintf (buf, sizeof (buf), NTXT (&quot;%s&quot;), func-&gt;get_name ());
+  <br/>
+   full_name = buf;
+  <br/>
+   char *arg = NULL; // find modifier and C++ class name
+  <br/>
+   int i = get_paren (buf);
+  <br/>
+   if (i &gt;= 0)
+  <br/>
+   {
+  <br/>
+   arg = buf + i;
+  <br/>
+   *arg = '&#x00A0;';
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   char *mod = strchr (full_name, ' ');
+  <br/>
+   char *cls = strchr (full_name, ':');</p>
+<p class="Pp">
+  <br/>
+   if (mod)
+  <br/>
+   {
+  <br/>
+   len = mod - full_name + 1;
+  <br/>
+   if (!strncmp (full_name, name, len))
+  <br/>
+   name += len;
+  <br/>
+   full_name += len;
+  <br/>
+   if (streq (full_name, name)) // try without modifier
+  <br/>
+   return true;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   size_t len_cmp = strlen (name);
+  <br/>
+   if (arg)
+  <br/>
+   {
+  <br/>
+   *arg = '(';
+  <br/>
+   len = arg - full_name; // try without 'args'
+  <br/>
+   if (len_cmp == len &amp;&amp; !strncmp (full_name, name, len))
+  <br/>
+   return true;
+  <br/>
+   if (cls)
+  <br/>
+   {
+  <br/>
+   len = arg - cls - 2; // and without 'class name'
+  <br/>
+   if ((len_cmp == len) &amp;&amp; !strncmp (cls + 2, name, len))
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   if (cls)
+  <br/>
+   {
+  <br/>
+   len = cls - full_name; // try C++ class name only
+  <br/>
+   if (len_cmp == len &amp;&amp; !strncmp (full_name, name, len))
+  <br/>
+   return true;
+  <br/>
+   if (streq (cls + 2, name)) // try without 'class name'
+  <br/>
+   return true;
+  <br/>
+   }
+  <br/>
+   return false; }</p>
+<p class="Pp">bool DbeSession::add_path (char *path) {
+  <br/>
+   return add_path (path, get_search_path ()); }</p>
+<p class="Pp">bool DbeSession::add_classpath (char *path) {
+  <br/>
+   return add_path (path, classpath); }</p>
+<p class="Pp">Vector&lt;DbeFile*&gt; * DbeSession::get_classpath () {
+  <br/>
+   if (classpath_df == NULL)
+  <br/>
+   classpath_df = new Vector&lt;DbeFile*&gt;;
+  <br/>
+   for (int i = classpath_df-&gt;size (), sz = classpath-&gt;size (); i &lt; sz;
+    i++)
+  <br/>
+   classpath_df-&gt;store (i, getDbeFile (classpath-&gt;fetch (i),
+  <br/>
+   DbeFile::F_DIR_OR_JAR));
+  <br/>
+   return classpath_df; }</p>
+<p class="Pp">bool DbeSession::add_path (char *path, Vector&lt;char*&gt;
+    *pathes) {
+  <br/>
+   bool result = false;
+  <br/>
+   Vector &lt;char *&gt; *tokens = split_str (path, ':');
+  <br/>
+   for (long j = 0, jsz = VecSize (tokens); j &lt; jsz; j++)
+  <br/>
+   {
+  <br/>
+   char *spath = tokens-&gt;get (j);
+  <br/>
+   // Don't append path if it's already there
+  <br/>
+   bool got = false;
+  <br/>
+   for (int i = 0, sz = pathes-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   char *nm = pathes-&gt;get (i);
+  <br/>
+   if (streq (nm, spath))
+  <br/>
+   {
+  <br/>
+   got = true;
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   if (!got)
+  <br/>
+   {
+  <br/>
+   pathes-&gt;append (spath);
+  <br/>
+   result = true;
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   free (spath);
+  <br/>
+   }
+  <br/>
+   delete tokens;
+  <br/>
+   return result; }</p>
+<p class="Pp">void DbeSession::set_need_refind () {
+  <br/>
+   Vector&lt;DbeFile*&gt; *f_list = dbeFiles-&gt;values ();
+  <br/>
+   for (long i = 0, sz = f_list == NULL ? 0 : f_list-&gt;size (); i &lt; sz;
+    i++)
+  <br/>
+   {
+  <br/>
+   DbeFile *f = f_list-&gt;get (i);
+  <br/>
+   f-&gt;set_need_refind (true);
+  <br/>
+   }
+  <br/>
+   delete f_list;
+  <br/>
+   for (long i = 0, sz = sources == NULL ? 0 : sources-&gt;size (); i &lt; sz;
+    i++)
+  <br/>
+   {
+  <br/>
+   SourceFile *f = sources-&gt;get (i);
+  <br/>
+   if (f &amp;&amp; f-&gt;dbeFile)
+  <br/>
+   f-&gt;dbeFile-&gt;set_need_refind (true);
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::set_search_path (Vector&lt;char*&gt; *path, bool
+    reset) {
+  <br/>
+   if (reset)
+  <br/>
+   search_path-&gt;destroy ();
+  <br/>
+   for (int i = 0, sz = path == NULL ? 0 : path-&gt;size (); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   char *name = path-&gt;fetch (i);
+  <br/>
+   if (add_path (name))
+  <br/>
+   reset = true;
+  <br/>
+   }
+  <br/>
+   if (reset)
+  <br/>
+   {
+  <br/>
+   set_need_refind ();</p>
+<p class="Pp">
+  <br/>
+   // now reset the string setting for it
+  <br/>
+   StringBuilder sb;
+  <br/>
+   for (int i = 0, sz = search_path == NULL ? 0 : search_path-&gt;size (); i
+    &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   char *name = search_path-&gt;fetch (i);
+  <br/>
+   if (sb.length () != 0)
+  <br/>
+   sb.append (':');
+  <br/>
+   sb.append (name);
+  <br/>
+   }
+  <br/>
+   free (settings-&gt;str_search_path);
+  <br/>
+   settings-&gt;str_search_path = sb.toString ();
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::set_search_path (char *_lpath, bool reset) {
+  <br/>
+   Vector&lt;char *&gt; *path = new Vector&lt;char*&gt;;
+  <br/>
+   char *lpath = dbe_strdup (_lpath);
+  <br/>
+   for (char *s = lpath; s;)
+  <br/>
+   {
+  <br/>
+   path-&gt;append (s);
+  <br/>
+   s = strchr (s, ':');
+  <br/>
+   if (s)
+  <br/>
+   {
+  <br/>
+   *s = 0;
+  <br/>
+   s++;
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   set_search_path (path, reset);
+  <br/>
+   delete path;
+  <br/>
+   free (lpath); }</p>
+<p class="Pp">void DbeSession::set_pathmaps (Vector&lt;pathmap_t*&gt;
+    *newPathMap) {
+  <br/>
+   set_need_refind ();
+  <br/>
+   settings-&gt;set_pathmaps (newPathMap); }</p>
+<p class="Pp">Vector&lt;pathmap_t*&gt; * DbeSession::get_pathmaps () {
+  <br/>
+   return settings-&gt;pathmaps; }</p>
+<p class="Pp">void DbeSession::mobj_define (MemObjType_t *mobj) {
+  <br/>
+   settings-&gt;mobj_define (mobj, false);
+  <br/>
+   DbeView *dbev;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (DbeView*, views, index, dbev)
+  <br/>
+   {
+  <br/>
+   dbev-&gt;get_settings ()-&gt;mobj_define (mobj, false);
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::dump_segments (FILE *out) {
+  <br/>
+   int index;
+  <br/>
+   LoadObject *loitem;
+  <br/>
+   Vec_loop (LoadObject*, lobjs, index, loitem)
+  <br/>
+   {
+  <br/>
+   fprintf (out, NTXT (&quot;Segment %d -- %s -- %s0),
+  <br/>
+   index, loitem-&gt;get_name (), loitem-&gt;get_pathname ());
+  <br/>
+   loitem-&gt;dump_functions (out);
+  <br/>
+   fprintf (out, NTXT (&quot;0End Segment %d -- %s -- %s0),
+  <br/>
+   index, loitem-&gt;get_name (), loitem-&gt;get_pathname ());
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::dump_dataobjects (FILE *out) {
+  <br/>
+   DataObject *ditem;
+  <br/>
+   int index;</p>
+<p class="Pp">
+  <br/>
+   fprintf (out, NTXT (&quot;0aster list of DataObjects:0));
+  <br/>
+   Vec_loop (DataObject*, dobjs, index, ditem)
+  <br/>
+   {
+  <br/>
+   Histable* scope = ditem-&gt;get_scope ();
+  <br/>
+   DataObject* parent = ditem-&gt;get_parent ();
+  <br/>
+   DataObject* master = ditem-&gt;get_master ();
+  <br/>
+   if (parent != NULL)
+  <br/>
+   fprintf (out, &quot;id %6lld: [%4lld] parent = %6lld, offset = %+4lld %s0,
+  <br/>
+   (ll_t) ditem-&gt;id, (ll_t) ditem-&gt;get_size (),
+  <br/>
+   (ll_t) parent-&gt;id, (ll_t) ditem-&gt;get_offset (),
+  <br/>
+   ditem-&gt;get_name ());
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   // parent is NULL
+  <br/>
+   fprintf (out, NTXT (&quot;id %6lld: [%4lld] %s &quot;),
+  <br/>
+   (ll_t) ditem-&gt;id, (ll_t) ditem-&gt;get_size (),
+  <br/>
+   ditem-&gt;get_name ());
+  <br/>
+   if (master != NULL)
+  <br/>
+   fprintf (out, NTXT (&quot; master=%lld &quot;), (ll_t) master-&gt;id);
+  <br/>
+   else if (scope != NULL)
+  <br/>
+   fprintf (out, NTXT (&quot; master=?? &quot;));
+  <br/>
+   else
+  <br/>
+   fprintf (out, NTXT (&quot; MASTER &quot;)); #if DEBUG
+  <br/>
+   if (scope != NULL)
+  <br/>
+   {
+  <br/>
+   switch (scope-&gt;get_type ())
+  <br/>
+   {
+  <br/>
+   case Histable::LOADOBJECT:
+  <br/>
+   case Histable::FUNCTION:
+  <br/>
+   fprintf (out, NTXT (&quot;%s&quot;), scope-&gt;get_name ());
+  <br/>
+   break;
+  <br/>
+   case Histable::MODULE:
+  <br/>
+   {
+  <br/>
+   char *filename = get_basename (scope-&gt;get_name ());
+  <br/>
+   fprintf (out, NTXT (&quot;%s&quot;), filename);
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   default:
+  <br/>
+   fprintf (out, NTXT (&quot; Unexpected scope %d:%s&quot;),
+  <br/>
+   scope-&gt;get_type (), scope-&gt;get_name ());
+  <br/>
+   }
+  <br/>
+   } #endif
+  <br/>
+   fprintf (out, NTXT (&quot;0));
+  <br/>
+   }
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::dump_map (FILE *out) {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (Experiment*, exps, index, exp)
+  <br/>
+   {
+  <br/>
+   exp-&gt;dump_map (out);
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::dump_stacks (FILE *outfile) {
+  <br/>
+   Experiment *exp;
+  <br/>
+   int n = nexps ();
+  <br/>
+   FILE *f = (outfile == NULL ? stderr : outfile);
+  <br/>
+   for (int i = 0; i &lt; n; i++)
+  <br/>
+   {
+  <br/>
+   exp = get_exp (i);
+  <br/>
+   fprintf (f, GTXT (&quot;Experiment %d -- %s0), i, exp-&gt;get_expt_name ());
+  <br/>
+   exp-&gt;dump_stacks (f);
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::propNames_name_store (int propId, const char
+    *propName) {
+  <br/>
+   PropDescr *prop = new PropDescr (propId, propName);
+  <br/>
+   prop-&gt;flags = PRFLAG_NOSHOW; // do not show descriptions
+  <br/>
+   propNames-&gt;store (propId, prop); }</p>
+<p class="Pp">void DbeSession::propNames_name_store (int propId, const char*
+    propName,
+  <br/>
+   const char* propUname, VType_type dataType,
+  <br/>
+   int flags) {
+  <br/>
+   PropDescr *prop = new PropDescr (propId, propName);
+  <br/>
+   prop-&gt;vtype = dataType;
+  <br/>
+   prop-&gt;uname = dbe_strdup (propUname);
+  <br/>
+   prop-&gt;flags = flags;
+  <br/>
+   propNames-&gt;store (propId, prop); }</p>
+<p class="Pp">char * DbeSession::propNames_name_fetch (int i) {
+  <br/>
+   PropDescr *prop = propNames-&gt;fetch (i);
+  <br/>
+   if (prop)
+  <br/>
+   return prop-&gt;name;
+  <br/>
+   return NULL; }</p>
+<p class="Pp">int DbeSession::registerPropertyName (const char *name) {
+  <br/>
+   if (name == NULL)
+  <br/>
+   return PROP_NONE;
+  <br/>
+   for (int i = 0; i &lt; propNames-&gt;size (); i++)
+  <br/>
+   {
+  <br/>
+   char *pname = propNames_name_fetch (i);
+  <br/>
+   if (pname &amp;&amp; strcasecmp (pname, name) == 0)
+  <br/>
+   return i;
+  <br/>
+   }
+  <br/>
+   int propId = propNames-&gt;size ();
+  <br/>
+   propNames_name_store (propId, name);
+  <br/>
+   return propId; }</p>
+<p class="Pp">int DbeSession::getPropIdByName (const char *name) {
+  <br/>
+   if (name == NULL)
+  <br/>
+   return PROP_NONE;
+  <br/>
+   for (int i = 0; i &lt; propNames-&gt;size (); i++)
+  <br/>
+   {
+  <br/>
+   char *pname = propNames_name_fetch (i);
+  <br/>
+   if (pname &amp;&amp; strcasecmp (pname, name) == 0)
+  <br/>
+   return i;
+  <br/>
+   }
+  <br/>
+   return PROP_NONE; }</p>
+<p class="Pp">char * DbeSession::getPropName (int propId) {
+  <br/>
+   if (!propNames)
+  <br/>
+   return NULL;
+  <br/>
+   if (propId &lt; 0 || propId &gt;= propNames-&gt;size ())
+  <br/>
+   return NULL;
+  <br/>
+   return dbe_strdup (propNames_name_fetch (propId)); }</p>
+<p class="Pp">char * DbeSession::getPropUName (int propId) {
+  <br/>
+   if (!propNames)
+  <br/>
+   return NULL;
+  <br/>
+   if (propId &lt; 0 || propId &gt;= propNames-&gt;size ())
+  <br/>
+   return NULL;
+  <br/>
+   PropDescr *prop = propNames-&gt;fetch (propId);
+  <br/>
+   if (prop)
+  <br/>
+   return dbe_strdup (prop-&gt;uname);
+  <br/>
+   return NULL; }</p>
+<p class="Pp">void DbeSession::append (UserLabel *lbl) {
+  <br/>
+   if (lbl-&gt;expr)
+  <br/>
+   {
+  <br/>
+   if (userLabels == NULL)
+  <br/>
+   userLabels = new Vector&lt;UserLabel*&gt; ();
+  <br/>
+   userLabels-&gt;append (lbl);
+  <br/>
+   } }</p>
+<p class="Pp">void DbeSession::append (SourceFile *sf) {
+  <br/>
+   sources-&gt;append (sf);
+  <br/>
+   objs-&gt;append (sf); }</p>
+<p class="Pp">UserLabel * DbeSession::findUserLabel (char *name) {
+  <br/>
+   for (int i = 0, sz = userLabels ? userLabels-&gt;size () : 0; i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   UserLabel *lbl = userLabels-&gt;fetch (i);
+  <br/>
+   if (strcasecmp (lbl-&gt;name, name) == 0)
+  <br/>
+   return lbl;
+  <br/>
+   }
+  <br/>
+   return NULL; }</p>
+<p class="Pp">Expression * DbeSession::findObjDefByName (char *name) {
+  <br/>
+   Expression *expr = NULL;</p>
+<p class="Pp">
+  <br/>
+   MemObjType_t *mot = MemorySpace::findMemSpaceByName (name);
+  <br/>
+   if (mot != NULL)
+  <br/>
+   {
+  <br/>
+   char *index_expr_str = mot-&gt;index_expr;
+  <br/>
+   expr = ql_parse (index_expr_str);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   if (expr == NULL)
+  <br/>
+   {
+  <br/>
+   int indxtype = findIndexSpaceByName (name);
+  <br/>
+   expr = getIndexSpaceExpr (indxtype);
+  <br/>
+   }
+  <br/>
+   if (expr == NULL)
+  <br/>
+   {
+  <br/>
+   UserLabel *ulbl = findUserLabel (name);
+  <br/>
+   if (ulbl)
+  <br/>
+   expr = ulbl-&gt;expr;
+  <br/>
+   }
+  <br/>
+   return expr; }</p>
+<p class="Pp">Expression * DbeSession::ql_parse (const char *expr_spec) {
+  <br/>
+   /* (This slight duplication means we don't need to worry about copy
+  <br/>
+   constructors for the QL::Result, nor about the lifetime of the
+  <br/>
+   expr_spec.) */
+  <br/>
+   if (expr_spec != NULL)
+  <br/>
+   {
+  <br/>
+   QL::Result result (expr_spec);
+  <br/>
+   QL::Parser qlparser (result);
+  <br/>
+   if (qlparser () != 0)
+  <br/>
+   return NULL;
+  <br/>
+   return result ();
+  <br/>
+   }
+  <br/>
+   else
+  <br/>
+   {
+  <br/>
+   QL::Result result;
+  <br/>
+   QL::Parser qlparser (result);
+  <br/>
+   if (qlparser () != 0)
+  <br/>
+   return NULL;
+  <br/>
+   return result ();
+  <br/>
+   } }</p>
+<p class="Pp">Vector&lt;void*&gt; * DbeSession::getIndxObjDescriptions () {
+  <br/>
+   int size = dyn_indxobj_indx;
+  <br/>
+   if (size == 0)
+  <br/>
+   return NULL;
+  <br/>
+   Vector&lt;int&gt; *type = new Vector&lt;int&gt;(dyn_indxobj_indx);
+  <br/>
+   Vector&lt;char*&gt; *desc = new Vector&lt;char*&gt;(dyn_indxobj_indx);
+  <br/>
+   Vector&lt;char*&gt; *i18ndesc = new Vector&lt;char*&gt;(dyn_indxobj_indx);
+  <br/>
+   Vector&lt;char&gt; *mnemonic = new Vector&lt;char&gt;(dyn_indxobj_indx);
+  <br/>
+   Vector&lt;int&gt; *orderList = new Vector&lt;int&gt;(dyn_indxobj_indx);
+  <br/>
+   Vector&lt;char*&gt; *exprList = new Vector&lt;char*&gt;(dyn_indxobj_indx);
+  <br/>
+   Vector&lt;char*&gt; *sdesc = new Vector&lt;char*&gt;(dyn_indxobj_indx);
+  <br/>
+   Vector&lt;char*&gt; *ldesc = new Vector&lt;char*&gt;(dyn_indxobj_indx);</p>
+<p class="Pp">
+  <br/>
+   for (long i = 0, sz = VecSize (dyn_indxobj); i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   IndexObjType_t *tot = dyn_indxobj-&gt;get (i);
+  <br/>
+   if (tot-&gt;memObj == NULL)
+  <br/>
+   {
+  <br/>
+   type-&gt;append ((int) tot-&gt;type);
+  <br/>
+   desc-&gt;append (dbe_strdup (tot-&gt;name));
+  <br/>
+   i18ndesc-&gt;append (dbe_strdup (tot-&gt;i18n_name));
+  <br/>
+   sdesc-&gt;append (dbe_strdup (tot-&gt;short_description));
+  <br/>
+   ldesc-&gt;append (dbe_strdup (tot-&gt;long_description));
+  <br/>
+   mnemonic-&gt;append (tot-&gt;mnemonic);
+  <br/>
+   orderList-&gt;append (settings-&gt;indx_tab_order-&gt;fetch (i));
+  <br/>
+   exprList-&gt;append (dbe_strdup (tot-&gt;index_expr_str));
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   Vector&lt;void*&gt; *res = new Vector&lt;void*&gt;(8);
+  <br/>
+   res-&gt;store (0, type);
+  <br/>
+   res-&gt;store (1, desc);
+  <br/>
+   res-&gt;store (2, mnemonic);
+  <br/>
+   res-&gt;store (3, i18ndesc);
+  <br/>
+   res-&gt;store (4, orderList);
+  <br/>
+   res-&gt;store (5, exprList);
+  <br/>
+   res-&gt;store (6, sdesc);
+  <br/>
+   res-&gt;store (7, ldesc);
+  <br/>
+   return (res); }</p>
+<p class="Pp">// Static function to get a vector of custom index object
+    definitions Vector&lt;void*&gt; * DbeSession::getCustomIndxObjects () {
+  <br/>
+   Vector&lt;char*&gt; *name = new Vector&lt;char*&gt;;
+  <br/>
+   Vector&lt;char*&gt; *formula = new Vector&lt;char*&gt;;
+  <br/>
+   for (long i = dyn_indxobj_indx_fixed, sz = VecSize (dyn_indxobj); i &lt; sz;
+    i++)
+  <br/>
+   {
+  <br/>
+   IndexObjType_t *tot = dyn_indxobj-&gt;get (i);
+  <br/>
+   if (tot-&gt;memObj == NULL)
+  <br/>
+   {
+  <br/>
+   name-&gt;append (dbe_strdup (tot-&gt;name));
+  <br/>
+   formula-&gt;append (dbe_strdup (tot-&gt;index_expr_str));
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   Vector&lt;void*&gt; *res = new Vector&lt;void*&gt;(2);
+  <br/>
+   res-&gt;store (0, name);
+  <br/>
+   res-&gt;store (1, formula);
+  <br/>
+   return (res); }</p>
+<p class="Pp">// Static function to define a new index object type char *
+    DbeSession::indxobj_define (const char *mname, char *i18nname, const char
+    *index_expr_str, char *short_description, char *long_description) {
+  <br/>
+   if (mname == NULL)
+  <br/>
+   return dbe_strdup (GTXT (&quot;No index object type name has been
+    specified.&quot;));
+  <br/>
+   if (isalpha ((int) (mname[0])) == 0)
+  <br/>
+   return dbe_sprintf (GTXT (&quot;Index Object type name %s does not begin with
+    an alphabetic character&quot;),
+  <br/>
+   mname);
+  <br/>
+   const char *p = mname;
+  <br/>
+   while (*p != 0)
+  <br/>
+   {
+  <br/>
+   if ((isalnum ((int) (*p)) == 0) &amp;&amp; (*p != '_'))
+  <br/>
+   return dbe_sprintf (GTXT (&quot;Index Object type name %s contains a
+    non-alphanumeric character&quot;),
+  <br/>
+   mname);
+  <br/>
+   p++;
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   // make sure the name is not in use
+  <br/>
+   if (MemorySpace::findMemSpaceByName (mname) != NULL)
+  <br/>
+   return dbe_sprintf (GTXT (&quot;Memory/Index Object type name %s is already
+    defined&quot;),
+  <br/>
+   mname);</p>
+<p class="Pp">
+  <br/>
+   int idxx = findIndexSpaceByName (mname);
+  <br/>
+   if (idxx &gt;= 0)
+  <br/>
+   {
+  <br/>
+   IndexObjType_t *mt = dyn_indxobj-&gt;fetch (idxx);
+  <br/>
+   if (strcmp (mt-&gt;index_expr_str, index_expr_str) == 0)
+  <br/>
+   // It's a redefinition, but the new definition is the same
+  <br/>
+   return NULL;
+  <br/>
+   return dbe_sprintf (GTXT (&quot;Memory/Index Object type name %s is already
+    defined&quot;),
+  <br/>
+   mname);
+  <br/>
+   }
+  <br/>
+   if (index_expr_str == NULL)
+  <br/>
+   return dbe_strdup (GTXT (&quot;No index-expr has been specified.&quot;));
+  <br/>
+   if (strlen (index_expr_str) == 0)
+  <br/>
+   return dbe_sprintf (GTXT (&quot;Index Object index expression is invalid:
+    %s&quot;),
+  <br/>
+   index_expr_str);</p>
+<p class="Pp">
+  <br/>
+   // verify that the index expression parses correctly
+  <br/>
+   char *expr_str = dbe_strdup (index_expr_str);
+  <br/>
+   Expression *expr = ql_parse (expr_str);
+  <br/>
+   if (expr == NULL)
+  <br/>
+   return dbe_sprintf (GTXT (&quot;Index Object index expression is invalid:
+    %s&quot;),
+  <br/>
+   expr_str);</p>
+<p class="Pp">
+  <br/>
+   // It's OK, create the new table entry
+  <br/>
+   IndexObjType_t *tot = new IndexObjType_t;
+  <br/>
+   tot-&gt;type = dyn_indxobj_indx++;
+  <br/>
+   tot-&gt;name = dbe_strdup (mname);
+  <br/>
+   tot-&gt;i18n_name = dbe_strdup (i18nname);
+  <br/>
+   tot-&gt;short_description = dbe_strdup (short_description);
+  <br/>
+   tot-&gt;long_description = dbe_strdup (long_description);
+  <br/>
+   tot-&gt;index_expr_str = expr_str;
+  <br/>
+   tot-&gt;index_expr = expr;
+  <br/>
+   tot-&gt;mnemonic = mname[0];</p>
+<p class="Pp">
+  <br/>
+   // add it to the list
+  <br/>
+   dyn_indxobj-&gt;append (tot);
+  <br/>
+   idxobjs-&gt;append (new HashMap&lt;uint64_t, Histable*&gt;);</p>
+<p class="Pp">
+  <br/>
+   // tell the session
+  <br/>
+   settings-&gt;indxobj_define (tot-&gt;type, false);</p>
+<p class="Pp">
+  <br/>
+   DbeView *dbev;
+  <br/>
+   int index;
+  <br/>
+   Vec_loop (DbeView*, views, index, dbev)
+  <br/>
+   {
+  <br/>
+   dbev-&gt;addIndexSpace (tot-&gt;type);
+  <br/>
+   }
+  <br/>
+   return NULL; }</p>
+<p class="Pp">char * DbeSession::getIndexSpaceName (int index) {
+  <br/>
+   if (index &lt; 0 || index &gt;= dyn_indxobj-&gt;size ())
+  <br/>
+   return NULL;
+  <br/>
+   return dyn_indxobj-&gt;fetch (index)-&gt;name; }</p>
+<p class="Pp">char * DbeSession::getIndexSpaceDescr (int index) {
+  <br/>
+   if (index &lt; 0 || index &gt;= dyn_indxobj-&gt;size ())
+  <br/>
+   return NULL;
+  <br/>
+   return dyn_indxobj-&gt;fetch (index)-&gt;i18n_name; }</p>
+<p class="Pp">Expression * DbeSession::getIndexSpaceExpr (int index) {
+  <br/>
+   if (index &lt; 0 || index &gt;= dyn_indxobj-&gt;size ())
+  <br/>
+   return NULL;
+  <br/>
+   return dyn_indxobj-&gt;fetch (index)-&gt;index_expr; }</p>
+<p class="Pp">char * DbeSession::getIndexSpaceExprStr (int index) {
+  <br/>
+   if (index &lt; 0 || index &gt;= dyn_indxobj-&gt;size ())
+  <br/>
+   return NULL;
+  <br/>
+   return dyn_indxobj-&gt;fetch (index)-&gt;index_expr_str; }</p>
+<p class="Pp">int DbeSession::findIndexSpaceByName (const char *mname) {
+  <br/>
+   int idx;
+  <br/>
+   IndexObjType_t *mt;
+  <br/>
+   Vec_loop (IndexObjType_t*, dyn_indxobj, idx, mt)
+  <br/>
+   {
+  <br/>
+   if (strcasecmp (mt-&gt;name, mname) == 0)
+  <br/>
+   return idx;
+  <br/>
+   }
+  <br/>
+   return -1; }</p>
+<p class="Pp">void DbeSession::removeIndexSpaceByName (const char *mname) {
+  <br/>
+   IndexObjType_t *indObj = findIndexSpace (mname);
+  <br/>
+   if (indObj)
+  <br/>
+   indObj-&gt;name[0] = 0; }</p>
+<p class="Pp">IndexObjType_t * DbeSession::getIndexSpace (int index) {
+  <br/>
+   return ((index &lt; 0) || (index &gt;= VecSize (dyn_indxobj))) ? NULL :
+    dyn_indxobj-&gt;get (index); }</p>
+<p class="Pp">IndexObjType_t * DbeSession::findIndexSpace (const char *mname) {
+  <br/>
+   return getIndexSpace (findIndexSpaceByName (mname)); }</p>
+<p class="Pp">void DbeSession::get_filter_keywords (Vector&lt;void*&gt; *res) {
+  <br/>
+   Vector &lt;char*&gt; *kwCategory = (Vector&lt;char*&gt;*) res-&gt;fetch (0);
+  <br/>
+   Vector &lt;char*&gt; *kwCategoryI18N = (Vector&lt;char*&gt;*) res-&gt;fetch
+    (1);
+  <br/>
+   Vector &lt;char*&gt; *kwDataType = (Vector&lt;char*&gt;*) res-&gt;fetch (2);
+  <br/>
+   Vector &lt;char*&gt; *kwKeyword = (Vector&lt;char*&gt;*) res-&gt;fetch (3);
+  <br/>
+   Vector &lt;char*&gt; *kwFormula = (Vector&lt;char*&gt;*) res-&gt;fetch (4);
+  <br/>
+   Vector &lt;char*&gt; *kwDescription = (Vector&lt;char*&gt;*) res-&gt;fetch
+    (5);
+  <br/>
+   Vector &lt;void*&gt; *kwEnumDescs = (Vector&lt;void*&gt;*) res-&gt;fetch
+  (6);</p>
+<p class="Pp">
+  <br/>
+   char *vtypeNames[] = VTYPE_TYPE_NAMES;
+  <br/>
+   for (long i = 0, sz = userLabels ? userLabels-&gt;size () : 0; i &lt; sz;
+    i++)
+  <br/>
+   {
+  <br/>
+   UserLabel *lbl = userLabels-&gt;fetch (i);
+  <br/>
+   kwCategory-&gt;append (dbe_strdup (NTXT (&quot;FK_LABEL&quot;)));
+  <br/>
+   kwCategoryI18N-&gt;append (dbe_strdup (GTXT (&quot;Labels&quot;)));
+  <br/>
+   kwDataType-&gt;append (dbe_strdup (vtypeNames[TYPE_BOOL]));
+  <br/>
+   kwKeyword-&gt;append (dbe_strdup (lbl-&gt;name));
+  <br/>
+   kwFormula-&gt;append (dbe_strdup (lbl-&gt;str_expr));
+  <br/>
+   kwDescription-&gt;append (dbe_strdup (lbl-&gt;comment));
+  <br/>
+   kwEnumDescs-&gt;append (NULL);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   for (long i = 0, sz = propNames ? propNames-&gt;size () : 0; i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   PropDescr *prop = propNames-&gt;fetch (i);
+  <br/>
+   char *pname = prop ? prop-&gt;name : NULL;
+  <br/>
+   if (pname == NULL || *pname == 0 || prop-&gt;flags &amp; PRFLAG_NOSHOW)
+  <br/>
+   continue;
+  <br/>
+   int vtypeNum = prop-&gt;vtype;
+  <br/>
+   if (vtypeNum &lt; 0 || vtypeNum &gt;= TYPE_LAST)
+  <br/>
+   vtypeNum = TYPE_NONE;
+  <br/>
+   kwCategory-&gt;append (dbe_strdup (NTXT (&quot;FK_EVTPROP&quot;))); //Event
+    Property
+  <br/>
+   kwCategoryI18N-&gt;append (dbe_strdup (GTXT (&quot;Misc.
+    Definitions&quot;)));
+  <br/>
+   kwDataType-&gt;append (dbe_strdup (vtypeNames[vtypeNum]));
+  <br/>
+   kwKeyword-&gt;append (dbe_strdup (pname));
+  <br/>
+   kwFormula-&gt;append (NULL);
+  <br/>
+   kwDescription-&gt;append (dbe_strdup (prop-&gt;uname));
+  <br/>
+   kwEnumDescs-&gt;append (NULL);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   for (long i = 0, sz = dyn_indxobj ? dyn_indxobj-&gt;size () : 0; i &lt; sz;
+    i++)
+  <br/>
+   {
+  <br/>
+   IndexObjType_t *obj = dyn_indxobj-&gt;get (i);
+  <br/>
+   if (obj-&gt;memObj)
+  <br/>
+   continue;
+  <br/>
+   kwCategory-&gt;append (dbe_strdup (NTXT (&quot;FK_IDXOBJ&quot;)));
+  <br/>
+   kwCategoryI18N-&gt;append (dbe_strdup (GTXT (&quot;Index Object
+    Definitions&quot;)));
+  <br/>
+   kwDataType-&gt;append (dbe_strdup (vtypeNames[TYPE_INT64]));
+  <br/>
+   kwKeyword-&gt;append (dbe_strdup (obj-&gt;name));
+  <br/>
+   kwFormula-&gt;append (dbe_strdup (obj-&gt;index_expr_str));
+  <br/>
+   kwDescription-&gt;append (dbe_strdup (obj-&gt;i18n_name));
+  <br/>
+   kwEnumDescs-&gt;append (NULL);
+  <br/>
+   } }</p>
+<p class="Pp">Histable * DbeSession::findIndexObject (int idxtype, uint64_t idx)
+    {
+  <br/>
+   HashMap&lt;uint64_t, Histable*&gt; *iobjs = idxobjs-&gt;fetch (idxtype);
+  <br/>
+   return iobjs-&gt;get (idx); }</p>
+<p class="Pp">Histable * DbeSession::createIndexObject (int idxtype, int64_t
+    idx) {
+  <br/>
+   HashMap&lt;uint64_t, Histable*&gt; *iobjs = idxobjs-&gt;fetch (idxtype);</p>
+<p class="Pp">
+  <br/>
+   Histable *idxobj = iobjs-&gt;get (idx);
+  <br/>
+   if (idxobj == NULL)
+  <br/>
+   {
+  <br/>
+   idxobj = new IndexObject (idxtype, idx);
+  <br/>
+   if (idx == -1)
+  <br/>
+   idxobj-&gt;set_name (dbe_strdup (GTXT (&quot;&lt;Unknown&gt;&quot;)));
+  <br/>
+   iobjs-&gt;put (idx, idxobj);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   return idxobj; }</p>
+<p class="Pp">Histable * DbeSession::createIndexObject (int idxtype, Histable
+    *hobj) {
+  <br/>
+   HashMap&lt;uint64_t, Histable*&gt; *iobjs = idxobjs-&gt;fetch (idxtype);
+  <br/>
+   int64_t idx = hobj ? hobj-&gt;id : -1;
+  <br/>
+   Histable *idxobj = iobjs-&gt;get (idx);
+  <br/>
+   if (idxobj == NULL)
+  <br/>
+   {
+  <br/>
+   idxobj = new IndexObject (idxtype, hobj);
+  <br/>
+   if (idx == -1)
+  <br/>
+   idxobj-&gt;set_name (dbe_strdup (GTXT (&quot;&lt;Unknown&gt;&quot;)));
+  <br/>
+   iobjs-&gt;put (idx, idxobj);
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   return idxobj; }</p>
+<p class="Pp">Histable * DbeSession::findObjectById (Histable::Type type, int
+    subtype, uint64_t id) {
+  <br/>
+   switch (type)
+  <br/>
+   {
+  <br/>
+   case Histable::FUNCTION:
+  <br/>
+   case Histable::MODULE:
+  <br/>
+   case Histable::LOADOBJECT:
+  <br/>
+   return ( id &lt; (uint64_t) objs-&gt;size ()) ? objs-&gt;fetch ((int) id) :
+    NULL;
+  <br/>
+   case Histable::INDEXOBJ:
+  <br/>
+   return findIndexObject (subtype, id);
+  <br/>
+   // ignoring the following cases
+  <br/>
+   case Histable::INSTR:
+  <br/>
+   case Histable::LINE:
+  <br/>
+   case Histable::EADDR:
+  <br/>
+   case Histable::MEMOBJ:
+  <br/>
+   case Histable::PAGE:
+  <br/>
+   case Histable::DOBJECT:
+  <br/>
+   case Histable::SOURCEFILE:
+  <br/>
+   case Histable::IOACTFILE:
+  <br/>
+   case Histable::IOACTVFD:
+  <br/>
+   case Histable::IOCALLSTACK:
+  <br/>
+   case Histable::HEAPCALLSTACK:
+  <br/>
+   case Histable::OTHER:
+  <br/>
+   case Histable::EXPERIMENT:
+  <br/>
+   break;
+  <br/>
+   }
+  <br/>
+   return NULL; }</p>
+<p class="Pp">// return a vector of Functions that match the regular expression
+    input string Vector&lt;JThread *&gt; * DbeSession::match_java_threads (char
+    *ustr, int matchParent,
+  <br/>
+   Vector&lt;uint64_t&gt; * &amp;grids,
+  <br/>
+   Vector&lt;uint64_t&gt; * &amp;expids) {
+  <br/>
+   if (ustr == NULL)
+  <br/>
+   return NULL;</p>
+<p class="Pp">
+  <br/>
+   char *str = dbe_sprintf (NTXT (&quot;^%s$&quot;), ustr);
+  <br/>
+   regex_t regex_desc;
+  <br/>
+   int rc = regcomp (&amp;regex_desc, str, REG_EXTENDED | REG_NOSUB |
+    REG_NEWLINE);
+  <br/>
+   free (str);
+  <br/>
+   if (rc) // syntax error in parsing string
+  <br/>
+   return NULL;</p>
+<p class="Pp">
+  <br/>
+   // allocate the new vector
+  <br/>
+   Vector&lt;JThread *&gt; *ret = new Vector&lt;JThread*&gt;;
+  <br/>
+   grids = new Vector&lt;uint64_t&gt;;
+  <br/>
+   expids = new Vector&lt;uint64_t&gt;;</p>
+<p class="Pp">
+  <br/>
+   int index;
+  <br/>
+   JThread *jthread;
+  <br/>
+   int expid;
+  <br/>
+   Experiment* exp;
+  <br/>
+   Vec_loop (Experiment*, exps, expid, exp)
+  <br/>
+   {</p>
+<p class="Pp">
+  <br/>
+   Vec_loop (JThread*, exp-&gt;get_jthreads (), index, jthread)
+  <br/>
+   {
+  <br/>
+   const char * name;
+  <br/>
+   if (matchParent)
+  <br/>
+   name = jthread-&gt;parent_name;
+  <br/>
+   else
+  <br/>
+   name = jthread-&gt;group_name;
+  <br/>
+   if (name == NULL)
+  <br/>
+   name = &quot;&quot;;
+  <br/>
+   if (!regexec (&amp;regex_desc, name, 0, NULL, 0))
+  <br/>
+   {
+  <br/>
+   // this one matches
+  <br/>
+   ret-&gt;append (jthread);
+  <br/>
+   grids-&gt;append (exp-&gt;groupId);
+  <br/>
+   expids-&gt;append (exp-&gt;getUserExpId ());
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   }</p>
+<p class="Pp">
+  <br/>
+   regfree (&amp;regex_desc);
+  <br/>
+   return ret; }</p>
+<p class="Pp">// return a vector of Functions that match the regular expression
+    input string Vector&lt;Function *&gt; * DbeSession::match_func_names (const
+    char *ustr, Histable::NameFormat nfmt) {
+  <br/>
+   if (ustr == NULL)
+  <br/>
+   return NULL;
+  <br/>
+   char *str = dbe_sprintf (NTXT (&quot;^%s$&quot;), ustr);
+  <br/>
+   regex_t regex_desc;
+  <br/>
+   int rc = regcomp (&amp;regex_desc, str, REG_EXTENDED | REG_NOSUB |
+    REG_NEWLINE);
+  <br/>
+   free (str);
+  <br/>
+   if (rc) // syntax error in parsing string
+  <br/>
+   return NULL;</p>
+<p class="Pp">
+  <br/>
+   // allocate the new vector
+  <br/>
+   Vector&lt;Function *&gt; *ret = new Vector&lt;Function*&gt;;</p>
+<p class="Pp">
+  <br/>
+   int index;
+  <br/>
+   Histable *obj;
+  <br/>
+   Vec_loop (Histable*, objs, index, obj)
+  <br/>
+   {
+  <br/>
+   if (obj-&gt;get_type () == Histable::FUNCTION)
+  <br/>
+   {
+  <br/>
+   Function *func = (Function*) obj;
+  <br/>
+   if (!regexec (&amp;regex_desc, func-&gt;get_name (nfmt), 0, NULL, 0))
+  <br/>
+   // this one matches
+  <br/>
+   ret-&gt;append (func);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   regfree (&amp;regex_desc);
+  <br/>
+   return ret; }</p>
+<p class="Pp">// return a vector of Functions that match the regular expression
+    input string Vector&lt;FileData *&gt; * DbeSession::match_file_names (char
+    *ustr, Histable::NameFormat nfmt) {
+  <br/>
+   if (ustr == NULL)
+  <br/>
+   return NULL;
+  <br/>
+   char *str = dbe_sprintf (NTXT (&quot;^%s$&quot;), ustr);
+  <br/>
+   regex_t regex_desc;
+  <br/>
+   int rc = regcomp (&amp;regex_desc, str, REG_EXTENDED | REG_NOSUB |
+    REG_NEWLINE);
+  <br/>
+   free (str);
+  <br/>
+   if (rc) // syntax error in parsing string
+  <br/>
+   return NULL;</p>
+<p class="Pp">
+  <br/>
+   // allocate the new vector
+  <br/>
+   Vector&lt;FileData *&gt; *ret = new Vector&lt;FileData*&gt;;
+  <br/>
+   int numExps = nexps ();
+  <br/>
+   DefaultMap&lt;int64_t, FileData*&gt;* fDataMap;
+  <br/>
+   Vector&lt;FileData *&gt; *fDataObjs;
+  <br/>
+   FileData *fData;
+  <br/>
+   int size;
+  <br/>
+   for (int i = 0; i &lt; numExps; i++)
+  <br/>
+   {
+  <br/>
+   Experiment *exp = get_exp (i);
+  <br/>
+   fDataMap = exp-&gt;getFDataMap ();
+  <br/>
+   fDataObjs = fDataMap-&gt;values ();
+  <br/>
+   size = fDataObjs-&gt;size ();
+  <br/>
+   for (int j = 0; j &lt; size; j++)
+  <br/>
+   {
+  <br/>
+   fData = fDataObjs-&gt;fetch (j);
+  <br/>
+   if (fData
+  <br/>
+   &amp;&amp; !regexec (&amp;regex_desc, fData-&gt;get_raw_name (nfmt), 0, NULL,
+    0))
+  <br/>
+   // this one matches
+  <br/>
+   ret-&gt;append (fData);
+  <br/>
+   }
+  <br/>
+   }
+  <br/>
+   regfree (&amp;regex_desc);
+  <br/>
+   return ret; }</p>
+<p class="Pp">// return a vector of DataObjects that match the regular
+    expression input string Vector&lt;DataObject *&gt; *
+    DbeSession::match_dobj_names (char *ustr) {
+  <br/>
+   if (ustr == NULL)
+  <br/>
+   return NULL;
+  <br/>
+   char *str = dbe_sprintf (NTXT (&quot;^%s$&quot;), ustr);
+  <br/>
+   regex_t regex_desc;
+  <br/>
+   int rc = regcomp (&amp;regex_desc, str, REG_EXTENDED | REG_NOSUB |
+    REG_NEWLINE);
+  <br/>
+   free (str);
+  <br/>
+   if (rc) // syntax error in parsing string
+  <br/>
+   return NULL;</p>
+<p class="Pp">
+  <br/>
+   // allocate the new vector
+  <br/>
+   Vector&lt;DataObject *&gt; *ret = new Vector&lt;DataObject*&gt;;
+  <br/>
+   int index;
+  <br/>
+   DataObject *ditem;
+  <br/>
+   Vec_loop (DataObject*, dobjs, index, ditem)
+  <br/>
+   {
+  <br/>
+   // does this one match
+  <br/>
+   if (!regexec (&amp;regex_desc, ditem-&gt;get_name (), 0, NULL, 0))
+  <br/>
+   // this one matches
+  <br/>
+   ret-&gt;append (ditem);
+  <br/>
+   }
+  <br/>
+   regfree (&amp;regex_desc);
+  <br/>
+   return ret; }</p>
+<p class="Pp">void DbeSession::dump (char *msg, Vector&lt;BaseMetric*&gt;
+    *mlist) {
+  <br/>
+   if (msg)
+  <br/>
+   fprintf (stderr, &quot;%s0, msg);
+  <br/>
+   int sz = mlist ? mlist-&gt;size () : -1;
+  <br/>
+   for (int i = 0; i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   BaseMetric *m = mlist-&gt;fetch (i);
+  <br/>
+   char *s = m-&gt;dump ();
+  <br/>
+   fprintf (stderr, &quot;%2d %s0, i, s);
+  <br/>
+   free (s);
+  <br/>
+   }
+  <br/>
+   fprintf (stderr, &quot;======END of mlist[%d] =========0, sz); }</p>
+<p class="Pp">void DbeSession::dump (char *msg, Vector&lt;Metric*&gt; *mlist) {
+  <br/>
+   if (msg)
+  <br/>
+   fprintf (stderr, &quot;%s0, msg);
+  <br/>
+   int sz = mlist ? mlist-&gt;size () : -1;
+  <br/>
+   for (int i = 0; i &lt; sz; i++)
+  <br/>
+   {
+  <br/>
+   Metric *m = mlist-&gt;fetch (i);
+  <br/>
+   char *s = m-&gt;dump ();
+  <br/>
+   fprintf (stderr, &quot;%2d %s0, i, s);
+  <br/>
+   free (s);
+  <br/>
+   }
+  <br/>
+   fprintf (stderr, &quot;======END of mlist[%d] =========0, sz); }</p>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date"></td>
+    <td class="foot-os"></td>
+  </tr>
+</table>
+</body>
+</html>
+
+    </section>
+  </article>
+
+    </main>
+
+    
+	<footer>
+		<p class="button">
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+				<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+			</a>
+			<a href="https://emacs.love/weblorg/" target="_blank">
+				<img alt="Created with emacs" src="https://qdnix.d0p1.eu/static/img/button/emacs.gif" />
+			</a>
+			<a href="http://d0p1.eu/trans-rights-are-human-rights" target="_blank">
+				<img alt="Trans right now!" src="https://qdnix.d0p1.eu/static/img/button/trn.png" />
+			</a>
+			<a href="https://web3isgoinggreat.com/" target="_blank">
+				<img alt="This is an Anti-NFT site" src="https://qdnix.d0p1.eu/static/img/button/antinft.gif" />
+			</a>
+			<a href="https://www.defectivebydesign.org/" target="_blank">
+				<img src="https://defectivebydesign.org/sites/nodrm.civicactions.net/files/images/elim_sm_btn.gif"
+					alt="Eliminate DRM!" width="88" height="31" />
+			</a>
+			<a href="https://yesterweb.org/no-to-web3/" target="_blank">
+				<img alt="Say no to web3" src="https://qdnix.d0p1.eu/static/img/button/roly-saynotoweb3.gif" />
+			</a>
+			<a href="https://www.youtube.com/watch?v=_Rua3TOeono" target="_blank">
+				<img src="https://qdnix.d0p1.eu/static/img/button/nonazis.png" width="31" />
+			</a>
+			<a href="https://endsoftwarepatents.org/innovating-without-patents" target="_blank">
+				<img alt="End of software patents" style="height: 31px;"
+					src="https://static.fsf.org/nosvn/esp/logos/patent-free.svg">
+			</a>
+			<a href="https://liberapay.com/d0p1/donate" target="_blank">
+				<img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+			<br />
+		</p>
+	</footer>
+    
+	</div>
+
+	
+  </body>
+</html>

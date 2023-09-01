@@ -1,0 +1,1668 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>
+      Quick&#39;n&#39;dirty *NIX
+      
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="contact@qdnix.d0p1.eu" />
+    <meta name="description" content="Portable UNIX-like Operating System" />
+    
+    
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://qdnix.d0p1.eu/static/style.css" type="text/css" />
+    
+  </head>
+  <body>
+    
+    
+      <header class="navbar">
+		<nav aria-label="Main navigation">
+			<div class="navbar-brand">
+				<h1><a href="https://qdnix.d0p1.eu/" title="Quick'n'dirty *NIX">Quick&#39;n&#39;dirty *NIX</a></h1>
+			</div>
+			<ul>
+				<li><a href="https://qdnix.d0p1.eu/">Home</a></li>
+				<li><a href="https://qdnix.d0p1.eu/propaganda.html">Propaganda</a></li>
+				<li><a href="https://qdnix.d0p1.eu/man">Manual</a></li>
+				<li><a href="https://qdnix.d0p1.eu/doxygen">Doxygen</a></li>
+			</ul>
+		</nav>
+      </header>
+    
+
+	<div class="page">
+	  
+    <main id="main">
+      
+  <article class="page">
+    <section>
+      <!DOCTYPE html>
+<html>
+<!-- This is an automatically generated file.  Do not edit.
+  	$OpenBSD: sh.1,v 1.153 2021/05/04 21:03:31 naddy Exp $
+  
+   Copyright (c) 2015 Jason McIntyre <jmc@openbsd.org>
+  
+   Permission to use, copy, modify, and distribute this software for any
+   purpose with or without fee is hereby granted, provided that the above
+   copyright notice and this permission notice appear in all copies.
+  
+   THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+   WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+   MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+   ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+   WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+   ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+   -->
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    table.head, table.foot { width: 100%; }
+    td.head-rtitle, td.foot-os { text-align: right; }
+    td.head-vol { text-align: center; }
+    .Nd, .Bf, .Op { display: inline; }
+    .Pa, .Ad { font-style: italic; }
+    .Ms { font-weight: bold; }
+    .Bl-diag > dt { font-weight: bold; }
+    code.Nm, .Fl, .Cm, .Ic, code.In, .Fd, .Fn, .Cd { font-weight: bold;
+      font-family: inherit; }
+  </style>
+  <title>SH(1)</title>
+</head>
+<body>
+<table class="head">
+  <tr>
+    <td class="head-ltitle">SH(1)</td>
+    <td class="head-vol">General Commands Manual</td>
+    <td class="head-rtitle">SH(1)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<section class="Sh">
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<p class="Pp"><code class="Nm">sh</code> &#x2014; <span class="Nd">command
+    language interpreter</span></p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
+<table class="Nm">
+  <tr>
+    <td><code class="Nm">sh</code></td>
+    <td>[<code class="Fl">-abCefhimnuvx</code>] [<code class="Fl">-o</code>
+      <var class="Ar">option</var>] [<code class="Fl">-c</code>
+      <var class="Ar">string</var> | <code class="Fl">-s</code> |
+      <var class="Ar">file</var>]</td>
+  </tr>
+</table>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<p class="Pp">The <code class="Nm">sh</code> utility is a <i class="Em">command
+    language interpreter</i>: it reads one or more commands, either from the
+    command line or from a file (a shell script), and then sets about executing
+    those commands. Thus it is the main interface between the user and the
+    operating system.</p>
+<p class="Pp">This version of <code class="Nm">sh</code> is actually
+    <code class="Nm">ksh</code> in disguise. As such, it also supports the
+    features described in <a class="Xr">ksh(1)</a>. This manual page describes
+    only the parts relevant to a POSIX compliant <code class="Nm">sh</code>. If
+    portability is a concern, use only those features described in this
+  page.</p>
+<p class="Pp">The shell receives input as follows:</p>
+<p class="Pp"></p>
+<div class="Bd-indent">
+<dl class="Bl-tag Bl-compact">
+  <dt id="c"><a class="permalink" href="#c"><code class="Fl">-c</code></a>
+    <var class="Ar">string</var></dt>
+  <dd>Read commands from <var class="Ar">string</var>.</dd>
+  <dt id="s"><a class="permalink" href="#s"><code class="Fl">-s</code></a></dt>
+  <dd>Read commands from standard input (the default).</dd>
+  <dt><var class="Ar">file</var></dt>
+  <dd>Read commands from <var class="Ar">file</var>.</dd>
+</dl>
+</div>
+<p class="Pp">The options below can be specified with a
+    &#x2018;<code class="Cm">+</code>&#x2019; rather than
+    &#x2018;<code class="Fl">-</code>&#x2019;, meaning to unset the option. They
+    can also be set or unset using the <code class="Ic">set</code> command. Some
+    options have equivalent long names, indicated at the start of the
+    description, which can be used with the <code class="Fl">-o</code>
+  option.</p>
+<dl class="Bl-tag">
+  <dt id="a"><a class="permalink" href="#a"><code class="Fl">-a</code></a></dt>
+  <dd>Allexport. Variable assignments are exported to all child processes of the
+      running shell. If the assignment precedes a command it does not persist
+      after that command has finished running, unless the command is a special
+      builtin or one of the builtins <code class="Ic">getopts</code> or
+      <code class="Ic">read</code> makes the assignment.</dd>
+  <dt id="b"><a class="permalink" href="#b"><code class="Fl">-b</code></a></dt>
+  <dd>Notify. The user is given notice asynchronously when background jobs
+      complete.</dd>
+  <dt id="C"><a class="permalink" href="#C"><code class="Fl">-C</code></a></dt>
+  <dd>Noclobber. Do not permit the redirection operator (&#x2018;&gt;&#x2019;)
+      to clobber (overwrite) existing files.</dd>
+  <dt id="e"><a class="permalink" href="#e"><code class="Fl">-e</code></a></dt>
+  <dd>Errexit. Exit the shell immediately should an error occur or a command
+      fail. For pipelines and <code class="Cm">&amp;&amp;</code> and
+      <code class="Cm">||</code> constructs, only exit if the last component
+      fails. Errexit is ignored for <code class="Ic">while</code>,
+      <code class="Ic">until</code>, <code class="Ic">if</code>, and
+      <code class="Ic">elif</code> lists and pipelines beginning
+      &#x2018;!&#x2019;.</dd>
+  <dt id="f"><a class="permalink" href="#f"><code class="Fl">-f</code></a></dt>
+  <dd>Noglob. Do not expand file name patterns.</dd>
+  <dt id="h"><a class="permalink" href="#h"><code class="Fl">-h</code></a></dt>
+  <dd>When a utility is first executed, hash (record) its location so that
+      future invocations do not need to search for it.</dd>
+  <dt id="i"><a class="permalink" href="#i"><code class="Fl">-i</code></a></dt>
+  <dd>Enable behaviour convenient for an interactive shell. This option is set
+      by default if the session is attached to a terminal.</dd>
+  <dt id="m"><a class="permalink" href="#m"><code class="Fl">-m</code></a></dt>
+  <dd>Monitor. Fully enable job control: enable the <code class="Ic">bg</code>
+      and <code class="Ic">fg</code> builtins; report completion status when
+      jobs finish; report when a foreground process stops; and report when a job
+      changes status. The processes of a job share their own process group. This
+      option is set by default for interactive shells.</dd>
+  <dt id="n"><a class="permalink" href="#n"><code class="Fl">-n</code></a></dt>
+  <dd>Noexec. Read commands but do not execute them &#x2013; useful for checking
+      syntax errors in scripts. This option is ignored for interactive
+    shells.</dd>
+  <dt id="o"><a class="permalink" href="#o"><code class="Fl">-o</code></a>
+    <var class="Ar">option</var></dt>
+  <dd>Specify an option by its long name. Those described below have no
+      equivalent option letter:
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt>ignoreeof</dt>
+      <dd>Ignore an end-of-file (&#x2018;^D&#x2019;). EOF normally logs a user
+          out, so setting this can prevent accidental logouts (the user will
+          need to explicitly use the <code class="Ic">exit</code> command).</dd>
+      <dt>nolog</dt>
+      <dd>Do not enter function definitions into command history.</dd>
+      <dt>posix</dt>
+      <dd>Enable POSIX mode (see
+        <a class="Sx" href="#STANDARDS">STANDARDS</a>).</dd>
+      <dt>vi</dt>
+      <dd>Enable <a class="Xr">vi(1)</a> command line editing.</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="u"><a class="permalink" href="#u"><code class="Fl">-u</code></a></dt>
+  <dd>Nounset. If a command references an unset parameter, write an error to
+      standard output instead of executing the command. This option is ignored
+      for the special parameters &#x2018;*&#x2019; and &#x2018;@&#x2019;. If the
+      shell is not interactive, immediately exit.</dd>
+  <dt id="v"><a class="permalink" href="#v"><code class="Fl">-v</code></a></dt>
+  <dd>Verbose. Write input to standard error after reading it.</dd>
+  <dt id="x"><a class="permalink" href="#x"><code class="Fl">-x</code></a></dt>
+  <dd>Xtrace. Write a trace for each command to standard error after expanding
+      it, and before executing it.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="BUILTINS"><a class="permalink" href="#BUILTINS">BUILTINS</a></h1>
+<p class="Pp">The shell has a number of
+    <a class="permalink" href="#built-ins"><i class="Em" id="built-ins">built-ins</i></a>
+    available: utilities that are included as part of the shell. The shell does
+    not need to search for them and can execute them directly.</p>
+<p class="Pp">A number of built-ins are special in that a syntax error can cause
+    a running shell to abort, and, after the built-in completes, variable
+    assignments remain in the current environment. The following built-ins are
+    special: <code class="Ic">.</code>, <code class="Ic">:</code>,
+    <code class="Ic">break</code>, <code class="Ic">continue</code>,
+    <code class="Ic">eval</code>, <code class="Ic">exec</code>,
+    <code class="Ic">exit</code>, <code class="Ic">export</code>,
+    <code class="Ic">readonly</code>, <code class="Ic">return</code>,
+    <code class="Ic">set</code>, <code class="Ic">shift</code>,
+    <code class="Ic">times</code>, <code class="Ic">trap</code>, and
+    <code class="Ic">unset</code>.</p>
+<p class="Pp">The built-ins available to <code class="Nm">sh</code> are listed
+    below. Unless otherwise indicated, they exit 0 on success, and &gt;0 if an
+    error occurs.</p>
+<dl class="Bl-tag">
+  <dt id="."><a class="permalink" href="#."><code class="Ic">.</code></a>
+    <var class="Ar">file</var></dt>
+  <dd>Execute the commands in <var class="Ar">file</var>, in the current
+      environment. The actual file need not be executable, and its location is
+      determined by searching <code class="Ev">PATH</code> if there are no
+      slashes in the filename. The exit status is that of the last command
+      returned, or zero if no commands were executed. If no readable file can be
+      found, a non-interactive shell will abort; an interactive shell writes an
+      error message and returns a non-zero exit status.</dd>
+  <dt id=":"><a class="permalink" href="#:"><code class="Ic">:</code></a>
+    [<var class="Ar">arg ...</var>]</dt>
+  <dd>The <code class="Ic">:</code> command does nothing &#x2013; it is a
+      placeholder for when a command is required. Its exit status is always
+      zero.</dd>
+  <dt id="alias"><a class="permalink" href="#alias"><code class="Ic">alias</code></a>
+    [<var class="Ar">name</var>[=<var class="Ar">value</var>]
+    <var class="Ar">...</var>]</dt>
+  <dd>Define an alias <var class="Ar">name</var> to <var class="Ar">value</var>;
+      when the shell encounters a command name that is an alias, its value is
+      substituted. If <var class="Ar">value</var> ends in a blank, the next word
+      is checked for alias substitution too. If only a
+      <var class="Ar">name</var> is specified, display the value of that alias;
+      if no arguments are given, list all aliases and their values. Aliases are
+      visible in the current environment and that of subshells, but not by the
+      parent process of the current shell or by utilities invoked by it.</dd>
+  <dt id="bg"><a class="permalink" href="#bg"><code class="Ic">bg</code></a>
+    [<var class="Ar">id ...</var>]</dt>
+  <dd>Select a job by <var class="Ar">id</var> (see the
+      <code class="Ic">jobs</code> command, below) to run in the background. The
+      default job is &quot;%+&quot;.</dd>
+  <dt id="break"><a class="permalink" href="#break"><code class="Ic">break</code></a>
+    [<var class="Ar">n</var>]</dt>
+  <dd>Exit from the innermost <code class="Ic">for</code>,
+      <code class="Ic">while</code>, or <code class="Ic">until</code> loop, or
+      from loop level <var class="Ar">n</var>.</dd>
+  <dt id="cd"><a class="permalink" href="#cd"><code class="Ic">cd</code></a>
+    [<code class="Fl">-L</code> | <code class="Fl">-P</code>]
+    [<var class="Ar">dir</var>]</dt>
+  <dd>Change the current working directory to <var class="Ar">dir</var>, or
+      <code class="Ev">$HOME</code> by default. If <var class="Ar">dir</var> is
+      set to &#x2018;-&#x2019;, change to the previous working directory and
+      print the (now current) working directory. If <var class="Ar">dir</var>
+      does not begin with a slash or dot, <code class="Ev">CDPATH</code> is
+      searched for the directory.
+    <p class="Pp">The options to the <code class="Ic">cd</code> command are as
+        follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="L"><a class="permalink" href="#L"><code class="Fl">-L</code></a></dt>
+      <dd>Do not resolve symbolic links before processing &quot;..&quot;
+          components.</dd>
+      <dt id="P"><a class="permalink" href="#P"><code class="Fl">-P</code></a></dt>
+      <dd>Resolve symbolic links before processing &quot;..&quot;
+        components.</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="command"><a class="permalink" href="#command"><code class="Ic">command</code></a>
+    [<code class="Fl">-p</code> | <code class="Fl">-V</code> |
+    <code class="Fl">-v</code>] <var class="Ar">command</var>
+    [<var class="Ar">arg ...</var>]</dt>
+  <dd>Invoke <var class="Ar">command</var> (and any optional arguments),
+      overriding any functions with the same name, and without any of the
+      properties that special built-ins have.
+    <p class="Pp">The options to <code class="Ic">command</code> are as
+      follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="p"><a class="permalink" href="#p"><code class="Fl">-p</code></a></dt>
+      <dd>Use a default value for <code class="Ev">PATH</code> to search for the
+          command.</dd>
+      <dt id="V"><a class="permalink" href="#V"><code class="Fl">-V</code></a></dt>
+      <dd>Do not invoke <var class="Ar">command</var>, but identify how the
+          shell will interpret it (such as a function or special built-in).</dd>
+      <dt id="v~2"><a class="permalink" href="#v~2"><code class="Fl">-v</code></a></dt>
+      <dd>Do not invoke <var class="Ar">command</var>, but identify the pathname
+          the shell will use to run it. For aliases, a command to define that
+          alias is printed. For shell reserved words, shell functions, and
+          built-in utilities, just the name is printed.</dd>
+    </dl>
+    </div>
+    <p class="Pp">The exit status is that of <var class="Ar">command</var>, or
+        126 if <var class="Ar">command</var> could not be invoked, or 127 if an
+        error occurred in <code class="Ic">command</code> itself or
+        <var class="Ar">command</var> could not be found. If the options
+        <code class="Fl">-V</code> or <code class="Fl">-v</code> are given, the
+        exit status is 0 on success, or &gt;0 if an error occurs.</p>
+  </dd>
+  <dt id="continue"><a class="permalink" href="#continue"><code class="Ic">continue</code></a>
+    [<var class="Ar">n</var>]</dt>
+  <dd>Go directly to the next iteration of the innermost
+      <code class="Ic">for</code>, <code class="Ic">while</code>, or
+      <code class="Ic">until</code> loop, or from loop level
+      <var class="Ar">n</var>.</dd>
+  <dt id="eval"><a class="permalink" href="#eval"><code class="Ic">eval</code></a>
+    [<var class="Ar">arg ...</var>]</dt>
+  <dd>Concatenate the arguments given and interpret them as a command. The exit
+      status is that of the resulting command, zero if no arguments are given,
+      or &gt;0 if the resulting command could not be correctly parsed.</dd>
+  <dt id="exec"><a class="permalink" href="#exec"><code class="Ic">exec</code></a>
+    [<var class="Ar">command</var> [<var class="Ar">arg ...</var>]]</dt>
+  <dd>Replace the shell with <var class="Ar">command</var> (and any optional
+      arguments), without creating a new process. The exit status is that of
+      <var class="Ar">command</var>, or 126 if <var class="Ar">command</var>
+      could not be invoked, or 127 if <var class="Ar">command</var> could not be
+      found. If no command is given but a redirection happens, the exit status
+      is 1&#x2013;125; otherwise <code class="Ic">exec</code> returns 0.</dd>
+  <dt id="exit"><a class="permalink" href="#exit"><code class="Ic">exit</code></a>
+    [<var class="Ar">n</var>]</dt>
+  <dd>Exit the shell with exit status <var class="Ar">n</var>, or that of the
+      last command executed.</dd>
+  <dt id="export"><a class="permalink" href="#export"><code class="Ic">export</code></a>
+    [<code class="Fl">-p</code>]
+    <var class="Ar">name</var>[=<var class="Ar">value</var>]
+    <var class="Ar">...</var></dt>
+  <dd>Make the variable <var class="Ar">name</var> visible to subsequently run
+      commands, optionally setting it to <var class="Ar">value</var>.
+    <p class="Pp">The options to the <code class="Ic">export</code> command are
+        as follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="p~2"><a class="permalink" href="#p~2"><code class="Fl">-p</code></a></dt>
+      <dd>List all exported variables in a manner that can be reinput to the
+          shell.</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="false"><a class="permalink" href="#false"><code class="Ic">false</code></a></dt>
+  <dd>Return a false (non-zero) value.</dd>
+  <dt id="fc"><a class="permalink" href="#fc"><code class="Ic">fc</code></a>
+    [<code class="Fl">-lnr</code>] [<code class="Fl">-e</code>
+    <var class="Ar">editor</var>] [<code class="Fl">-s</code>
+    [<var class="Ar">old</var>=<var class="Ar">new</var>]]
+    [<var class="Ar">first</var> [<var class="Ar">last</var>]]</dt>
+  <dd>Edit commands from command history using <a class="Xr">ed(1)</a>. After
+      editing, the new commands are executed by the shell.
+    <p class="Pp">The options to the <code class="Ic">fc</code> command are as
+        follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="e~2"><a class="permalink" href="#e~2"><code class="Fl">-e</code></a>
+        <var class="Ar">editor</var></dt>
+      <dd>Edit commands using <var class="Ar">editor</var>. See also
+          <code class="Ev">FCEDIT</code>.</dd>
+      <dt id="l"><a class="permalink" href="#l"><code class="Fl">-l</code></a></dt>
+      <dd>List the command history.</dd>
+      <dt id="ln"><a class="permalink" href="#ln"><code class="Fl">-ln</code></a></dt>
+      <dd>List the command history without command numbers.</dd>
+      <dt id="r"><a class="permalink" href="#r"><code class="Fl">-r</code></a></dt>
+      <dd>Edit or list (<code class="Fl">-lr</code>) commands in reverse
+        order.</dd>
+      <dt id="s~2"><a class="permalink" href="#s~2"><code class="Fl">-s</code></a>
+        [<var class="Ar">old</var>=<var class="Ar">new</var>]</dt>
+      <dd>Reexecute a single command without invoking an editor. The first
+          occurrence of the string <var class="Ar">old</var> in the command is
+          replaced by <var class="Ar">new</var>.</dd>
+    </dl>
+    </div>
+    <p class="Pp">A range of commands can be specified,
+        <var class="Ar">first</var> to <var class="Ar">last</var>. Their format
+        can be numerical, to select by command number;
+        &#x2018;-<var class="Ar">n</var>&#x2019;, to select a command executed
+        that number of commands previous; or a string which matches the
+        beginning of the command. If no range is given, the last command in
+        command history is edited, or reexecuted (<code class="Fl">-s</code>),
+        or the previous 16 commands in command history are listed
+        (<code class="Fl">-l</code>). If <var class="Ar">first</var> is newer
+        than <var class="Ar">last</var>, commands are processed in reverse order
+        (as if <code class="Fl">-r</code> had been given); if either are out of
+        range, the oldest or newest values are used.</p>
+  </dd>
+  <dt id="fg"><a class="permalink" href="#fg"><code class="Ic">fg</code></a>
+    [<var class="Ar">id ...</var>]</dt>
+  <dd>Select a job by <var class="Ar">id</var> (see the
+      <code class="Ic">jobs</code> command, below) to run in the foreground. The
+      default job is &quot;%+&quot;.</dd>
+  <dt id="getopts"><a class="permalink" href="#getopts"><code class="Ic">getopts</code></a>
+    <var class="Ar">optstring name</var> [<var class="Ar">arg ...</var>]</dt>
+  <dd>When invoked, <code class="Ic">getopts</code> processes the positional
+      parameters (or any <var class="Ar">arg</var> passed to it) as a list of
+      options and option arguments. <code class="Ic">getopts</code> sets the
+      variable <var class="Ar">name</var> to the option found,
+      <code class="Ev">OPTARG</code> to its argument, and
+      <code class="Ev">OPTIND</code> to the index of the next variable to be
+      processed.
+    <p class="Pp">The string <var class="Ar">optstring</var> contains a list of
+        acceptable options; a colon following an option indicates it requires an
+        argument. If an option not recognised by <var class="Ar">optstring</var>
+        is found, <var class="Ar">name</var> is set to &#x2018;?&#x2019;; if the
+        first character of <var class="Ar">optstring</var> is a colon,
+        <code class="Ev">OPTARG</code> is set to the unsupported option,
+        otherwise an error message is displayed.</p>
+    <p class="Pp">The following code fragment shows how one might process the
+        arguments for a command that can take the option
+        <code class="Fl">-a</code> and the option <code class="Fl">-o</code>,
+        which requires an argument.</p>
+    <div class="Bd Pp Bd-indent Li">
+    <pre>while getopts ao: name
+do
+	case $name in
+	a)	flag=1 ;;
+	o)	oarg=$OPTARG ;;
+	?)	echo &quot;Usage: ...&quot;; exit 2 ;;
+	esac
+done
+shift $(($OPTIND - 1))
+echo &quot;Non-option arguments: &quot; &quot;$@&quot;</pre>
+    </div>
+  </dd>
+  <dt id="hash"><a class="permalink" href="#hash"><code class="Ic">hash</code></a>
+    [<code class="Fl">-r</code> | <var class="Ar">utility</var>]</dt>
+  <dd>Add <var class="Ar">utility</var> to the hash list or remove
+      (<code class="Fl">-r</code>) all utilities from the hash list. Without
+      arguments, show the utilities currently hashed.</dd>
+  <dt id="jobs"><a class="permalink" href="#jobs"><code class="Ic">jobs</code></a>
+    [<code class="Fl">-l</code> | <code class="Fl">-p</code>]
+    [<var class="Ar">id ...</var>]</dt>
+  <dd>Display the status of all jobs in the current shell environment, or those
+      selected by <var class="Ar">id</var>.
+    <p class="Pp">The options to the <code class="Ic">jobs</code> command are as
+        follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="l~2"><a class="permalink" href="#l~2"><code class="Fl">-l</code></a></dt>
+      <dd>Additionally display the process group ID.</dd>
+      <dt id="p~3"><a class="permalink" href="#p~3"><code class="Fl">-p</code></a></dt>
+      <dd>Display only the process group ID.</dd>
+    </dl>
+    </div>
+    <p class="Pp">Job <var class="Ar">id</var> can be selected in one of the
+        following ways:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt>%%</dt>
+      <dd>The current job.</dd>
+      <dt>%+</dt>
+      <dd>The current job.</dd>
+      <dt>%-</dt>
+      <dd>The previous job.</dd>
+      <dt>%<var class="Ar">n</var></dt>
+      <dd>Job number <var class="Ar">n</var>.</dd>
+      <dt>%<var class="Ar">string</var></dt>
+      <dd>Job with command matching <var class="Ar">string</var>.</dd>
+      <dt>%?<var class="Ar">string</var></dt>
+      <dd>Job with command containing <var class="Ar">string</var>.</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="kill"><a class="permalink" href="#kill"><code class="Ic">kill</code></a>
+    [<code class="Fl">-l</code> [<var class="Ar">signal</var>]]
+    [<code class="Fl">-s</code> <var class="Ar">signal</var>]
+    [<code class="Fl">-</code><var class="Ar">signal</var>] <var class="Ar">pid
+    ...</var></dt>
+  <dd>Send a signal, by default <code class="Dv">SIGTERM</code>, to the process
+      with ID <var class="Ar">pid</var>.
+    <p class="Pp">The options to the <code class="Ic">kill</code> command are as
+        follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="l~3"><a class="permalink" href="#l~3"><code class="Fl">-l</code></a>
+        [<var class="Ar">signal</var>]</dt>
+      <dd>List all supported signals, or the signal name corresponding to
+          <var class="Ar">signal</var> number or the exit status of a command
+          killed by a signal.</dd>
+      <dt id="s~3"><a class="permalink" href="#s~3"><code class="Fl">-s</code></a>
+        <var class="Ar">signal</var></dt>
+      <dd>Send the process <var class="Ar">signal</var> name.</dd>
+      <dt><code class="Fl">-</code><var class="Ar">signal</var></dt>
+      <dd>Send the process <var class="Ar">signal</var> name or number.</dd>
+      <dt><var class="Ar">pid</var></dt>
+      <dd>A process ID, process group ID, or a job ID (see
+          <code class="Ic">jobs</code>, above). The process ID 0 signals all
+          processes in the current process group.</dd>
+    </dl>
+    </div>
+    <p class="Pp">The supported signal numbers are:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt> 0</dt>
+      <dd>Do not signal a process, but determine whether an ID exists.</dd>
+      <dt id="SIGHUP"> 1</dt>
+      <dd><a class="permalink" href="#SIGHUP"><code class="Dv">SIGHUP</code></a>:
+          Terminal line hangup.</dd>
+      <dt id="SIGINT"> 2</dt>
+      <dd><a class="permalink" href="#SIGINT"><code class="Dv">SIGINT</code></a>:
+          Interrupt a program.</dd>
+      <dt id="SIGQUIT"> 3</dt>
+      <dd><a class="permalink" href="#SIGQUIT"><code class="Dv">SIGQUIT</code></a>:
+          Quit a program.</dd>
+      <dt id="SIGABRT"> 6</dt>
+      <dd><a class="permalink" href="#SIGABRT"><code class="Dv">SIGABRT</code></a>:
+          Call <a class="Xr">abort(3)</a>.</dd>
+      <dt id="SIGKILL"> 9</dt>
+      <dd><a class="permalink" href="#SIGKILL"><code class="Dv">SIGKILL</code></a>:
+          Kill a program. Cannot be caught or ignored.</dd>
+      <dt id="SIGALRM">14</dt>
+      <dd><a class="permalink" href="#SIGALRM"><code class="Dv">SIGALRM</code></a>:
+          Real-time timer expired.</dd>
+      <dt id="SIGTERM">15</dt>
+      <dd><a class="permalink" href="#SIGTERM"><code class="Dv">SIGTERM</code></a>:
+          Software termination signal.</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="pwd"><a class="permalink" href="#pwd"><code class="Ic">pwd</code></a>
+    [<code class="Fl">-L</code> | <code class="Fl">-P</code>]</dt>
+  <dd>Print the current working directory.
+    <p class="Pp">The options to the <code class="Ic">pwd</code> command are as
+        follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="L~2"><a class="permalink" href="#L~2"><code class="Fl">-L</code></a></dt>
+      <dd>Print the logical path to the current working directory i.e. display
+          symbolic links followed.</dd>
+      <dt id="P~2"><a class="permalink" href="#P~2"><code class="Fl">-P</code></a></dt>
+      <dd>Print the physical path to the current working directory i.e. display
+          symbolic links resolved.</dd>
+    </dl>
+    </div>
+    <p class="Pp">If both options are given, the last specified is used; if none
+        are given, the default is <code class="Fl">-L</code>.</p>
+  </dd>
+  <dt id="read"><a class="permalink" href="#read"><code class="Ic">read</code></a>
+    [<code class="Fl">-r</code>] <var class="Ar">name ...</var></dt>
+  <dd>Read a line from standard input. The line is split into fields, with each
+      field assigned to a variable, <var class="Ar">name</var>, in turn (first
+      field assigned to first variable, and so on). If there are more fields
+      than variables, the last variable will contain all the remaining fields.
+      If there are more variables than fields, the remaining variables are set
+      to empty strings. A backslash in the input line causes the shell to prompt
+      for further input.
+    <p class="Pp">The options to the <code class="Ic">read</code> command are as
+        follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="r~2"><a class="permalink" href="#r~2"><code class="Fl">-r</code></a></dt>
+      <dd>Ignore backslash sequences.</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="readonly"><a class="permalink" href="#readonly"><code class="Ic">readonly</code></a>
+    [<code class="Fl">-p</code>]
+    <var class="Ar">name</var>[=<var class="Ar">value</var>]</dt>
+  <dd>Mark variable <var class="Ar">name</var> as readonly, and optionally set
+      it to <var class="Ar">value</var>. Readonly variables cannot be later
+      assigned values or unset.
+    <p class="Pp">The options to the <code class="Ic">readonly</code> command
+        are as follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="p~4"><a class="permalink" href="#p~4"><code class="Fl">-p</code></a></dt>
+      <dd>Display the names and values of all readonly variables in a manner
+          which can be reinput to the shell.</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="return"><a class="permalink" href="#return"><code class="Ic">return</code></a>
+    [<var class="Ar">n</var>]</dt>
+  <dd>Exit the current function or <code class="Ic">.</code> script with exit
+      status <var class="Ar">n</var>, or that of the last command executed.</dd>
+  <dt id="set"><a class="permalink" href="#set"><code class="Ic">set</code></a>
+    [<code class="Fl">-abCefhmnuvx</code>] [<code class="Fl">-o</code>
+    [<var class="Ar">option</var>]] [<var class="Ar">arg ...</var>]</dt>
+  <dd>Set options and positional parameters. Without options or arguments,
+      display the names and values of all shell variables.
+    <p class="Pp">The options are described in the options description at the
+        beginning of this manual. The sequence &#x2018;<code class="Li">set
+        -o</code>&#x2019; displays the current option settings; the sequence
+        &#x2018;<code class="Li">set +o</code>&#x2019; displays, in a format
+        suitable to be reinput to the shell, a command suitable to achieve the
+        current option settings.</p>
+    <p class="Pp">Any arguments are assigned to the positional parameters, with
+        the special parameter &#x2018;#&#x2019; set to the number of positional
+        parameters. The sequence &#x2018;<code class="Li">set --</code>&#x2019;
+        indicates an end to option processing (i.e. only arguments follow);
+        &#x2018;<code class="Li">set --</code>&#x2019; by itself unsets all
+        positional parameters and sets &#x2018;#&#x2019; to zero.</p>
+  </dd>
+  <dt id="shift"><a class="permalink" href="#shift"><code class="Ic">shift</code></a>
+    [<var class="Ar">n</var>]</dt>
+  <dd>Shift the positional parameters <var class="Ar">n</var> times (by default
+      once). Parameter 1 takes the value of parameter
+      &#x2018;1+<var class="Ar">n</var>&#x2019;, parameter 2 takes
+      &#x2018;2+<var class="Ar">n</var>&#x2019;, and so on. Parameters
+      &#x2018;#&#x2019; to &#x2018;(#&#x2212;<var class="Ar">n</var>)+1&#x2019;
+      and downwards are unset and &#x2018;#&#x2019; is updated to the new number
+      of positional parameters. If <var class="Ar">n</var> is 0, no change
+      occurs.</dd>
+  <dt id="times"><a class="permalink" href="#times"><code class="Ic">times</code></a></dt>
+  <dd>Display accumulated process times for the shell (user and system) and all
+      child processes (user and system).</dd>
+  <dt id="trap"><a class="permalink" href="#trap"><code class="Ic">trap</code></a>
+    [<var class="Ar">action signal ...</var>]</dt>
+  <dd>Perform <var class="Ar">action</var> whenever <var class="Ar">signal</var>
+      is caught. Without arguments, display a list of all traps and actions, in
+      a format suitable to be reinput to the shell.
+    <p class="Pp">If <var class="Ar">action</var> is &#x2018;-&#x2019; or an
+        integer, reset <var class="Ar">signal</var> to its default value; if it
+        is empty (&quot;&quot;), ignore <var class="Ar">signal</var>. If
+        <var class="Ar">signal</var> is &quot;EXIT&quot; or 0, perform
+        <var class="Ar">action</var> when the shell exits; otherwise
+        <var class="Ar">signal</var> should be a signal name (without the SIG
+        prefix) or number.</p>
+  </dd>
+  <dt id="true"><a class="permalink" href="#true"><code class="Ic">true</code></a></dt>
+  <dd>Return a true (zero) value.</dd>
+  <dt id="type"><a class="permalink" href="#type"><code class="Ic">type</code></a>
+    <var class="Ar">command ...</var></dt>
+  <dd>For each <var class="Ar">command</var>, show how the shell would interpret
+      it.</dd>
+  <dt id="ulimit"><a class="permalink" href="#ulimit"><code class="Ic">ulimit</code></a>
+    [<code class="Fl">-f</code> <var class="Ar">n</var>]</dt>
+  <dd>Limit the maximum size of a file that can be created to
+      <var class="Ar">n</var> blocks. Without arguments, display the current
+      file size limit.</dd>
+  <dt id="umask"><a class="permalink" href="#umask"><code class="Ic">umask</code></a>
+    [<code class="Fl">-S</code>] [<var class="Ar">mask</var>]</dt>
+  <dd>Set the file mode creation mask to <var class="Ar">mask</var>. The
+      creation mask determines the default permissions a newly created file or
+      directory will have. If <var class="Ar">mask</var> is not specified,
+      display the current creation mask.
+    <p class="Pp">The options to the <code class="Ic">umask</code> command are
+        as follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="S"><a class="permalink" href="#S"><code class="Fl">-S</code></a></dt>
+      <dd>Display symbolic output.</dd>
+    </dl>
+    </div>
+    <p class="Pp">See <a class="Xr">chmod(1)</a> for the format of
+        <var class="Ar">mask</var>.</p>
+  </dd>
+  <dt id="unalias"><a class="permalink" href="#unalias"><code class="Ic">unalias</code></a>
+    [<code class="Fl">-a</code>] <var class="Ar">name ...</var></dt>
+  <dd>Remove the alias definition of alias <var class="Ar">name</var>.
+    <p class="Pp">The options to the <code class="Ic">unalias</code> command are
+        as follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="a~2"><a class="permalink" href="#a~2"><code class="Fl">-a</code></a></dt>
+      <dd>Remove all alias definitions.</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="unset"><a class="permalink" href="#unset"><code class="Ic">unset</code></a>
+    [<code class="Fl">-fv</code>] <var class="Ar">name ...</var></dt>
+  <dd>Unset variable or function <var class="Ar">name</var>.
+    <p class="Pp">The options to the <code class="Ic">unset</code> command are
+        as follows:</p>
+    <p class="Pp"></p>
+    <div class="Bd-indent">
+    <dl class="Bl-tag Bl-compact">
+      <dt id="f~2"><a class="permalink" href="#f~2"><code class="Fl">-f</code></a></dt>
+      <dd>Treat <var class="Ar">name</var> as a function.</dd>
+      <dt id="v~3"><a class="permalink" href="#v~3"><code class="Fl">-v</code></a></dt>
+      <dd>Treat <var class="Ar">name</var> as a variable (the default).</dd>
+    </dl>
+    </div>
+  </dd>
+  <dt id="wait"><a class="permalink" href="#wait"><code class="Ic">wait</code></a>
+    [<var class="Ar">pid ...</var>]</dt>
+  <dd>Wait until all the processes specified by process or job ID
+      <var class="Ar">pid</var> have terminated. If no <var class="Ar">pid</var>
+      is specified, wait until all processes have terminated. The exit status is
+      0 on success, 1&#x2013;126 if an error occurs, or 127 if
+      <var class="Ar">pid</var> was unknown.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="COMMAND_HISTORY_AND_COMMAND_LINE_EDITING"><a class="permalink" href="#COMMAND_HISTORY_AND_COMMAND_LINE_EDITING">COMMAND
+  HISTORY AND COMMAND LINE EDITING</a></h1>
+<p class="Pp">When a shell is interactive, it keeps a record of commands run in
+    a <i class="Em">command history</i>, either internally in memory or in a
+    file, as determined by <code class="Dv">HISTFILE</code>. When
+    <code class="Cm">vi</code> command line editing mode is enabled (set -o vi),
+    the command line and all the commands in command history can be edited using
+    commands similar to those of <a class="Xr">vi(1)</a>.</p>
+<p class="Pp" id="interactive">There are two modes,
+    <a class="permalink" href="#interactive"><i class="Em">interactive</i></a>
+    and <i class="Em">command</i>. The shell starts in interactive mode. In this
+    mode text is entered normally. A &#x27E8;newline&#x27E9; executes the
+    current command line. The command line, unless empty, is entered into
+    command history. The &#x27E8;ESC&#x27E9; key is used to enter command mode,
+    where commands similar to those used by <a class="Xr">vi(1)</a> are
+    available. A Ctrl-L sequence (^L) can be used in this mode to redraw the
+    current command line.</p>
+<p class="Pp" id="word">Where noted, some commands may be preceded by a
+    numerical <var class="Ar">count</var>, which causes the command to be
+    repeated that number of times. The term
+    <a class="permalink" href="#word"><i class="Em">word</i></a> is used to
+    denote a sequence of letters, digits, or underscores;
+    <a class="permalink" href="#bigword"><i class="Em" id="bigword">bigword</i></a>
+    denotes a sequence of whitespace delineated characters.</p>
+<p class="Pp">The commands for command mode:</p>
+<dl class="Bl-tag">
+  <dt id="="><a class="permalink" href="#="><code class="Ic">=</code></a></dt>
+  <dd>Display the possible shell word expansion.</dd>
+  <dt><code class="Ic">\</code></dt>
+  <dd>Perform pathname expansion on the current word, matching the largest
+      possible unique expansion, then enter insert mode.</dd>
+  <dt id="*"><a class="permalink" href="#*"><code class="Ic">*</code></a></dt>
+  <dd>Perform pathname expansion on the current word, substituting every
+      possible expansion, then enter insert mode.</dd>
+  <dt id="@"><a class="permalink" href="#@"><code class="Ic">@</code></a><var class="Ar">c</var></dt>
+  <dd>Perform the commands defined by the alias
+      <span class="No">_</span><var class="Ar">c</var>, where
+      <var class="Ar">c</var> is a single letter alphabetical character.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">~</code></dt>
+  <dd>Convert the character from lowercase to upper or vice versa.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">.</code></dt>
+  <dd>Repeat the most recent non-motion command. If no
+      <var class="Ar">count</var> is given, use that of the repeated command, if
+      any.</dd>
+  <dt>[<var class="Ar">n</var>]<code class="Ic">v</code></dt>
+  <dd>Use <a class="Xr">vi(1)</a> to edit command number <var class="Ar">n</var>
+      in command history, or the current command if none given.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">l</code>,
+    [<var class="Ar">count</var>]&#x27E8;space&#x27E9;</dt>
+  <dd>Move right.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">h</code></dt>
+  <dd>Move left.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">w</code></dt>
+  <dd>Move to the start of the next word.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">W</code></dt>
+  <dd>Move to the start of the next big word.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">e</code></dt>
+  <dd>Move to the end of the current word, or the end of the next word if the
+      cursor is currently at the end of a word.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">E</code></dt>
+  <dd>Move to the end of the current bigword, or the end of the next bigword if
+      the cursor is currently at the end of a bigword.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">b</code></dt>
+  <dd>Move to the start of the current word, or the start of the next word if
+      the cursor is currently at the start of a word.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">B</code></dt>
+  <dd>Move to the start of the current bigword, or the start of the next bigword
+      if the cursor is currently at the start of a bigword.</dd>
+  <dt id="_"><a class="permalink" href="#_"><code class="Ic">^</code></a></dt>
+  <dd>Move to the first non-blank character.</dd>
+  <dt id="$"><a class="permalink" href="#$"><code class="Ic">$</code></a></dt>
+  <dd>Move to the end of the current line.</dd>
+  <dt id="0"><a class="permalink" href="#0"><code class="Ic">0</code></a></dt>
+  <dd>Move to the beginning of the current line.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">|</code></dt>
+  <dd>Move to the beginning of the current line or the character position
+      specified by <var class="Ar">count</var>.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">f</code><var class="Ar">c</var></dt>
+  <dd>Move to the next instance of the character <var class="Ar">c</var>.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">F</code><var class="Ar">c</var></dt>
+  <dd>Move to the last instance of the character <var class="Ar">c</var>.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">t</code><var class="Ar">c</var></dt>
+  <dd>Move to the character before the next instance of the character
+      <var class="Ar">c</var>.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">T</code><var class="Ar">c</var></dt>
+  <dd>Move to the character after the last instance of the character
+      <var class="Ar">c</var>.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">;</code></dt>
+  <dd>Repeat the last <code class="Ic">f</code>, <code class="Ic">F</code>,
+      <code class="Ic">t</code>, or <code class="Ic">T</code> command. Ignore
+      any <var class="Ar">count</var> specified with the last command.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">,</code></dt>
+  <dd>Repeat the last <code class="Ic">f</code>, <code class="Ic">F</code>,
+      <code class="Ic">t</code>, or <code class="Ic">T</code> command, but in
+      the opposite direction. Ignore any <var class="Ar">count</var> specified
+      with the last command.</dd>
+  <dt id="a~3"><a class="permalink" href="#a~3"><code class="Ic">a</code></a></dt>
+  <dd>Enter insert mode after the current cursor position.</dd>
+  <dt id="A"><a class="permalink" href="#A"><code class="Ic">A</code></a></dt>
+  <dd>Enter insert mode after the end of the current line.</dd>
+  <dt id="i~2"><a class="permalink" href="#i~2"><code class="Ic">i</code></a></dt>
+  <dd>Enter insert mode at the current cursor position.</dd>
+  <dt id="I"><a class="permalink" href="#I"><code class="Ic">I</code></a></dt>
+  <dd>Enter insert mode at the beginning of the current line.</dd>
+  <dt id="R"><a class="permalink" href="#R"><code class="Ic">R</code></a></dt>
+  <dd>Enter insert mode at the current cursor position, replacing any characters
+      thereafter.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">c</code><var class="Ar">motion</var></dt>
+  <dd>Delete the characters between the cursor and the motion command specified,
+      then enter insert mode. A special motion command,
+      <code class="Ic">c</code>, may be used to delete the entire line. The
+      <var class="Ar">count</var> argument is ignored for the commands
+      <code class="Ic">0</code>, <code class="Ic">^</code>,
+      <code class="Ic">$</code>, and <code class="Ic">c</code>. If the motion
+      moves towards the beginning of the line the character under the cursor is
+      not deleted; if it moves towards the end of the line it is deleted.</dd>
+  <dt id="C~2"><a class="permalink" href="#C~2"><code class="Ic">C</code></a></dt>
+  <dd>Delete the characters between the cursor and the line end, then enter
+      insert mode.</dd>
+  <dt id="S~2"><a class="permalink" href="#S~2"><code class="Ic">S</code></a></dt>
+  <dd>Clear the entire line, then enter insert mode.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">r</code></dt>
+  <dd>Replace the character under the cursor with the next typed character. With
+      a <var class="Ar">count</var>, replace the current character and the
+      corresponding number of following characters.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">_</code></dt>
+  <dd>After the cursor, append a &#x27E8;space&#x27E9; and the
+      <var class="Ar">count</var>th bigword (by default the last entered) from
+      the previous input line, then enter insert mode.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">x</code></dt>
+  <dd>Delete the character under the cursor, placing it in the save buffer.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">X</code></dt>
+  <dd>Delete the character before the cursor, placing it in the save
+    buffer.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">d</code><var class="Ar">motion</var></dt>
+  <dd>Delete the characters between the cursor and the motion command specified,
+      placing them in the save buffer. A special motion command,
+      <code class="Ic">d</code>, may be used to delete the entire line. If the
+      motion moves towards the beginning of the line the character under the
+      cursor is not deleted.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">D</code></dt>
+  <dd>Delete the characters between the cursor and the line end, placing them in
+      the save buffer.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">y</code><var class="Ar">motion</var></dt>
+  <dd>Yank (copy) the characters between the cursor and the motion command
+      specified, placing them in the save buffer. A special motion command,
+      <code class="Ic">y</code>, may be used to yank the entire line. If the
+      motion moves towards the beginning of the line the character under the
+      cursor is not yanked.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">Y</code></dt>
+  <dd>Yank (copy) the characters between the cursor and the line end, placing
+      them in the save buffer.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">p</code></dt>
+  <dd>Paste the contents of the save buffer after the cursor.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">P</code></dt>
+  <dd>Paste the contents of the save buffer before the cursor.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">u</code></dt>
+  <dd>Undo the last change to the edit line.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">U</code></dt>
+  <dd>Undo all changes to the edit line.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">k</code>,
+    [<var class="Ar">count</var>]<code class="Ic">-</code></dt>
+  <dd>Replace the current command line with the previous entry in history.</dd>
+  <dt>[<var class="Ar">count</var>]<code class="Ic">j</code>,
+    [<var class="Ar">count</var>]<code class="Ic">+</code></dt>
+  <dd>Replace the current command line with the next entry in history.</dd>
+  <dt>[<var class="Ar">n</var>]<code class="Ic">G</code></dt>
+  <dd>Replace the current command line with command number
+      <var class="Ar">n</var> in command history, or the oldest command if none
+      given.</dd>
+  <dt>/<var class="Ar">pattern</var></dt>
+  <dd>Moving backwards through history, replace the current command line with
+      the first that matches <var class="Ar">pattern</var>. A &#x2018;^&#x2019;
+      at the beginning of the pattern searches only for entries beginning with
+      <var class="Ar">pattern</var>. An empty pattern matches the last
+    search.</dd>
+  <dt>?<var class="Ar">pattern</var></dt>
+  <dd>As above, but searching forwards.</dd>
+  <dt id="n~2"><a class="permalink" href="#n~2"><code class="Ic">n</code></a></dt>
+  <dd>Repeat the most recent pattern search.</dd>
+  <dt id="N"><a class="permalink" href="#N"><code class="Ic">N</code></a></dt>
+  <dd>Repeat the most recent pattern search, but in the opposite direction.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SHELL_GRAMMAR"><a class="permalink" href="#SHELL_GRAMMAR">SHELL
+  GRAMMAR</a></h1>
+<p class="Pp">The shell reads its input as described above. After that it
+    follows a fairly simple chain of operations to parse that input:</p>
+<ul class="Bl-dash">
+  <li id="words">The shell breaks the input into
+      <a class="permalink" href="#words"><i class="Em">words</i></a> and
+      <a class="permalink" href="#operators"><i class="Em" id="operators">operators</i></a>.
+      Words are the command text the user wishes run; operators are special
+      characters which describe how the shell should interact with the
+    commands.</li>
+  <li id="expands">The shell
+      <a class="permalink" href="#expands"><i class="Em">expands</i></a> the
+      command text according to the rules of expansion.</li>
+  <li>Words are subject to <i class="Em">field splitting</i>, where the command
+      text is separated into commands and arguments to commands.</li>
+  <li id="redirection">The shell performs any
+      <a class="permalink" href="#redirection"><i class="Em">redirection</i></a>.</li>
+  <li>The shell runs the commands. Argument names are assigned to
+      <i class="Em">positional parameters</i>, with the command name itself
+      assigned parameter 0.</li>
+  <li>If the command is not being run in the background, the shell waits for it
+      to complete and collects its exit status.</li>
+</ul>
+<section class="Ss">
+<h2 class="Ss" id="Quoting"><a class="permalink" href="#Quoting">Quoting</a></h2>
+<p class="Pp">Some characters have special meaning to the shell and need
+    <a class="permalink" href="#quoting"><i class="Em" id="quoting">quoting</i></a>
+    if the user wants to indicate to the shell not to interpret them as such.
+    The following characters need quoting if their literal meaning is
+  desired:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>| &amp; ; &lt; &gt; ( ) $ ` \ &quot; ' &lt;space&gt; &lt;tab&gt; &lt;newline&gt;
+* ? [ # ~ = %</pre>
+</div>
+<p class="Pp">A backslash (\) can be used to quote any character except a
+    newline. If a newline follows a backslash the shell removes them both,
+    effectively making the following line part of the current one.</p>
+<p class="Pp">A group of characters can be enclosed within single quotes (') to
+    quote every character within the quotes.</p>
+<p class="Pp">A group of characters can be enclosed within double quotes
+    (&quot;) to quote every character within the quotes except a backquote (`)
+    or a dollar sign ($), both of which retain their special meaning. A
+    backslash (\) within double quotes retains its special meaning, but only
+    when followed by a backquote, dollar sign, double quote, newline, or another
+    backslash. An at sign (@) within double quotes has a special meaning (see
+    <a class="Sx" href="#SPECIAL_PARAMETERS">SPECIAL PARAMETERS</a>, below).</p>
+<p class="Pp">Similarly command words need to be quoted if they are not to be
+    interpreted as such.</p>
+</section>
+<section class="Ss">
+<h2 class="Ss" id="Expansion"><a class="permalink" href="#Expansion">Expansion</a></h2>
+<p class="Pp">Shell
+    <a class="permalink" href="#variables"><i class="Em" id="variables">variables</i></a>
+    are arbitrary names assigned values using the &#x2018;=&#x2019; operator;
+    the values can be retrieved using the syntax
+    <span class="No">$</span><var class="Ar">variable</var>. Shell
+    <a class="permalink" href="#parameters"><i class="Em" id="parameters">parameters</i></a>
+    are variable names, numbers, or any of the characters listed in
+    <a class="Sx" href="#SPECIAL_PARAMETERS">SPECIAL PARAMETERS</a>.</p>
+<p class="Pp" id="expand">The shell is able to
+    <a class="permalink" href="#expand"><i class="Em">expand</i></a> certain
+    elements of its syntax, allowing for a more concise notation and providing a
+    convenience to the user.</p>
+<p class="Pp">Firstly, tilde expansion occurs on words beginning with the
+    &#x2018;~&#x2019; character. Any characters following the tilde, up to the
+    next colon, slash, or blank, are taken as a login name and substituted with
+    that user's home directory, as defined in <a class="Xr">passwd(5)</a>. A
+    tilde by itself is expanded to the contents of the variable
+    <code class="Ev">HOME</code>. This notation can be used in variable
+    assignments, in the assignment half, immediately after the equals sign or a
+    colon, up to the next slash or colon, if any.</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent"><code class="Li">PATH=~alice:~bob/jobs</code></div>
+<p class="Pp">Parameter expansion happens after tildes have been expanded, with
+    the value of the parameter being substituted. The basic format is:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent">${<var class="Ar">parameter</var>}</div>
+<p class="Pp">The braces are optional except for positional parameters 10 and
+    higher, or where the parameter name is followed by other characters that
+    would prevent it from being expanded. If parameter expansion occurs within
+    double quotes, neither pathname expansion nor field splitting happens
+    afterwards.</p>
+<p class="Pp">Some special forms of parameter expansion are available. In the
+    formats below, <var class="Ar">word</var> itself is subject to expansion,
+    and, if omitted, the empty string is used. If the colon is omitted,
+    <var class="Ar">word</var> is substituted only if
+    <var class="Ar">parameter</var> is unset (not if it is empty).</p>
+<dl class="Bl-tag">
+  <dt>${<var class="Ar">parameter</var>:-[<var class="Ar">word</var>]}</dt>
+  <dd>Substitute <var class="Ar">parameter</var>. If
+      <var class="Ar">parameter</var> is unset or empty, substitute
+      <var class="Ar">word</var>.</dd>
+  <dt>${<var class="Ar">parameter</var>:=[<var class="Ar">word</var>]}</dt>
+  <dd>Substitute <var class="Ar">parameter</var>. If
+      <var class="Ar">parameter</var> is unset or empty, first assign the value
+      of <var class="Ar">word</var> to <var class="Ar">parameter</var>.</dd>
+  <dt>${<var class="Ar">parameter</var>:?[<var class="Ar">word</var>]}</dt>
+  <dd>Substitute <var class="Ar">parameter</var>. If
+      <var class="Ar">parameter</var> is unset or empty, the result of the
+      expansion of <var class="Ar">word</var> is written to standard error and
+      the shell exits with a non-zero exit status. If <var class="Ar">word</var>
+      is omitted, the string &quot;parameter null or not set&quot; is used.</dd>
+  <dt>${<var class="Ar">parameter</var>:+[<var class="Ar">word</var>]}</dt>
+  <dd>Substitute <var class="Ar">word</var>. If <var class="Ar">parameter</var>
+      is unset or empty, substitute the empty string.</dd>
+  <dt>${#<var class="Ar">parameter</var>}</dt>
+  <dd>The length, in characters, of <var class="Ar">parameter</var>.</dd>
+  <dt>${<var class="Ar">parameter</var>%[<var class="Ar">word</var>]}</dt>
+  <dd>Substitute <var class="Ar">parameter</var>, deleting the smallest possible
+      suffix matching <var class="Ar">word</var>.</dd>
+  <dt>${<var class="Ar">parameter</var>%%[<var class="Ar">word</var>]}</dt>
+  <dd>Substitute <var class="Ar">parameter</var>, deleting the largest possible
+      suffix matching <var class="Ar">word</var>.</dd>
+  <dt>${<var class="Ar">parameter</var>#[<var class="Ar">word</var>]}</dt>
+  <dd>Substitute <var class="Ar">parameter</var>, deleting the smallest possible
+      prefix matching <var class="Ar">word</var>.</dd>
+  <dt>${<var class="Ar">parameter</var>##[<var class="Ar">word</var>]}</dt>
+  <dd>Substitute <var class="Ar">parameter</var>, deleting the largest possible
+      prefix matching <var class="Ar">word</var>.</dd>
+</dl>
+<p class="Pp">Command expansion has a command executed in a subshell and the
+    results output in its place. The basic format is:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent">$(<var class="Ar">command</var>)</div>
+or
+<div class="Bd Bd-indent">`<var class="Ar">command</var>`</div>
+<p class="Pp">The results are subject to field splitting and pathname expansion;
+    no other form of expansion happens. If <var class="Ar">command</var> is
+    contained within double quotes, field splitting does not happen either.
+    Within backquotes, a backslash is treated literally unless it follows a
+    dollar sign, backquote, or another backslash. Commands can be nested, though
+    the backquoted version requires backslashes before the backquotes. If
+    <var class="Ar">command</var> is run in a subshell in the bracketed version,
+    the syntax is identical to that of arithmetic expansion. In that case the
+    shell attempts arithmetic expansion first, then attempts command
+    substitution if that fails. Or a non-ambiguous version can be used:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent">$( (<var class="Ar">command</var>) )</div>
+<p class="Pp">Arithmetic expansion works similarly, with an arithmetic
+    expression being evaluated and substituted. The format is:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent">$((<var class="Ar">expression</var>))</div>
+<p class="Pp">Where <var class="Ar">expression</var> is an integer, parameter
+    name, or array reference, optionally combined with any of the operators
+    described below, listed and grouped according to precedence:</p>
+<dl class="Bl-tag">
+  <dt>()</dt>
+  <dd>Operators within brackets have highest precedence. Compare 3+2*4, which is
+      11, since multiplication has higher precedence than addition, and (3+2)*4,
+      which is 20.</dd>
+  <dt>+ - ~ !</dt>
+  <dd>Unary plus (indicates a positive value; integers are positive by default),
+      unary minus (indicates a negative value), bitwise NOT, and logical NOT
+      (the result is 1 if the argument is zero, or 0 otherwise),
+    respectively.</dd>
+  <dt>* / %</dt>
+  <dd>Multiplication, division, and modulus (remainder), respectively.</dd>
+  <dt>+ -</dt>
+  <dd>Addition and subtraction, respectively.</dd>
+  <dt>&lt;&lt; &gt;&gt;</dt>
+  <dd>Shift left or right, respectively.</dd>
+  <dt>&lt; &lt;= &gt; &gt;=</dt>
+  <dd>Less than, less than or equal to, greater than, and greater than or equal
+      to, respectively. The result is 1 if true, or 0 otherwise.</dd>
+  <dt>== !=</dt>
+  <dd>Equal (the result is 1 if both arguments are equal, and 0 otherwise) and
+      not equal (the result is 0 if both arguments are equal, and 1 otherwise),
+      respectively.</dd>
+  <dt>&amp;</dt>
+  <dd>Bitwise AND.</dd>
+  <dt>^</dt>
+  <dd>Bitwise exclusive OR.</dd>
+  <dt>|</dt>
+  <dd>Bitwise inclusive OR.</dd>
+  <dt>&amp;&amp;</dt>
+  <dd>Logical AND. The result is 1 if both arguments are non-zero, or 0
+      otherwise.</dd>
+  <dt>||</dt>
+  <dd>Logical OR. The result is 1 if either argument is non-zero, or 0
+      otherwise.</dd>
+  <dt><var class="Ar">expression</var>?<var class="Ar">expr1</var>:<var class="Ar">expr2</var></dt>
+  <dd>The result is <var class="Ar">expr1</var> if
+      <var class="Ar">expression</var> is non-zero, or
+      <var class="Ar">expr2</var> otherwise.</dd>
+  <dt>= *= /= %= += -= &lt;&lt;= &gt;&gt;= &amp;= ^= |=</dt>
+  <dd>Assignment. The notation
+      <var class="Ar">var</var>*=<var class="Ar">expression</var> is equivalent
+      to
+      <var class="Ar">var</var>=<var class="Ar">var</var>*<var class="Ar">expression</var>.</dd>
+</dl>
+<p class="Pp">After the various types of expansion listed above have been
+    carried out, the shell subjects everything that did not occur in double
+    quotes to <i class="Em">field splitting</i>, where words are broken up
+    according to the value of the <code class="Ev">IFS</code> variable. Each
+    character of <code class="Ev">IFS</code> is used to split fields; any
+    <code class="Ev">IFS</code> characters at the beginning and end of input are
+    ignored. If <code class="Ev">IFS</code> is unset, the default value
+    consisting of &#x27E8;space&#x27E9;, &#x27E8;tab&#x27E9; and
+    &#x27E8;newline&#x27E9; is used; if the value of <code class="Ev">IFS</code>
+    is empty, no field splitting is performed.</p>
+<p class="Pp">After field splitting, the shell matches filename patterns.</p>
+<dl class="Bl-tag">
+  <dt>?</dt>
+  <dd>A question mark matches any single character.</dd>
+  <dt>*</dt>
+  <dd>An asterisk matches multiple characters.</dd>
+  <dt>[..]</dt>
+  <dd>Matches any character enclosed in the brackets. The sense is negated if
+      the first character is &#x2018;!&#x2019;. A closing bracket can be
+      included in the list of characters to match by listing it as the first
+      character after the opening bracket or by quoting it. Similarly a
+      &#x2018;-&#x2019; should be specified last or quoted so that the shell
+      does not think it is a character range (see below).</dd>
+  <dt>[[:<var class="Ar">class</var>:]]</dt>
+  <dd>Matches any character in the following character classes:
+    <div class="Bd Pp Bd-indent Li">
+    <pre>alnum	alpha	blank	cntrl
+digit	graph	lower	print
+punct	space	upper	xdigit</pre>
+    </div>
+  </dd>
+  <dt>[<var class="Ar">x</var>-<var class="Ar">y</var>]</dt>
+  <dd>Matches any character in the range between <var class="Ar">x</var> and
+      <var class="Ar">y</var>, inclusive.</dd>
+</dl>
+<p class="Pp">Slashes and full stops do not match the patterns above because of
+    their use as path and filename characters.</p>
+</section>
+<section class="Ss">
+<h2 class="Ss" id="Redirection"><a class="permalink" href="#Redirection">Redirection</a></h2>
+<p class="Pp">Redirection is used to open, close, or otherwise manipulate files,
+    using redirection operators in combination with numerical
+    <a class="permalink" href="#file"><i class="Em" id="file">file
+    descriptors</i></a>. A minimum of ten (0-9) descriptors are supported; by
+    convention standard input is file descriptor 0, standard output file
+    descriptor 1, and standard error file descriptor 2. In the examples given
+    below, <var class="Ar">n</var> represents a numerical file descriptor. The
+    target for redirection is <var class="Ar">file</var> and it is subject to
+    all forms of expansion as listed above, except pathname expansion. If any
+    part of the file descriptor or redirection operator is quoted, they are not
+    recognised.</p>
+<dl class="Bl-tag">
+  <dt>[<var class="Ar">n</var>]&lt;<var class="Ar">file</var></dt>
+  <dd>Open <var class="Ar">file</var> for reading on file descriptor
+      <var class="Ar">n</var>, by default standard input.</dd>
+  <dt>[<var class="Ar">n</var>]&gt;<var class="Ar">file</var></dt>
+  <dd>Write to <var class="Ar">file</var> with file descriptor
+      <var class="Ar">n</var>, by default standard output. If
+      <var class="Ar">file</var> does not exist, create it; if it does exist,
+      truncate it to be empty before beginning to write to it.</dd>
+  <dt>[<var class="Ar">n</var>]&gt;|<var class="Ar">file</var></dt>
+  <dd>As above, but forces clobbering (see the <code class="Fl">-C</code>
+      option).</dd>
+  <dt>[<var class="Ar">n</var>]&gt;&gt;<var class="Ar">file</var></dt>
+  <dd>Append to <var class="Ar">file</var> with file descriptor
+      <var class="Ar">n</var>, by default standard output. If
+      <var class="Ar">file</var> does not exist, create it.</dd>
+  <dt id="here">[<var class="Ar">n</var>]&lt;&lt;</dt>
+  <dd>This form of redirection, called a
+      <a class="permalink" href="#here"><i class="Em">here document</i></a>, is
+      used to copy a block of lines to a temporary file until a line matching
+      <var class="Ar">delimiter</var> is read. When the command is executed,
+      standard input is redirected from the temporary file to file descriptor
+      <var class="Ar">n</var>, or standard input by default. The basic format
+      is:
+    <div class="Bd Pp Bd-indent">
+    <pre>[<var class="Ar">n</var>]&lt;&lt;<var class="Ar">delimiter</var>
+text
+text
+...
+<var class="Ar">delimiter</var></pre>
+    </div>
+    <p class="Pp">Provided <var class="Ar">delimiter</var> doesn't contain any
+        quoted characters, parameter, command, and arithmetic expansions are
+        performed on the text block, and backslashes escape the special meaning
+        of &#x2018;$&#x2019;, &#x2018;`&#x2019;, and &#x2018;\&#x2019;. If
+        multiple here documents are used on the same command line, they are
+        saved and processed in order.</p>
+  </dd>
+  <dt>[<var class="Ar">n</var>]&lt;&lt;-</dt>
+  <dd>Same as <code class="Ic">&lt;&lt;</code>, except leading tabs are stripped
+      from lines in <var class="Ar">block</var>.</dd>
+  <dt>[<var class="Ar">n</var>]&lt;&amp;<var class="Ar">file</var></dt>
+  <dd>Make file descriptor <var class="Ar">n</var>, by default standard input, a
+      copy of the file descriptor denoted by <var class="Ar">file</var>. If
+      <var class="Ar">file</var> is &#x2018;-&#x2019;, close file descriptor
+      <var class="Ar">n</var> or standard input.</dd>
+  <dt>[<var class="Ar">n</var>]&gt;&amp;<var class="Ar">file</var></dt>
+  <dd>Make file descriptor <var class="Ar">n</var>, by default standard output,
+      a copy of the file descriptor denoted by <var class="Ar">file</var>. If
+      <var class="Ar">file</var> is &#x2018;-&#x2019;, close file descriptor
+      <var class="Ar">n</var> or standard output.</dd>
+  <dt>[<var class="Ar">n</var>]&lt;&gt;<var class="Ar">file</var></dt>
+  <dd>Open <var class="Ar">file</var> for reading and writing on file descriptor
+      <var class="Ar">n</var>, by default standard input. If
+      <var class="Ar">file</var> does not exist, create it.</dd>
+</dl>
+</section>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="COMMANDS"><a class="permalink" href="#COMMANDS">COMMANDS</a></h1>
+<p class="Pp">The shell first expands any words that are not variable
+    assignments or redirections, with the first field being the command name and
+    any successive fields arguments to that command. It sets up redirections, if
+    any, and then expands variable assignments, if any. It then attempts to run
+    the command.</p>
+<p class="Pp">Firstly, it determines whether the command name contains any
+    slashes. If it does not, and the shell implements the command as a special
+    built-in, it then invokes the built-in. If not, but it is a non POSIX
+    standard command, implemented as a shell function, it then invokes that. If
+    not, but it is one of the commands <code class="Ic">alias</code>,
+    <code class="Ic">bg</code>, <code class="Ic">cd</code>,
+    <code class="Ic">command</code>, <code class="Ic">false</code>,
+    <code class="Ic">fc</code>, <code class="Ic">fg</code>,
+    <code class="Ic">getopts</code>, <code class="Ic">jobs</code>,
+    <code class="Ic">kill</code>, <code class="Ic">newgrp</code>,
+    <code class="Ic">pwd</code>, <code class="Ic">read</code>,
+    <code class="Ic">true</code>, <code class="Ic">umask</code>,
+    <code class="Ic">unalias</code>, or <code class="Ic">wait</code>, it then
+    invokes that.</p>
+<p class="Pp">Failing that, the value of <code class="Ev">PATH</code> is used to
+    search for the command. If it finds a match, and it is a POSIX standard
+    command, implemented as a built-in or function, it then invokes it.
+    Otherwise it attempts to execute the command in an environment separate from
+    the shell. If it is unable to execute the command, it tries to run it as a
+    shell script.</p>
+<p class="Pp">Finally, if the command name does contain a slash, and it finds a
+    match in <code class="Ev">PATH</code>, it attempts to execute the command in
+    an environment separate from the shell. If it is unable to execute the
+    command, it tries to run it as a shell script.</p>
+<p class="Pp" id="sequential">A series of one or more commands separated by
+    &#x2018;;&#x2019; constitute a
+    <a class="permalink" href="#sequential"><i class="Em">sequential
+    list</i></a>, where commands are executed in the order given. The exit
+    status of a sequential list is that of the last command executed. The format
+    for a sequential list is:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent"><var class="Ar">command</var>
+  <span class="No">;</span> [<var class="Ar">command ...</var>]</div>
+<p class="Pp" id="asynchronous">A series of one or more commands separated by
+    &#x2018;&amp;&#x2019; constitute an
+    <a class="permalink" href="#asynchronous"><i class="Em">asynchronous
+    list</i></a>, where the shell executes the command in a subshell and runs
+    the next command without waiting for the previous one to finish. The exit
+    status of an asynchronous list is always zero. The format for an
+    asynchronous list is:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent"><var class="Ar">command</var>
+  <span class="No">&amp;</span> [<var class="Ar">command ...</var>]</div>
+<p class="Pp" id="pipeline">A series of commands separated by &#x2018;|&#x2019;
+    constitute a
+    <a class="permalink" href="#pipeline"><i class="Em">pipeline</i></a>, where
+    the output of one command is used as input for the next command. The exit
+    status of a pipeline is that of the last command; if a pipeline begins
+    &#x2018;!&#x2019; the exit status is inverted. The format for a pipeline
+  is:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent">[!] <var class="Ar">command</var> |
+  <var class="Ar">command</var> [| <var class="Ar">...</var>]</div>
+<p class="Pp" id="AND">A series of commands separated by
+    &#x2018;&amp;&amp;&#x2019; constitute an
+    <a class="permalink" href="#AND"><i class="Em">AND list</i></a>, where a
+    command is only executed if the exit status of the previous command was
+    zero. The exit status of an AND list is that of the last command. The format
+    for an AND list is:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent"><var class="Ar">command</var>
+  <span class="No">&amp;&amp;</span> <var class="Ar">command</var> [&amp;&amp;
+  <var class="Ar">...</var>]</div>
+<p class="Pp" id="OR">A series of commands separated by &#x2018;||&#x2019;
+    constitute an <a class="permalink" href="#OR"><i class="Em">OR list</i></a>,
+    where a command is only executed if the exit status of the previous command
+    was non-zero. The exit status of an OR list is that of the last command. The
+    format for an OR list is:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent"><var class="Ar">command</var>
+  <span class="No">||</span> <var class="Ar">command</var> [||
+  <var class="Ar">...</var>]</div>
+<p class="Pp" id="AND-OR">A series of commands separated by
+    &#x2018;&amp;&amp;&#x2019; and &#x2018;||&#x2019; constitute an
+    <a class="permalink" href="#AND-OR"><i class="Em">AND-OR list</i></a>, where
+    &#x2018;&amp;&amp;&#x2019; and &#x2018;||&#x2019; have equal precedence and
+    are evaluated in the order they are given. The AND-OR list can be terminated
+    with &#x2018;;&#x2019; or &#x2018;&amp;&#x2019; to have them execute
+    sequentially or asynchronously, respectively.</p>
+<p class="Pp">Command lists, as described above, can be enclosed within
+    &#x2018;()&#x2019; to have them executed in a subshell, or within
+    &#x2018;{}&#x2019; to have them executed in the current environment:</p>
+<p class="Pp"></p>
+<div class="Bd Bd-indent">(<var class="Ar">command ...</var>)</div>
+<div class="Bd Bd-indent">{ <var class="Ar">command ...</var>;
+  <span class="No"></span>}</div>
+<p class="Pp">Any redirections specified after the closing bracket apply to all
+    commands within the brackets. An operator such as &#x2018;;&#x2019; or a
+    newline are needed to terminate a command list within curly braces.</p>
+<p class="Pp">The shell has grammatical constructs which allow it to work its
+    way (loop) through lists or evaluate things conditionally.</p>
+<p class="Pp" id="for">A <a class="permalink" href="#for"><i class="Em">for
+    loop</i></a> executes a series of commands for each item in a list. Its
+    format is:</p>
+<div class="Bd Pp Bd-indent">
+<pre><span class="No">for</span> <var class="Ar">name</var> [in [<var class="Ar">word ...</var>]]
+do
+<span class="No">   </span> <var class="Ar">command</var>
+<span class="No">   </span> <var class="Ar">...</var>
+done</pre>
+</div>
+<p class="Pp">Firstly <var class="Ar">word ...</var> is expanded to generate a
+    list of items. The variable <var class="Ar">name</var> is set to each item,
+    in turn, and the commands are executed for each item. The construct &quot;in
+    word ...&quot; can be omitted, which is equivalent to: in &quot;$@&quot;.
+    The exit status is that of the last command executed. If there are no items,
+    <var class="Ar">command</var> is not executed and the exit status is
+  zero.</p>
+<p class="Pp" id="while">A
+    <a class="permalink" href="#while"><i class="Em">while loop</i></a>
+    continuously executes a set of commands as long as the command or command
+    list being tested in <var class="Ar">condition</var> has a zero exit status.
+    Its format is:</p>
+<div class="Bd Pp Bd-indent">
+<pre><span class="No">while</span> <var class="Ar">condition</var>
+do
+<span class="No">   </span> <var class="Ar">command</var>
+<span class="No">   </span> <var class="Ar">...</var>
+done</pre>
+</div>
+<p class="Pp">Multiple commands may be given by grouping them in lists, as
+    described above, or by separating them with newlines. The exit status is
+    zero if the commands after &quot;do&quot; were never executed or otherwise
+    the exit status of the last command executed.</p>
+<p class="Pp" id="until">An
+    <a class="permalink" href="#until"><i class="Em">until loop</i></a>
+    continuously executes a set of commands as long as the command or command
+    list being tested in <var class="Ar">condition</var> has a non-zero exit
+    status. Its format is:</p>
+<div class="Bd Pp Bd-indent">
+<pre><span class="No">until</span> <var class="Ar">condition</var>
+do
+<span class="No">   </span> <var class="Ar">command</var>
+<span class="No">   </span> <var class="Ar">...</var>
+done</pre>
+</div>
+<p class="Pp">Multiple commands may be given by grouping them in lists, as
+    described above, or by separating them with newlines. The exit status is
+    zero if the commands after &quot;do&quot; were never executed or otherwise
+    the exit status is that of the last command executed.</p>
+<p class="Pp" id="case">A <a class="permalink" href="#case"><i class="Em">case
+    conditional</i></a> is used to run commands whenever a pattern is matched.
+    Its format is:</p>
+<div class="Bd Pp Bd-indent">
+<pre><span class="No">case</span> <var class="Ar">word</var> <span class="No">in</span>
+<span class="No">   </span> (<var class="Ar">pattern</var> [| <var class="Ar">pattern ...</var>]) <var class="Ar">command</var>;;
+<span class="No">   </span> <var class="Ar">...</var>
+esac</pre>
+</div>
+<p class="Pp">In this case <var class="Ar">pattern</var> is matched against the
+    string resulting from the expansion of <var class="Ar">word</var>. Multiple
+    commands may be given by grouping them in lists, as described above, or by
+    separating them with newlines. The initial &#x2018;(&#x2019; is optional, as
+    is the terminating &#x2018;;;&#x2019; for the final command. The exit status
+    is zero if no patterns are matched or otherwise the exit status of the last
+    command executed.</p>
+<p class="Pp" id="if">An <a class="permalink" href="#if"><i class="Em">if
+    conditional</i></a> is used to execute commands depending on the exit status
+    of the command or command list being tested. Its format is:</p>
+<div class="Bd Pp Bd-indent">
+<pre><span class="No">if</span> <var class="Ar">conditional</var>
+then
+<span class="No">   </span> <var class="Ar">command</var>
+<span class="No">   </span> <var class="Ar">...</var>
+<span class="No">elif</span> <var class="Ar">conditional</var>
+then
+<span class="No">   </span> <var class="Ar">command</var>
+<span class="No">   </span> <var class="Ar">...</var>
+<span class="No">else</span>
+<span class="No">   </span> <var class="Ar">command</var>
+<span class="No">   </span> <var class="Ar">...</var>
+fi</pre>
+</div>
+<p class="Pp">Firstly the command(s) following &quot;if&quot; is executed; if
+    its exit status is zero, the commands in the &quot;then&quot; block are
+    executed and the conditional completes. Otherwise the commands in the
+    &quot;elif&quot; block are executed; if the exit status is zero, the
+    commands in the &quot;then&quot; block are executed and the conditional
+    completes. Otherwise the next &quot;elif&quot; block, if any, is tried. If
+    nothing from an &quot;if&quot; or &quot;elif&quot; block returns zero, the
+    commands in the &quot;else&quot; block are run and the conditional
+    completes. The &quot;elif&quot; and &quot;else&quot; blocks are
+  optional.</p>
+<p class="Pp">Multiple commands may be given by grouping them in lists, as
+    described above, or by separating them with newlines. The exit status is
+    zero if nothing is executed from an &quot;if&quot; or &quot;elif&quot; block
+    or otherwise the exit status of the last command executed.</p>
+<p class="Pp">Functions allow the user to define a group of commands, executed
+    whenever the function is invoked. Its format is:</p>
+<div class="Bd Pp Bd-indent">
+<pre><var class="Ar">function</var>() <var class="Ar">command-list</var></pre>
+</div>
+<p class="Pp">The above simply defines a function; nothing is executed until the
+    function is invoked. Commands may specify redirections and positional
+    parameters are changed, for the duration of the function, to those passed to
+    it. The special parameter &#x2018;#&#x2019; is temporarily changed too,
+    though &#x2018;0&#x2019; is not. After the function finishes, the positional
+    parameters and &#x2018;#&#x2019; are restored to their original values. The
+    exit status of a function definition is 0 if successful or &gt;0 otherwise.
+    The exit status of a function is that of the last command executed by the
+    function.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SPECIAL_PARAMETERS"><a class="permalink" href="#SPECIAL_PARAMETERS">SPECIAL
+  PARAMETERS</a></h1>
+<p class="Pp">Some parameters have special meaning to the shell and are listed
+    below.</p>
+<dl class="Bl-tag">
+  <dt>0</dt>
+  <dd>The name of the shell or shell script.</dd>
+  <dt>1 ... n</dt>
+  <dd>The <i class="Em">positional parameters</i>. These parameters are set when
+      a shell, shell script, or shell function is invoked. Each argument passed
+      to a shell or shell script is assigned a positional parameter, starting at
+      1, and assigned sequentially. When a shell function is invoked, any
+      arguments passed to it are temporarily reassigned to the positional
+      parameters; when the function completes, the values are restored.
+      Positional parameters 10 and above should be enclosed in {}. Positional
+      parameters can be reassigned using the <code class="Ic">set</code>
+      command.</dd>
+  <dt>@</dt>
+  <dd>All positional parameters. Within double quotes, each parameter is output
+      as a separate field. The resulting list completely matches what was passed
+      to the shell. So &quot;1 2&quot; &quot;3&quot; is output as two
+      parameters, &quot;1 2&quot; and &quot;3&quot;.</dd>
+  <dt>*</dt>
+  <dd>All positional parameters. Within double quotes, all parameters are output
+      as one field, separated by the first character of
+      <code class="Ev">IFS</code> (by default a space). The resulting list of
+      words is amalgamated, losing the sense of how they were passed to the
+      shell. So &quot;1 2&quot; &quot;3&quot; is output as one parameter,
+      &quot;1 2 3&quot;.</dd>
+  <dt>#</dt>
+  <dd>The number of positional parameters.</dd>
+  <dt>?</dt>
+  <dd>The exit status of the most recent command.</dd>
+  <dt>-</dt>
+  <dd>The current shell options.</dd>
+  <dt>$</dt>
+  <dd>The process ID of the current shell. Subshells have the same PID as the
+      current shell.</dd>
+  <dt>!</dt>
+  <dd>The process ID of the most recent background command.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="ENVIRONMENT"><a class="permalink" href="#ENVIRONMENT">ENVIRONMENT</a></h1>
+<p class="Pp">The following environment variables affect the execution of
+    <code class="Nm">sh</code>:</p>
+<dl class="Bl-tag">
+  <dt id="CDPATH"><a class="permalink" href="#CDPATH"><code class="Ev">CDPATH</code></a></dt>
+  <dd>Colon separated list of directories used by the <code class="Ic">cd</code>
+      command. If unset or empty, the current working directory is used.</dd>
+  <dt id="ENV"><a class="permalink" href="#ENV"><code class="Ev">ENV</code></a></dt>
+  <dd>Pathname to a file containing commands to be executed when an interactive
+      shell is started.</dd>
+  <dt id="FCEDIT"><a class="permalink" href="#FCEDIT"><code class="Ev">FCEDIT</code></a></dt>
+  <dd>Editor for the <code class="Ic">fc</code> builtin. The default is
+      <a class="Xr">ed(1)</a>.</dd>
+  <dt id="HISTFILE"><a class="permalink" href="#HISTFILE"><code class="Ev">HISTFILE</code></a></dt>
+  <dd>Pathname to a file to be used to record command history. The default is to
+      not write command history to a file.</dd>
+  <dt id="HISTSIZE"><a class="permalink" href="#HISTSIZE"><code class="Ev">HISTSIZE</code></a></dt>
+  <dd>The maximum number of commands stored in history. The default is 500.</dd>
+  <dt id="HOME"><a class="permalink" href="#HOME"><code class="Ev">HOME</code></a></dt>
+  <dd>Pathname to a user's home directory.</dd>
+  <dt id="IFS"><a class="permalink" href="#IFS"><code class="Ev">IFS</code></a></dt>
+  <dd>A list of characters to be used for field splitting.</dd>
+  <dt id="LINENO"><a class="permalink" href="#LINENO"><code class="Ev">LINENO</code></a></dt>
+  <dd>The current line number in a script or function, starting at 1. This
+      variable should not be set by users.</dd>
+  <dt id="MAIL"><a class="permalink" href="#MAIL"><code class="Ev">MAIL</code></a></dt>
+  <dd>Pathname to a user's mailbox file. If set, <code class="Nm">sh</code>
+      reports the arrival of new mail (ascertained by checking a file's
+      modification time) every <code class="Ev">MAILCHECK</code> seconds.
+      <code class="Ev">MAIL</code> is overridden by
+      <code class="Ev">MAILPATH</code>.</dd>
+  <dt id="MAILCHECK"><a class="permalink" href="#MAILCHECK"><code class="Ev">MAILCHECK</code></a></dt>
+  <dd>How often, in seconds, to check for new mail in either
+      <code class="Ev">MAIL</code> or <code class="Ev">MAILPATH</code>. The
+      default is 600 (10 minutes). If set to 0, check before issuing each
+      prompt.</dd>
+  <dt id="MAILPATH"><a class="permalink" href="#MAILPATH"><code class="Ev">MAILPATH</code></a></dt>
+  <dd>Pathname to a colon separated list of mailboxes. If set,
+      <code class="Nm">sh</code> reports the arrival of new mail (ascertained by
+      checking a file's modification time) every
+      <code class="Ev">MAILCHECK</code> seconds. The default notification
+      message (&quot;you have mail in $_&quot;) can be changed per mailbox by
+      appending <span class="No">%</span><var class="Ar">message</var> to a
+      pathname. <code class="Ev">MAILPATH</code> overrides
+      <code class="Ev">MAIL</code>.</dd>
+  <dt id="OLDPWD"><a class="permalink" href="#OLDPWD"><code class="Ev">OLDPWD</code></a></dt>
+  <dd>Pathname to the previous working directory.</dd>
+  <dt id="OPTARG"><a class="permalink" href="#OPTARG"><code class="Ev">OPTARG</code></a></dt>
+  <dd>An option argument for the <code class="Ic">getopts</code> command.</dd>
+  <dt id="OPTIND"><a class="permalink" href="#OPTIND"><code class="Ev">OPTIND</code></a></dt>
+  <dd>An index to the next option for the <code class="Ic">getopts</code>
+      command.</dd>
+  <dt id="PATH"><a class="permalink" href="#PATH"><code class="Ev">PATH</code></a></dt>
+  <dd>Pathname to a colon separated list of directories used to search for the
+      location of executable files. A pathname of &#x2018;.&#x2019; represents
+      the current working directory. The default value of
+      <code class="Ev">PATH</code> on <span class="Ux">OpenBSD</span> is:
+    <div class="Bd Pp Bd-indent Li">
+    <pre>/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11R6/bin:/usr/local/bin</pre>
+    </div>
+  </dd>
+  <dt id="POSIXLY_CORRECT"><a class="permalink" href="#POSIXLY_CORRECT"><code class="Ev">POSIXLY_CORRECT</code></a></dt>
+  <dd>Enable POSIX mode (see
+    <a class="Sx" href="#STANDARDS">STANDARDS</a>).</dd>
+  <dt id="PPID"><a class="permalink" href="#PPID"><code class="Ev">PPID</code></a></dt>
+  <dd>The shell's parent process ID. Subshells have the same
+      <code class="Ev">PPID</code> as the current shell.</dd>
+  <dt id="PS1"><a class="permalink" href="#PS1"><code class="Ev">PS1</code></a></dt>
+  <dd>User prompt displayed every time an interactive shell is ready to read a
+      command. A &#x2018;!&#x2019; in the prompt is expanded to the number of
+      the next command in history to be typed.</dd>
+  <dt id="PS2"><a class="permalink" href="#PS2"><code class="Ev">PS2</code></a></dt>
+  <dd>Newline prompt displayed in an interactive shell when a newline has been
+      entered before the command line completes. The default value is
+      &#x2018;&gt;&#x00A0;&#x2019;.</dd>
+  <dt id="PS4"><a class="permalink" href="#PS4"><code class="Ev">PS4</code></a></dt>
+  <dd>Trace prompt displayed in an interactive shell before each command is
+      traced (see the <code class="Fl">-x</code> option). The default is
+      &#x2018;+&#x00A0;&#x2019;.</dd>
+  <dt>PWD</dt>
+  <dd>The absolute pathname to the current working directory.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="ASYNCHRONOUS_EVENTS"><a class="permalink" href="#ASYNCHRONOUS_EVENTS">ASYNCHRONOUS
+  EVENTS</a></h1>
+<p class="Pp">The following signals affect the execution of
+    <code class="Nm">sh</code>:</p>
+<dl class="Bl-tag">
+  <dt id="SIGINT~2"><a class="permalink" href="#SIGINT~2"><code class="Dv">SIGINT</code></a></dt>
+  <dd>If a shell is interactive and in command line editing mode, editing is
+      terminated on the current line and the command being edited is not entered
+      into command history. Otherwise the signal is caught but no action is
+      taken.</dd>
+  <dt id="SIGQUIT~2"><a class="permalink" href="#SIGQUIT~2"><code class="Dv">SIGQUIT</code></a></dt>
+  <dd>Ignored if a shell is interactive.</dd>
+  <dt id="SIGTERM~2"><a class="permalink" href="#SIGTERM~2"><code class="Dv">SIGTERM</code></a></dt>
+  <dd>Ignored if a shell is interactive.</dd>
+  <dt id="SIGTSTP"><a class="permalink" href="#SIGTSTP"><code class="Dv">SIGTSTP</code></a></dt>
+  <dd>Ignored if a shell is interactive and the <code class="Ic">monitor</code>
+      option (<code class="Fl">-m</code>) is set.</dd>
+  <dt id="SIGTTIN"><a class="permalink" href="#SIGTTIN"><code class="Dv">SIGTTIN</code></a></dt>
+  <dd>Ignored if a shell is interactive and the <code class="Ic">monitor</code>
+      option (<code class="Fl">-m</code>) is set.</dd>
+  <dt id="SIGTTOU"><a class="permalink" href="#SIGTTOU"><code class="Dv">SIGTTOU</code></a></dt>
+  <dd>Ignored if a shell is interactive and the <code class="Ic">monitor</code>
+      option (<code class="Fl">-m</code>) is set.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="EXIT_STATUS"><a class="permalink" href="#EXIT_STATUS">EXIT
+  STATUS</a></h1>
+<p class="Pp">The <code class="Nm">sh</code> utility exits with one of:</p>
+<dl class="Bl-tag">
+  <dt>0</dt>
+  <dd>The script being executed contained only blank lines or comments.</dd>
+  <dt>1&#x2013;125</dt>
+  <dd>A non-interactive shell detected an error other than
+      <var class="Ar">file</var> not found.</dd>
+  <dt>126</dt>
+  <dd>A command was found but was not executable.</dd>
+  <dt>127</dt>
+  <dd>A non-interactive shell returned <var class="Ar">file</var> not
+    found.</dd>
+</dl>
+<p class="Pp">Otherwise <code class="Nm">sh</code> returns the exit status of
+    the last command it invoked.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><a class="Xr">csh(1)</a>, <a class="Xr">ed(1)</a>,
+    <a class="Xr">ksh(1)</a>, <a class="Xr">vi(1)</a>,
+    <a class="Xr">script(7)</a></p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="STANDARDS"><a class="permalink" href="#STANDARDS">STANDARDS</a></h1>
+<p class="Pp">The <code class="Nm">sh</code> utility is compliant with the
+    <span class="St">IEEE Std 1003.1-2008 (&#x201C;POSIX.1&#x201D;)</span>
+    specification, except where noted below:</p>
+<ul class="Bl-dash">
+  <li>The flag [<code class="Fl">-h</code>] is documented by POSIX as hashing
+      &quot;utilities invoked by functions as those functions are defined&quot;;
+      this implementation hashes utilities after first invocation (and functions
+      be damned).</li>
+  <li>POSIX says mail notifications via <code class="Ev">MAIL</code> and
+      <code class="Ev">MAILPATH</code> should happen if a file is created, as
+      well as if its modification time changes. This implementation of
+      <code class="Nm">sh</code> does not provide notification when these files
+      are created.</li>
+  <li>The built-in <code class="Ic">newgrp</code> is unsupported.</li>
+  <li>The <code class="Ic">break</code> and <code class="Ic">continue</code>
+      built-ins should exit/return from the outermost loop if the argument
+      <var class="Ar">n</var> is greater than the level of loops.</li>
+  <li>The default value for the <code class="Ev">PS1</code> user prompt contains
+      the machine's hostname, followed by &#x2018;$&#x00A0;&#x2019; for normal
+      users and &#x2018;#&#x00A0;&#x2019; for root; POSIX does not include the
+      hostname.</li>
+</ul>
+<p class="Pp">Enabling POSIX mode changes some behaviour to make
+    <code class="Nm">sh</code> adhere more strictly to the <span class="St">IEEE
+    Std 1003.1-2008 (&#x201C;POSIX.1&#x201D;)</span> specification.</p>
+</section>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">May 4, 2021</td>
+    <td class="foot-os">Debian</td>
+  </tr>
+</table>
+</body>
+</html>
+
+    </section>
+  </article>
+
+    </main>
+
+    
+	<footer>
+		<p class="button">
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+				<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+			</a>
+			<a href="https://emacs.love/weblorg/" target="_blank">
+				<img alt="Created with emacs" src="https://qdnix.d0p1.eu/static/img/button/emacs.gif" />
+			</a>
+			<a href="http://d0p1.eu/trans-rights-are-human-rights" target="_blank">
+				<img alt="Trans right now!" src="https://qdnix.d0p1.eu/static/img/button/trn.png" />
+			</a>
+			<a href="https://web3isgoinggreat.com/" target="_blank">
+				<img alt="This is an Anti-NFT site" src="https://qdnix.d0p1.eu/static/img/button/antinft.gif" />
+			</a>
+			<a href="https://www.defectivebydesign.org/" target="_blank">
+				<img src="https://defectivebydesign.org/sites/nodrm.civicactions.net/files/images/elim_sm_btn.gif"
+					alt="Eliminate DRM!" width="88" height="31" />
+			</a>
+			<a href="https://yesterweb.org/no-to-web3/" target="_blank">
+				<img alt="Say no to web3" src="https://qdnix.d0p1.eu/static/img/button/roly-saynotoweb3.gif" />
+			</a>
+			<a href="https://www.youtube.com/watch?v=_Rua3TOeono" target="_blank">
+				<img src="https://qdnix.d0p1.eu/static/img/button/nonazis.png" width="31" />
+			</a>
+			<a href="https://endsoftwarepatents.org/innovating-without-patents" target="_blank">
+				<img alt="End of software patents" style="height: 31px;"
+					src="https://static.fsf.org/nosvn/esp/logos/patent-free.svg">
+			</a>
+			<a href="https://liberapay.com/d0p1/donate" target="_blank">
+				<img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+			<br />
+		</p>
+	</footer>
+    
+	</div>
+
+	
+  </body>
+</html>

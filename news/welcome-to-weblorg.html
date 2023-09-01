@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>
+      Quick&#39;n&#39;dirty *NIX
+      
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="contact@qdnix.d0p1.eu" />
+    <meta name="description" content="Portable UNIX-like Operating System" />
+    
+    
+  <meta property="og:title" content="Welcome to Weblorg">
+  <meta property="og:url" content="https://qdnix.d0p1.eu/news/welcome-to-weblorg.html">
+  
+  
+  <meta name="twitter:card" content="summary_large_image">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://qdnix.d0p1.eu/static/style.css" type="text/css" />
+    
+  </head>
+  <body>
+    
+    
+      <header class="navbar">
+		<nav aria-label="Main navigation">
+			<div class="navbar-brand">
+				<h1><a href="https://qdnix.d0p1.eu/" title="Quick'n'dirty *NIX">Quick&#39;n&#39;dirty *NIX</a></h1>
+			</div>
+			<ul>
+				<li><a href="https://qdnix.d0p1.eu/">Home</a></li>
+				<li><a href="https://qdnix.d0p1.eu/propaganda.html">Propaganda</a></li>
+				<li><a href="https://qdnix.d0p1.eu/man">Manual</a></li>
+				<li><a href="https://qdnix.d0p1.eu/doxygen">Doxygen</a></li>
+			</ul>
+		</nav>
+      </header>
+    
+
+	<div class="page">
+	  
+    <main id="main">
+      
+  <article class="post">
+    <h1 class="post__title">
+      Welcome to Weblorg
+    </h1>
+    <section class="post__meta">
+      
+        Sep 01, 2021
+      
+    </section>
+    <section>
+      
+<div class="outline-2">
+<h2 id="intro">Intro</h2>
+<div class="outline-text-2">
+<p>
+Weblorg is a Static HTML Website Generator. It's built with Emacs
+Lisp and takes advantage of the powers of Org-Mode as the source
+format, and makes it easy to extend and customize the structure and
+the theme of the generated website.
+</p>
+
+<div class="note">
+<p>
+It's easy to run Weblorg from a CI or from any other automated
+environment with emacs &#x2013;script publish.el from the root of your
+website.
+</p>
+
+</div>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="templating">Templating</h2>
+<div class="outline-text-2">
+<p>
+To make it more natural for people that have used other tools for
+generating websites, Weblorg leverages templatel, a library that
+provides a familiar syntax for stitching reusable templates together
+for creating websites. e.g.:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-jinja2">&lt;ul&gt;
+  {% for post in posts %}
+    &lt;li&gt;
+      &lt;a href="{{ url_for("posts", slug=post.slug) }}"&gt;
+	{{ post.title }}
+      &lt;/a&gt;
+    &lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-c"><span class="org-type">int</span>
+    <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> **<span class="org-variable-name">argv</span>)
+    {
+            (<span class="org-type">void</span>)argc;
+            (<span class="org-type">void</span>)argv;
+            <span class="org-keyword">return</span> (0);
+    }
+</pre>
+</div>
+</div>
+</div>
+
+<div class="outline-2">
+<h2 id="org-mode">Org-Mode</h2>
+<div class="outline-text-2">
+<p>
+You can format your posts using text-based annotations, very
+similarly to markdown. Although they're similar in concept, Org-Mode
+has it's own syntax. Check out the basics:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Markup</th>
+<th scope="col" class="org-left">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>*bold*</code></td>
+<td class="org-left"><b>bold</b></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>/italic/</code></td>
+<td class="org-left"><i>italic</i></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>_underline_</code></td>
+<td class="org-left"><span class="underline">underline</span></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>~code~</code></td>
+<td class="org-left"><code>code</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>=verbatim=</code></td>
+<td class="org-left"><code>verbatim</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>[[https://orgmode.org][Link]]</code></td>
+<td class="org-left"><a href="https://orgmode.org">Link</a></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Outlines, automatic generation of Table of Contents and many more
+Org-Mode features are available. Make sure you take a look at their
+extensive documentation to learn more about it.
+</p>
+</div>
+</div>
+
+    </section>
+  </article>
+
+    </main>
+
+    
+	<footer>
+		<p class="button">
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+				<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+			</a>
+			<a href="https://emacs.love/weblorg/" target="_blank">
+				<img alt="Created with emacs" src="https://qdnix.d0p1.eu/static/img/button/emacs.gif" />
+			</a>
+			<a href="http://d0p1.eu/trans-rights-are-human-rights" target="_blank">
+				<img alt="Trans right now!" src="https://qdnix.d0p1.eu/static/img/button/trn.png" />
+			</a>
+			<a href="https://web3isgoinggreat.com/" target="_blank">
+				<img alt="This is an Anti-NFT site" src="https://qdnix.d0p1.eu/static/img/button/antinft.gif" />
+			</a>
+			<a href="https://www.defectivebydesign.org/" target="_blank">
+				<img src="https://defectivebydesign.org/sites/nodrm.civicactions.net/files/images/elim_sm_btn.gif"
+					alt="Eliminate DRM!" width="88" height="31" />
+			</a>
+			<a href="https://yesterweb.org/no-to-web3/" target="_blank">
+				<img alt="Say no to web3" src="https://qdnix.d0p1.eu/static/img/button/roly-saynotoweb3.gif" />
+			</a>
+			<a href="https://www.youtube.com/watch?v=_Rua3TOeono" target="_blank">
+				<img src="https://qdnix.d0p1.eu/static/img/button/nonazis.png" width="31" />
+			</a>
+			<a href="https://endsoftwarepatents.org/innovating-without-patents" target="_blank">
+				<img alt="End of software patents" style="height: 31px;"
+					src="https://static.fsf.org/nosvn/esp/logos/patent-free.svg">
+			</a>
+			<a href="https://liberapay.com/d0p1/donate" target="_blank">
+				<img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+			<br />
+		</p>
+	</footer>
+    
+	</div>
+
+	
+  </body>
+</html>
