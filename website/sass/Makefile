@@ -1,3 +1,0 @@
-CSS = qdnix.css doxygen.css
-
-.include <qdnix.website.mk>

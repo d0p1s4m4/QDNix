@@ -49,8 +49,12 @@ level of source directory"
 	MACHINE_BOARD=generic
 
 	DISTRIBVER=$(git describe 2>/dev/null || echo -n "0.0")
+	export DISTRIBVER
 
 	[ -f .config ] && . "$(dirname $0)/.config"
+
+	QDNIX_BUILD_DIR=${BUILD_DIR}
+	export QDNIX_BUILD_DIR
 
 	DESTDIR="${BUILD_DIR}/distro/${MACHINE_ARCH}-${MACHINE_BOARD}-${MACHINE_CPU}"
 }
@@ -149,13 +153,13 @@ main() {
 			print_help
 			;;
 		www)
-			DESTDIR="${WEBSITE_DIR}" "${HOST_BIN_DIR}/bmake" www
+			(cd website ; emacs --script publish.el)
+			doxygen
 			;;
 		tools)
 			;;
 		build)
 			export DESTDIR
-			MAKEOBJDIR=${BUILD_DIR}/obj.${MACHINE_ARCH}.${MACHINE_CPU} "${HOST_BIN_DIR}/bmake" build
 			;;
 		esac
 	done

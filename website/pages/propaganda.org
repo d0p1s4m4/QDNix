@@ -1,0 +1,6 @@
+#+TITLE: Propaganda
+
+[[url_for_img:static,file=img/button/qdnix.gif][QDNix 88x31 button]]
+
+[[url_for_img:static,file=img/qdnix_unix_science.png]]
+

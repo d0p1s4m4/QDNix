@@ -14,7 +14,7 @@
 
 *.html
 *.html*
-!/website/template/*.html
+!/website/theme/templates/*.html
 docs/html/
 
 .config
@@ -36,5 +36,3 @@ a.out
 parser.tab.h
 parser.tab.c
 
-website/page/man.md
-website/sass/*.css

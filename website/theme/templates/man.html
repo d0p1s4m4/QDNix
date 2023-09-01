@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block main %}
+  <article class="page">
+    <section>
+      {{ post.html|safe }}
+    </section>
+  </article>
+{% endblock %}

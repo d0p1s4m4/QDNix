@@ -27,18 +27,6 @@
 	branch = binutils-2_39-QDNix-branch
 [submodule "thirdparty/gpl3/gcc/dist/"]
 	branch = gcc-12-QDNix-branch
-[submodule "thirdparty/mit/libhubbub/dist"]
-	path = thirdparty/mit/libhubbub/dist
-	url = git://git.netsurf-browser.org/libhubbub.git
-[submodule "thirdparty/mit/libwapcaplet/dist"]
-	path = thirdparty/mit/libwapcaplet/dist
-	url = git://git.netsurf-browser.org/libwapcaplet.git
-[submodule "thirdparty/mit/libdom/dist"]
-	path = thirdparty/mit/libdom/dist
-	url = git://git.netsurf-browser.org/libdom.git
-[submodule "thirdparty/mit/libparserutils/dist"]
-	path = thirdparty/mit/libparserutils/dist
-	url = git://git.netsurf-browser.org/libparserutils.git
 [submodule "thirdparty/bsd3/ksh/dist"]
 	path = thirdparty/bsd3/ksh/dist
 	url = https://github.com/kohi-gnu/ksh.git

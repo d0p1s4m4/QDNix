@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    {% block head %}
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>
+      {% block title %}{{ site_name | default("weblorg website") }}{% endblock %}
+      {% block subtitle %}{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if site_owner is defined %}<meta name="author" content="{{ site_owner }}" />{% endif %}
+    {% if site_description is defined %}<meta name="description" content="{{ site_description }}" />{% endif %}
+    {% if site_keywords is defined %}<meta name="keywords" content="{{ site_keywords }}" />{% endif %}
+    {% block meta %}{% endblock %}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css" />
+    <link rel="stylesheet" href="{{ url_for("static", file="style.css") }}" type="text/css" />
+    {% endblock %}
+  </head>
+  <body>
+    {# Top navigation bar #}
+    {% block nav %}
+      <header class="navbar">
+		<nav aria-label="Main navigation">
+			<div class="navbar-brand">
+				<h1><a href="{{ url_for("index") }}" title="Quick'n'dirty *NIX">{% block title %}{{ site_name | default("weblorg website") }}{% endblock %}</a></h1>
+			</div>
+			<ul>
+				<li><a href="{{ url_for("index") }}">Home</a></li>
+				<li><a href="{{ url_for("pages", slug="propaganda") }}">Propaganda</a></li>
+				<li><a href="{{ url_for("man-index") }}">Manual</a></li>
+				<li><a href="{{ url_for("doxygen") }}">Doxygen</a></li>
+			</ul>
+		</nav>
+      </header>
+    {% endblock %}
+
+	<div class="page">
+	  {% block intro %}{% endblock %}
+    <main id="main">
+      {% block main %}{% endblock %}
+    </main>
+
+    {% block footer %}
+	<footer>
+		<p class="button">
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">
+				<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+			</a>
+			<a href="https://emacs.love/weblorg/" target="_blank">
+				<img alt="Created with emacs" src="{{ url_for("static", file="img/button/emacs.gif") }}" />
+			</a>
+			<a href="http://d0p1.eu/trans-rights-are-human-rights" target="_blank">
+				<img alt="Trans right now!" src="{{ url_for("static", file="img/button/trn.png") }}" />
+			</a>
+			<a href="https://web3isgoinggreat.com/" target="_blank">
+				<img alt="This is an Anti-NFT site" src="{{ url_for("static", file="img/button/antinft.gif") }}" />
+			</a>
+			<a href="https://www.defectivebydesign.org/" target="_blank">
+				<img src="https://defectivebydesign.org/sites/nodrm.civicactions.net/files/images/elim_sm_btn.gif"
+					alt="Eliminate DRM!" width="88" height="31" />
+			</a>
+			<a href="https://yesterweb.org/no-to-web3/" target="_blank">
+				<img alt="Say no to web3" src="{{ url_for("static", file="img/button/roly-saynotoweb3.gif") }}" />
+			</a>
+			<a href="https://www.youtube.com/watch?v=_Rua3TOeono" target="_blank">
+				<img src="{{ url_for("static", file="img/button/nonazis.png") }}" width="31" />
+			</a>
+			<a href="https://endsoftwarepatents.org/innovating-without-patents" target="_blank">
+				<img alt="End of software patents" style="height: 31px;"
+					src="https://static.fsf.org/nosvn/esp/logos/patent-free.svg">
+			</a>
+			<a href="https://liberapay.com/d0p1/donate" target="_blank">
+				<img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
+			<br />
+		</p>
+	</footer>
+    {% endblock %}
+	</div>
+
+	{% block scripts %}{% endblock %}
+  </body>
+</html>

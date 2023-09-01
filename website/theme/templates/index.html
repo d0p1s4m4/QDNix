@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block intro %}
+<div id="intro" class="box">
+	<blockquote>
+		<p>
+			"<span id="quote-text">UNIX is very simple, it just needs a genius to understand its simplicity.</span>"
+		</p>
+		<p>
+			<cite>– <span id="quote-author">Dennis Ritchie</span></cite>
+		</p>
+	</blockquote>
+</div>
+{% endblock %}
+
+{% block main %}
+
+   QDNix (<em>Quick'n'dirty *NIX</em>) is a tinyv UNIX-Like operating system inspired by <a href="https://en.wikipedia.org/wiki/Version_6_Unix">UNIX v6</a> and <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">BSD</a>.
+
+  <h1>News</h1>
+
+  <ul class="posts">
+    {% for post in posts %}
+      <li class="post-title">
+        <a href="{{ url_for("news", slug=post.slug) }}">
+          {% if post.date is defined %}
+            {{ post.date|strftime("%b %d, %Y") }} &mdash;
+          {% endif %}
+          {{ post.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+{% block scripts %}
+
+	<script src="{{ url_for("static", file="js/quote.js") }}"></script>
+{% endblock %}

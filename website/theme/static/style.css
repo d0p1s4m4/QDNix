@@ -1,0 +1,159 @@
+html {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.navbar {
+  min-height: 40px;
+  padding: 10px 15px;
+  background: #333;
+  border-bottom: 5px #c08 solid;
+}
+
+.navbar ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  text-align: right;
+}
+
+.navbar ul li {
+  display: inline-block;
+  font-size: 14px;
+  font-family: sans-serif;
+  line-height: 14px;
+  padding: 14px 15px 0;
+}
+
+.navbar ul li a {
+  color: #999;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar ul li a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.navbar-brand {
+  float: left;
+  margin: -5px 0 0 0;
+  background: url("/static/img/logo-mini.png") no-repeat;
+}
+
+.navbar-brand h1 {
+  text-indent: -999px;
+}
+
+.navbar-brand a {
+  display: block;
+  width: 190px;
+}
+
+#man-header {
+  display: flex;
+  border-bottom: 1px dotted #c08;
+  margin-bottom: 1em;
+  font-size: smaller;
+}
+
+#man-header .title {
+  flex: 1;
+}
+
+#man-header .date {
+  flex: 1;
+  text-align: right;
+}
+
+div.box {
+  margin-bottom: 1.5em;
+  padding: .65em;
+  background: #f5ecf2;
+  border: 1px solid #dbc;
+}
+
+.page {
+  max-width: 64rem;
+  margin: 1.5em auto auto auto;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a:focus, a:visited, a:visited:hover {
+  color: #c08;
+  text-decoration: underline;
+}
+
+dt {
+  font-weight: bold;
+}
+
+pre {
+  border: 1px solid #dbb;
+  padding: .5em;
+  margin: 1em;
+}
+
+footer {
+  border-top: 1px solid #c08;
+  padding: 2em 0 1em;
+  margin: 2em 0 1em;
+}
+
+footer p {
+  margin: 0;
+  text-align: center;
+}
+
+footer p.button {
+  display: block;
+}
+
+footer p.button a:hover, footer p.button a:focus, footer p.button a:visited, footer p.button a:visited:hover {
+  text-decoration: none;
+}
+
+.org-builtin {
+	color: #e36209;
+}
+
+.org-doc {
+	color: #d73a49;
+}
+
+.org-function-name {
+	color: #6f42c1;
+}
+
+.org-keyword {
+	color: #d73a49;
+}
+
+.org-string {
+	color: #032f62;
+}
+
+.org-type {
+	color: #d73a49;
+}
+
+.org-variable-name {
+	color: #005cc5;
+}
+
+.org-comment, .org-comment-delimiter {
+	color: #6a737d;
+}
+
+.org-src-container {
+	color: #24292e;
+	padding: 0px 15px;
+	max-width: 100%;
+	overflow-y: scroll;
+}

@@ -1,3 +1,4 @@
-SUBDIR	= bin
+NOSUBDIR	= 
+#SUBDIR	= bin
 
 .include <qdnix.subdir.mk>

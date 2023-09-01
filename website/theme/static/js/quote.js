@@ -11,6 +11,5 @@ const authorElement = document.getElementById("quote-author");
 
 if (authorElement !== null && quoteElement !== null)
 {
-	console.log(selected);
 	[quoteElement.innerText, authorElement.innerText] = selected;
 }
