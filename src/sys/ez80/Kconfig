@@ -1,8 +1,0 @@
-menu "ez80 architecture"
-	depends on ARCH_EZ80
-
-	config ARCH
-		string
-		default "ez80"
-
-endmenu

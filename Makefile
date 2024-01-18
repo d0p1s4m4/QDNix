@@ -19,10 +19,6 @@
 #     do-lib           builds and install
 #     do-build
 
-.if ${.MAKEFLAGS:M${.CURDIR}/src/share/mk} == ""
-.MAKEFLAGS: -m ${.CURDIR}/src/share/mk
-.endif
-
 _SRC_TOP_OBJ_=
 
 .include <qdnix.own.mk>
