@@ -30,16 +30,19 @@ _SRC_TOP_OBJ_=
 MKCONF = ${.CURDIR}/.config.mk
 SRCDIR = ${.CURDIR}
 BUILDDIR = ${.CURDIR}/build
+TOOLDIR = ${.CURDIR}/build/tools
 
-.export BUILDDIR MKCONF SRCDIR
+.export BUILDDIR MKCONF SRCDIR TOOLDIR
 
-BUILDTARGETS	= cleandir \
-				  do-top-obj \
-				  do-tools-objs \
-				  do-tools \
-				  do-distrib-dirs \
-				  includes \
-				  do-build
+BUILDTARGETS=	cleandir \
+				do-top-obj \
+				do-tools-obj \
+				do-tools \
+				obj \
+				do-distrib-dirs \
+				includes \
+				do-lib \
+				do-build
 
 .ORDER: ${BUILDTARGETS}
 
@@ -56,24 +59,32 @@ www: .PHONY .MAKE
 do-top-obj: .PHONY .MAKE
 	${MAKEDIRTARGET} . obj NOSUBDIR=
 
-do-tools-objs: .PHONY .MAKE
-	@true
+do-tools-obj: .PHONY .MAKE
+	${MAKEDIRTARGET} tools obj
 
 do-tools: .PHONY .MAKE
-	@true
+	${MAKEDIRTARGET} tools build_install
 
 do-distrib-dirs: .PHONY .MAKE
 	(cd "${.CURDIR}/src/etc" && ${MAKE} distrib-dirs)
 	@true
 
-do-build: .PHONY .MAKE
+do-lib: .PHONY .MAKE
 	@true
+
+do-build: .PHONY .MAKE
+.for targ in all install
+	${MAKEDIRTARGET} . ${targ} BUILD_tools=no BUILD_lib=no
+.endfor
+
+START_TIME!=	date
 
 build: .PHONY .MAKE
 .for tgt in ${BUILDTARGETS}
 	${MAKEDIRTARGET} . ${tgt}
 .endfor
+	@echo   "Build started at:  ${START_TIME}"
+	@printf "Build finished at: " && date
 
 .include <qdnix.subdir.mk>
-.include <qdnix.obj.mk>
 .include <qdnix.clean.mk>

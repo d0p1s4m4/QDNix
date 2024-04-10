@@ -1,3 +1,3 @@
-SUBDIR = man
+SUBDIR = calendar man
 
 .include <qdnix.subdir.mk>

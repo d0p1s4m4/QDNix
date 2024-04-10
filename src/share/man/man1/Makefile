@@ -1,3 +1,3 @@
-MAN1 = intro.1
+MAN = intro.1
 
 .include <qdnix.man.mk>

@@ -1,3 +1,3 @@
-SUBDIR = ed hello m2
+SUBDIR = ed hello
 
 .include <qdnix.subdir.mk>

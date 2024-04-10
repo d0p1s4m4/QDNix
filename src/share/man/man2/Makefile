@@ -1,4 +1,4 @@
-MAN2 = intro.2 \
+MAN = intro.2 \
 		brk.2 \
 		chdir.2 \
 		close.2 \

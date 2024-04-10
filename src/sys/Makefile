@@ -1,6 +1,9 @@
 .include <qdnix.own.mk>
 
-all:
-	echo ${CONFIG_ARCH}
+.if defined(CONFIG_ARCH)
+SUBDIR		= ${CONFIG_ARCH}
+.else
+NOSUBDIR	=
+.endif # !defined(CONFIG_ARCH)
 
-${TARGETS}:
+.include <qdnix.subdir.mk>

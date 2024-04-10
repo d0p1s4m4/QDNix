@@ -1,3 +1,3 @@
-SUBDIR	= bin etc include lib sbin share sys
+SUBDIR	= etc include share sys
 
 .include <qdnix.subdir.mk>

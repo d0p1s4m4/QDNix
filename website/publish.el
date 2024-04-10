@@ -22,9 +22,7 @@
 (if (string= (getenv "ENV") "prod")
 	(setq weblorg-default-url "https://qdnix.d0p1.eu"))
 
-(if (not (null (getenv "QDNIX_BUILD_DIR")))
-	(setq qdnix--build-dir (concat (getenv "QDNIX_BUILD_DIR") "/www"))
-	(setq qdnix--build-dir "build/www"))
+(setq qdnix--build-dir "generated")
 
 ;; ---------------------------------------------------------------------
 ;; Process Manual page

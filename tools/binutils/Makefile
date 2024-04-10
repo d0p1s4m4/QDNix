@@ -1,21 +1,21 @@
 .include <qdnix.hostinit.mk>
+
 LICENSE = gpl3
-MODULE = binutils
+MODULE =  binutils
 
 BRANDING ?= \
 	--with-pkgversion="QDNix Binutils" \
 	--with-bugurl="https://github.com/d0p1s4m4/binutils/issues" \
-	--with-lib-path="=/usr/lib" 
+	--with-sysroot
 
-CONFIGURE_ARGS= \
+CONFIGURE_ARGS = \
 	--target="${MACHINE_PLATFORM}" \
-	--prefix="${TOOLDIR}" \
-	--with-sysroot \
+	--prefix="${TOOLS_DIR}" \
 	--disable-werror \
 	--disable-nls \
 	${BRANDING}
 
-ALL_TARGET	= all-binutils all-gas all-ld
-INSTALL_TARGET	= install-binutils install-gas install-ld
+ALL_TARGET = all-binutils all-gas all-ld
+INSTALL_TARGET = install-binutils install-gas install-ld
 
 .include "${.CURDIR}/../Makefile.host"

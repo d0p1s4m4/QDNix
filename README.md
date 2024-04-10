@@ -1,6 +1,6 @@
 <div align="center">
 
-![Logo](https://qdnix.d0p1.eu/assets/img/logo.png)
+![Logo](https://qdnix.d0p1.eu/static/img/logo.png)
 
 # QDNix (Quick'n'Dirty *NIX)
 
@@ -10,7 +10,7 @@
 
 </div>
 
-QDNix is an UNIX-like for [ARM](src/sys/arm/README.md) and [MIPS](src/sys/mips/README.md) based evkit....
+QDNix is an UNIX-like for [ARM](./src/sys/arm/README.md) and [MIPS](./src/sys/mips/README.md) based evkit....
 
 # License
 
@@ -18,4 +18,4 @@ QDNix is an UNIX-like for [ARM](src/sys/arm/README.md) and [MIPS](src/sys/mips/R
 
 QDNix is licensed under the 3-Clause BSD License.
 
-The full text of the license can be accessed via [this link](https://opensource.org/licenses/BSD-3-Clause) and is also included in [the license file](LICENSE) of this software package.
+The full text of the license can be accessed via [this link](https://opensource.org/licenses/BSD-3-Clause) and is also included in [the license file](./LICENSE) of this software package.

@@ -1,4 +1,4 @@
-MAN5 = intro.5 \
+MAN = intro.5 \
 		a.out.5 \
 		elf.5 \
 		hosts.5 \

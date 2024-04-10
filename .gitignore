@@ -23,6 +23,8 @@ config.h
 *.old
 
 .toolchain
+.build
+.tools
 *.sym
 *.lst
 *.asm
@@ -30,6 +32,7 @@ config.h
 vmqdnix
 
 build/
+generated/
 
 a.out
 

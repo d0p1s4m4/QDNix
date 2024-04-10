@@ -27,14 +27,14 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install emacs imagemagick doxygen texlive-binaries build-essential mandoc
+          sudo apt install emacs imagemagick doxygen texlive-binaries build-essential mandoc graphviz
 
       - name: Generate
-        run: sh build.sh www
+        run: bash build.sh www
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/www/
+          publish_dir: ./website/generated
           cname: qdnix.d0p1.eu

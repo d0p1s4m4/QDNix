@@ -1,3 +1,3 @@
 # Commands {#bin}
 
-@subpage m2 m2
+\subpage m2 "m2"

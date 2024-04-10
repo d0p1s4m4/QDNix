@@ -1,9 +1,13 @@
-menu "RISC-V 64 architecture"
+menu "RISC-V architecture"
 	depends on ARCH_RISCV64
 
 	config ARCH
 		string
-		default "riscv64"
+		default "riscv"
+
+	config RV64
+		bool "64bit"
+		default true
 
 	choice
 		prompt "Board"

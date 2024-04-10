@@ -1,1 +1,5 @@
+menu "Drivers"
+
 rsource "tty/Kconfig"
+
+endmenu

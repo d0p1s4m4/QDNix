@@ -4,10 +4,6 @@ _MSECTIONS = 1 2 3 4 5 6 7 8 9
 _MSECTIONREGEX = ${_MSECTIONS:ts|}
 .SUFFIXES: ${_MSECTIONS:@N@.$N@}
 
-PANDOC = pandoc
-TEMPLATE = ${SRCDIR}/website/template/man.html
-PANDOC_FLAGS = --from man --to html -s --template ${TEMPLATE}
-
 MANINSTALL = install -o ${MANOWNER} -g ${MANGROUP} -m ${MANMODE}
 
 MAN ?= ${MAN1} ${MAN2} ${MAN3} ${MAN4} ${MAN5} ${MAN6} ${MAN7} ${MAN8} ${MAN9}
@@ -43,37 +39,6 @@ maninstall:
 	${MANINSTALL} ${MAN9} ${DESTDIR}${MANDIR}9/
 .endif
 
-__installpage: .USE
-.for S in ${_MSECTIONS}
-	@mkdir -p ${DESTDIR}/html/man/man${S}
-.endfor
-	@${_MKSHMSG_INSTALL} ${.TARGET}; \
-		install ${.ALLSRC} ${.TARGET}
-
-htmlinstall: htmlpages
-htmlpages::
-
-HTMLPAGES = ${MAN:C/\.(${_MSECTIONREGEX})\$/.html\1/}
-.NOPATH: ${HTMLPAGES}
-.SUFFIXES:	${_MSECTIONS:@N@.html$N@}
-
-${_MSECTIONS:@N@.$N.html$N@}: 
-	${PANDOC} ${PANDOC_FLAGS} --metadata category=${.IMPSRC:T:E} -o ${.TARGET} ${.IMPSRC}
-
-
-.for F in ${HTMLPAGES:O:u}
-_F:=		${DESTDIR}/html/man/${F:T:E:S/html/man/}/${F:R:S-/index$-/x&-}.html
-
-${_F}:		${F} __installpage
-
-htmlpages::	${_F}
-.PRECIOUS:	${_F}
-.endfor
-
-### Clean
-.undef _F
-CLEANDIRFILES+= ${HTMLPAGES}
-
 .include <qdnix.clean.mk>
 
-${TARGETS}:
+${TARGETS}: # ensure existance
