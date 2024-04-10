@@ -43,12 +43,6 @@ var NAVTREE =
         [ "C Coding Style", "md__home_runner_work_QDNix_QDNix_CONTRIBUTING.html#autotoc_md14", null ]
       ] ]
     ] ],
-    [ "LICENSE", "md__home_runner_work_QDNix_QDNix_LICENSE.html", null ],
-    [ "ez80", "ez80.html", [
-      [ "Registers", "ez80.html#autotoc_md25", null ],
-      [ "Memory Management", "ez80.html#autotoc_md27", null ],
-      [ "Calling Conventions", "ez80.html#autotoc_md28", null ]
-    ] ],
     [ "Bibliography", "citelist.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [
@@ -64,7 +58,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "8250_8c_source.html",
-"structTTYDevice.html#a4e6e2f2de76f6b8e3f334ac983719511"
+"structUARTRegister.html#a017a79fe1b1d8572b3df5a0c555fd2af"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

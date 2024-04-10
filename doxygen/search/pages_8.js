@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['mips_91',['MIPS',['../mips.html',1,'sys']]],
-  ['mk_92',['mk',['../mk.html',1,'share']]],
-  ['modula_2d2_20compiler_93',['Modula-2 compiler',['../m2.html',1,'bin']]]
+  ['nrf52_20dk_92',['nRF52 DK',['../nrf52dk.html',1,'arm_board']]]
 ];

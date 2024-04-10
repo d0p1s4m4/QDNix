@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['geminid_18',['geminid',['../geminid.html',1,'sbin']]],
-  ['gpioregister_19',['GpioRegister',['../structGpioRegister.html',1,'']]]
+  ['geminid_17',['geminid',['../geminid.html',1,'sbin']]],
+  ['gpioregister_18',['GpioRegister',['../structGpioRegister.html',1,'']]]
 ];

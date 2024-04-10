@@ -1,7 +1,0 @@
-digraph "stat"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{stat\n|+ st_dev\l+ st_ino\l+ st_mode\l+ st_nlink\l+ st_uid\l+ st_gid\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
-}

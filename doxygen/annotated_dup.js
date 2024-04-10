@@ -23,5 +23,6 @@ var annotated_dup =
     [ "UARTRegister", "structUARTRegister.html", "structUARTRegister" ],
     [ "utsname", "structutsname.html", "structutsname" ],
     [ "VFS", "structVFS.html", "structVFS" ],
-    [ "VSFOps", "structVSFOps.html", "structVSFOps" ]
+    [ "VSFOps", "structVSFOps.html", "structVSFOps" ],
+    [ "ZealFSHdr", "structZealFSHdr.html", "structZealFSHdr" ]
 ];

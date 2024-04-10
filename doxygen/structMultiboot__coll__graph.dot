@@ -1,7 +1,0 @@
-digraph "Multiboot"
-{
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{Multiboot\n|+ flags\l+ mem_lower\l+ mem_upper\l+ boot_device\l+ cmd\l+ mods_count\l+ mods_addr\l+ syms\l+ mmap_length\l+ mmap_addr\land 16 more...\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
-}

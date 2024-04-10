@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tls_2ec_43',['tls.c',['../tls_8c.html',1,'']]],
-  ['ttydevice_44',['TTYDevice',['../structTTYDevice.html',1,'']]]
+  ['uartregister_43',['UARTRegister',['../structUARTRegister.html',1,'']]],
+  ['utsname_44',['utsname',['../structutsname.html',1,'']]]
 ];

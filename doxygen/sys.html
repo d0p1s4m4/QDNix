@@ -17,6 +17,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -100,45 +101,32 @@ Source Roadmap</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">dev   </td><td class="markdownTableBodyNone">device drivers    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="ez80.html">ez80</a>   </td><td class="markdownTableBodyNone">eZ80 architecture support    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="i386.html">i386</a>   </td><td class="markdownTableBodyNone">32-bit x86 architecture support    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">kern   </td><td class="markdownTableBodyNone">main part of the kernel    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">libkern   </td><td class="markdownTableBodyNone">libc and other support functions for kernel use    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">minixfs   </td><td class="markdownTableBodyNone">Minix File System    </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="mips.html">mips</a>   </td><td class="markdownTableBodyNone">MIPS architecture support    </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">netinet   </td><td class="markdownTableBodyNone"></td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="pdp11.html">pdp11</a>   </td><td class="markdownTableBodyNone">PDP-11 architecture support    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="riscv64.html">riscv64</a>   </td><td class="markdownTableBodyNone">64-bit RISC-V architecture support    </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="riscv64.html">riscv</a>   </td><td class="markdownTableBodyNone">RISC-V architecture support    </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">sys   </td><td class="markdownTableBodyNone">kernel headers    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="vm.html">vm</a>   </td><td class="markdownTableBodyNone">machine independent Virtual Memory Manager    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="x86.html">x86</a>   </td><td class="markdownTableBodyNone"></td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="vm.html">vm</a>   </td><td class="markdownTableBodyNone">machine independent Virtual Memory Manager    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">z80   </td><td class="markdownTableBodyNone">eZ80 architecture support   </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="x86.html">x86</a>   </td><td class="markdownTableBodyNone"></td></tr>
 </table>
 <p> <div class="mermaid"> 
-   flowchart TD
-    Bootloader -->|load kernel| entry
-
-    subgraph Kernel
-        subgraph ArchDependent
-           entry --> setup_cpu --> setup_console
-           setup_console --> setup_disk
-        end
-
-        subgraph ArchIndep
-            kern_main
-        end
-    end
- 
+    
   </div>  </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

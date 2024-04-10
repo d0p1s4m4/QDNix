@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['device_54',['Device',['../structDevice.html',1,'']]],
-  ['driver_55',['Driver',['../structDriver.html',1,'']]]
+  ['device_53',['Device',['../structDevice.html',1,'']]],
+  ['driver_54',['Driver',['../structDriver.html',1,'']]]
 ];
