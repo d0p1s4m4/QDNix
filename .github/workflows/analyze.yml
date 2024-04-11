@@ -1,0 +1,26 @@
+name: Code Analysis
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install shellcheck cppcheck
+        
+      - name: Run shellcheck
+        run: |
+          shellcheck ./build.sh tools/man-index.sh tools/site-map-gen.sh
+
+      - name: Run CppCheck
+        run: |
+          cppcheck -x c --std=c89 --quiet --error-exitcode=2 src
