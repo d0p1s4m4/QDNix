@@ -139,9 +139,11 @@ do_build_tools() {
 
 	command -v "${TOOLS_PREFIX}bmake" || do_build_bmake
 
-	cmd_make "do-tools-obj"
+	cmd_make fetch
 
-	cmd_make "do-tools"
+	cmd_make do-tools-obj
+
+	cmd_make do-tools
 
 	success "BUILD FINISHED"
 	plain "Started: %s" "${build_start}"
@@ -261,6 +263,7 @@ done
 mkdir -p "${BUILD_DIR}"
 mkdir -p "${TOOLS_DIR}"
 
+readonly QDNIXSRCDIR BUILD_DIR TOOLS_DIR
 export QDNIXSRCDIR BUILD_DIR TOOLS_DIR
 
 PATH="${TOOLS_DIR}/bin:${PATH}"

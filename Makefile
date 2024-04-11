@@ -4,20 +4,7 @@
 #  Variables:
 #     DESTDIR
 # -----------------------------------------------------------------------------
-#  Targets:
-#     build
-#     www
-#
-#  Targets invoked by `make build`
-#     cleandir
-#     do-top-obj:      creates the top level object directory.
-#     do-tools-obj:    creates object directories for the host toolchain
-#     do-tools:        builds host toolchain
-#     obj:             creates object directories
-#     do-distrib-dirs: creates the distribution directories.
-#     includes:        installs include files.
-#     do-lib           builds and install
-#     do-build
+
 
 .if ${.MAKEFLAGS:M${.CURDIR}/src/share/mk} == ""
 .MAKEFLAGS: -m ${.CURDIR}/src/share/mk
@@ -28,11 +15,6 @@ _SRC_TOP_OBJ_=
 .include <qdnix.own.mk>
 
 MKCONF = ${.CURDIR}/.config.mk
-SRCDIR = ${.CURDIR}
-BUILDDIR = ${.CURDIR}/build
-TOOLDIR = ${.CURDIR}/build/tools
-
-.export BUILDDIR MKCONF SRCDIR TOOLDIR
 
 BUILDTARGETS=	cleandir \
 				do-top-obj \
@@ -46,7 +28,7 @@ BUILDTARGETS=	cleandir \
 
 .ORDER: ${BUILDTARGETS}
 
-SUBDIR = tools .WAIT thirdparty src
+SUBDIR = tools .WAIT external src
 
 www: .PHONY .MAKE
 	@mkdir -p ${DESTDIR}/html

@@ -39,3 +39,5 @@ a.out
 parser.tab.h
 parser.tab.c
 
+*.tar.*
+dist

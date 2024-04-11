@@ -51,6 +51,7 @@ LD	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-ld
 NM	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-nm
 OBJCOPY = ${TOOLDIR}/bin/${MACHINE_PLATFORM}-objcopy
 OBJDUMP = ${TOOLDIR}/bin/${MACHINE_PLATFORM}-objdump
+HASHPY  = ${QDNIXSRCDIR}/tools/hash.py
 
 CFLAGS += -std=c99 -pedantic \
 			-Wall -Wextra \
@@ -71,7 +72,7 @@ LDFLAGS	+= --sysroot=/
 .endif
 
 TARGETS+=	all clean cleandir depend dependall includes \
-		install obj regress tags html analyze describe htmlinstall www
+		install obj regress tags html analyze describe htmlinstall fetch
 PHONY_NOTMAIN =	all clean cleandir depend dependall distclean includes \
 		install obj regress beforedepend afterdepend \
 		beforeinstall afterinstall realinstall realdepend realall \
