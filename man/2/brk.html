@@ -41,26 +41,7 @@
       
   <article class="page">
     <section>
-      <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <style>
-    table.head, table.foot { width: 100%; }
-    td.head-rtitle, td.foot-os { text-align: right; }
-    td.head-vol { text-align: center; }
-    .Nd, .Bf, .Op { display: inline; }
-    .Pa, .Ad { font-style: italic; }
-    .Ms { font-weight: bold; }
-    .Bl-diag > dt { font-weight: bold; }
-    code.Nm, .Fl, .Cm, .Ic, code.In, .Fd, .Fn, .Cd { font-weight: bold;
-      font-family: inherit; }
-  </style>
-  <title>BRK(2)</title>
-</head>
-<body>
-<table class="head">
+      <table class="head">
   <tr>
     <td class="head-ltitle">BRK(2)</td>
     <td class="head-vol">System Calls Manual</td>
@@ -70,12 +51,19 @@
 <div class="manual-text">
 <section class="Sh">
 <h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
-<p class="Pp">brk, sbrk - TODO</p>
+<p class="Pp"><code class="Nm">brk, sbrk</code> &#x2014; <span class="Nd">change
+    core allocation</span></p>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
-<pre><b>void *brk(void *</b><i>address);</i></pre>
-<pre><b>void *sbrk(size_t </b><i>incr);</i></pre>
+<p class="Pp"><var class="Ft">void *</var>
+  <br/>
+  <code class="Fn">brk</code>(<var class="Fa" style="white-space: nowrap;">void
+    *address</var>);</p>
+<p class="Pp"><var class="Ft">void *</var>
+  <br/>
+  <code class="Fn">sbrk</code>(<var class="Fa" style="white-space: nowrap;">size_t
+    incr</var>);</p>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
@@ -87,17 +75,15 @@
 <section class="Sh">
 <h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h1>
-<p class="Pp"><b>exec</b>(2)</p>
+<p class="Pp"><a class="Xr" href="/man/2/exec.html">exec(2)</a></p>
 </section>
 </div>
 <table class="foot">
   <tr>
-    <td class="foot-date">30 Pluvi&#x00F4;se CCXXXI</td>
-    <td class="foot-os">d0p1</td>
+    <td class="foot-date">23 Germinal CCXXXII</td>
+    <td class="foot-os">QDNix</td>
   </tr>
 </table>
-</body>
-</html>
 
     </section>
   </article>

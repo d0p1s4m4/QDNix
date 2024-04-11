@@ -41,26 +41,7 @@
       
   <article class="page">
     <section>
-      <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <style>
-    table.head, table.foot { width: 100%; }
-    td.head-rtitle, td.foot-os { text-align: right; }
-    td.head-vol { text-align: center; }
-    .Nd, .Bf, .Op { display: inline; }
-    .Pa, .Ad { font-style: italic; }
-    .Ms { font-weight: bold; }
-    .Bl-diag > dt { font-weight: bold; }
-    code.Nm, .Fl, .Cm, .Ic, code.In, .Fd, .Fn, .Cd { font-weight: bold;
-      font-family: inherit; }
-  </style>
-  <title>PASSWD(5)</title>
-</head>
-<body>
-<table class="head">
+      <table class="head">
   <tr>
     <td class="head-ltitle">PASSWD(5)</td>
     <td class="head-vol">File Formats Manual</td>
@@ -70,26 +51,44 @@
 <div class="manual-text">
 <section class="Sh">
 <h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
-<p class="Pp">passwd - password files</p>
+<p class="Pp"><code class="Nm">passwd</code> &#x2014; <span class="Nd">password
+    files</span></p>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
-<p class="Pp">- login name - encrypted password - numerical user ID - numerical
-    group ID - initial working directory - program to use as shell</p>
+<div class="Bd-indent">
+<dl class="Bl-tag">
+  <dt>name</dt>
+  <dd>User's login name</dd>
+  <dt id="encrypted">password</dt>
+  <dd>User's
+      <a class="permalink" href="#encrypted"><i class="Em">encrypted</i></a>
+      password.</dd>
+  <dt>uid</dt>
+  <dd>Numerical user ID</dd>
+  <dt>guid</dt>
+  <dd>Numerical group ID</dd>
+  <dt>home</dt>
+  <dd>Initial working directory</dd>
+  <dt>shell</dt>
+  <dd>Program to use as shell</dd>
+</dl>
+</div>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="FILES"><a class="permalink" href="#FILES">FILES</a></h1>
-<p class="Pp">/etc/passwd</p>
+<dl class="Bl-tag">
+  <dt><span class="Pa">/etc/passwd</span></dt>
+  <dd style="width: auto;">&#x00A0;</dd>
+</dl>
 </section>
 </div>
 <table class="foot">
   <tr>
-    <td class="foot-date">28 Brumaire CCXXXI</td>
-    <td class="foot-os"></td>
+    <td class="foot-date">23 Germinal CCXXXII</td>
+    <td class="foot-os">QDNix</td>
   </tr>
 </table>
-</body>
-</html>
 
     </section>
   </article>
