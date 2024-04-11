@@ -1,31 +1,35 @@
-.TH HIER 7 "28 Thermidor CCXXX" "d0p1"
-.SH NAME
-hier \- layout of file systems
-.SH SYNOPSIS
+.Dd "23 Germinal CCXXXII"
+.Dt HIER 7
+.Os QDNix
+.Sh NAME
+.Nm hier
+.Nd layout of file systems
+.Sh DESCRIPTION
 A sketch of the file system hierarchy.
-.SH DESCRIPTION
-.IP "/"
+.Bl -tag -width "/share/"
+.It /
 Root directory.
-.IP "/bin/"
+.It /bin/
 User utilities.
-.IP "/dev/"
+.It /dev/
 Block and character device files.
-.IP "/etc/"
+.It /etc/
 System configuration files and scripts.
-.IP "/home/"
+.It /home/
 Default location for user home directories.
-.IP "/root/"
+.It /root/
 Default home directory for the superuser.
-.IP "/sbin/"
+.It /sbin/
 System daemon and utilities.
-.IP "/share/"
+.It /share/
 Architecture independent data files.
-.RS
-.IP "calendar/"
+.Pp
+.Bl -tag -width calendar -compact
+.It calendar/
 Pre-fab calendar files
-.IP "man/"
+.It man/
 Manual pages.
-.RE
-.IP "/src/"
+.El
+.It /src/
 QDNix source files.
-
+.El

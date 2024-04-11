@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -7,32 +7,44 @@ set -e
 # -----------------------------------------------------------------------------
 plain() {
 	local mesg=$1; shift
+
+	# shellcheck disable=SC2059
 	printf "${BOLD}    ${mesg}${ALL_OFF}\n" "$@"
 }
 
 msg() {
 	local mesg=$1; shift
+
+	# shellcheck disable=SC2059
 	printf "${MAGENTA}==>${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@"
 }
 
 msg2() {
 	local mesg=$1; shift
+
+	# shellcheck disable=SC2059
 	printf "${BLUE} ->${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@"
 }
 
 error() {
 	local mesg=$1; shift
+
+	# shellcheck disable=SC2059
 	printf "${RED}==> ERROR:${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@"
 	exit 1
 }
 
 warning() {
 	local mesg=$1; shift
+
+	# shellcheck disable=SC2059
 	printf "${YELLOW}==> WARNING:${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@"
 }
 
 success() {
 	local mesg=$1; shift
+
+	# shellcheck disable=SC2059
 	printf "${GREEN}==> SUCCESS:${ALL_OFF}${BOLD} ${mesg}${ALL_OFF}\n" "$@"
 }
 
@@ -44,18 +56,18 @@ verify() {
 }
 
 download_and_verify() {
-	msg2 "Download %s" "$2"
-	if [ ! -f "$2" ] || [ ! "$(verify $3 $2)" == "OK" ]; then
+	if [ ! -f "$2" ] || [ ! "$(verify "$3" "$2")" == "OK" ]; then
+		msg2 "Download %s" "$2"
 		wget "$1" -O "$2"
-		[ "$(verify $3 $2)" == "OK" ]  || error "sha256sum missmatch"
+		[ "$(verify "$3" "$2")" == "OK" ]  || error "sha256sum missmatch"
     fi
 }
 
 cmd_make() {
 	local rule=$1
 
-	msg "Run ${TOOLS_PREFIX}bmake $1"
-	"${TOOLS_PREFIX}bmake" "$1" || error "Can't make '$1'"
+	msg "Run ${TOOLS_PREFIX}bmake ${rule}"
+	"${TOOLS_PREFIX}bmake" "${rule}" || error "Can't make '${rule}'"
 }
 
 # -----------------------------------------------------------------------------
@@ -70,6 +82,8 @@ do_build_website() {
 	(cd website ; emacs --script publish.el)
 	msg2 "Building docs"
 	doxygen
+	msg2 "Generate sitemap.xml"
+	"${topdir}"/tools/site-map-gen.sh "${topdir}/website/generated" > "${topdir}/website/generated/sitemap.xml"
 	success "BUILD FINISHED"
 	plain "Started: %s" "${build_start}"
 	plain "Ended:   %s" "$(date)"
@@ -98,13 +112,15 @@ bmake_sha256sum="a4ca49426c1ea5a2c5fbe4405bf6240696b1e25b99174813cd0034177ab8c71
 
 do_build_bmake() {
 	msg2 "Building ${TOOLS_PREFIX}bmake"
-	(cd $(mktemp -d);
-		download_and_verify "${bmake_url}" "bmake.zip" "${bmake_sha256sum}";
-		unzip "bmake.zip" || error "Can't unzip bmake.zip";
-		(cd bmake-*;
-			./configure --with-default-sys-path="${topdir}/src/share/mk" --prefix="${TOOLS_DIR}" &&
-			make && make install))
-	mv -u "${TOOLS_DIR}/bin/bmake" "${TOOLS_DIR}/bin/${TOOLS_PREFIX}bmake" || error "Can't build bmake"
+	download_and_verify "${bmake_url}" "${TOOLS_DIR}/bmake.zip" "${bmake_sha256sum}"
+
+	bmakebuilddir="$(mktemp -d)"
+	unzip -d "${bmakebuilddir}" "${TOOLS_DIR}/bmake.zip"
+
+	(cd "${bmakebuilddir}/"bmake-*;
+		./configure --with-default-sys-path="${topdir}/src/share/mk" --prefix="${TOOLS_DIR}" &&
+		make && make install)
+	mv -f "${TOOLS_DIR}/bin/bmake" "${TOOLS_DIR}/bin/${TOOLS_PREFIX}bmake" || error "Can't build bmake"
 }
 
 do_build_tools() {
@@ -183,7 +199,7 @@ unset MAKEFLAGS
 unset TERMINFO
 
 unset ALL_OFF BOLD RED GREEN BLUE MAGENTA YELLOW
-if [[ ! -v NO_COLOR ]]; then
+if [ ! -v NO_COLOR ]; then
 	ALL_OFF="\e[1;0m"
 	BOLD="\e[1;1m"
 	BLUE="${BOLD}\e[1;34m"
@@ -195,7 +211,7 @@ fi
 readonly ALL_OFF BOLD RED GREEN BLUE MAGENTA YELLOW
 
 unset topdir prgname build_start
-prgname="$(basename $0)"
+prgname="$(basename "$0")"
 topdir="$(realpath "$0")"
 topdir="$(dirname "${topdir}")"
 build_start="$(date)"
@@ -239,7 +255,8 @@ while [ $# -gt 0 ]; do
 	esac
 done
 
-[ -f "${topdir}/.config" ] && source .config
+# shellcheck disable=SC1091
+[ -f "${topdir}/.config" ] && . "${topdir}/.config"
 
 mkdir -p "${BUILD_DIR}"
 mkdir -p "${TOOLS_DIR}"
@@ -249,7 +266,7 @@ export QDNIXSRCDIR BUILD_DIR TOOLS_DIR
 PATH="${TOOLS_DIR}/bin:${PATH}"
 export PATH
 
-[ -v "qdnix_build_website" ] && do_build_website || true
-[ -v "qdnix_build_tools" ] && do_build_tools || true
-[ -v "qdnix_config" ] && do_config || true
-[ -v "qdnix_build_os" ] && do_build_os || true
+if [ -v "qdnix_build_website" ]; then do_build_website; fi
+if [ -v "qdnix_build_tools" ]; then do_build_tools; fi
+if [ -v "qdnix_config" ]; then do_config; fi
+if [ -v "qdnix_build_os" ]; then do_build_os; fi

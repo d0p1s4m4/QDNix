@@ -20,7 +20,8 @@
 ;; ---------------------------------------------------------------------
 
 (if (string= (getenv "ENV") "prod")
-	(setq weblorg-default-url "https://qdnix.d0p1.eu"))
+	(setq weblorg-default-url "https://qdnix.d0p1.eu")
+	(setq weblorg-default-url ""))
 
 (setq qdnix--build-dir "generated")
 
@@ -34,7 +35,7 @@
 
 (defun qdnix--parse-man (source)
 	(let (html keywords fname)
-		(setq html (shell-command-to-string (concat "mandoc -Thtml " source)))
+		(setq html (shell-command-to-string (concat "mandoc -Thtml -O fragment,man='/man/%S/%N.html' " source)))
 		(setq fname (file-name-nondirectory source))
 		(weblorg--prepend keywords (cons "html" html))
 		(weblorg--prepend keywords

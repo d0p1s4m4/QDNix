@@ -1,17 +1,17 @@
-.TH CHDIR 2 "28 Thermidor CCXXX" "d0p1"
-.SH NAME
-chdir \- change current working directory
-.SH SYNOPSIS
-.PP
-.nf
-.BI "int chdir(const char *" path);
-.fi
-.PP
-.SH DESCRIPTION
-.BR chdir ()
+.Dd "23 Germinal CCXXXII"
+.Dt CHDIR 2
+.Os QDNix
+.Sh NAME
+.Nm chdir
+.Nd change current working directory
+.Sh SYNOPSIS
+.In
+.Ft int
+.Fn chdir "const char *path"
+.Sh DESCRIPTION
+.Fn chdir
 changes the current working directory of the calling process to the directory specified in path.
-.IR path .
-.SH RETURN VALUES
-.BR chdir ()
+.Sh RETURN VALUES
+.Fn chdir
 return zero on success.
 On error, \-1 is returned.

@@ -1,12 +1,28 @@
-.TH PASSWD 5 "28 Brumaire CCXXXI"
-.SH NAME
-passwd \- password files
-.SH DESCRIPTION
-- login name
-- encrypted password
-- numerical user ID
-- numerical group ID
-- initial working directory
-- program to use as shell
-.SH FILES
-/etc/passwd
+.Dd "23 Germinal CCXXXII"
+.Dt PASSWD 5
+.Os QDNix
+.Sh NAME
+.Nm passwd
+.Nd password files
+.Sh DESCRIPTION
+.Pp
+.Bl -tag -width password -offset indent
+.It name 
+User's login name
+.It password
+User's
+.Em encrypted
+password.
+.It uid
+Numerical user ID
+.It guid
+Numerical group ID
+.It home 
+Initial working directory
+.It shell
+Program to use as shell
+.El
+.Sh FILES
+.Bl -tag width /etc/passwd -compact
+.It Pa /etc/passwd
+.El

@@ -1,15 +1,16 @@
-.TH BRK 2 "30 Pluviôse CCXXXI" "d0p1"
-.SH NAME
-brk, sbrk \- TODO
-.SH SYNOPSIS
-.PP
-.nf
-.BI "void *brk(void *" address);
-.PP
-.BI "void *sbrk(size_t " incr);
-.fi
-.PP
-.SH DESCRIPTION
-.SH RETURN VALUES
-.SH SEE ALSO
-.BR exec (2)
+.Dd "23 Germinal CCXXXII"
+.Dt BRK 2
+.Os QDNix
+.Sh NAME
+.Nm brk, sbrk
+.Nd change core allocation
+.Sh SYNOPSIS
+.In
+.Ft "void *"
+.Fn brk "void *address"
+.Ft "void *"
+.Fn sbrk "size_t incr"
+.Sh DESCRIPTION
+.Sh RETURN VALUES
+.Sh SEE ALSO
+.Xr exec 2

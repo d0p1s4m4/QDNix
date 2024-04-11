@@ -20,7 +20,7 @@ for i in {1..9}; do
 	echo
 	echo "### System Section ${i} - ${sections[$i]}"
 	echo
-	for m in ${DESTDIR}/html/man/man${i}/*.html; do
+	for m in "${DESTDIR}/html/man/man${i}/"*.html; do
 		m=$(basename "${m}" .html)
 		echo "- [${m}(${i})](/man/man${i}/${m}.html)"
 	done
