@@ -1,0 +1,7 @@
+PKG_NAME=make
+PKG_VERSION=4.4.1
+PKG_URL="https://ftpmirror.gnu.org/make/${PKG_ARCHIVE}"
+PKG_SHA256SUM=dd16fb1d67bfab79a72f5e8390735c49e3e8e70b4945a15ab1f81ddb78658fb3
+PKG_B2SUM=09a4ad8060259e36854b525ab610fd317a86f4926e44e3ab8adba75dccc8d4b445df9dd25ccfb4c25a54bc0e98238a9127e36401d74cbc3503a329eadcdf4995
+
+.include <qdnix.pkg.mk>

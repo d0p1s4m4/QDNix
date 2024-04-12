@@ -1,3 +1,8 @@
+/**
+ * \dir pdp11
+ * \brief PDP-11 architecture support
+ */
+
 #ifndef _PDP11_ASM_
 # define _PDP11_ASM_ 1
 

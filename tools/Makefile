@@ -1,3 +1,8 @@
 .include <qdnix.own.mk>
 
-${TARGETS}:
+.MAIN: build_install
+
+SUBDIR = gmake 
+	
+.include <qdnix.subdir.mk>
+.include <qdnix.buildinstall.mk>

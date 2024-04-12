@@ -100,13 +100,15 @@ MAKEDIRTARGET=\
 	}; \
 	_makedirtarget
 	
-MSG.BUILD	?= @echo " 👷‍♂️   build " ${.CURDIR:T}/${.TARGET}
-MSG.CREATE	?= @echo "     create " ${.CURDIR:T}/${.TARGET}
-MSG.COMPILE	?= @echo " ⚙️ compile " ${.CURDIR:T}/${.TARGET}
-MSG.LINK    ?= @echo " 🔗    link " ${.CURDIR:T}/${.TARGET}
-MSG.EXECUTE	?= @echo " ▶️ execute " ${.CURDIR:T}/${.TARGET}
-MSG.FORMAT	?= @echo " ✏️  format " ${.CURDIR:T}/${.TARGET}
-MSG.INSTALL	?= @echo " 📦 install " ${.CURDIR:T}/${.TARGET}
-MSG.REMOVE	?= @echo " 🗑️  remove " ${.TARGET}
+MSG.BUILD	?= @echo " 👷‍♂️    build " ${.CURDIR:T}/${.TARGET}
+MSG.CREATE	?= @echo "      create " ${.CURDIR:T}/${.TARGET}
+MSG.COMPILE	?= @echo " ⚙️  compile " ${.CURDIR:T}/${.TARGET}
+MSG.LINK    ?= @echo " 🔗     link " ${.CURDIR:T}/${.TARGET}
+MSG.EXECUTE	?= @echo " ▶️  execute " ${.CURDIR:T}/${.TARGET}
+MSG.FORMAT	?= @echo " ✏️   format " ${.CURDIR:T}/${.TARGET}
+MSG.INSTALL	?= @echo " 📦  install " ${.CURDIR:T}/${.TARGET}
+MSG.REMOVE	?= @echo " 🗑️   remove " ${.TARGET}
+MSG.FETCH   ?= @echo " 📥 download " ${.CURDIR:T}/${.TARGET}
+MSG.VERIFY  ?= @echo " 🔑   verify " ${.TARGET}
 
 .endif

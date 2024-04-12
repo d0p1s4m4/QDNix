@@ -82,6 +82,7 @@ div.box {
 }
 
 a {
+	color:  #c08;
 	text-decoration: none;
 }
 
@@ -89,7 +90,7 @@ a:hover,
 a:focus,
 a:visited,
 a:visited:hover {
-	color: #c08;
+	color: #dbb;
 	text-decoration: underline;
 }
 

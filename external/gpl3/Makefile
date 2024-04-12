@@ -1,3 +1,3 @@
-SUBDIR	= binutils gcc
+SUBDIR	= gmake binutils gcc
 
 .include <qdnix.subdir.mk>
