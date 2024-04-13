@@ -95,7 +95,8 @@ Collaboration diagram for ZealFSHdr:</div>
 <div class="dyncontent">
 <div class="center"><img src="structZealFSHdr__coll__graph.png" border="0" usemap="#aZealFSHdr_coll__map" alt="Collaboration graph"/></div>
 <map name="aZealFSHdr_coll__map" id="aZealFSHdr_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,121,112"/>
+<area shape="rect" title=" " alt="" coords="5,204,157,355"/>
+<area shape="rect" href="structzealfs__dir__entry.html" title=" " alt="" coords="18,5,145,141"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -110,10 +111,22 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>version</b></td></
 <tr class="memitem:ab479ba8a5d7863aa74701463c05425d9"><td class="memItemLeft" align="right" valign="top"><a id="ab479ba8a5d7863aa74701463c05425d9"></a>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>bitmap_size</b></td></tr>
 <tr class="separator:ab479ba8a5d7863aa74701463c05425d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fb207a262020d627132ce19c5eadbe1"><td class="memItemLeft" align="right" valign="top"><a id="a9fb207a262020d627132ce19c5eadbe1"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>free_pages_count</b></td></tr>
+<tr class="separator:a9fb207a262020d627132ce19c5eadbe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99aedf4d0c429aec90f214b490c0514b"><td class="memItemLeft" align="right" valign="top"><a id="a99aedf4d0c429aec90f214b490c0514b"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>bitmap</b> [32]</td></tr>
+<tr class="separator:a99aedf4d0c429aec90f214b490c0514b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37899b2264a10177d16dd0412df037cb"><td class="memItemLeft" align="right" valign="top"><a id="a37899b2264a10177d16dd0412df037cb"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>reserved</b> [28]</td></tr>
+<tr class="separator:a37899b2264a10177d16dd0412df037cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ccd7861db6e8bdd834422874286249"><td class="memItemLeft" align="right" valign="top"><a id="aa8ccd7861db6e8bdd834422874286249"></a>
+struct <a class="el" href="structzealfs__dir__entry.html">zealfs_dir_entry</a>&#160;</td><td class="memItemRight" valign="bottom"><b>root_entries</b> [6]</td></tr>
+<tr class="separator:aa8ccd7861db6e8bdd834422874286249"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="zealfs_8h_source.html#l00006">6</a> of file <a class="el" href="zealfs_8h_source.html">zealfs.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="zealfs_8h_source.html#l00019">19</a> of file <a class="el" href="zealfs_8h_source.html">zealfs.h</a>.</p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>sys/fs/zealfs/<a class="el" href="zealfs_8h_source.html">zealfs.h</a></li>
 </ul>

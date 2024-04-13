@@ -24,5 +24,14 @@ var annotated_dup =
     [ "utsname", "structutsname.html", "structutsname" ],
     [ "VFS", "structVFS.html", "structVFS" ],
     [ "VSFOps", "structVSFOps.html", "structVSFOps" ],
+    [ "xfs_btree_lblock", "structxfs__btree__lblock.html", null ],
+    [ "xfs_btree_sblock", "structxfs__btree__sblock.html", null ],
+    [ "xfs_da3_blkinfo", "structxfs__da3__blkinfo.html", null ],
+    [ "xfs_da3_intnode", "structxfs__da3__intnode.html", "structxfs__da3__intnode" ],
+    [ "xfs_da_blkinfo_t", "structxfs__da__blkinfo__t.html", null ],
+    [ "xfs_da_intnode_t", "structxfs__da__intnode__t.html", "structxfs__da__intnode__t" ],
+    [ "xfs_legacy_timestamp", "structxfs__legacy__timestamp.html", "structxfs__legacy__timestamp" ],
+    [ "xfs_sb", "structxfs__sb.html", "structxfs__sb" ],
+    [ "zealfs_dir_entry", "structzealfs__dir__entry.html", "structzealfs__dir__entry" ],
     [ "ZealFSHdr", "structZealFSHdr.html", "structZealFSHdr" ]
 ];

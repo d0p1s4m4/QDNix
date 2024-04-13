@@ -7,7 +7,6 @@ var dir_a408b6d3a4a484720bc3ecfeac8947e3 =
     [ "i386", "dir_be01d136c445f745534f9baeef89a108.html", "dir_be01d136c445f745534f9baeef89a108" ],
     [ "kern", "dir_cce319de877f7e617f6379232eb6c009.html", "dir_cce319de877f7e617f6379232eb6c009" ],
     [ "libkern", "dir_7d478a378f8789ef2b3d3b287326e72a.html", "dir_7d478a378f8789ef2b3d3b287326e72a" ],
-    [ "minixfs", "dir_d0ef312d4604616032f46b1ce398cc88.html", "dir_d0ef312d4604616032f46b1ce398cc88" ],
     [ "mips", "dir_9be536eb81d2860f0e4be94d054f0a8d.html", "dir_9be536eb81d2860f0e4be94d054f0a8d" ],
     [ "pdp11", "dir_f690f5ee209f9568df7799ac55588961.html", "dir_f690f5ee209f9568df7799ac55588961" ],
     [ "riscv", "dir_08f0a905c26597f5cf0e455390614a8f.html", "dir_08f0a905c26597f5cf0e455390614a8f" ],
