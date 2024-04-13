@@ -10,7 +10,7 @@
 
 </div>
 
-QDNix is an UNIX-like for [ARM](./src/sys/arm/README.md) and [MIPS](./src/sys/mips/README.md) based evkit....
+QDNix is an UNIX-like for [ARM](./sys/arm/README.md) and [MIPS](./sys/mips/README.md) based evkit....
 
 # License
 

@@ -1,4 +1,4 @@
--Isrc/sys
+-Isys
 -Ibuild/llvm-mips-mipssim-debug/
 -I.
--Isrc/sys/x86
+-Isys/x86

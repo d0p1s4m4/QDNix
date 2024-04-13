@@ -30,8 +30,7 @@
 ;; ---------------------------------------------------------------------
 
 (setq qdnix--all-man (append
-						 (directory-files-recursively "../src" "\\.[1-9]$")
-						 (directory-files-recursively "../external" "\\.[1-9]$")))
+						 (directory-files-recursively "../" "\\.[1-9]$")))
 
 (defun qdnix--parse-man (source)
 	(let (html keywords fname)

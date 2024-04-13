@@ -6,8 +6,8 @@
 # -----------------------------------------------------------------------------
 
 
-.if ${.MAKEFLAGS:M${.CURDIR}/src/share/mk} == ""
-.MAKEFLAGS: -m ${.CURDIR}/src/share/mk
+.if ${.MAKEFLAGS:M${.CURDIR}/share/mk} == ""
+.MAKEFLAGS: -m ${.CURDIR}/share/mk
 .endif
 
 _SRC_TOP_OBJ_=
@@ -48,7 +48,7 @@ do-tools: .PHONY .MAKE
 	${MAKEDIRTARGET} tools build_install
 
 do-distrib-dirs: .PHONY .MAKE
-	(cd "${.CURDIR}/src/etc" && ${MAKE} distrib-dirs)
+	(cd "${.CURDIR}/etc" && ${MAKE} distrib-dirs)
 	@true
 
 do-lib: .PHONY .MAKE

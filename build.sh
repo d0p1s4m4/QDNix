@@ -118,7 +118,7 @@ do_build_bmake() {
 	unzip -d "${bmakebuilddir}" "${TOOLS_DIR}/bmake.zip"
 
 	(cd "${bmakebuilddir}/"bmake-*;
-		./configure --with-default-sys-path="${topdir}/src/share/mk" --prefix="${TOOLS_DIR}" &&
+		./configure --with-default-sys-path="${topdir}/share/mk" --prefix="${TOOLS_DIR}" &&
 		make && make install)
 	mv -f "${TOOLS_DIR}/bin/bmake" "${TOOLS_DIR}/bin/${TOOLS_PREFIX}bmake" || error "Can't build bmake"
 }

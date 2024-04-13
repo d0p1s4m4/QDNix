@@ -2,14 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#define IS_OPTARG_SHORT(_a, _s) _a[0] == '-' && _a[1] == _s
-
-#define IS_OPTARG(_a, _s, _l) \\
-	strcmp("-" _s, _a) == 0 \
-		|| strcmp("--" _l, _a) == 0
-
-#define IS_NOT_OPTARG(_a) _a[0] != '-'
-
 typedef enum {
 	T_BLOCK,
 	T_CHAR,
@@ -59,76 +51,13 @@ usage(int retval)
 	exit(retval);
 }
 
-static void
-parse_cmd(int argc, char **argv)
-{
-	size_t idx;
-
-	for (idx = 0; idx < argc; idx++)
-	{
-		if (IS_OPTARG(argv[idx], "h", "help"))
-		{
-			usage(EXIT_SUCCESS);
-		}
-		else if (IS_OPTARG(argv[idx], "V", "version"))
-		{
-			version();
-		}
-		else if (IS_OPTARG_SHORT(argv[idx], 'f'))
-		{
-			idx++;
-			if (IS_NOT_OPTARG(argv[idx]))
-			{
-				opt_file = fopen(argv[idx], "r");
-				if (opt_file == NULL)
-				{
-					exit(EXIT_FAILURE);
-				}
-			}
-			else
-			{
-				usage(EXIT_FAILURE);
-			}
-		}
-		else if (IS_OPTARG_SHORT(argv[idx], 'p'))
-		{
-			idx++;
-			if (IS_NOT_OPTARG(argv[idx]))
-			{
-				opt_path = argv[idx];
-			}
-			else
-			{
-				usage(EXIT_FAILURE);
-			}
-		}
-		else if (IS_OPTARG_SHORT(argv[idx], 'd'))
-		{
-			opt_dir_only = 1;
-		}
-		else if (IS_OPTARG_SHORT(argv[idx], 'U'))
-		{
-			opt_ignore_missmatch = 1;
-		}
-		else
-		{
-			usage(EXIT_FAILURE);
-		}
-	}
-}
-
 int
 main(int argc, char **argv)
 {
 	opt_file = stdin;
 	prg_name = *argv++;
 	argc--;
-	parse_cmd(argc, argv);
 
-	if (opt_path != NULL && chdir(opt_path) != 0)
-	{
-		return (EXIT_FAILURE);
-	}
 
 	return (EXIT_SUCCESS);
 }
