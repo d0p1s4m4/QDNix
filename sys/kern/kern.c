@@ -1,4 +1,7 @@
 
+/**
+ * Kernel main
+ */
 int
 kern_main(void)
 {

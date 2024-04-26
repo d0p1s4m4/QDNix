@@ -17,10 +17,7 @@ _SRC_TOP_OBJ_=
 MKCONF = ${.CURDIR}/.config.mk
 
 BUILDTARGETS=	cleandir \
-				do-top-obj \
-				do-tools-obj \
 				do-tools \
-				obj \
 				do-distrib-dirs \
 				includes \
 				do-lib \
@@ -38,12 +35,6 @@ www: .PHONY .MAKE
 	@doxygen "${.CURDIR}/Doxyfile"
 	@${.CURDIR}/tools/site-map-gen.sh ${DESTDIR}/html > ${DESTDIR}/html/sitemap.xml
 
-do-top-obj: .PHONY .MAKE
-	${MAKEDIRTARGET} . obj NOSUBDIR=
-
-do-tools-obj: .PHONY .MAKE
-	${MAKEDIRTARGET} tools obj
-
 do-tools: .PHONY .MAKE
 	${MAKEDIRTARGET} tools build_install
 
@@ -55,8 +46,8 @@ do-lib: .PHONY .MAKE
 	@true
 
 do-build: .PHONY .MAKE
-.for targ in all install
-	${MAKEDIRTARGET} . ${targ} BUILD_tools=no BUILD_lib=no
+.for targ in dependall install
+	${MAKEDIRTARGET} . ${targ}
 .endfor
 
 START_TIME!=	date

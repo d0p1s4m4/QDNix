@@ -28,10 +28,10 @@ LIBGROUP	= bin
 LIBOWNER	= root
 LIBMODE		= ${NONBINMODE}
 
-INCDIR		= /include
-INCGROUP	= bin
-INCOWNER	= bin
-INCMODE		= ${NONBINMODE}
+INCSDIR		= /usr/include
+INCSGROUP	= bin
+INCSOWNER	= bin
+INCSMODE	= ${NONBINMODE}
 
 MANDIR		= /usr/share/man
 MANOWNER	= bin
@@ -71,15 +71,31 @@ LDFLAGS	+= --sysroot=/
 .endif
 .endif
 
-TARGETS+=	all clean cleandir depend dependall includes \
-		install obj regress tags html analyze describe htmlinstall fetch
-PHONY_NOTMAIN =	all clean cleandir depend dependall distclean includes \
-		install obj regress beforedepend afterdepend \
-		beforeinstall afterinstall realinstall realdepend realall \
-		html subdir-all subdir-install subdir-depend analyze describe \
-		htmlinstall www
-.PHONY:		${PHONY_NOTMAIN}
-.NOTMAIN:	${PHONY_NOTMAIN}
+TARGETS = all clean cleandir depend dependall includes install objs fetch
+PHONY_NOTMAIN = all clean cleandir depend dependall distclean includes install \
+                                obj beforedepend afterdepend beforeinstall afterinstall realinstall \
+                                realdepend realall subdir-all subdir-install subdir-depend
+.PHONY: ${PHONY_NOTMAIN}
+.NOTMAIN: ${PHONY_NOTMAIN}
+
+.if !target(install)
+install: beforeinstall .WAIT subdir-install realinstall .WAIT afterinstall
+beforeinstall:
+subdir-install:
+realinstall:
+afterinstall:
+.endif
+
+all: realall subdir-all
+subdir-all:
+realall:
+depend: realdepend subdir-depend
+subdir-depend:
+realdepend:
+distclean: cleandir
+cleandir: clean
+dependall: .NOTMAIN realdepend .MAKE
+	@cd "${.CURDIR}"; ${MAKE} realall
 
 MAKEDIRTARGET=\
 	@_makedirtarget() { \
@@ -106,7 +122,7 @@ MSG.COMPILE	?= @echo " ⚙️  compile " ${.CURDIR:T}/${.TARGET}
 MSG.LINK    ?= @echo " 🔗     link " ${.CURDIR:T}/${.TARGET}
 MSG.EXECUTE	?= @echo " ▶️  execute " ${.CURDIR:T}/${.TARGET}
 MSG.FORMAT	?= @echo " ✏️   format " ${.CURDIR:T}/${.TARGET}
-MSG.INSTALL	?= @echo " 📦  install " ${.CURDIR:T}/${.TARGET}
+MSG.INSTALL	?= @echo " 📦  install " ${.CURDIR:T}/${.TARGET:T}
 MSG.REMOVE	?= @echo " 🗑️   remove " ${.TARGET}
 MSG.FETCH   ?= @echo " 📥 download " ${.CURDIR:T}/${.TARGET}
 MSG.VERIFY  ?= @echo " 🔑   verify " ${.TARGET}

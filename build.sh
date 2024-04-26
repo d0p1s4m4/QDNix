@@ -163,6 +163,10 @@ do_build_os() {
 	msg2 "Generate headers"
 	python3 "${topdir}/tools/config.py" --genheader "${topdir}/config.h" --genmake "${topdir}/.config.mk"
 
+	msg2 "Build"
+
+	DESTDIR=${BUILD_DIR} cmd_make build
+
 	success "BUILD FINISHED"
 	plain "Started: %s" "${build_start}"
 	plain "Ended:   %s" "$(date)"

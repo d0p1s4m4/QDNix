@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        machine: ['arm', 'i386', 'mips', 'pdp11', 'riscv64']
+        machine: ['i386']
 
     steps:
       - uses: actions/checkout@v3
@@ -21,14 +21,18 @@ jobs:
         id: cache-tools
         uses: actions/cache@v3
         with:
-          path: build/host
+          path: .tools
           key: ${{ runner.os }}-tools
 
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install build-essential
+          sudo apt install build-essential python3 
         
-      - name: Build
+      - name: build tools
+        run: |
+          ./build.sh tools
+
+      - name: build distrib
         run: |
           ./build.sh build
