@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install emacs imagemagick doxygen texlive-binaries build-essential mandoc graphviz
+          sudo apt install emacs imagemagick doxygen texlive-binaries build-essential mandoc graphviz  python3 python3-kconfiglib
 
       - name: Generate
         run: bash build.sh www

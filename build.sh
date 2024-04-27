@@ -159,7 +159,7 @@ do_build_os() {
 	plain "Build platform: %s %s %s" "${uname_s}" "${uname_r}" "${uname_m}"
 
 	msg2 "Checking deps"
-	command -v "${TOOLS_PREFIX}bmake" || error "${TOOLS_PREFIX}bmake not found"
+	command -v "${TOOLS_PREFIX}bmake" || do_build_bmake
 	command -v python3 || error "python3 not found"
 	[ -f "${topdir}/tools/config.py" ] || error "config.py not found"
 
