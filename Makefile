@@ -17,7 +17,7 @@ _SRC_TOP_OBJ_=
 MKCONF = ${.CURDIR}/.config.mk
 
 BUILDTARGETS=	cleandir \
-				fetch \
+				do-fetch \
 				do-tools \
 				do-distrib-dirs \
 				includes \
@@ -36,6 +36,9 @@ www: .PHONY .MAKE
 	@doxygen "${.CURDIR}/Doxyfile"
 	@${.CURDIR}/tools/site-map-gen.sh ${DESTDIR}/html > ${DESTDIR}/html/sitemap.xml
 
+do-fetch: .PHONY .MAKE
+	${MAKEDIRTARGET} external fetch
+
 do-tools: .PHONY .MAKE
 	${MAKEDIRTARGET} tools build_install
 
@@ -51,14 +54,10 @@ do-build: .PHONY .MAKE
 	${MAKEDIRTARGET} . ${targ}
 .endfor
 
-START_TIME!=	date
-
 build: .PHONY .MAKE
 .for tgt in ${BUILDTARGETS}
 	${MAKEDIRTARGET} . ${tgt}
 .endfor
-	@echo   "Build started at:  ${START_TIME}"
-	@printf "Build finished at: " && date
 
 .include <qdnix.subdir.mk>
 .include <qdnix.clean.mk>

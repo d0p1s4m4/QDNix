@@ -1,14 +1,14 @@
 .include <qdnix.hostinit.mk>
 
 LICENSE = gpl3
-MODULE =  gcc
+MODULE =  gmake
 
 CONFIGURE_ARGS = \
-	--prefix="${TOOLS_DIR}" \
 	--program-prefix=${TOOLS_PREFIX}g \
-	--disable-nls \
+	--disable-nls
 
-ALL_TARGET = all-binutils all-gas all-ld
-INSTALL_TARGET = install-binutils install-gas install-ld
+ALL_TARGET = all
+INSTALL_TARGET = install
+MAKE_PROGRAM=${TOOL_BMAKE}
 
-.include "${.CURDIR}/../Makefile.host"
+.include "${.CURDIR}/../Makefile.gnuhost"

@@ -1,0 +1,37 @@
+.include <qdnix.own.mk>
+
+GNUHOSTDIST?=	${.CURDIR}/../../external/${LICENSE}/${MODULE}/dist
+
+MAKE_PROGRAM?=${TOOL_GMAKE}
+
+CONFIGURE_ARGS+=--prefix="${TOOLS_DIR}"
+
+BUILD_COMMAND = ${MAKE} ${MAKE_ARGS}
+
+ALL_TARGET		?=	all
+INSTALL_TARGET	?=	install
+
+configure_cleanup:
+	@mkdir build 2>/dev/null || true
+	@(cd build && find . -name config.cache | xargs rm -f)
+
+.configure_done: ${.CURDIR}/Makefile configure_cleanup
+	@mkdir build 2>/dev/null || true
+	(cd build && ${GNUHOSTDIST}/configure ${CONFIGURE_ARGS})
+	@echo ${BUILD_PLATFORM} > $@
+
+.build_done: .configure_done
+	@(cd build && ${BUILD_COMMAND} ${ALL_TARGET})
+	@if [ ! -f $@ ] || [ -n "$$(find build -type f -newer .build_done -print)" ]; \
+		then touch $@; fi
+
+.install_done! ${BUILD:D.build_done}
+	@(cd ${.OBJDIR}/build && ${BUILD_COMMAND} ${INSTALL_TARGET})
+	@touch $@
+
+realall: .build_done
+realinstall: .install_done
+
+clean:
+
+fetch:

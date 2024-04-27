@@ -283,8 +283,8 @@ python3 "${topdir}/tools/config.py" --update
 mkdir -p "${BUILD_DIR}"
 mkdir -p "${TOOLS_DIR}"
 
-readonly QDNIXSRCDIR BUILD_DIR TOOLS_DIR
-export QDNIXSRCDIR BUILD_DIR TOOLS_DIR
+readonly QDNIXSRCDIR BUILD_DIR TOOLS_DIR TOOLS_PREFIX
+export QDNIXSRCDIR BUILD_DIR TOOLS_DIR TOOLS_PREFIX
 
 PATH="${TOOLS_DIR}/bin:${PATH}"
 export PATH

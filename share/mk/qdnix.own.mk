@@ -53,6 +53,9 @@ OBJCOPY = ${TOOLDIR}/bin/${MACHINE_PLATFORM}-objcopy
 OBJDUMP = ${TOOLDIR}/bin/${MACHINE_PLATFORM}-objdump
 HASHPY  = ${QDNIXSRCDIR}/tools/hash.py
 
+TOOL_BMAKE = ${TOOLS_DIR}/bin/${TOOLS_PREFIX}bmake
+TOOL_GMAKE = ${TOOLS_DIR}/bin/${TOOLS_PREFIX}gmake
+
 CFLAGS += -std=c99 -pedantic \
 			-Wall -Wextra \
 			-Werror
