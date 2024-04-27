@@ -5,4 +5,8 @@ config ARCH
 	string
 	default "i386"
 
+config BOARD
+	string
+	default "pc"
+
 endmenu

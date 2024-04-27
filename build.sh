@@ -141,8 +141,6 @@ do_build_tools() {
 
 	cmd_make fetch
 
-	cmd_make do-tools-obj
-
 	cmd_make do-tools
 
 	success "BUILD FINISHED"
@@ -154,7 +152,12 @@ do_build_tools() {
 #  build os
 # -----------------------------------------------------------------------------
 do_build_os() {
-	msg "Building for ${CONFIG_ARCH}"
+	msg  "Building"
+	plain "%s started: %s" "${prgname}" "${build_start}"
+	plain "MACHINE: %s" "${CONFIG_ARCH}"
+	plain "BOARD: %s" "${CONFIG_BOARD}"
+	plain "Build platform: %s %s %s" "${uname_s}" "${uname_r}" "${uname_m}"
+
 	msg2 "Checking deps"
 	command -v "${TOOLS_PREFIX}bmake" || error "${TOOLS_PREFIX}bmake not found"
 	command -v python3 || error "python3 not found"
@@ -187,6 +190,7 @@ Options:
 	-o BUILDDIR    (default: $BUILD_DIR)
 	-t TOOLSDIR    (default: $TOOLS_DIR)
 	-p TOOLSPREFIX (default: $TOOLS_PREFIX)
+	-m MACHINE     (default: $MACHINE)
 	-c CONFIG      
 EOF
 
@@ -221,7 +225,10 @@ prgname="$(basename "$0")"
 topdir="$(realpath "$0")"
 topdir="$(dirname "${topdir}")"
 build_start="$(date)"
-readonly topdir prgname build_start
+uname_m="$(uname -m)"
+uname_r="$(uname -r)"
+uname_s="$(uname -s)"
+readonly topdir prgname build_start uname_m uname_r uname_s
 
 [ -f build.sh ] || cd "${topdir}"
 [ -f build.sh ] || error "build.sh must be run from the top \
@@ -232,7 +239,8 @@ QDNIXSRCDIR="${topdir}"
 BUILD_DIR="${topdir}/.build"
 TOOLS_DIR="${topdir}/.tools"
 TOOLS_PREFIX="qdn-"
-CONFIG_ARCH="i386"
+MACHINE="i386"
+BOARD="pc"
 
 unset qdnix_build_website qdnix_build_tools qdnix_config qdnix_build_os
 
@@ -254,6 +262,8 @@ while [ $# -gt 0 ]; do
 		-t) TOOLS_DIR="$1"; shift ;;
 		-p) TOOLS_PREFIX="$1"; shift ;;
 		-c) cp "$1" "${topdir}/.config"; shift ;;
+		-b) BOARD="$1"; shift ;;
+		-m) MACHINE="$1"; shift ;;
 		*)
 			printf "Try '%s -h' for more information.\n" "${prgname}" >&2
 			exit 1
@@ -261,8 +271,14 @@ while [ $# -gt 0 ]; do
 	esac
 done
 
+if [ ! -f "${topdir}/.config" ]; then
+	cp "${topdir}/sys/${MACHINE}/conf/${MACHINE}-${BOARD}.conf" "${topdir}/.config"
+fi
+
+python3 "${topdir}/tools/config.py" --update
+
 # shellcheck disable=SC1091
-[ -f "${topdir}/.config" ] && . "${topdir}/.config"
+. "${topdir}/.config"
 
 mkdir -p "${BUILD_DIR}"
 mkdir -p "${TOOLS_DIR}"

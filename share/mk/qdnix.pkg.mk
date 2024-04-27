@@ -8,7 +8,7 @@ PKG_ARCHIVE ?= ${PKG_NAME}-${PKG_VERSION}${PKG_EXT}
 ${PKG_ARCHIVE}:
 .if defined(PKG_URL) && !empty(PKG_URL)
 	${MSG.FETCH}
-	@wget -4 -O ${PKG_ARCHIVE} ${PKG_URL}
+	@wget -nv -O ${PKG_ARCHIVE} ${PKG_URL}
 .endif
 .if (defined(PKG_SHA256SUM) && !empty(PKG_SHA256SUM)) || \
 	(defined(PKG_B2SUM) && !empty(PKG_B2SUM))
@@ -25,8 +25,8 @@ dist: ${PKG_ARCHIVE}
 	tar -xf ${PKG_ARCHIVE}
 	mv -f ${PKG_NAME}-${PKG_VERSION} dist
 
-.PHONY: fetch
-fetch: dist
+fetch: dist .PHONY
+	@true
 
 clean:
 	@rm -rf ${.CURDIR}/dist ${PKG_ARCHIVE}

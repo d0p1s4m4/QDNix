@@ -1,7 +1,7 @@
 .text
 .even
 
-.globl	_entry
+.globl _entry
 _entry:
 	reset
 	mov $0x1000, sp

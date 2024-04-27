@@ -67,6 +67,7 @@ if __name__ == '__main__':
     parser.add_argument('--genmake', action='store', default=None)
     parser.add_argument('--menuconfig', action='store_true')
     parser.add_argument('--defconfig', action='store_true')
+    parser.add_argument('--update', action='store_true')
     args = parser.parse_args()
 
     if args.genheader is not None:
@@ -77,6 +78,9 @@ if __name__ == '__main__':
 
     if args.menuconfig:
         menuconfig.menuconfig(kconfig)
+
+    if args.update:
+        generate_make(".config")
 
     if args.defconfig:
         defconfig()

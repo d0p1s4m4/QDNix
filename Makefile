@@ -17,6 +17,7 @@ _SRC_TOP_OBJ_=
 MKCONF = ${.CURDIR}/.config.mk
 
 BUILDTARGETS=	cleandir \
+				fetch \
 				do-tools \
 				do-distrib-dirs \
 				includes \

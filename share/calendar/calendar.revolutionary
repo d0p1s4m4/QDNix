@@ -1,8 +1,12 @@
 #ifndef _calendar_revolutionary_
 #define _calendar_revolutionary_
 
+02/21	Publication of The Communist Manifesto by Karl Marx and Friedrich Engels, 1848
+03/18	Proclamation of the Paris Commune, 1871
 05/09	Victory Over Fascism Day
+07/14	Storming of the Bastille, 1789
+09/21	Proclamation of the French First Republic, 1792
 10/01	Mao Zedong proclaimed the founding of the People's Republic of China, 1949
-11/06	the Great October Socialist Revolution in Russia, 1917.
+11/06	The Great October Socialist Revolution in Russia, 1917.
 
 #endif /* !_calendar_revolutionary_ */
