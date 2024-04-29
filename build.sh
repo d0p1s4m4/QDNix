@@ -52,13 +52,13 @@ success() {
 #  utils
 # -----------------------------------------------------------------------------
 verify() {
-	sha256sum -c <(echo "$1" "$2") > /dev/null && echo -n "OK"
+	python3 "${topdir}/tools/hash.py" verify -a sha256 -H "$1" -f "$2" && echo -n "OK"
 }
 
 download_and_verify() {
 	if [ ! -f "$2" ] || [ ! "$(verify "$3" "$2")" == "OK" ]; then
 		msg2 "Download %s" "$2"
-		wget "$1" -O "$2"
+		curl -L -o "$2" "$1"
 		[ "$(verify "$3" "$2")" == "OK" ]  || error "sha256sum missmatch"
     fi
 }
@@ -209,7 +209,7 @@ unset MAKEFLAGS
 unset TERMINFO
 
 unset ALL_OFF BOLD RED GREEN BLUE MAGENTA YELLOW
-if [ ! -v NO_COLOR ]; then
+if [ -z "${NO_COLOR+x}" ]; then
 	ALL_OFF="\e[1;0m"
 	BOLD="\e[1;1m"
 	BLUE="${BOLD}\e[1;34m"
@@ -254,10 +254,10 @@ while [ $# -gt 0 ]; do
 
 	case "${op}" in
 		help | --help | -h) usage ;;
-		www) qdnix_build_website=1 ;;
-		tools) qdnix_build_tools=1 ;;
-		config) qdnix_config=1 ;;
-		build) qdnix_build_os=1 ;;
+		www) qdnix_build_website=yes ;;
+		tools) qdnix_build_tools=yes ;;
+		config) qdnix_config=yes ;;
+		build) qdnix_build_os=yes ;;
 		-o) BUILD_DIR="$1"; shift ;;
 		-t) TOOLS_DIR="$1"; shift ;;
 		-p) TOOLS_PREFIX="$1"; shift ;;
@@ -289,7 +289,7 @@ export QDNIXSRCDIR BUILD_DIR TOOLS_DIR TOOLS_PREFIX
 PATH="${TOOLS_DIR}/bin:${PATH}"
 export PATH
 
-if [ -v "qdnix_build_website" ]; then do_build_website; fi
-if [ -v "qdnix_build_tools" ]; then do_build_tools; fi
-if [ -v "qdnix_config" ]; then do_config; fi
-if [ -v "qdnix_build_os" ]; then do_build_os; fi
+if [ "${qdnix_build_website}" = "yes" ]; then do_build_website; fi
+if [ "${qdnix_build_tools}" = "yes" ]; then do_build_tools; fi
+if [ "${qdnix_config}" = "yes" ]; then do_config; fi
+if [ "${qdnix_build_os}" = "yes" ]; then do_build_os; fi

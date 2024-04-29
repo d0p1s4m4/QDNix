@@ -8,7 +8,7 @@ PKG_ARCHIVE ?= ${PKG_NAME}-${PKG_VERSION}${PKG_EXT}
 ${PKG_ARCHIVE}:
 .if defined(PKG_URL) && !empty(PKG_URL)
 	${MSG.FETCH}
-	@wget -nv -O ${PKG_ARCHIVE} ${PKG_URL}
+	@curl -L -o ${PKG_ARCHIVE} ${PKG_URL}
 .endif
 .if (defined(PKG_SHA256SUM) && !empty(PKG_SHA256SUM)) || \
 	(defined(PKG_B2SUM) && !empty(PKG_B2SUM))

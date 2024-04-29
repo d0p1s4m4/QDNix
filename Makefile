@@ -26,7 +26,7 @@ BUILDTARGETS=	cleandir \
 
 .ORDER: ${BUILDTARGETS}
 
-SUBDIR = tools .WAIT external etc include share sys
+SUBDIR = etc include share sys
 
 www: .PHONY .MAKE
 	@mkdir -p ${DESTDIR}/html
