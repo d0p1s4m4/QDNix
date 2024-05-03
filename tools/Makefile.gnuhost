@@ -6,7 +6,7 @@ MAKE_PROGRAM?=${TOOL_GMAKE}
 
 CONFIGURE_ARGS+=--prefix="${TOOLS_DIR}"
 
-BUILD_COMMAND = ${MAKE} ${MAKE_ARGS}
+BUILD_COMMAND = ${MAKE_PROGRAM} ${MAKE_ARGS}
 
 ALL_TARGET		?=	all
 INSTALL_TARGET	?=	install
@@ -26,7 +26,7 @@ configure_cleanup:
 		then touch $@; fi
 
 .install_done! ${BUILD:D.build_done}
-	@(cd ${.OBJDIR}/build && ${BUILD_COMMAND} ${INSTALL_TARGET})
+	@(cd ${.OBJDIR}/build && DESTDIR= ${BUILD_COMMAND} ${INSTALL_TARGET})
 	@touch $@
 
 realall: .build_done

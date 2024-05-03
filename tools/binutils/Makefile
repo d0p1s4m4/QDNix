@@ -18,4 +18,4 @@ CONFIGURE_ARGS = \
 ALL_TARGET = all-binutils all-gas all-ld
 INSTALL_TARGET = install-binutils install-gas install-ld
 
-.include "${.CURDIR}/../Makefile.host"
+.include "${.CURDIR}/../Makefile.gnuhost"

@@ -236,6 +236,7 @@ level of source directory"
 
 # set default value
 QDNIXSRCDIR="${topdir}"
+MKCONF="${topdir}/.config.mk"
 BUILD_DIR="${topdir}/.build"
 TOOLS_DIR="${topdir}/.tools"
 TOOLS_PREFIX="qdn-"
@@ -283,8 +284,8 @@ python3 "${topdir}/tools/config.py" --update
 mkdir -p "${BUILD_DIR}"
 mkdir -p "${TOOLS_DIR}"
 
-readonly QDNIXSRCDIR BUILD_DIR TOOLS_DIR TOOLS_PREFIX
-export QDNIXSRCDIR BUILD_DIR TOOLS_DIR TOOLS_PREFIX
+readonly QDNIXSRCDIR BUILD_DIR TOOLS_DIR TOOLS_PREFIX MKCONF
+export QDNIXSRCDIR BUILD_DIR TOOLS_DIR TOOLS_PREFIX MKCONF
 
 PATH="${TOOLS_DIR}/bin:${PATH}"
 export PATH

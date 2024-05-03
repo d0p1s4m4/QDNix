@@ -4,18 +4,19 @@ LICENSE = gpl3
 MODULE =  gcc
 
 BRANDING ?= \
-	--with-pkgversion="QDNix Binutils" \
-	--with-bugurl="https://github.com/d0p1s4m4/binutils/issues" \
-	--with-sysroot
+	--with-pkgversion="QDNix gcc" \
+	--with-bugurl="https://github.com/d0p1s4m4/gcc/issues" 
 
 CONFIGURE_ARGS = \
+	--with-sysroot=${BUILD_DIR} \
 	--target="${MACHINE_PLATFORM}" \
 	--prefix="${TOOLS_DIR}" \
 	--disable-werror \
 	--disable-nls \
+	--enable-languages=c \
 	${BRANDING}
 
-ALL_TARGET = all-binutils all-gas all-ld
-INSTALL_TARGET = install-binutils install-gas install-ld
+ALL_TARGET = all-gcc
+INSTALL_TARGET = install-gcc
 
-.include "${.CURDIR}/../Makefile.host"
+.include "${.CURDIR}/../Makefile.gnuhost"

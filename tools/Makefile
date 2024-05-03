@@ -2,7 +2,7 @@
 
 .MAIN: build_install
 
-SUBDIR = gmake 
-	
+SUBDIR = gmake .WAIT binutils .WAIT gcc
+
 .include <qdnix.subdir.mk>
 .include <qdnix.buildinstall.mk>
