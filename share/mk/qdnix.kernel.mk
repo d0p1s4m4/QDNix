@@ -4,26 +4,33 @@
 
 LDSCRIPT	?= ${.CURDIR}/linker.ld
 
-CFLAGS  = -I.. -Iamd64 -Wall -Wextra -ffreestanding -fno-stack-protector \
+CFLAGS  = -I.. -Wall -Wextra -ffreestanding -fno-stack-protector \
 			-fno-stack-check -fno-lto -fPIE -m64 -march=x86-64 -mabi=sysv \
 			-mno-80387 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone
-LDFLAGS = -m elf_x86_64 -nostdlib -static -pie --no-dynamic-linker -z text \
-			-z max-page-size=0x1000 -T amd64/linker.ld
+LDFLAGS = -nostdlib -static -pie --no-dynamic-linker -z text \
+			-z max-page-size=0x1000 -T ${LDSCRIPT}
 
 KOBJS   += ${KSRCS:R:S/$/.o/g}
 
-${KERNEL}.elf: ${KOBJS}
+${KERNEL}.sys: ${KOBJS}
 	${MSG.LINK}
-	@ld.lld -o ${.TARGET} ${KOBJS} ${LDFLAGS}
+	@${CC} -o ${.TARGET} ${KOBJS} ${LDFLAGS}
 
-all: ${KERNEL}.elf
+realall: ${KERNEL}.sys
 
+__kernelinstall: .USE
+	${MSG.INSTALL}
+	@${INSTALL_FILE} ${.ALLSRC} ${.TARGET}
+
+${DESTDIR}${KERNEL}! __kernelinstall
+
+realinstall: ${DESTDIR}${KERNEL}
 
 .if !target(clean)
 
 clean:
-	${MSG.REMOVE} ${KERNEL}.elf ${KOBJS}
-	@rm -rf ${KERNEL}.elf ${KOBJS}
+	${MSG.REMOVE} ${KERNEL}.sys ${KOBJS}
+	@rm -rf ${KERNEL}.sys ${KOBJS}
 
 .endif # !clean
 

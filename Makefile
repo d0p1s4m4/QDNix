@@ -4,8 +4,6 @@
 #  Variables:
 #     DESTDIR
 # -----------------------------------------------------------------------------
-
-
 .if ${.MAKEFLAGS:M${.CURDIR}/share/mk} == ""
 .MAKEFLAGS: -m ${.CURDIR}/share/mk
 .endif
@@ -13,6 +11,26 @@
 _SRC_TOP_OBJ_=
 
 .include <qdnix.own.mk>
+
+.if make(build) || make(release) || make(snapshot)
+.for targ in ${TARGETS:Nobj:Ncleandir}
+.if make(${targ}) && !target(.BEGIN)
+.BEGIN:
+	@echo 'BUILD ABORTED: "make build" and "make ${targ}" are mutually exclusive.'
+	@false
+.endif
+.endfor
+.endif
+
+_SUBDIR = external .WAIT tools .WAIT lib include \
+			bin sbin share sys etc .WAIT distrib
+
+.for dir in ${_SUBDIR}
+.if "${dir}" == ".WAIT" \
+	|| (${BUILD_${dir}:Uyes} != "no" && exists(${dir}/Makefile))
+SUBDIR+=	${dir}
+.endif
+.endfor
 
 MKCONF = ${.CURDIR}/.config.mk
 

@@ -46,11 +46,13 @@ DOCMODE		= ${NONBINMODE}
 MKDIRMODE	= 0755
 
 .if defined(CONFIG_ARCH)
-.if ${CONFIG_ARCH} == "pdp11"
+.	if ${CONFIG_ARCH} == "pdp11"
 MACHINE_PLATFORM	?= ${CONFIG_ARCH}-aout
-.else
+.	elif ${CONFIG_ARCH} == "arm"
+MACHINE_PLATFORM ?= arm-none-eabi
+.	else
 MACHINE_PLATFORM	?= ${CONFIG_ARCH}-elf
-.endif
+.	endif
 .endif
 
 AR	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-ar
@@ -69,20 +71,25 @@ CFLAGS += -std=c99 -pedantic \
 			-Werror
 
 .if !defined(HOSTPROG)
-.if ${DESTDIR} != ""
-.if empty(CPPFLAGS:M*--sysroot=*)
+.	if ${DESTDIR} != ""
+.		if empty(CPPFLAGS:M*--sysroot=*)
 CPPFLAGS+= --sysroot=${DESTDIR}
-.endif
+.		endif
+.		if empty(LDFLAGS:M*--sysroot=*)
 LDFLAGS	+= --sysroot=${DESTDIR}
-.else
-.if empty(CPPFLAGS:M*--sysroot=*)
+.		endif
+.	else
+.		if empty(CPPFLAGS:M*--sysroot=*)
 CPPFLAGS+= --sysroot=/
-.endif
+.		endif
+.		if empty(LDFLAGS:M*--sysroot=*)
 LDFLAGS	+= --sysroot=/
-.endif
+.		endif
+.	endif
 .endif
 
-TARGETS = all clean cleandir depend dependall includes install objs fetch
+TARGETS = all clean cleandir depend dependall includes \
+			install objs fetch
 PHONY_NOTMAIN = all clean cleandir depend dependall distclean includes install \
                                 obj beforedepend afterdepend beforeinstall afterinstall realinstall \
                                 realdepend realall subdir-all subdir-install subdir-depend

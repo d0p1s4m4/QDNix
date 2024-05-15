@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install build-essential python3 python3-kconfiglib wget
+          sudo apt install build-essential python3 python3-kconfiglib wget libgmp3-dev libmpc-dev libmpfr-dev
         
       - name: build distrib
         run: |
