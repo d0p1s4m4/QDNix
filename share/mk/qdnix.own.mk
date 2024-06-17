@@ -46,12 +46,13 @@ DOCMODE		= ${NONBINMODE}
 MKDIRMODE	= 0755
 
 .if defined(CONFIG_ARCH)
-.	if ${CONFIG_ARCH} == "pdp11"
-MACHINE_PLATFORM	?= ${CONFIG_ARCH}-aout
-.	elif ${CONFIG_ARCH} == "arm"
-MACHINE_PLATFORM ?= arm-none-eabi
+.	if "${CONFIG_ARCH}" == "\"pdp11\""
+MACHINE_PLATFORM	:= ${CONFIG_ARCH}-aout
+.	elif "${CONFIG_ARCH}" == "\"arm\""
+MACHINE_PLATFORM := arm-none-eabi
 .	else
-MACHINE_PLATFORM	?= ${CONFIG_ARCH}-elf
+MACHINE_PLATFORM	:= ${CONFIG_ARCH}-elf
+koop
 .	endif
 .endif
 

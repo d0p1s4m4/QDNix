@@ -28,6 +28,9 @@ config ARCH_PDP11
 config ARCH_X86
 	bool "x86 architecture"
 
+config ARCH_SPARC
+	bool "SPARC architecture"
+
 endchoice
 
 rsource "sys/Kconfig"

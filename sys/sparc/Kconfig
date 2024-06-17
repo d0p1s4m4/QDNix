@@ -1,0 +1,17 @@
+menu "SPARC architecture"
+	depends on ARCH_SPARC
+
+	config ARCH
+		string
+		default "sparc"
+
+	choice
+		prompt "Board"
+		default BOARD_LEON3
+
+		config BOARD_LEON3
+			bool "leon"
+
+	endchoice
+endmenu
+
