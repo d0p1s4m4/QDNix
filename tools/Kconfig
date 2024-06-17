@@ -1,0 +1,11 @@
+menu "Tools"
+
+config BUILD_TOOLS
+	bool "build tools"
+	default y
+
+config TOOLS_PREFIX
+	string "tools prefix"
+	default "qdn-"
+
+endmenu

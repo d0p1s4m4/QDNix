@@ -1,4 +1,4 @@
-CFLAGS	+= -ffreestanding \
+KCFLAGS	+= -ffreestanding \
 			-D__QDNIX__=1 \
 			-D__KERNEL__=1 \
 			-Isys \
@@ -10,3 +10,9 @@ CFLAGS	+= -ffreestanding \
 ASFLAGS	+= $(KERNEL_CFLAGS)
 
 LDFLAGS	+= -O0 -nostdlib
+
+KSRCS += ${.CURDIR}/../libkern/kmemset.c \
+		${.CURDIR}/../libkern/printk.c \
+		${.CURDIR}/../kern/console.c \
+		${.CURDIR}/../kern/kern.c \
+		${.CURDIR}/../dev/tty/serial/8250.c

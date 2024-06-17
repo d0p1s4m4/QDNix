@@ -34,6 +34,7 @@ import sys
 import kconfiglib
 import menuconfig
 import argparse
+from kconfiglib import _BOOL_TRISTATE, STRING, HEX, escape
 
 kconfig = None
 try:
@@ -51,11 +52,47 @@ def generate_header(dest):
     with open(dest, 'a') as f:
         f.write('\n#endif /* !_QDNIX_CONFIG_H */\n')
 
+def _makefile_contents():
+
+    chunks = []  # "".join()ed later
+    add = chunks.append
+
+    for sym in kconfig.unique_defined_syms:
+        val = sym.str_value
+        if not sym._write_to_conf:
+            continue
+
+        if sym.orig_type in _BOOL_TRISTATE:
+            if val == "y":
+                add("{}{}=yes\n"
+                    .format(kconfig.config_prefix, sym.name))
+            elif val == "m":
+                add("{}{}_MODULE=yes\n"
+                    .format(kconfig.config_prefix, sym.name))
+
+        elif sym.orig_type is STRING:
+            add('{}{}={}\n'
+                .format(kconfig.config_prefix, sym.name, escape(val)))
+
+        else:  # sym.orig_type in _INT_HEX:
+            if sym.orig_type is HEX and \
+               not val.startswith(("0x", "0X")):
+                val = "0x" + val
+
+            add("{}{}={}\n"
+                .format(kconfig.config_prefix, sym.name, val))
+
+    return "".join(chunks)
 
 def generate_make(dest):
     kconfig.load_config('.config')
-    kconfig.write_config(dest)
+    with open(dest, "w") as f:
+        print(f"write {dest}")
+        f.write(_makefile_contents())
 
+def generate_config(dest):
+    kconfig.load_config('.config')
+    kconfig.write_config(dest)
 
 def defconfig():
     kconfig.write_config()
@@ -80,7 +117,7 @@ if __name__ == '__main__':
         menuconfig.menuconfig(kconfig)
 
     if args.update:
-        generate_make(".config")
+        generate_config(".config")
 
     if args.defconfig:
         defconfig()

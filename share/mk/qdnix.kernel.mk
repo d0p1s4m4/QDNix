@@ -4,10 +4,10 @@
 
 LDSCRIPT	?= ${.CURDIR}/linker.ld
 
-CFLAGS  = -I.. -Wall -Wextra -ffreestanding -fno-stack-protector \
-			-fno-stack-check -fno-lto -fPIE -m64 -march=x86-64 -mabi=sysv \
-			-mno-80387 -mno-mmx -mno-sse -mno-sse2 -mno-red-zone
-LDFLAGS = -nostdlib -static -pie --no-dynamic-linker -z text \
+CFLAGS  = -I.. -I${QDNIXSRCDIR} -Wall -Wextra -ffreestanding -fno-stack-protector \
+			-fno-stack-check -fno-lto -fPIE -mabi=sysv \
+			-mno-red-zone ${KCFLAGS}
+LDFLAGS = -nostdlib -static -pie  -z text \
 			-z max-page-size=0x1000 -T ${LDSCRIPT}
 
 KOBJS   += ${KSRCS:R:S/$/.o/g}
@@ -20,11 +20,11 @@ realall: ${KERNEL}.sys
 
 __kernelinstall: .USE
 	${MSG.INSTALL}
-	@${INSTALL_FILE} ${.ALLSRC} ${.TARGET}
+	@${INSTALL_FILE} ${KERNEL}.sys ${.TARGET}
 
-${DESTDIR}${KERNEL}! __kernelinstall
+${DESTDIR}/${KERNEL}.sys! __kernelinstall
 
-realinstall: ${DESTDIR}${KERNEL}
+realinstall: ${DESTDIR}/${KERNEL}.sys
 
 .if !target(clean)
 

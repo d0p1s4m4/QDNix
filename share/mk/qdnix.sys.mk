@@ -1,14 +1,12 @@
 .if !defined(_QDNIX_SYS_MK_)
 _QDNIX_SYS_MK_ = 1
 
-CFLAGS  += -ansi -Wno-long-long
-
 .SUFFIXES: .o .S .c .m .cc .cpp .cxx
 
 # Assembly
 .S.o:
 	${MSG.COMPILE}
-	@${CC} ${CFLAGS} -c -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${CC} ${CFLAGS} -c -o ${.TARGET} ${.IMPSRC} ${LDADD}
 
 .s.o:
 	${MSG.COMPILE}

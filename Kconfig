@@ -16,12 +16,6 @@ config ARCH_RISCV64
 config ARCH_MIPS
 	bool "MIPS architecture"
 
-config ARCH_EZ80
-	bool "eZ80 architecture"
-
-config ARCH_6502
-	bool "6502 architecture"
-
 config ARCH_PDP11
 	bool "PDP-11 architecture"
 
@@ -34,4 +28,4 @@ config ARCH_SPARC
 endchoice
 
 rsource "sys/Kconfig"
-
+rsource "tools/Kconfig"

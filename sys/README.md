@@ -19,5 +19,3 @@
 | @subpage sys_sys "sys"     | kernel headers                                  |
 | @subpage vm "vm"           | machine independent Virtual Memory Manager      |
 | @subpage x86 "x86"         |                                                 |
-
-@mermaid{qdnix_boot}

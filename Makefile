@@ -73,6 +73,7 @@ do-build: .PHONY .MAKE
 .endfor
 
 build: .PHONY .MAKE
+	mkdir -p ${DESTDIR}/usr/include
 .for tgt in ${BUILDTARGETS}
 	${MAKEDIRTARGET} . ${tgt}
 .endfor

@@ -66,8 +66,8 @@ __isr_common:
         mov %ax, %fs
         mov %ax, %gs
 
-        .extern IsrHandler
-        call IsrHandler
+        /*.extern IsrHandler
+        ;call IsrHandler*/
 
         pop %eax
         mov %ax, %ds

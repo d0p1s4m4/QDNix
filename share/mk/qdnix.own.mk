@@ -46,16 +46,16 @@ DOCMODE		= ${NONBINMODE}
 MKDIRMODE	= 0755
 
 .if defined(CONFIG_ARCH)
-.	if "${CONFIG_ARCH}" == "\"pdp11\""
+.	if "${CONFIG_ARCH}" == "pdp11"
 MACHINE_PLATFORM	:= ${CONFIG_ARCH}-aout
-.	elif "${CONFIG_ARCH}" == "\"arm\""
+.	elif "${CONFIG_ARCH}" == "arm"
 MACHINE_PLATFORM := arm-none-eabi
 .	else
 MACHINE_PLATFORM	:= ${CONFIG_ARCH}-elf
-koop
 .	endif
 .endif
 
+CC  = ${TOOLS_DIR}/bin/${MACHINE_PLATFORM}-gcc
 AR	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-ar
 AS	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-as
 LD	= ${TOOLDIR}/bin/${MACHINE_PLATFORM}-ld
