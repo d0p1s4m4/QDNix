@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['risc_2dv_134',['RISC-V',['../riscv64.html',1,'sys']]]
+  ['shared_20ressources_133',['Shared ressources',['../share.html',1,'']]],
+  ['soc_134',['SoC',['../arm_soc.html',1,'arm']]],
+  ['system_20commands_135',['System commands',['../sbin.html',1,'']]]
 ];

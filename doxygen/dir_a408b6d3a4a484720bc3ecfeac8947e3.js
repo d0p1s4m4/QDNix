@@ -1,8 +1,8 @@
 var dir_a408b6d3a4a484720bc3ecfeac8947e3 =
 [
+    [ "amd64", "dir_909815e53a5c88b7ce1839249f6a2d84.html", "dir_909815e53a5c88b7ce1839249f6a2d84" ],
     [ "arm", "dir_e5848ae0f4e0f1a2a4d09f40991e48b1.html", "dir_e5848ae0f4e0f1a2a4d09f40991e48b1" ],
     [ "dev", "dir_d262391372ea5bbd9c4df83a3df643d2.html", "dir_d262391372ea5bbd9c4df83a3df643d2" ],
-    [ "ez80", "dir_1058327a22719684a88f7edeeeb5114b.html", "dir_1058327a22719684a88f7edeeeb5114b" ],
     [ "fs", "dir_3a51a65573640343eff9ad6b5e5a7ad8.html", "dir_3a51a65573640343eff9ad6b5e5a7ad8" ],
     [ "i386", "dir_be01d136c445f745534f9baeef89a108.html", "dir_be01d136c445f745534f9baeef89a108" ],
     [ "kern", "dir_cce319de877f7e617f6379232eb6c009.html", "dir_cce319de877f7e617f6379232eb6c009" ],
