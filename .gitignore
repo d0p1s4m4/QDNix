@@ -42,3 +42,4 @@ parser.tab.c
 *.tar.*
 dist
 *_done
+*.sys

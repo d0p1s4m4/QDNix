@@ -1,5 +1,5 @@
-clean:
-cleandir:
-includes:
-dependall:
-install:
+KERNEL	= vmqdnix
+KCFLAGS = 
+KSRCS	= entry.S
+
+.include <qdnix.kernel.mk>

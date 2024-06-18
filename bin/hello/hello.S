@@ -17,8 +17,6 @@ _start:
 .include "hello.x86_64.S"
 #elif defined(__i386__)
 .include "hello.i386.S"
-#elif defined(__athena__)
-.include "hello.athena.S"
 #elif defined(__pdp__)
 .include "hello.pdp11.S"
 #else

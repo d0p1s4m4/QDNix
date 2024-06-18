@@ -14,7 +14,7 @@ static const char *srv_dir = "/var/html";
 static void
 version(void)
 {
-	printf("%s v%s\n", prg_name, HTTPD_VERSION);
+	printf("%s (QDNix) v%s\n", prg_name, HTTPD_VERSION);
 	printf("Copyright (C) 2023 d0p1\n");
 	printf("License BSD-3: <https://directory.fsf.org/wiki/License:BSD-3-Clause>\n");
 	printf("This is free software: you are free to change and redistribute it.\n");
@@ -39,10 +39,6 @@ main(int argc, char *const argv[])
 {
 	size_t idx;
 
-	/*
-	 * QDNix will always provide argv[0] so we won't care about 
-	 * things like: CVE-2021-4034 and broken sys
-	 */
 	prg_name = *argv++;
 	argc--;
 

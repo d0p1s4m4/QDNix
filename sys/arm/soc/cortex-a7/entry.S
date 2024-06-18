@@ -49,8 +49,8 @@ _entry:
 	ldr r1, =(bss_end)
 	sub r2, r1, r0
 	mov r1, #0
-	.extern kmemset
-	bl kmemset
+	.extern memset
+	bl memset
 
 	.extern arch_init
 	bl arch_init

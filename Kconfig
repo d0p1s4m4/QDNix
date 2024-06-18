@@ -7,9 +7,6 @@ choice
 config ARCH_ARM
 	bool "ARM architecture"
 
-config ARCH_ATHENA
-	bool "Athena architecture"
-
 config ARCH_RISCV64
 	bool "RISC-V architecture"
 

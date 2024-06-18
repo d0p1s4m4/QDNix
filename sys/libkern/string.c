@@ -29,13 +29,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <stddef.h>
+#include <stdint.h>
 
 void *
-kmemset(void *dest, int val, size_t len)
+memset(void *dest, int val, size_t len)
 {
-	char *ptr;
+	uint8_t *ptr;
 
-	for (ptr = (char *)dest; ptr < ((char *)dest + len); ptr++)
+	for (ptr = (uint8_t *)dest; ptr < ((uint8_t *)dest + len); ptr++)
 	{
 		*ptr = val;
 	}
@@ -43,3 +44,17 @@ kmemset(void *dest, int val, size_t len)
 	return (dest);
 }
 
+void *
+memcpy(void *dest, const void *src, size_t len)
+{
+	uint8_t *d;
+	const uint8_t *s;
+	size_t i;
+
+	for (d = dest, s = src, i = 0; i < len; i++)
+	{
+		d[i] = s[i];
+	}
+
+	return (dest);
+}

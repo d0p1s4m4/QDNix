@@ -4,6 +4,10 @@ config BUILD_TOOLS
 	bool "build tools"
 	default y
 
+config USE_TOOLS
+	bool "use tools"
+	default y
+
 config TOOLS_PREFIX
 	string "tools prefix"
 	default "qdn-"

@@ -1,4 +1,4 @@
 KERNEL	= vmqdnix
-KSRCS	= init.c
+KSRCS	= entry.c
 
 .include <qdnix.kernel.mk>

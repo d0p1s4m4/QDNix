@@ -87,7 +87,6 @@ def _makefile_contents():
 def generate_make(dest):
     kconfig.load_config('.config')
     with open(dest, "w") as f:
-        print(f"write {dest}")
         f.write(_makefile_contents())
 
 def generate_config(dest):

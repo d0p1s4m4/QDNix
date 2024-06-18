@@ -6,7 +6,7 @@ _QDNIX_SYS_MK_ = 1
 # Assembly
 .S.o:
 	${MSG.COMPILE}
-	${CC} ${CFLAGS} -c -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	@${CC} ${CFLAGS} -c -o ${.TARGET} ${.IMPSRC} ${LDADD}
 
 .s.o:
 	${MSG.COMPILE}

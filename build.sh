@@ -168,7 +168,7 @@ do_build_os() {
 
 	msg2 "Build"
 
-	DESTDIR=${BUILD_DIR} cmd_make build
+	DESTDIR=${BUILD_DIR}/${CONFIG_ARCH}/${CONFIG_BOARD} cmd_make build
 
 	success "BUILD FINISHED"
 	plain "Started: %s" "${build_start}"

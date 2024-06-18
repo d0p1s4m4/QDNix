@@ -54,6 +54,7 @@ stack_top:
 .long 0
 .long 0
 
+/* video mode */
 .long 0
 .long 1024
 .long 768
@@ -63,6 +64,11 @@ stack_top:
 .globl _entry
 _entry:
 	movl $stack_top, %esp
+	movl $0, %ebp
+	/* set flags in good state */
+	push $0
+	popf
+	push $0
 
 	movl %eax, %edx /* save boot magic */
 
@@ -80,7 +86,11 @@ _entry:
 	push %ebx /* boot info */
 	push %edx /* magic */
 
+	.extern arch_init
 	call arch_init
+
+	.extern kern_main
+	call kern_main
 
 	cli
 halt:
