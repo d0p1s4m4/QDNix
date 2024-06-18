@@ -9,6 +9,7 @@ var annotated_dup =
     [ "FDTHeader", "structFDTHeader.html", "structFDTHeader" ],
     [ "FDTProp", "structFDTProp.html", "structFDTProp" ],
     [ "GpioRegister", "structGpioRegister.html", "structGpioRegister" ],
+    [ "kinfo", "structkinfo.html", null ],
     [ "minix_dir_entry", "structminix__dir__entry.html", "structminix__dir__entry" ],
     [ "minix_inode", "structminix__inode.html", "structminix__inode" ],
     [ "minix_super_block", "structminix__super__block.html", "structminix__super__block" ],
